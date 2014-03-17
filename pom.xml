@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.java0</groupId>
+	<artifactId>java0</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>java0-deploy</id>
+			<url>sftp://www.java0.org/home/maven/maven_deploy</url>
+		</repository>
+	</distributionManagement>
+	
+	<repositories>
+		<repository>
+			<id>java0-repo</id>
+			<url>http://www.java0.org/maven2</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.1</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.2.1</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>deploy</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.9.1</version>
+					<configuration>
+						<source>7</source>
+						<detectLinks></detectLinks>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>deploy</phase>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.7</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.ant</groupId>
+							<artifactId>ant-jsch</artifactId>
+							<version>1.9.2</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>2.11</version>
+					<executions>
+						<execution>
+							<id>validate</id>
+							<phase>validate</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+							<configuration>
+								<configLocation>config/sun_checks.xml </configLocation>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.6</version>
+			</extension>
+		</extensions>
+
+	</build>
+
+	<modules>
+<module>java0util</module>
+<module>java0unit</module>
+</modules>
+</project>
