@@ -18,7 +18,7 @@
 			<url>sftp://www.java0.org/home/maven/maven_deploy</url>
 		</repository>
 	</distributionManagement>
-	
+
 	<repositories>
 		<repository>
 			<id>java0-repo</id>
@@ -124,7 +124,7 @@
 	</build>
 
 	<modules>
-<module>java0util</module>
-<module>java0unit</module>
-</modules>
+		<module>util</module>
+		<module>unit</module>
+	</modules>
 </project>
