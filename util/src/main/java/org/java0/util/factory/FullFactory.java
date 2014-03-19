@@ -24,9 +24,9 @@ import java.util.logging.Logger;
 
 import org.java0.util.collections.ThreeColumnHashTable;
 import org.java0.util.collections.ThreeColumnTable;
+import org.java0.util.collections.ThreeColumnTable.Row;
 import org.java0.util.collections.TwoColumnHashTable;
 import org.java0.util.collections.TwoColumnTable;
-import org.java0.util.collections.ThreeColumnTable.Row;
 import org.java0.util.tag.DefaultTagComparator;
 import org.java0.util.tag.Tag;
 import org.java0.util.tag.TagComparator;
@@ -151,7 +151,7 @@ public class FullFactory extends AbstractFactory implements DelegableFactory,
     public <T> T getObject(Class<T> type, Tag tag) throws FactoryException {
 
         ThreeColumnTable<Class<?>, Tag, DelegableFactory> table =
-                typeTable.select(type, null, null);
+                typeTable.select(type, tag, null);
 
         int maxScore = Integer.MIN_VALUE;
         int count = 0;

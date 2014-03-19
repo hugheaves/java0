@@ -20,7 +20,6 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.logging.Logger;
 
-import org.java0.util.factory.Factory;
 import org.java0.util.tag.NameTag;
 import org.java0.util.test.BaseTest;
 import org.junit.Test;
@@ -37,15 +36,16 @@ public class DelegableFactoryTest extends BaseTest {
     @Test
     public void test1() {
         Factory factory = new TestFactory();
-        // TestClass1 instance1 = factory.getObject(TestClass1.class);
 
-        // assertNotNull(instance1);
+        TestClass1 instance1 = factory.getObject(TestClass1.class);
 
-        // TestClass2 instance2 = factory.getObject(TestClass2.class);
+        assertNotNull(instance1);
 
-        // assertNotNull(instance2);
+        TestClass2 instance2 = factory.getObject(TestClass2.class);
 
-        // TestInterface1 interface1 = factory.getObject(TestInterface1.class,
-        // new NameTag("A"));
+        assertNotNull(instance2);
+
+        TestInterface1 interface1 = factory.getObject(TestInterface1.class,
+        new NameTag("A"));
     }
 }

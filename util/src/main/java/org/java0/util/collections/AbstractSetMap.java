@@ -18,13 +18,9 @@ package org.java0.util.collections;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 import java.util.logging.Logger;
-
-import org.java0.util.factory.ObjectProvider;
 
 /**
  * @author Hugh Eaves
@@ -277,5 +273,10 @@ public abstract class AbstractSetMap<K, V> implements SetMap<K, V> {
     @Override
     public Set<java.util.Map.Entry<K, Set<V>>> entrySet() {
         return map.entrySet();
+    }
+
+    @Override
+    public String toString() {
+        return map.toString();
     }
 }

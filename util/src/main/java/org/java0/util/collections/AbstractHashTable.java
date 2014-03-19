@@ -202,15 +202,15 @@ public abstract class AbstractHashTable<R extends Table.Row, T extends Table<R>>
                 returnSet.add(newRow);
             }
         } else if (valuePositions.length == 1) {
-            returnSet =
-                    buildSet(index[valuePositions[0]]
-                            .get(objects[valuePositions[0]]));
+            returnSet = buildSet(index[valuePositions[0]]
+                    .get(objects[valuePositions[0]]));
         } else {
             returnSet = buildSet(objects, valuePositions);
         }
 
+        returnTable = createTable();
+
         if (returnSet != null) {
-            returnTable = createTable();
             returnTable.appendAll(returnSet);
         }
 
@@ -222,7 +222,11 @@ public abstract class AbstractHashTable<R extends Table.Row, T extends Table<R>>
      * @return
      */
     private Set<R> buildSet(Set<R> rows) {
-        return new HashSet<R>(rows);
+        if (rows != null) {
+            return new HashSet<R>(rows);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -243,10 +247,8 @@ public abstract class AbstractHashTable<R extends Table.Row, T extends Table<R>>
      * @return
      */
     private Set<R> buildSet(Object[] objects, int[] valuePositions) {
-        Set<R> returnSet =
-                new HashSet<R>(
-                        index[valuePositions[0]]
-                                .get(objects[valuePositions[0]]));
+        Set<R> returnSet = new HashSet<R>(
+                index[valuePositions[0]].get(objects[valuePositions[0]]));
         for (int i = 1; i < valuePositions.length; ++i) {
             returnSet.retainAll(index[valuePositions[i]]
                     .get(objects[valuePositions[i]]));

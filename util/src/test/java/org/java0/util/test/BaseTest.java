@@ -17,21 +17,20 @@
 
 package org.java0.util.test;
 
-import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import org.java0.util.logging.LogUtil;
 import org.junit.BeforeClass;
 
 public class BaseTest {
-    @SuppressWarnings("unused")
-    private static final Logger logger = Logger.getLogger(BaseTest.class.getName());
+	public BaseTest() {
+	}
 
-    public BaseTest() {
-    }
-
-    @BeforeClass
-    public static void setup() {
-        LogUtil.initLogging("test-logging.properties");
-    }
+	@BeforeClass
+	public static void setupLogging() {
+		if (!LogUtil.initLogging("test-logging.properties")) {
+			LogUtil.initLoggingSimple(Level.INFO);
+		}
+	}
 
 }

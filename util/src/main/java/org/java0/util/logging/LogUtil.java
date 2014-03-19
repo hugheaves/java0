@@ -18,6 +18,8 @@ package org.java0.util.logging;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -165,5 +167,22 @@ public class LogUtil {
         }
 
         return false;
+    }
+
+    /**
+     * Initialize the logging system using a simple programmatic
+     * configuration. Any messages at the specified level or higher
+     * will be logged to System.err.
+     *
+     * @param level The lowest level at which to log messages
+     * @return
+     */
+    public static boolean initLoggingSimple(Level level) {
+        Handler handler = new ConsoleHandler();
+        handler.setFormatter(new FastFormatter());
+        handler.setLevel(level);
+        Logger.getLogger("").addHandler(handler);
+        Logger.getLogger("").setLevel(level);
+        return true;
     }
 }

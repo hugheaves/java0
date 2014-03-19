@@ -16,19 +16,21 @@
  */
 package org.java0.util.collections;
 
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.java0.util.collections.FourColumnHashTable;
-import org.java0.util.collections.FourColumnTable;
 import org.java0.util.collections.FourColumnTable.Row;
 import org.java0.util.test.BaseTest;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 /**
  * @author Hugh Eaves
@@ -43,32 +45,33 @@ public class FourColumnHashTableTest extends BaseTest {
 
     @Before
     public void createTestData() {
-        rows =
-                new ArrayList<FourColumnTable.Row<String, Integer, Boolean, String>>();
+        rows = new ArrayList<FourColumnTable.Row<String, Integer, Boolean, String>>();
 
         rows.add(FourColumnHashTable.Row.create("hello", 1, true, "world"));
         rows.add(FourColumnHashTable.Row.create("hello1", 1, true, "world"));
         rows.add(FourColumnHashTable.Row.create("hello2", 1, true, "world"));
         rows.add(FourColumnHashTable.Row.create("hello", 1, true, "world1"));
         rows.add(FourColumnHashTable.Row.create("hello", 1, true, "world2")); // DUP
-                                                               // A
+        // A
         rows.add(FourColumnHashTable.Row.create("hello", 2, true, "world"));
-        rows.add(FourColumnHashTable.Row.create("hello", 3, true, "world")); // DUP B
+        rows.add(FourColumnHashTable.Row.create("hello", 3, true, "world")); // DUP
+        // B
         rows.add(FourColumnHashTable.Row.create("hello", 3, false, "world"));
         rows.add(FourColumnHashTable.Row.create("hello1", 3, true, "world"));
         rows.add(FourColumnHashTable.Row.create("hello", 3, true, "world2"));
         rows.add(FourColumnHashTable.Row.create("hello", 1, false, "world"));
-        rows.add(FourColumnHashTable.Row.create("hello", 3, true, "world")); // DUP B
+        rows.add(FourColumnHashTable.Row.create("hello", 3, true, "world")); // DUP
+                                                                             // B
         rows.add(FourColumnHashTable.Row.create("hello", 1, true, "world2")); // DUP
-                                                               // A
+        // A
         rows.add(FourColumnHashTable.Row.create("last", 2, false, "row"));
     }
 
     @SuppressWarnings("unchecked")
     @Test
     public void test1() {
-        FourColumnTable<String, Integer, Boolean, String> table =
-                FourColumnHashTable.create();
+        FourColumnTable<String, Integer, Boolean, String> table = FourColumnHashTable
+                .create();
 
         assertTrue(table.isEmpty());
 
@@ -80,14 +83,14 @@ public class FourColumnHashTableTest extends BaseTest {
         table.appendAll(rows);
         assertEquals(12, table.size());
 
-        FourColumnTable<String, Integer, Boolean, String> result =
-                table.select("hello", 1, true, "world");
+        FourColumnTable<String, Integer, Boolean, String> result = table
+                .select("hello", 1, true, "world");
 
         assertNotNull(result);
         assertEquals(1, result.size());
 
-        Row<String, Integer, Boolean, String> row =
-                table.rowSet().iterator().next();
+        Row<String, Integer, Boolean, String> row = table.rowSet().iterator()
+                .next();
         assertEquals(rows.get(0), row);
 
         result = table.select("hello", null, null, null);

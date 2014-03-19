@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author Hugh Eaves
  *
  */
-public class AbstractTypedObjectProvider<T> implements TypedObjectProvider<T> {
+public abstract class AbstractTypedObjectProvider<T> implements TypedObjectProvider<T> {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
             .getLogger(AbstractTypedObjectProvider.class.getName());
@@ -44,14 +44,5 @@ public class AbstractTypedObjectProvider<T> implements TypedObjectProvider<T> {
     @Override
     public Class<? extends T> getType() {
         return type;
-    }
-
-
-    /**
-     * @see org.java0.util.factory.ObjectProvider#getObject()
-     */
-    @Override
-    public T getObject() throws FactoryException {
-        return null;
     }
 }

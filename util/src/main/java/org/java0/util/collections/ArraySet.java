@@ -25,47 +25,51 @@ import java.util.NoSuchElementException;
  *
  */
 public class ArraySet<E> extends AbstractSet<E> {
+	/*
+	 * Array of set elements
+	 */
     private E[] elements;
+
+    /*
+     * Number of empty elements in the array
+     */
     private int emptyElements;
 
-    @SuppressWarnings("unchecked")
+    /*
+     * Array (index + 1) of next unused element in array
+     */
+    private int nextElement;
+
     public ArraySet() {
-        elements = (E[]) new Object[1];
-        emptyElements = 1;
+        this(4);
     }
 
     @SuppressWarnings("unchecked")
     public ArraySet(int capacity) {
         elements = (E[]) new Object[capacity];
+        nextElement = 0;
         emptyElements = 0;
    }
 
     protected class ArraySetIterator implements Iterator<E> {
         private int position = 0;
+        private boolean nextCalled = false;
 
         /**
          * @see java.util.Iterator#hasNext()
          */
         @Override
         public boolean hasNext() {
-            if (position >= elements.length) {
-                return false;
-
-            }
-            if (elements[position] != null) {
-                return true;
-            }
-
-            while (position < (elements.length - 1)
-                    && elements[position] != null) {
+        	while (position < nextElement
+                    && elements[position] == null) {
                 ++position;
             }
 
-            if (elements[position] != null) {
-                return true;
-            }
+            if (position >= nextElement) {
+                return false;
 
-            return false;
+            }
+            return true;
 
         }
 
@@ -74,10 +78,11 @@ public class ArraySet<E> extends AbstractSet<E> {
          */
         @Override
         public E next() {
-            if (position >= elements.length) {
+            if (position >= nextElement) {
                 throw new NoSuchElementException();
             }
-            return elements[position];
+            nextCalled = true;
+            return elements[position++];
         }
 
         /**
@@ -85,11 +90,12 @@ public class ArraySet<E> extends AbstractSet<E> {
          */
         @Override
         public void remove() {
-            if (elements[position] == null) {
+            if (!nextCalled)  {
                 throw new IllegalStateException();
             }
+            nextCalled = false;
+            elements[position-1] = null;
             ++emptyElements;
-            elements[position] = null;
         }
     }
 
@@ -106,7 +112,7 @@ public class ArraySet<E> extends AbstractSet<E> {
      */
     @Override
     public int size() {
-        return elements.length - emptyElements;
+        return nextElement - emptyElements;
     }
 
     /**
@@ -117,25 +123,37 @@ public class ArraySet<E> extends AbstractSet<E> {
         if (e == null) {
             throw new NullPointerException();
         }
-
-        if (emptyElements > 0) {
-            int nullPos = -1;
-            for (int i = 0; i < elements.length; ++i) {
-                if (elements[i] == null) {
-                    nullPos = i;
-                } else if (elements[i].equals(e)) {
-                    return false;
-                }
+        int nullPos = -1;
+        for (int i = 0; i < nextElement; ++i) {
+            if (elements[i] == null) {
+                nullPos = i;
+            } else if (elements[i].equals(e)) {
+                return false;
             }
+        }
+
+        if (nullPos != -1) {
             elements[nullPos] = e;
             --emptyElements;
+        } else if (nextElement < elements.length) {
+        	elements[nextElement++] = e;
         } else {
-            @SuppressWarnings("unchecked")
-            E newElements[] = (E[]) new Object[elements.length + 1];
-            System.arraycopy(elements, 0, newElements, 0, elements.length);
-            newElements[elements.length] = e;
-            elements = newElements;
+        	expandArray();
+        	elements[nextElement++] = e;
         }
         return true;
+    }
+
+    private void expandArray() {
+        @SuppressWarnings("unchecked")
+        E newElements[] = (E[]) new Object[elements.length * 2];
+        System.arraycopy(elements, 0, newElements, 0, elements.length);
+        elements = newElements;
+    }
+
+    @Override
+	public void clear() {
+    	nextElement = 0;
+    	emptyElements = 0;
     }
 }
