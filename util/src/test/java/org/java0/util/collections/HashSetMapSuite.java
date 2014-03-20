@@ -41,7 +41,7 @@ import com.google.common.collect.testing.features.MapFeature;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 @RunWith(AllTests.class)
 @SuiteClasses(HashSetMapSuite.class)
@@ -66,7 +66,7 @@ public class HashSetMapSuite extends BaseTest {
                         Helpers.mapEntry(
                                 "CCC",
                                 (Set<String>) new HashSet<String>(Arrays
-                                        .asList(new String[] { "555", "666"}))),
+                                        .asList(new String[] { "555", "666" }))),
                         Helpers.mapEntry(
                                 "DDD",
                                 (Set<String>) new HashSet<String>(Arrays
@@ -117,11 +117,13 @@ public class HashSetMapSuite extends BaseTest {
         TestSuite suite = MapTestSuiteBuilder
                 .using(generator)
                 .named("HashSetMapSuite")
-                .withFeatures(MapFeature.GENERAL_PURPOSE, MapFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
+                .withFeatures(MapFeature.GENERAL_PURPOSE,
+                        MapFeature.FAILS_FAST_ON_CONCURRENT_MODIFICATION,
                         MapFeature.SUPPORTS_PUT, MapFeature.SUPPORTS_REMOVE,
                         MapFeature.ALLOWS_NULL_KEYS,
-                        MapFeature.ALLOWS_NULL_VALUES, CollectionFeature.SUPPORTS_ITERATOR_REMOVE, CollectionSize.ANY)
-                .createTestSuite();
+                        MapFeature.ALLOWS_NULL_VALUES,
+                        CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
+                        CollectionSize.ANY).createTestSuite();
 
         return suite;
     }

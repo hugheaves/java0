@@ -17,6 +17,7 @@
 package org.java0.util.factory;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.logging.Logger;
 
@@ -47,5 +48,10 @@ public class DelegableFactoryTest extends BaseTest {
 
         TestInterface1 interface1 = factory.getObject(TestInterface1.class,
         new NameTag("A"));
+        assertTrue(interface1 instanceof TestClass4);
+
+        interface1 = factory.getObject(TestInterface1.class,
+        new NameTag("B"));
+        assertTrue(interface1 instanceof TestClass5);
     }
 }

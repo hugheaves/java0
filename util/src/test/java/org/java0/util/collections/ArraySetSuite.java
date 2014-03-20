@@ -31,7 +31,7 @@ import com.google.common.collect.testing.SetTestSuiteBuilder;
 import com.google.common.collect.testing.TestStringSetGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
-import com.google.common.collect.testing.features.ListFeature;
+import com.google.common.collect.testing.features.SetFeature;
 /**
  * @author Hugh Eaves
  *
@@ -57,10 +57,7 @@ public class ArraySetSuite extends BaseTest {
 		TestSuite suite = SetTestSuiteBuilder
 				.using(generator)
 				.named("ArraySetTest")
-				.withFeatures(ListFeature.GENERAL_PURPOSE,
-						ListFeature.SUPPORTS_ADD_WITH_INDEX,
-						ListFeature.SUPPORTS_REMOVE_WITH_INDEX,
-						ListFeature.SUPPORTS_SET,
+				.withFeatures(SetFeature.GENERAL_PURPOSE,
 						CollectionFeature.SUPPORTS_ADD,
 						CollectionFeature.SUPPORTS_REMOVE,
 						CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
