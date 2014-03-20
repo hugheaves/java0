@@ -16,11 +16,10 @@
  */
 package org.java0.util.factory;
 
-import org.java0.util.collections.ThreeColumnHashTable;
-import org.java0.util.collections.ThreeColumnTable;
-import org.java0.util.collections.ThreeColumnTable.Row;
-import org.java0.util.collections.TwoColumnHashTable;
-import org.java0.util.collections.TwoColumnTable;
+import org.java0.util.collections.HashRowSet;
+import org.java0.util.collections.RowSet;
+import org.java0.util.collections.ThreeColumnRow;
+import org.java0.util.collections.TwoColumnRow;
 import org.java0.util.tag.DefaultTagComparator;
 import org.java0.util.tag.Tag;
 import org.java0.util.tag.TagComparator;
@@ -37,8 +36,7 @@ public abstract class AbstractDelegableFactory extends AbstractFactory
     /**
      *
      */
-    private final ThreeColumnTable<Class<?>, Tag, ObjectProvider<?>> typeTable = ThreeColumnHashTable
-            .create();
+    private final HashRowSet<ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>>> typeTable = new HashRowSet<>();
 
     /**
      * Adds a concrete type to the factory.
@@ -78,8 +76,9 @@ public abstract class AbstractDelegableFactory extends AbstractFactory
     protected <T> void addType(Class<T> lookupType, Tag lookupTypeTag,
             boolean singleton, Class<? extends T> concreteType,
             InjectableFields constructorFields) {
-        typeTable.append(lookupType, lookupTypeTag, new InjectableProvider<T>(
-                concreteType, null, singleton, constructorFields));
+        typeTable.add(new ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>>(
+                lookupType, lookupTypeTag, new InjectableProvider<T>(
+                        concreteType, null, singleton, constructorFields)));
     }
 
     /**
@@ -96,8 +95,9 @@ public abstract class AbstractDelegableFactory extends AbstractFactory
     protected <T> void addType(Class<T> lookupType, Tag lookupTypeTag,
             boolean singleton, Class<? extends T> concreteType,
             TypedObjectProvider<?>... constructorProviders) {
-        typeTable.append(lookupType, lookupTypeTag, new NewObjectProvider<T>(
-                concreteType, singleton, constructorProviders));
+        typeTable.add(new ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>>(
+                lookupType, lookupTypeTag, new NewObjectProvider<T>(
+                        concreteType, singleton, constructorProviders)));
     }
 
     /**
@@ -108,8 +108,9 @@ public abstract class AbstractDelegableFactory extends AbstractFactory
      */
     protected <T> void addType(Class<T> lookupType, Tag lookupTypeTag,
             boolean singleton, Class<? extends T> concreteType) {
-        typeTable.append(lookupType, lookupTypeTag, new NewObjectProvider<T>(
-                concreteType, singleton));
+        typeTable.add(new ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>>(
+                lookupType, lookupTypeTag, new NewObjectProvider<T>(
+                        concreteType, singleton)));
     }
 
     /**
@@ -133,18 +134,19 @@ public abstract class AbstractDelegableFactory extends AbstractFactory
      */
     protected <T> void addType(Class<T> lookupType, Tag lookupTypeTag,
             ObjectProvider<T> provider) {
-        typeTable.append(lookupType, lookupTypeTag, provider);
+        typeTable.add(new ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>>(
+                lookupType, lookupTypeTag, provider));
     }
 
     /**
      * @see org.java0.util.factory.DelegableFactory#getSupportedTypes()
      */
     @Override
-    public TwoColumnTable<Class<?>, Tag> getSupportedTypes() {
-        TwoColumnTable<Class<?>, Tag> supportedTypes = TwoColumnHashTable
-                .create();
-        for (Row<Class<?>, Tag, ObjectProvider<?>> row : typeTable.rowSet()) {
-            supportedTypes.append(row.getValue1(), row.getValue2());
+    public RowSet<TwoColumnRow<Class<?>, Tag>> getSupportedTypes() {
+        RowSet<TwoColumnRow<Class<?>, Tag>> supportedTypes = new HashRowSet<>();
+        for (ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>> row : typeTable) {
+            supportedTypes.add(new TwoColumnRow<Class<?>, Tag>(
+                    row.getColumn1(), row.getColumn2()));
         }
         return supportedTypes;
     }
@@ -153,21 +155,22 @@ public abstract class AbstractDelegableFactory extends AbstractFactory
     @Override
     public <T> T getObject(Class<T> type, Tag tag) throws FactoryException {
 
-        ThreeColumnTable<Class<?>, Tag, ObjectProvider<?>> table = typeTable
-                .select(type, tag, null);
+        RowSet<ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>>> table = typeTable
+                .select(new ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>>(
+                        type, tag, null));
 
         int maxScore = Integer.MIN_VALUE;
         int count = 0;
         ObjectProvider<T> creator = null;
 
         // find the highest scoring match
-        for (Row<Class<?>, Tag, ObjectProvider<?>> row : table.rowSet()) {
+        for (ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>> row : table) {
 
-            int score = tagComparator.matchScore(row.getValue2(), tag);
+            int score = tagComparator.matchScore(row.getColumn2(), tag);
 
             if (score > maxScore) {
                 maxScore = score;
-                creator = (ObjectProvider<T>) row.getValue3();
+                creator = (ObjectProvider<T>) row.getColumn3();
                 count = 1;
             } else if (score == maxScore) {
                 ++count;

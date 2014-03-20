@@ -16,7 +16,8 @@
  */
 package org.java0.util.factory;
 
-import org.java0.util.collections.TwoColumnTable;
+import org.java0.util.collections.RowSet;
+import org.java0.util.collections.TwoColumnRow;
 import org.java0.util.tag.Tag;
 
 public interface DelegableFactory extends Factory {
@@ -26,5 +27,5 @@ public interface DelegableFactory extends Factory {
      *
      * @return
      */
-    public TwoColumnTable<Class<?>, Tag> getSupportedTypes();
+    public RowSet<TwoColumnRow<Class<?>, Tag>> getSupportedTypes();
 }

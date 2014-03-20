@@ -17,16 +17,35 @@
  */
 package org.java0.util.collections;
 
+
 /**
  * @author Hugh Eaves
  *
  */
-public interface CollectionsConstants {
-    /*
-     * Magic number used to indicate uninitialized hashCode() values. This
-     * number is used instead of zero because many objects end up with a
-     * calculated hashCode() value of zero.
-     */
+public class ThreeColumnRow<T1, T2, T3> extends TwoColumnRow<T1, T2> {
 
-    public static final int HASHCODE_MAGIC_NUM = 0xe9dc736b;
+    /**
+     * Create a new ThreeColumnRow.
+     *
+     * @param t1
+     * @param t2
+     * @param t3
+     */
+    public <V1 extends T1, V2 extends T2, V3 extends T3> ThreeColumnRow(V1 t1, V2 t2, V3 t3) {
+        super(new Object[] { t1, t2, t3 });
+    }
+
+    /**
+     * Create a new TwoColumnRow.
+     *
+     * @param objects
+     */
+    protected ThreeColumnRow(Object[] objects) {
+        super(objects);
+    }
+
+    @SuppressWarnings("unchecked")
+    public T3 getColumn3() {
+        return (T3) this.getValue(2);
+    }
 }

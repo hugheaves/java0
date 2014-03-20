@@ -17,16 +17,9 @@
  */
 package org.java0.util.collections;
 
+
 /**
  * @author Hugh Eaves
  *
  */
-public interface CollectionsConstants {
-    /*
-     * Magic number used to indicate uninitialized hashCode() values. This
-     * number is used instead of zero because many objects end up with a
-     * calculated hashCode() value of zero.
-     */
 
-    public static final int HASHCODE_MAGIC_NUM = 0xe9dc736b;
-}

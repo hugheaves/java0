@@ -16,21 +16,22 @@
  */
 package org.java0.util.collections;
 
+import java.util.Set;
 
 /**
+ * A RowSet is a Set that of Rows that defines some additional "associative"
+ * operations on the set.
+ *
  * @author Hugh Eaves
  *
  */
-public interface OneColumnTable<T1> extends Table<OneColumnTable.Row<T1>>{
-    public interface Row<T1> extends Table.Row {
-        public T1 getValue1();
-    }
+public interface RowSet<R> extends Set<R> {
+    /**
+     * @param row
+     * @param keyColumn
+     * @return
+     */
+    RowSet<R> select(R row, boolean... keyColumn);
 
-    public boolean append(T1 t1);
-
-    public boolean exists(T1 t1);
-
-    public boolean delete(T1 t1);
-
-    public OneColumnTable<T1> select(T1 t1);
+ //   public <T extends R> void addRow(T row);
 }

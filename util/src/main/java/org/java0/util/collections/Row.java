@@ -17,16 +17,28 @@
  */
 package org.java0.util.collections;
 
+
 /**
+ * Basic operations on a row.
+ *
  * @author Hugh Eaves
  *
  */
-public interface CollectionsConstants {
-    /*
-     * Magic number used to indicate uninitialized hashCode() values. This
-     * number is used instead of zero because many objects end up with a
-     * calculated hashCode() value of zero.
+public interface Row {
+    /**
+     * Returns a value from a row.
+     *
+     * @param valueNum
+     *            The column number of the value to return, starting at
+     *            zero.
+     * @return The object stored in this row at the specified column.
      */
+    public Object getValue(int columnNum);
 
-    public static final int HASHCODE_MAGIC_NUM = 0xe9dc736b;
+    /**
+     * Returns the number of columns in this row.
+     *
+     * @return
+     */
+    public int numColumns();
 }

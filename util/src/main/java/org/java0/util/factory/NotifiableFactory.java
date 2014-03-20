@@ -16,7 +16,8 @@
  */
 package org.java0.util.factory;
 
-import org.java0.util.collections.TwoColumnTable;
+import org.java0.util.collections.RowSet;
+import org.java0.util.collections.TwoColumnRow;
 import org.java0.util.tag.Tag;
 
 /**
@@ -32,7 +33,7 @@ public interface NotifiableFactory extends Factory {
      * @param types
      */
     public void supportedTypesUpdated(DelegableFactory source,
-            TwoColumnTable<Class<?>, Tag> typesAdded,
-            TwoColumnTable<Class<?>, Tag> typesRemoved)
+            RowSet<TwoColumnRow<Class<?>, Tag>> typesAdded,
+            RowSet<TwoColumnRow<Class<?>, Tag>> typesRemoved)
             throws InvalidOverrideException;
 }

@@ -22,11 +22,10 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.java0.util.collections.ThreeColumnHashTable;
-import org.java0.util.collections.ThreeColumnTable;
-import org.java0.util.collections.ThreeColumnTable.Row;
-import org.java0.util.collections.TwoColumnHashTable;
-import org.java0.util.collections.TwoColumnTable;
+import org.java0.util.collections.HashRowSet;
+import org.java0.util.collections.RowSet;
+import org.java0.util.collections.ThreeColumnRow;
+import org.java0.util.collections.TwoColumnRow;
 import org.java0.util.tag.DefaultTagComparator;
 import org.java0.util.tag.Tag;
 import org.java0.util.tag.TagComparator;
@@ -38,21 +37,11 @@ public class FullFactory extends AbstractFactory implements DelegableFactory,
 
     protected final TagComparator tagComparator = new DefaultTagComparator();
 
+    private final Set<NotifiableFactory> notifiableFactories = new HashSet<NotifiableFactory>();
 
-    /**
-     * Random access, but order preserved list of notifiable factories.
-     */
-    private final Set<NotifiableFactory> notifiableFactories =
-            new HashSet<NotifiableFactory>();
+    private final Set<DelegableFactory> delegableFactories = new LinkedHashSet<DelegableFactory>();
 
-    /**
-     * Random access, but order preserved list of delegable factories.
-     */
-    private final Set<DelegableFactory> delegableFactories =
-            new LinkedHashSet<DelegableFactory>();
-
-    private final ThreeColumnTable<Class<?>, Tag, DelegableFactory> typeTable =
-            ThreeColumnHashTable.create();
+    private final RowSet<ThreeColumnRow<Class<?>, Tag, DelegableFactory>> typeTable = new HashRowSet<>();
 
     public FullFactory() {
         super();
@@ -64,23 +53,25 @@ public class FullFactory extends AbstractFactory implements DelegableFactory,
 
     @Override
     public void supportedTypesUpdated(DelegableFactory source,
-            TwoColumnTable<Class<?>, Tag> typesAdded,
-            TwoColumnTable<Class<?>, Tag> typesRemoved)
+            RowSet<TwoColumnRow<Class<?>, Tag>> typesAdded,
+            RowSet<TwoColumnRow<Class<?>, Tag>> typesRemoved)
             throws InvalidOverrideException {
         logger.fine("Factory " + this.getClass().getName()
                 + " received update notification from " + source);
 
         // Remove types that are no longer present
-        for (TwoColumnTable.Row<Class<?>, Tag> newType : typesAdded.rowSet()) {
-            typeTable.delete(newType.getValue1(), newType.getValue2(), source);
+        for (TwoColumnRow<Class<?>, Tag> newType : typesAdded) {
+            typeTable.add(new ThreeColumnRow<Class<?>, Tag, DelegableFactory>(
+                    newType.getColumn1(), newType.getColumn2(), source));
         }
 
         // Add new types (or modify existing types)
-        for (TwoColumnTable.Row<Class<?>, Tag> newType : typesAdded.rowSet()) {
-            typeTable.append(newType.getValue1(), newType.getValue2(), source);
+        for (TwoColumnRow<Class<?>, Tag> newType : typesAdded) {
+            typeTable.add(new ThreeColumnRow<Class<?>, Tag, DelegableFactory>(
+                    newType.getColumn1(), newType.getColumn2(), source));
         }
 
-        // TODO This is broken because it doesn't properly handle overriden
+        // TODO This is broken because it doesn't properly handle overridden
         // types
         // We may still be providing support for a type that was removed
         // from the DelegableFactory, if it is provided by another
@@ -97,13 +88,11 @@ public class FullFactory extends AbstractFactory implements DelegableFactory,
      * @see org.java0.core.factory.DelegableFactory#getSupportedTypes()
      */
     @Override
-    public TwoColumnTable<Class<?>, Tag> getSupportedTypes() {
-        TwoColumnTable<Class<?>, Tag> supportedTypes =
-                TwoColumnHashTable.create();
+    public RowSet<TwoColumnRow<Class<?>, Tag>> getSupportedTypes() {
+        RowSet<TwoColumnRow<Class<?>, Tag>> supportedTypes = new HashRowSet<>();
 
-        for (ThreeColumnTable.Row<Class<?>, Tag, DelegableFactory> row : typeTable
-                .rowSet()) {
-            supportedTypes.append(row);
+        for (ThreeColumnRow<Class<?>, Tag, DelegableFactory> row : typeTable) {
+            supportedTypes.add(row);
         }
 
         return supportedTypes;
@@ -146,25 +135,25 @@ public class FullFactory extends AbstractFactory implements DelegableFactory,
         supportedTypesUpdated(factory, null, factory.getSupportedTypes());
     }
 
-
     @Override
     public <T> T getObject(Class<T> type, Tag tag) throws FactoryException {
 
-        ThreeColumnTable<Class<?>, Tag, DelegableFactory> table =
-                typeTable.select(type, tag, null);
+        RowSet<ThreeColumnRow<Class<?>, Tag, DelegableFactory>> table = typeTable
+                .select(new ThreeColumnRow<Class<?>, Tag, DelegableFactory>(
+                        type, tag, null));
 
         int maxScore = Integer.MIN_VALUE;
         int count = 0;
         Factory factory = null;
 
         // find the highest scoring match
-        for (Row<Class<?>, Tag, DelegableFactory> row : table.rowSet()) {
+        for (ThreeColumnRow<Class<?>, Tag, DelegableFactory> row : table) {
 
-            int score = tagComparator.matchScore(row.getValue2(), tag);
+            int score = tagComparator.matchScore(row.getColumn2(), tag);
 
             if (score > maxScore) {
                 score = maxScore;
-                factory = row.getValue3();
+                factory = row.getColumn3();
                 count = 1;
             } else if (score == maxScore) {
                 ++count;

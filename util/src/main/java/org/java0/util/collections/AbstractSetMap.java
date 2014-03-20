@@ -74,35 +74,10 @@ public abstract class AbstractSetMap<K, V> implements SetMap<K, V> {
         }
     }
 
-    @Override
-    public Set<V> get(Object key) {
-        return map.get(key);
-    }
-
-    @Override
-    public Set<V> put(K key, Collection<V> values) {
-        return map.put(key, newSet(values));
-    }
-
-    @Override
-    public Set<V> remove(Object key) {
-        return map.remove(key);
-    }
-
-    @Override
-    public boolean add(K key, V value) {
-        boolean modified = false;
-        Set<V> set = get(key);
-        if (set == null) {
-            set = newSet(value);
-            map.put(key, set);
-            modified = true;
-        } else {
-            modified = set.add(value);
-        }
-        return modified;
-    }
-
+    /**
+     * @see org.java0.util.collections.SetMap#add(java.lang.Object,
+     *      java.util.Collection)
+     */
     @Override
     public boolean add(K key, Collection<V> values) {
         boolean modified = false;
@@ -117,67 +92,27 @@ public abstract class AbstractSetMap<K, V> implements SetMap<K, V> {
         return modified;
     }
 
+    /**
+     * @see org.java0.util.collections.SetMap#add(java.lang.Object,
+     *      java.lang.Object)
+     */
     @Override
-    public boolean remove(K key, V value) {
+    public boolean add(K key, V value) {
         boolean modified = false;
         Set<V> set = get(key);
-        if (set != null) {
-            modified = set.remove(value);
-            if (set.isEmpty()) {
-                map.remove(key);
-            }
-            set = null;
+        if (set == null) {
+            set = newSet(value);
+            map.put(key, set);
+            modified = true;
+        } else {
+            modified = set.add(value);
         }
         return modified;
     }
 
-    @Override
-    public boolean remove(K key, Collection<V> values) {
-        boolean modified = false;
-        Set<V> set = get(key);
-        if (set != null) {
-            modified = set.removeAll(values);
-            if (set.isEmpty()) {
-                map.remove(key);
-            }
-            set = null;
-        }
-        return modified;
-    }
-
-    protected abstract Set<V> newSet();
-
-    protected Set<V> newSet(V value) {
-        Set<V> set = newSet();
-        set.add(value);
-        return set;
-    }
-
-    protected Set<V> newSet(Collection<V> values) {
-        Set<V> set = newSet();
-        set.addAll(values);
-        return set;
-    }
-
-    @Override
-    public void clear() {
-        map.clear();
-    }
-
-    @Override
-    public int numVals() {
-        int size = 0;
-        for (Set<V> value : map.values()) {
-            size += value.size();
-        }
-        return size;
-    }
-
-    @Override
-    public int size() {
-        return map.size();
-    }
-
+    /**
+     * @see org.java0.util.collections.SetMap#allValues()
+     */
     @Override
     public Collection<V> allValues() {
         Collection<V> values = new ArrayList<V>(size());
@@ -187,44 +122,12 @@ public abstract class AbstractSetMap<K, V> implements SetMap<K, V> {
         return values;
     }
 
-    @Override
-    public Map<K, Set<V>> getMap() {
-        return map;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object instanceof SetMap) {
-            SetMap<?, ?> setMap = (SetMap<?, ?>) object;
-            return map.equals(setMap.getMap());
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return map.hashCode();
-    }
-
-    @Override
-    public Set<K> keySet() {
-        return map.keySet();
-    }
-
     /**
-     * @see java.util.Map#isEmpty()
+     * @see java.util.Map#clear()
      */
     @Override
-    public boolean isEmpty() {
-        for (Set<V> valueSet : map.values()) {
-            if (!valueSet.isEmpty()) {
-                return false;
-            }
-        }
-        return true;
+    public void clear() {
+        map.clear();
     }
 
     /**
@@ -244,11 +147,125 @@ public abstract class AbstractSetMap<K, V> implements SetMap<K, V> {
     }
 
     /**
+     * @see java.util.Map#entrySet()
+     */
+    @Override
+    public Set<java.util.Map.Entry<K, Set<V>>> entrySet() {
+        return map.entrySet();
+    }
+
+    /**
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object instanceof Map) {
+            Map<?, ?> objectMap = (Map<?, ?>) object;
+            return map.equals(objectMap);
+        } else if (object instanceof SetMap) {
+            SetMap<?, ?> setMap = (SetMap<?, ?>) object;
+            return map.equals(setMap.getMap());
+        }
+        return false;
+    }
+
+    /**
+     * @see java.util.Map#get(java.lang.Object)
+     */
+    @Override
+    public Set<V> get(Object key) {
+        return map.get(key);
+    }
+
+    /**
+     * @see org.java0.util.collections.SetMap#getMap()
+     */
+    @Override
+    public Map<K, Set<V>> getMap() {
+        return map;
+    }
+
+    /**
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        return map.hashCode();
+    }
+
+    /**
+     * @see java.util.Map#isEmpty()
+     */
+    @Override
+    public boolean isEmpty() {
+        for (Set<V> valueSet : map.values()) {
+            if (!valueSet.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @see java.util.Map#keySet()
+     */
+    @Override
+    public Set<K> keySet() {
+        return map.keySet();
+    }
+
+    protected abstract Set<V> newSet();
+
+    /**
+     * @param values
+     * @return
+     */
+    protected Set<V> newSet(Collection<V> values) {
+        Set<V> set = newSet();
+        set.addAll(values);
+        return set;
+    }
+
+    /**
+     * @param value
+     * @return
+     */
+    protected Set<V> newSet(V value) {
+        Set<V> set = newSet();
+        set.add(value);
+        return set;
+    }
+
+    /**
+     * @see org.java0.util.collections.SetMap#numVals()
+     */
+    @Override
+    public int numVals() {
+        int size = 0;
+        for (Set<V> value : map.values()) {
+            size += value.size();
+        }
+        return size;
+    }
+
+    /**
+     * @see org.java0.util.collections.SetMap#put(java.lang.Object,
+     *      java.util.Collection)
+     */
+    @Override
+    public Set<V> put(K key, Collection<V> values) {
+        return map.put(key, newSet(values));
+    }
+
+    /**
      * @see java.util.Map#put(java.lang.Object, java.lang.Object)
      */
     @Override
     public Set<V> put(K key, Set<V> value) {
-        return put(key, (Collection<V>) value);
+        return map.put(key, value);
     }
 
     /**
@@ -260,23 +277,66 @@ public abstract class AbstractSetMap<K, V> implements SetMap<K, V> {
     }
 
     /**
-     * @see java.util.Map#values()
+     * @see org.java0.util.collections.SetMap#remove(java.lang.Object,
+     *      java.util.Collection)
      */
     @Override
-    public Collection<Set<V>> values() {
-        return map.values();
+    public boolean remove(K key, Collection<V> values) {
+        boolean modified = false;
+        Set<V> set = get(key);
+        if (set != null) {
+            modified = set.removeAll(values);
+            if (set.isEmpty()) {
+                map.remove(key);
+            }
+            set = null;
+        }
+        return modified;
     }
 
     /**
-     * @see java.util.Map#entrySet()
+     * @see org.java0.util.collections.SetMap#remove(java.lang.Object, java.lang.Object)
      */
     @Override
-    public Set<java.util.Map.Entry<K, Set<V>>> entrySet() {
-        return map.entrySet();
+    public boolean remove(K key, V value) {
+        boolean modified = false;
+        Set<V> set = get(key);
+        if (set != null) {
+            modified = set.remove(value);
+            if (set.isEmpty()) {
+                map.remove(key);
+            }
+            set = null;
+        }
+        return modified;
+    }
+
+    /**
+     * @see java.util.Map#remove(java.lang.Object)
+     */
+    @Override
+    public Set<V> remove(Object key) {
+        return map.remove(key);
+    }
+
+    /**
+     * @see java.util.Map#size()
+     */
+    @Override
+    public int size() {
+        return map.size();
     }
 
     @Override
     public String toString() {
         return map.toString();
+    }
+
+    /**
+     * @see java.util.Map#values()
+     */
+    @Override
+    public Collection<Set<V>> values() {
+        return map.values();
     }
 }

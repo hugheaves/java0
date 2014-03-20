@@ -16,29 +16,15 @@
  */
 package org.java0.util.tag;
 
-import java.util.logging.Logger;
-
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.java0.util.collections.FourColumnHashTable;
-import org.java0.util.collections.FourColumnTable;
-import org.java0.util.collections.FourColumnTable.Row;
-import org.java0.util.tag.DefaultTagComparator;
-import org.java0.util.tag.LocalHostTag;
-import org.java0.util.tag.NameTag;
-import org.java0.util.tag.RemoteHostTag;
-import org.java0.util.tag.Tag;
-import org.java0.util.tag.TagComparator;
 import org.java0.util.test.BaseTest;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 /**
  * @author Hugh Eaves
