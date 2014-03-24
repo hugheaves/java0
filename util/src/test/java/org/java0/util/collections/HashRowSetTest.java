@@ -46,24 +46,24 @@ public class HashRowSetTest extends BaseTest {
     public void createTestData() {
         rows = new ArrayList<FourColumnRow<String, Integer, Boolean, String>>();
 
-        rows.add(new FourColumnRow<>("hello", 1, true, "world"));
-        rows.add(new FourColumnRow<>("hello1", 1, true, "world"));
-        rows.add(new FourColumnRow<>("hello2", 1, true, "world"));
-        rows.add(new FourColumnRow<>("hello", 1, true, "world1"));
-        rows.add(new FourColumnRow<>("hello", 1, true, "world2")); // DUP
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 1, true, "world"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello1", 1, true, "world"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello2", 1, true, "world"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 1, true, "world1"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 1, true, "world2")); // DUP
         // A
-        rows.add(new FourColumnRow<>("hello", 2, true, "world"));
-        rows.add(new FourColumnRow<>("hello", 3, true, "world")); // DUP
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 2, true, "world"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 3, true, "world")); // DUP
         // B
-        rows.add(new FourColumnRow<>("hello", 3, false, "world"));
-        rows.add(new FourColumnRow<>("hello1", 3, true, "world"));
-        rows.add(new FourColumnRow<>("hello", 3, true, "world2"));
-        rows.add(new FourColumnRow<>("hello", 1, false, "world"));
-        rows.add(new FourColumnRow<>("hello", 3, true, "world")); // DUP
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 3, false, "world"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello1", 3, true, "world"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 3, true, "world2"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 1, false, "world"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 3, true, "world")); // DUP
                                                                 // B
-        rows.add(new FourColumnRow<>("hello", 1, true, "world2")); // DUP
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello", 1, true, "world2")); // DUP
         // A
-        rows.add(new FourColumnRow<>("last", 2, false, "row"));
+        rows.add(new FourColumnRow<String, Integer, Boolean, String>("last", 2, false, "row"));
     }
 
     @SuppressWarnings("unchecked")
@@ -82,7 +82,7 @@ public class HashRowSetTest extends BaseTest {
         assertEquals(12, table.size());
 
         RowSet<FourColumnRow<String, Integer, Boolean, String>> result = table
-                .select(new FourColumnRow<>("hello", 1, true, "world"));
+                .select(new FourColumnRow<String, Integer, Boolean, String>("hello", 1, true, "world"));
 
         assertNotNull(result);
         assertEquals(1, result.size());
