@@ -13,7 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 package org.java0.collection;
 
@@ -24,9 +23,6 @@ import java.util.Set;
 
 import junit.framework.TestSuite;
 
-import org.java0.collection.FourColumnRow;
-import org.java0.collection.HashRowSet;
-import org.java0.collection.Row;
 import org.java0.test.BaseTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
@@ -72,6 +68,7 @@ public class HashRowSetSuite extends BaseTest {
                 return insertionOrder;
             }
 
+            @SuppressWarnings({ "unchecked", "rawtypes" })
             @Override
             public Set<Row> create(Object... elements) {
                 Set<Row> set = new HashRowSet();

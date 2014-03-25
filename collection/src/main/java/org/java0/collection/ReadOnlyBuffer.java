@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2014  Hugh Eaves
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.java0.collection;
 
 import java.util.Collection;
@@ -8,21 +24,21 @@ public class ReadOnlyBuffer<T> extends ArrayBuffer<T> {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ReadOnlyBuffer.class
 			.getName());
-	
+
 	protected Buffer<T> buffer;
 	protected int originalSize;
-	
+
 	public ReadOnlyBuffer(Buffer<T> buffer) {
 		super(buffer, true);
 		this.buffer = buffer;
 		originalSize = buffer.size();
 	}
-	
+
 	@Override
 	public boolean offer(T e) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 
 	@Override
 	public boolean add(T e) {
@@ -78,21 +94,24 @@ public class ReadOnlyBuffer<T> extends ArrayBuffer<T> {
 	public List<T> subList(int fromIndex, int toIndex) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	@Override
 	public boolean isReadOnly() {
 		return true;
 	}
-	
-	public T[] array() {
+
+	@Override
+    public T[] array() {
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean hasArray() {
+	@Override
+    public boolean hasArray() {
 		return false;
 	}
 
-	public T[] getArray() {
+	@Override
+    public T[] getArray() {
 		throw new UnsupportedOperationException();
 	}
 
