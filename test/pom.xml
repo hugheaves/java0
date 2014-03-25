@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>java0-util</artifactId>
+	<artifactId>java0-test</artifactId>
 
 	<parent>
 		<groupId>org.java0</groupId>
@@ -20,7 +20,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -31,7 +30,6 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-testlib</artifactId>
 			<version>16.0.1</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -40,14 +38,8 @@
 		</dependency>
         <dependency>
             <groupId>org.java0</groupId>
-            <artifactId>java0-core</artifactId>
+            <artifactId>java0-logging</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.java0</groupId>
-            <artifactId>java0-test</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>test</scope>
         </dependency>
 	</dependencies>
 </project>
