@@ -18,13 +18,13 @@ package org.java0.factory;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public interface NotifyingFactory extends Factory {
     /**
      * Adds a factory that will receive notifications when the configuration of
      * this factory changes.
-     *
+     * 
      * @param factory
      */
     public void addNotifiableFactory(NotifiableFactory factory);
@@ -32,7 +32,7 @@ public interface NotifyingFactory extends Factory {
     /**
      * Removes a factory that currently receives notifications when the
      * configuration of this factory changes.
-     *
+     * 
      * @param factory
      */
     public void removeNotifiableFactory(NotifiableFactory factory);

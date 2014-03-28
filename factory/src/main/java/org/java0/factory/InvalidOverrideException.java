@@ -25,7 +25,7 @@ public class InvalidOverrideException extends FactoryException {
 
     /**
      * Create a new InvalidOverrideException.
-     *
+     * 
      */
     public InvalidOverrideException() {
         super();
@@ -34,7 +34,7 @@ public class InvalidOverrideException extends FactoryException {
 
     /**
      * Create a new InvalidOverrideException.
-     *
+     * 
      * @param message
      * @param cause
      * @param enableSuppression
@@ -48,7 +48,7 @@ public class InvalidOverrideException extends FactoryException {
 
     /**
      * Create a new InvalidOverrideException.
-     *
+     * 
      * @param message
      * @param cause
      */
@@ -59,7 +59,7 @@ public class InvalidOverrideException extends FactoryException {
 
     /**
      * Create a new InvalidOverrideException.
-     *
+     * 
      * @param message
      */
     public InvalidOverrideException(String message) {
@@ -69,7 +69,7 @@ public class InvalidOverrideException extends FactoryException {
 
     /**
      * Create a new InvalidOverrideException.
-     *
+     * 
      * @param cause
      */
     public InvalidOverrideException(Throwable cause) {

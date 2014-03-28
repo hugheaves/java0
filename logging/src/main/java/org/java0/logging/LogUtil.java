@@ -178,6 +178,7 @@ public class LogUtil {
      * @return
      */
     public static boolean initLoggingSimple(Level level) {
+        LogManager.getLogManager().reset();
         Handler handler = new ConsoleHandler();
         handler.setFormatter(new FastFormatter());
         handler.setLevel(level);

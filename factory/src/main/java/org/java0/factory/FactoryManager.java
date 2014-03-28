@@ -20,14 +20,15 @@ import java.util.logging.Logger;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class FactoryManager {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(FactoryManager.class
             .getName());
 
-    private final static DelegatingFactory rootFactory = new FullFactory("Root Factory");
+    private final static DelegatingFactory rootFactory = new FullFactory(
+            "Root Factory");
 
     protected FactoryManager() {
     }
@@ -40,4 +41,3 @@ public class FactoryManager {
         rootFactory.addDelegate(newFactory);
     }
 }
-

@@ -16,16 +16,15 @@
  */
 package org.java0.factory;
 
-
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class AbstractConfig<T> implements Config<T> {
 
     protected Object[] values = null;
 
-    public AbstractConfig(Object ... values) {
+    public AbstractConfig(Object... values) {
         this.values = values;
     }
 

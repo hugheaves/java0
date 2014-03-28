@@ -44,7 +44,7 @@ public class FullFactory extends AbstractFactory implements DelegableFactory,
     private final RowSet<ThreeColumnRow<Class<?>, Tag, DelegableFactory>> typeTable = new HashRowSet<>();
 
     public FullFactory() {
-        super();
+        super(FullFactory.class.getName());
     }
 
     public FullFactory(String name) {
@@ -84,7 +84,7 @@ public class FullFactory extends AbstractFactory implements DelegableFactory,
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see org.java0.core.factory.DelegableFactory#getSupportedTypes()
      */
     @Override
@@ -136,7 +136,8 @@ public class FullFactory extends AbstractFactory implements DelegableFactory,
     }
 
     /**
-     * @see org.java0.factory.Factory#getObject(java.lang.Class, org.java0.tag.Tag, org.java0.factory.Config)
+     * @see org.java0.factory.Factory#getObject(java.lang.Class,
+     *      org.java0.tag.Tag, org.java0.factory.Config)
      */
     @Override
     public <T> T getObject(Class<T> type, Tag tag, Config<T> config)

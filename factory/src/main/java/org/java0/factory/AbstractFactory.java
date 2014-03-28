@@ -21,26 +21,17 @@ import org.java0.tag.Tag;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
-public abstract class AbstractFactory extends AbstractNamedObject implements Factory {
+public abstract class AbstractFactory extends AbstractNamedObject implements
+        Factory {
     /**
      * Create a new AbstractFactory.
-     *
+     * 
      * @param name
      */
     public AbstractFactory(String name) {
         super(name);
-    }
-
-    /**
-     * Create a new AbstractFactory.
-     *
-     * @param name
-     */
-    public AbstractFactory() {
-        super();
-        setName(getClass().getName());
     }
 
     /**
@@ -52,7 +43,8 @@ public abstract class AbstractFactory extends AbstractNamedObject implements Fac
     }
 
     /**
-     * @see org.java0.factory.Factory#getObject(java.lang.Class, org.java0.tag.Tag)
+     * @see org.java0.factory.Factory#getObject(java.lang.Class,
+     *      org.java0.tag.Tag)
      */
     @Override
     public <T> T getObject(Class<T> type, Tag tag) throws FactoryException {
@@ -60,7 +52,8 @@ public abstract class AbstractFactory extends AbstractNamedObject implements Fac
     }
 
     /**
-     * @see org.java0.factory.Factory#getObject(java.lang.Class, org.java0.factory.Config)
+     * @see org.java0.factory.Factory#getObject(java.lang.Class,
+     *      org.java0.factory.Config)
      */
     @Override
     public <T> T getObject(Class<T> type, Config<T> config)

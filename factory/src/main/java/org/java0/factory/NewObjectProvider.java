@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class NewObjectProvider<T> extends AbstractTypedObjectProvider<T> {
     @SuppressWarnings("unused")
@@ -41,7 +41,7 @@ public class NewObjectProvider<T> extends AbstractTypedObjectProvider<T> {
 
     /**
      * Create a new NewObjectProvider.
-     *
+     * 
      * @param type
      */
     protected NewObjectProvider(Class<? extends T> type, boolean singleton,
@@ -75,7 +75,6 @@ public class NewObjectProvider<T> extends AbstractTypedObjectProvider<T> {
 
         return newInstance;
     }
-
 
     /**
      * @return

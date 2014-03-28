@@ -16,8 +16,8 @@
  */
 package org.java0.unit.angularvelocity;
 
-import org.java0.unit.NumericUnitQuotientImpl;
 import org.java0.unit.angle.AngleUnit;
+import org.java0.unit.impl.NumericUnitQuotientImpl;
 import org.java0.unit.time.TimeUnit;
 
 /**
@@ -25,13 +25,14 @@ import org.java0.unit.time.TimeUnit;
  * 
  */
 public class AngularVelocityUnit extends
-		NumericUnitQuotientImpl<AngleUnit, TimeUnit> {
+        NumericUnitQuotientImpl<AngleUnit, TimeUnit> {
 
-	public AngularVelocityUnit(AngleUnit unit1, TimeUnit unit2) {
-		super(unit1, unit2);
-	}
+    public AngularVelocityUnit(AngleUnit unit1, TimeUnit unit2) {
+        super(unit1, unit2);
+    }
 
-	public AngularVelocityUnit getSystemUnit() {
-		return RadiansPerSecond.INSTANCE;
-	}
+    @Override
+    public AngularVelocityUnit getSystemUnit() {
+        return RadiansPerSecondUnit.INSTANCE;
+    }
 }

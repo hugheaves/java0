@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class InjectableValues {
     @SuppressWarnings("unused")
@@ -38,7 +38,7 @@ public class InjectableValues {
         return injectableValues;
     }
 
-    public void add(String name, Object value){
+    public void add(String name, Object value) {
         injectableValues.put(name, value);
     }
 

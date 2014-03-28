@@ -20,9 +20,9 @@ import org.java0.core.type.AbstractNamedObject;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
-public class TestClass1 extends AbstractNamedObject  implements TestInterface1 {
+public class TestClass1 extends AbstractNamedObject implements TestInterface1 {
     public TestClass1() {
         super(TestClass1.class.getName());
     }

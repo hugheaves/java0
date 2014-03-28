@@ -22,9 +22,9 @@ import org.java0.tag.Tag;
 
 public interface DelegableFactory extends Factory {
     /**
-     * Returns the types that this factory is able to create, along with
-     * the tag (if any) for those types
-     *
+     * Returns the types that this factory is able to create, along with the tag
+     * (if any) for those types
+     * 
      * @return
      */
     public RowSet<TwoColumnRow<Class<?>, Tag>> getSupportedTypes();

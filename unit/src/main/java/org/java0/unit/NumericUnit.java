@@ -16,10 +16,42 @@
  */
 package org.java0.unit;
 
-
 /**
  * @author Hugh Eaves
- *
+ * 
  */
-public interface NumericUnit<T extends UnitType<Number, ?>> extends UnitType<Number, T> {
+public interface NumericUnit<U extends NumericUnit<? super U>> extends
+        Unit<Number, U>
+/* ,org.unitsofmeasurement.unit.Unit<NumericQuantity<U>> */{
+
+    /**
+     * Returns the product of two numeric units.
+     * 
+     * @param unit
+     * @return
+     */
+    public <P extends NumericUnit<? super P>, Q extends P> NumericUnitProduct<U, P> multiply(
+            Q unit);
+
+    /**
+     * Returns the quotient of two numeric units.
+     * 
+     * @param unit
+     * @return
+     */
+    public <P extends NumericUnit<? super P>, Q extends P> NumericUnitQuotient<U, P> divide(
+            Q unit);
+
+    /**
+     * Returns the inverse of this unit.
+     * 
+     * @return
+     */
+    public InverseUnit<U> invert();
+
+    /**
+     * @see org.java0.unit.Unit#getSystemUnit()
+     */
+    @Override
+    public U getSystemUnit();
 }

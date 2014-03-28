@@ -20,7 +20,7 @@ import org.java0.tag.Tag;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class InjectableProvider<T> extends DefaultProvider<T> implements
         InjectableObject {

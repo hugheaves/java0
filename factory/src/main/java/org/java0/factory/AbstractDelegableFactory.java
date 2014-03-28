@@ -26,7 +26,7 @@ import org.java0.tag.TagComparator;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class AbstractDelegableFactory extends AbstractFactory implements
         DelegableFactory {
@@ -38,9 +38,17 @@ public class AbstractDelegableFactory extends AbstractFactory implements
      */
     private final HashRowSet<ThreeColumnRow<Class<?>, Tag, ObjectProvider<?>>> typeTable = new HashRowSet<>();
 
+    protected AbstractDelegableFactory() {
+        super(null);
+    }
+
+    protected AbstractDelegableFactory(String name) {
+        super(name);
+    }
+
     /**
      * Adds a concrete type to the factory.
-     *
+     * 
      * @param concreteType
      * @param singleton
      */
@@ -51,7 +59,7 @@ public class AbstractDelegableFactory extends AbstractFactory implements
 
     /**
      * Adds a mapping from a lookup type to a concrete type.
-     *
+     * 
      * @param lookupType
      * @param singleton
      * @param concreteType
@@ -63,10 +71,10 @@ public class AbstractDelegableFactory extends AbstractFactory implements
     }
 
     /**
-     *
+     * 
      * Adds a mapping from a lookup type to a concrete type with the specified
      * constructor mappings.
-     *
+     * 
      * @param lookupType
      * @param lookupTypeTag
      * @param singleton
@@ -82,10 +90,10 @@ public class AbstractDelegableFactory extends AbstractFactory implements
     }
 
     /**
-     *
+     * 
      * Adds a mapping from a lookup type to a concrete type with the specified
      * constructor mappings.
-     *
+     * 
      * @param lookupType
      * @param lookupTypeTag
      * @param singleton
@@ -115,7 +123,7 @@ public class AbstractDelegableFactory extends AbstractFactory implements
 
     /**
      * Adds a mapping from a type to an ObjectProvider for that type.
-     *
+     * 
      * @param lookupType
      * @param provider
      */
@@ -124,10 +132,10 @@ public class AbstractDelegableFactory extends AbstractFactory implements
     }
 
     /**
-     *
+     * 
      * Adds a mapping from a lookup type and DisriminatorSet to an
      * ObjectProvider.
-     *
+     * 
      * @param lookupType
      * @param lookupTypeTag
      * @param provider

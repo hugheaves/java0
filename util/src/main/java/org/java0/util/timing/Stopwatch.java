@@ -37,11 +37,11 @@ public final class Stopwatch extends AbstractNamedObject {
 	private Level level = Level.CONFIG;
 
 	public Stopwatch(String name) {
-		this.name = name;
+		super(name);
 	}
 
 	public Stopwatch(String name, Level level) {
-		this.name = name;
+        super(name);
 		this.level = level;
 	}
 

@@ -16,13 +16,12 @@
  */
 package org.java0.factory;
 
-
-
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public interface InjectableObject {
     InjectableFields getInjectableFields();
+
     void setInjectableValues(InjectableValues injectables);
 }

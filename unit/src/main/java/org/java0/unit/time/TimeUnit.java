@@ -16,20 +16,21 @@
  */
 package org.java0.unit.time;
 
-import org.java0.unit.AbstractNumericUnit;
+import org.java0.unit.impl.ScalableNumericUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class TimeUnit extends AbstractNumericUnit<TimeUnit> {
+public abstract class TimeUnit extends ScalableNumericUnit<TimeUnit> {
 
-	public TimeUnit(double toSystemUnitConversionFactor) {
-		super(toSystemUnitConversionFactor);
-	}
+    public TimeUnit(String name, double toSystemUnitConversionFactor) {
+        super(name, toSystemUnitConversionFactor);
+    }
 
-	public TimeUnit getSystemUnit() {
-		return Seconds.INSTANCE;
-	}
+    @Override
+    public TimeUnit getSystemUnit() {
+        return SecondsUnit.INSTANCE;
+    }
 
 }

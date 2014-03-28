@@ -22,14 +22,14 @@ import org.java0.tag.Tag;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  * @param <T>
  */
 public class DefaultProvider<T> extends AbstractTypedObjectProvider<T> {
     private static final Logger logger = Logger.getLogger(DefaultProvider.class
             .getName());
 
-     /**
+    /**
      * Holds the singleton instance, if needed.
      */
     protected T instance;
@@ -49,8 +49,7 @@ public class DefaultProvider<T> extends AbstractTypedObjectProvider<T> {
         this(type, null, false);
     }
 
-    public DefaultProvider(Class<? extends T> type, Tag tag,
-            boolean singleton) {
+    public DefaultProvider(Class<? extends T> type, Tag tag, boolean singleton) {
         super(type);
         this.tag = tag;
         this.singleton = singleton;
@@ -64,17 +63,16 @@ public class DefaultProvider<T> extends AbstractTypedObjectProvider<T> {
         if (newInstance == null) {
             // First, try getting the object from the root factory
             try {
-                newInstance =
-                        FactoryManager.getRootFactory().getObject(type,
-                                tag);
+                newInstance = FactoryManager.getRootFactory().getObject(type,
+                        tag);
             } catch (FactoryException e) {
-                logger.info("Type " + type.getName()
-                        + " not found in factory.");
+                logger.info("Type " + type.getName() + " not found in factory.");
             }
 
             // If that didn't work, try creating the type directly.
             if (newInstance == null) {
-                newInstance = FactoryUtil.createNewObject(type, getConstructorValues());
+                newInstance = FactoryUtil.createNewObject(type,
+                        getConstructorValues());
             }
         }
 

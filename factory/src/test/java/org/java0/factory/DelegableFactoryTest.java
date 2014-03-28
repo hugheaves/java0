@@ -27,7 +27,7 @@ import org.junit.Test;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class DelegableFactoryTest extends BaseTest {
     @SuppressWarnings("unused")
@@ -47,11 +47,10 @@ public class DelegableFactoryTest extends BaseTest {
         assertNotNull(instance2);
 
         TestInterface1 interface1 = factory.getObject(TestInterface1.class,
-        new NamedTag("A"));
+                new NamedTag("A"));
         assertTrue(interface1 instanceof TestClass4);
 
-        interface1 = factory.getObject(TestInterface1.class,
-        new NamedTag("B"));
+        interface1 = factory.getObject(TestInterface1.class, new NamedTag("B"));
         assertTrue(interface1 instanceof TestClass5);
     }
 }

@@ -18,7 +18,7 @@ package org.java0.factory;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class UnknownTypeException extends FactoryException {
 
@@ -29,7 +29,7 @@ public class UnknownTypeException extends FactoryException {
 
     /**
      * Create a new UnknownTypeException.
-     *
+     * 
      */
     public UnknownTypeException() {
         super();
@@ -38,7 +38,7 @@ public class UnknownTypeException extends FactoryException {
 
     /**
      * Create a new UnknownTypeException.
-     *
+     * 
      * @param message
      * @param cause
      * @param enableSuppression
@@ -52,7 +52,7 @@ public class UnknownTypeException extends FactoryException {
 
     /**
      * Create a new UnknownTypeException.
-     *
+     * 
      * @param message
      * @param cause
      */
@@ -63,7 +63,7 @@ public class UnknownTypeException extends FactoryException {
 
     /**
      * Create a new UnknownTypeException.
-     *
+     * 
      * @param message
      */
     public UnknownTypeException(String message) {
@@ -73,7 +73,7 @@ public class UnknownTypeException extends FactoryException {
 
     /**
      * Create a new UnknownTypeException.
-     *
+     * 
      * @param cause
      */
     public UnknownTypeException(Throwable cause) {
@@ -81,32 +81,31 @@ public class UnknownTypeException extends FactoryException {
 
     }
 
-
-//    /**
-//     * @param type
-//     * @param config
-//     */
-//    public UnknownTypeException(Class<?> type, Object[] config) {
-//        StringBuffer buffer = new StringBuffer();
-//        buffer.append("Type: ");
-//        buffer.append(type.getName());
-//        buffer.append(", Config: ");
-//        for (int i = 0; i < config.length; ++i) {
-//            buffer.append(config[i].toString());
-//            if (i + 1 < config.length) {
-//                buffer.append(",");
-//            }
-//        }
-//        this.message = buffer.toString();
-//    }
-//
-//    @Override
-//    public String getMessage() {
-//        if (message == null) {
-//            return super.getMessage();
-//        } else {
-//            return message;
-//        }
-//    }
+    // /**
+    // * @param type
+    // * @param config
+    // */
+    // public UnknownTypeException(Class<?> type, Object[] config) {
+    // StringBuffer buffer = new StringBuffer();
+    // buffer.append("Type: ");
+    // buffer.append(type.getName());
+    // buffer.append(", Config: ");
+    // for (int i = 0; i < config.length; ++i) {
+    // buffer.append(config[i].toString());
+    // if (i + 1 < config.length) {
+    // buffer.append(",");
+    // }
+    // }
+    // this.message = buffer.toString();
+    // }
+    //
+    // @Override
+    // public String getMessage() {
+    // if (message == null) {
+    // return super.getMessage();
+    // } else {
+    // return message;
+    // }
+    // }
 
 }

@@ -21,7 +21,7 @@ import org.java0.tag.Tag;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public final class InjectableField extends AbstractNamedObject {
 
@@ -30,16 +30,16 @@ public final class InjectableField extends AbstractNamedObject {
 
     /**
      * Create a new InjectableType.
-     *
+     * 
      * @param type
      */
     public InjectableField(String name, Class<?> type) {
-       this(name, type, null);
+        this(name, type, null);
     }
 
     /**
      * Create a new InjectableType.
-     *
+     * 
      * @param type
      * @param tag
      */

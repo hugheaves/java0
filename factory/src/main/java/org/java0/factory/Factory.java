@@ -23,7 +23,7 @@ public interface Factory {
     /**
      * Obtains an object of the specified type (or a subtype of the specified
      * type).
-     *
+     * 
      * @param type
      * @return
      * @throws FactoryException
@@ -33,7 +33,7 @@ public interface Factory {
     /**
      * Obtains an object of the specified type (or a subtype of the specified
      * type) selected using the given tag.
-     *
+     * 
      * @param type
      * @param tag
      * @return
@@ -44,7 +44,7 @@ public interface Factory {
     /**
      * Obtains an object of the specified type (or a subtype of the specified
      * type) created using the given config.
-     *
+     * 
      * @param type
      * @param config
      * @return
@@ -56,7 +56,7 @@ public interface Factory {
     /**
      * Obtains an object of the specified type (or a subtype of the specified
      * type) selected using the given tag, and created using the given config.
-     *
+     * 
      * @param type
      * @param tag
      * @param config

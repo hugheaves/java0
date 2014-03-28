@@ -30,7 +30,7 @@ public class FactoryUtil {
     /**
      * Create an object of the given concrete type using the given constructor
      * arguments.
-     *
+     * 
      * @param concreteType
      * @param constructorArgs
      * @return
@@ -39,9 +39,8 @@ public class FactoryUtil {
             Object... constructorArgs) {
         T newObject = null;
         try {
-            newObject =
-                    ConstructorUtils.invokeConstructor(concreteType,
-                            constructorArgs);
+            newObject = ConstructorUtils.invokeConstructor(concreteType,
+                    constructorArgs);
         } catch (NoSuchMethodException e) {
             Class<?>[] argTypes = null;
             argTypes = new Class[constructorArgs.length];

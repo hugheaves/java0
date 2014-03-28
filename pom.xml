@@ -124,9 +124,14 @@
 	</build>
 
 	<modules>
+		<module>annotation</module>
+		<module>collection</module>
 		<module>core</module>
-        <module>tag</module>
-        <module>util</module>
+		<module>factory</module>
+		<module>logging</module>
+		<module>tag</module>
+		<module>test</module>
 		<module>unit</module>
+		<module>util</module>
 	</modules>
 </project>

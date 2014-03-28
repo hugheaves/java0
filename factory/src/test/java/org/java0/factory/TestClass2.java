@@ -20,7 +20,7 @@ import org.java0.core.type.AbstractNamedObject;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class TestClass2 extends AbstractNamedObject implements TestInterface1 {
     public TestClass2() {

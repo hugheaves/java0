@@ -28,7 +28,7 @@ public class BaseTest {
 	@BeforeClass
 	public static void setupLogging() {
 		if (!LogUtil.initLogging("test-logging.properties")) {
-			LogUtil.initLoggingSimple(Level.INFO);
+			LogUtil.initLoggingSimple(Level.FINEST);
 		}
 	}
 

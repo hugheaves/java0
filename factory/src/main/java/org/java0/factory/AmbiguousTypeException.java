@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class AmbiguousTypeException extends FactoryException {
     /**
@@ -33,14 +33,14 @@ public class AmbiguousTypeException extends FactoryException {
 
     /**
      * Create a new AmbiguousTypeException.
-     *
+     * 
      */
     public AmbiguousTypeException() {
     }
 
     /**
      * Create a new AmbiguousTypeException.
-     *
+     * 
      * @param message
      * @param cause
      * @param enableSuppression
@@ -54,7 +54,7 @@ public class AmbiguousTypeException extends FactoryException {
 
     /**
      * Create a new AmbiguousTypeException.
-     *
+     * 
      * @param message
      * @param cause
      */
@@ -65,7 +65,7 @@ public class AmbiguousTypeException extends FactoryException {
 
     /**
      * Create a new AmbiguousTypeException.
-     *
+     * 
      * @param message
      */
     public AmbiguousTypeException(String message) {
@@ -75,7 +75,7 @@ public class AmbiguousTypeException extends FactoryException {
 
     /**
      * Create a new AmbiguousTypeException.
-     *
+     * 
      * @param cause
      */
     public AmbiguousTypeException(Throwable cause) {

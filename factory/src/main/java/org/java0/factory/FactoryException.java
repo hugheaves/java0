@@ -27,7 +27,7 @@ public class FactoryException extends UncheckedException {
 
     /**
      * Create a new FactoryException.
-     *
+     * 
      */
     public FactoryException() {
         super();
@@ -36,7 +36,7 @@ public class FactoryException extends UncheckedException {
 
     /**
      * Create a new FactoryException.
-     *
+     * 
      * @param message
      * @param cause
      * @param enableSuppression
@@ -50,7 +50,7 @@ public class FactoryException extends UncheckedException {
 
     /**
      * Create a new FactoryException.
-     *
+     * 
      * @param message
      * @param cause
      */
@@ -61,7 +61,7 @@ public class FactoryException extends UncheckedException {
 
     /**
      * Create a new FactoryException.
-     *
+     * 
      * @param message
      */
     public FactoryException(String message) {
@@ -71,13 +71,12 @@ public class FactoryException extends UncheckedException {
 
     /**
      * Create a new FactoryException.
-     *
+     * 
      * @param cause
      */
     public FactoryException(Throwable cause) {
         super(cause);
 
     }
-
 
 }

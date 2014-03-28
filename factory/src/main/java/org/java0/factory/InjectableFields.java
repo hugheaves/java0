@@ -24,7 +24,7 @@ import org.java0.tag.Tag;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class InjectableFields {
     @SuppressWarnings("unused")

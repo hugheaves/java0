@@ -16,7 +16,46 @@
  */
 package org.java0.unit;
 
-public interface NumericUnitProduct<U1 extends UnitType<Number, ?>, U2 extends UnitType<Number, ?>>
-		extends UnitType<Number, NumericUnitProduct<U1, U2>> {
+/**
+ * @author Hugh Eaves
+ * 
+ */
+public interface NumericUnitProduct<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>>
+        extends BinaryNumericUnit<U1, U2, NumericUnitProduct<U1, U2>> {
 
+    /**
+     * Returns this unit with the right unit cancelled by multiplying by the
+     * given unit.
+     * 
+     * @param unit
+     * @return a unit
+     */
+    public U1 multiplyAndCancel2(InverseUnit<U2> unit);
+
+    /**
+     * Returns this unit with the left unit cancelled by multiplying by the
+     * given unit.
+     * 
+     * @param unit
+     * @return a unit
+     */
+    public U2 multiplyAndCancel1(InverseUnit<U1> unit);
+
+    /**
+     * Returns this unit with the right unit cancelled by dividing by the given
+     * unit.
+     * 
+     * @param unit
+     * @return a unit
+     */
+    public U1 divideAndCancel2(U2 unit);
+
+    /**
+     * Returns this unit with the left unit cancelled by dividing by the given
+     * unit.
+     * 
+     * @param unit
+     * @return a unit
+     */
+    public U2 divideAndCancel1(U1 unit);
 }

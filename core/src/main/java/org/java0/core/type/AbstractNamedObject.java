@@ -26,14 +26,10 @@ import java.util.logging.Logger;
  */
 public abstract class AbstractNamedObject implements NamedObject {
     @SuppressWarnings("unused")
-    private static final Logger logger = Logger.getLogger(AbstractNamedObject.class
-            .getName());
+    private static final Logger logger = Logger
+            .getLogger(AbstractNamedObject.class.getName());
 
     protected String name;
-
-    public AbstractNamedObject() {
-        this.name = null;
-    }
 
     public AbstractNamedObject(String name) {
         this.name = name;
@@ -44,7 +40,11 @@ public abstract class AbstractNamedObject implements NamedObject {
      */
     @Override
     public String getName() {
-        return name;
+        if (name != null) {
+            return name;
+        } else {
+            return getClass().getName();
+        }
     }
 
     protected void setName(String name) {
@@ -56,7 +56,9 @@ public abstract class AbstractNamedObject implements NamedObject {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof NamedObject) {
+        if (obj == this) {
+            return true;
+        } else if (obj instanceof NamedObject) {
             if (getName().equals(((NamedObject) obj).getName())) {
                 return true;
             }
@@ -69,11 +71,11 @@ public abstract class AbstractNamedObject implements NamedObject {
      */
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return getName().hashCode();
     }
 
     @Override
     public String toString() {
-        return "Named Object: " + getName();
+        return getName();
     }
 }

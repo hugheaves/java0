@@ -16,18 +16,19 @@
  */
 package org.java0.unit.power;
 
-import org.java0.unit.AbstractNumericUnit;
+import org.java0.unit.impl.ScalableNumericUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class PowerUnit extends AbstractNumericUnit<PowerUnit> {
-	public PowerUnit(double toSystemUnitConversionFactor) {
-		super(toSystemUnitConversionFactor);
-	}
+public abstract class PowerUnit extends ScalableNumericUnit<PowerUnit> {
+    public PowerUnit(String name, double toSystemUnitConversionFactor) {
+        super(name, toSystemUnitConversionFactor);
+    }
 
-	public PowerUnit getSystemUnit() {
-		return Watts.INSTANCE;
-	}
+    @Override
+    public PowerUnit getSystemUnit() {
+        return WattsUnit.INSTANCE;
+    }
 }

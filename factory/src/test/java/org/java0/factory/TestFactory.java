@@ -23,7 +23,7 @@ import org.java0.tag.NamedTag;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public class TestFactory extends AbstractDelegableFactory {
     @SuppressWarnings("unused")
@@ -34,7 +34,9 @@ public class TestFactory extends AbstractDelegableFactory {
         this.addType(TestClass1.class, true);
         this.addType(TestClass2.class, true);
         this.addType(TestInterface1.class, true, TestClass3.class);
-        this.addType(TestInterface1.class, new NamedTag("A"), true, TestClass4.class);
-        this.addType(TestInterface1.class, new NamedTag("B"), true, TestClass5.class);
+        this.addType(TestInterface1.class, new NamedTag("A"), true,
+                TestClass4.class);
+        this.addType(TestInterface1.class, new NamedTag("B"), true,
+                TestClass5.class);
     }
 }

@@ -30,41 +30,44 @@ import java.util.logging.LogRecord;
  */
 public class FastFormatter extends Formatter {
 
-	/**
-	 * @see java.util.logging.Formatter#format(java.util.logging.LogRecord)
-	 */
-	@Override
-	public String format(LogRecord record) {
-		StringBuffer formattedRecord = new StringBuffer();
+    /**
+     * @see java.util.logging.Formatter#format(java.util.logging.LogRecord)
+     */
+    @Override
+    public String format(LogRecord record) {
+        StringBuffer formattedRecord = new StringBuffer();
 
-		formattedRecord.append("| ");
-		formattedRecord.append(record.getMillis());
-		formattedRecord.append(" | ");
-		formattedRecord.append(record.getLevel().getName());
-		formattedRecord.append(" | ");
-		formattedRecord.append(record.getMessage());
-		formattedRecord.append(" | ");
-		Object[] parameters = record.getParameters();
-		if (parameters != null) {
-			for (int i = 0; i < parameters.length; ++i) {
-				if (i > 0) {
-					formattedRecord.append(", ");
-				}
-				formattedRecord.append(parameters[i]);
-			}
-		}
-		formattedRecord.append(" | ");
-		formattedRecord.append(record.getLoggerName());
-		formattedRecord.append(" | ");
-		if (record.getThrown() != null) {
-			record.getThrown().getMessage();
-			StringWriter stringWriter = new StringWriter();
-			record.getThrown().printStackTrace(new PrintWriter(stringWriter));
-			formattedRecord.append(stringWriter);
-		}
-		formattedRecord.append(" |\n");
+        long eventTime = record.getMillis();
+        formattedRecord.append("| ");
+        formattedRecord.append(eventTime / 1000);
+        formattedRecord.append(".");
+        formattedRecord.append(eventTime % 1000);
+        formattedRecord.append(" | ");
+        formattedRecord.append(record.getLevel().getName());
+        formattedRecord.append(" | ");
+        formattedRecord.append(record.getMessage());
+        formattedRecord.append(" | ");
+        Object[] parameters = record.getParameters();
+        if (parameters != null) {
+            for (int i = 0; i < parameters.length; ++i) {
+                if (i > 0) {
+                    formattedRecord.append(", ");
+                }
+                formattedRecord.append(parameters[i]);
+            }
+        }
+        formattedRecord.append(" | ");
+        formattedRecord.append(record.getLoggerName());
+        formattedRecord.append(" | ");
+        if (record.getThrown() != null) {
+            record.getThrown().getMessage();
+            StringWriter stringWriter = new StringWriter();
+            record.getThrown().printStackTrace(new PrintWriter(stringWriter));
+            formattedRecord.append(stringWriter);
+        }
+        formattedRecord.append(" |\n");
 
-		return formattedRecord.toString();
-	}
+        return formattedRecord.toString();
+    }
 
 }

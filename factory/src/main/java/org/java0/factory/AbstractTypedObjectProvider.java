@@ -20,9 +20,10 @@ import java.util.logging.Logger;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
-public abstract class AbstractTypedObjectProvider<T> implements TypedObjectProvider<T> {
+public abstract class AbstractTypedObjectProvider<T> implements
+        TypedObjectProvider<T> {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
             .getLogger(AbstractTypedObjectProvider.class.getName());
@@ -35,7 +36,6 @@ public abstract class AbstractTypedObjectProvider<T> implements TypedObjectProvi
     protected AbstractTypedObjectProvider(Class<? extends T> type) {
         this.type = type;
     }
-
 
     /**
      * @see org.java0.factory.ObjectProvider#getType()

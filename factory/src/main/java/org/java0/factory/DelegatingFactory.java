@@ -20,7 +20,7 @@ public interface DelegatingFactory extends Factory {
     /**
      * Adds a new factory to the list of factories that this factory delegates
      * to.
-     *
+     * 
      * @param delegate
      * @throws InvalidOverrideException
      */
@@ -30,7 +30,7 @@ public interface DelegatingFactory extends Factory {
     /**
      * Removes a factory from the list of factories that this factory delegates
      * to.
-     *
+     * 
      * @param delegate
      */
     public void removeDelegate(DelegableFactory delegate);

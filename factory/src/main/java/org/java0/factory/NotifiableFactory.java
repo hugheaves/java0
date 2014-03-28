@@ -22,13 +22,13 @@ import org.java0.tag.Tag;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 public interface NotifiableFactory extends Factory {
     /**
      * Called to notify this factory that the types supported by a
      * DelegableFactory have changed.
-     *
+     * 
      * @param source
      * @param types
      */
