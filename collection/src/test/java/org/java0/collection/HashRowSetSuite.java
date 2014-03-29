@@ -37,14 +37,13 @@ import com.google.common.collect.testing.features.SetFeature;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 @RunWith(AllTests.class)
 @SuiteClasses(HashRowSetSuite.class)
 public class HashRowSetSuite extends BaseTest {
 
     public static TestSuite suite() {
-        setupLogging();
 
         TestSetGenerator<Row> generator = new TestSetGenerator<Row>() {
 
@@ -72,7 +71,7 @@ public class HashRowSetSuite extends BaseTest {
             @Override
             public Set<Row> create(Object... elements) {
                 Set<Row> set = new HashRowSet();
-                set.addAll((Collection)Arrays.asList(elements));
+                set.addAll((Collection) Arrays.asList(elements));
                 return set;
             }
 

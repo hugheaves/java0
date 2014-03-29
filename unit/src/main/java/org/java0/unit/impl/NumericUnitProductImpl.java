@@ -24,12 +24,13 @@ import org.java0.unit.NumericUnitProduct;
  * @author Hugh Eaves
  * 
  */
-public class NumericUnitProductImpl<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>>
-        extends BinaryNumericUnitImpl<U1, U2, NumericUnitProduct<U1, U2>>
-        implements NumericUnitProduct<U1, U2>
+public class NumericUnitProductImpl<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_TYPE extends NumericUnit<?>>
+        extends
+        BinaryNumericUnitImpl<UNIT_1_TYPE, UNIT_2_TYPE, NumericUnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>>
+        implements NumericUnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>
 
 {
-    public NumericUnitProductImpl(U1 unit1, U2 unit2) {
+    public NumericUnitProductImpl(UNIT_1_TYPE unit1, UNIT_2_TYPE unit2) {
         super("*", unit1, unit2);
     }
 
@@ -42,20 +43,23 @@ public class NumericUnitProductImpl<U1 extends NumericUnit<? super U1>, U2 exten
 
     @Override
     public Number convertFromSystem(Number value) {
-        return unit1.convertFromSystem(value).doubleValue()
-                * unit2.convertFromSystem(value).doubleValue();
+        Number value1 = unit1.convertFromSystem(value);
+        Number value2 = unit2.convertFromSystem(value1);
+        return value2;
     }
 
     /**
      * @see org.java0.unit.Unit#getSystemUnit()
      */
+    @SuppressWarnings("unchecked")
     @Override
-    public NumericUnitProduct<U1, U2> getSystemUnit() {
+    public NumericUnitProduct<UNIT_1_TYPE, UNIT_2_TYPE> getSystemUnit() {
         if (isSystemUnit()) {
             return this;
         } else {
-            return new NumericUnitProductImpl<U1, U2>(
-                    (U1) unit1.getSystemUnit(), (U2) unit2.getSystemUnit());
+            return new NumericUnitProductImpl<UNIT_1_TYPE, UNIT_2_TYPE>(
+                    (UNIT_1_TYPE) unit1.getSystemUnit(),
+                    (UNIT_2_TYPE) unit2.getSystemUnit());
         }
     }
 
@@ -63,7 +67,7 @@ public class NumericUnitProductImpl<U1 extends NumericUnit<? super U1>, U2 exten
      * @see org.java0.unit.NumericUnitProduct#multiplyAndCancel2(org.java0.unit.InverseUnit)
      */
     @Override
-    public U1 multiplyAndCancel2(InverseUnit<U2> unit) {
+    public UNIT_1_TYPE multiplyAndCancel2(InverseUnit<UNIT_2_TYPE> unit) {
         return unit1;
     }
 
@@ -71,7 +75,7 @@ public class NumericUnitProductImpl<U1 extends NumericUnit<? super U1>, U2 exten
      * @see org.java0.unit.NumericUnitProduct#multiplyAndCancel1(org.java0.unit.InverseUnit)
      */
     @Override
-    public U2 multiplyAndCancel1(InverseUnit<U1> unit) {
+    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit) {
         return unit2;
     }
 
@@ -79,7 +83,7 @@ public class NumericUnitProductImpl<U1 extends NumericUnit<? super U1>, U2 exten
      * @see org.java0.unit.NumericUnitProduct#divideAndCancel2(org.java0.unit.NumericUnit)
      */
     @Override
-    public U1 divideAndCancel2(U2 unit) {
+    public UNIT_1_TYPE divideAndCancel2(UNIT_2_TYPE unit) {
         return unit1;
     }
 
@@ -87,8 +91,7 @@ public class NumericUnitProductImpl<U1 extends NumericUnit<? super U1>, U2 exten
      * @see org.java0.unit.NumericUnitProduct#divideAndCancel1(org.java0.unit.NumericUnit)
      */
     @Override
-    public U2 divideAndCancel1(U1 unit) {
+    public UNIT_2_TYPE divideAndCancel1(UNIT_1_TYPE unit) {
         return unit2;
     }
-
 }

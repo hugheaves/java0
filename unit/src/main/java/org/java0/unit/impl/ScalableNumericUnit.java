@@ -25,8 +25,8 @@ import org.java0.unit.NumericUnit;
  * @author Hugh Eaves
  * 
  */
-public abstract class ScalableNumericUnit<T extends NumericUnit<? super T>>
-        extends AbstractNumericUnit<T> {
+public abstract class ScalableNumericUnit<UNIT_TYPE extends NumericUnit<?>>
+        extends AbstractNumericUnit<UNIT_TYPE> {
 
     protected double toSystemUnitConversionFactor;
 
@@ -66,4 +66,5 @@ public abstract class ScalableNumericUnit<T extends NumericUnit<? super T>>
     public double getToSystemUnitConversionFactor() {
         return toSystemUnitConversionFactor;
     }
+
 }

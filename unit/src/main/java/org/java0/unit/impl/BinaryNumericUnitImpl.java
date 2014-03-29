@@ -26,15 +26,16 @@ import org.java0.unit.NumericUnitProduct;
  * @author Hugh Eaves
  * 
  */
-public abstract class BinaryNumericUnitImpl<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>, T extends NumericUnit<? super T>>
-        extends AbstractNumericUnit<T> implements BinaryNumericUnit<U1, U2, T> {
+public abstract class BinaryNumericUnitImpl<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_TYPE extends NumericUnit<?>, UNIT_TYPE extends NumericUnit<?>>
+        extends AbstractNumericUnit<UNIT_TYPE> implements
+        BinaryNumericUnit<UNIT_1_TYPE, UNIT_2_TYPE, UNIT_TYPE> {
 
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
             .getLogger(BinaryNumericUnitImpl.class.getName());
 
-    protected U1 unit1;
-    protected U2 unit2;
+    protected UNIT_1_TYPE unit1;
+    protected UNIT_2_TYPE unit2;
     protected String operator;
 
     /**
@@ -42,7 +43,7 @@ public abstract class BinaryNumericUnitImpl<U1 extends NumericUnit<? super U1>, 
      * 
      * @param name
      */
-    public BinaryNumericUnitImpl(String operator, U1 unit1, U2 unit2) {
+    public BinaryNumericUnitImpl(String operator, UNIT_1_TYPE unit1, UNIT_2_TYPE unit2) {
         super("(" + unit1.getName() + " " + operator + " " + unit2.getName()
                 + ")");
         this.unit1 = unit1;
@@ -86,7 +87,7 @@ public abstract class BinaryNumericUnitImpl<U1 extends NumericUnit<? super U1>, 
      * @see org.java0.unit.BinaryNumericUnit#getUnit1()
      */
     @Override
-    public U1 getUnit1() {
+    public UNIT_1_TYPE getUnit1() {
         return unit1;
     }
 
@@ -94,7 +95,7 @@ public abstract class BinaryNumericUnitImpl<U1 extends NumericUnit<? super U1>, 
      * @see org.java0.unit.BinaryNumericUnit#getUnit2()
      */
     @Override
-    public U2 getUnit2() {
+    public UNIT_2_TYPE getUnit2() {
         return unit2;
     }
 

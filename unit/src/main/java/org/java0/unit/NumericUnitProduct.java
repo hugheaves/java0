@@ -16,46 +16,57 @@
  */
 package org.java0.unit;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Hugh Eaves
+ * The Interface NumericUnitProduct.
  * 
+ * @author Hugh Eaves
+ * @param <U1>
+ *            the generic type
+ * @param <U2>
+ *            the generic type
  */
-public interface NumericUnitProduct<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>>
-        extends BinaryNumericUnit<U1, U2, NumericUnitProduct<U1, U2>> {
+public interface NumericUnitProduct<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_TYPE extends NumericUnit<?>>
+        extends
+        BinaryNumericUnit<UNIT_1_TYPE, UNIT_2_TYPE, NumericUnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>> {
 
     /**
      * Returns this unit with the right unit cancelled by multiplying by the
      * given unit.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
-    public U1 multiplyAndCancel2(InverseUnit<U2> unit);
+    public UNIT_1_TYPE multiplyAndCancel2(InverseUnit<UNIT_2_TYPE> unit);
 
     /**
      * Returns this unit with the left unit cancelled by multiplying by the
      * given unit.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
-    public U2 multiplyAndCancel1(InverseUnit<U1> unit);
+    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit);
 
     /**
      * Returns this unit with the right unit cancelled by dividing by the given
      * unit.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
-    public U1 divideAndCancel2(U2 unit);
+    public UNIT_1_TYPE divideAndCancel2(UNIT_2_TYPE unit);
 
     /**
      * Returns this unit with the left unit cancelled by dividing by the given
      * unit.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
-    public U2 divideAndCancel1(U1 unit);
+    public UNIT_2_TYPE divideAndCancel1(UNIT_1_TYPE unit);
 }

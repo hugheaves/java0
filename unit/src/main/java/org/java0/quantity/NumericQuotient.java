@@ -24,7 +24,7 @@ import org.java0.unit.NumericUnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public interface NumericQuotient<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>>
+public interface NumericQuotient<U1 extends NumericUnit<?>, U2 extends NumericUnit<?>>
         extends Numeric<NumericUnitQuotient<U1, U2>> {
 
     /**

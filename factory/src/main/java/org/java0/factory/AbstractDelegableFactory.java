@@ -163,6 +163,7 @@ public class AbstractDelegableFactory extends AbstractFactory implements
      * @see org.java0.factory.Factory#getObject(java.lang.Class,
      *      org.java0.tag.Tag, org.java0.factory.Config)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T getObject(Class<T> type, Tag tag, Config<T> config)
             throws FactoryException {

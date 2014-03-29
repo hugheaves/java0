@@ -27,15 +27,16 @@ import org.java0.unit.NumericUnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public class NumericUnitQuotientImpl<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>>
-        extends BinaryNumericUnitImpl<U1, U2, NumericUnitQuotient<U1, U2>>
-        implements NumericUnitQuotient<U1, U2> {
+public class NumericUnitQuotientImpl<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_TYPE extends NumericUnit<?>>
+        extends
+        BinaryNumericUnitImpl<UNIT_1_TYPE, UNIT_2_TYPE, NumericUnitQuotient<UNIT_1_TYPE, UNIT_2_TYPE>>
+        implements NumericUnitQuotient<UNIT_1_TYPE, UNIT_2_TYPE> {
 
     private static final Logger logger = Logger
             .getLogger(NumericUnitQuotientImpl.class.getName());
     private static final LogUtil logUtil = new LogUtil(logger);
 
-    public NumericUnitQuotientImpl(U1 unit1, U2 unit2) {
+    public NumericUnitQuotientImpl(UNIT_1_TYPE unit1, UNIT_2_TYPE unit2) {
         super("/", unit1, unit2);
     }
 
@@ -65,12 +66,12 @@ public class NumericUnitQuotientImpl<U1 extends NumericUnit<? super U1>, U2 exte
         logUtil.valuesFinest("after convertFromSystem by unit1", "value1",
                 value1);
 
-        double value2 = value1 / unit2.convertFromSystem(1).doubleValue();
+        double value2 = unit2.convertFromSystem(1).doubleValue();
 
         logUtil.valuesFinest("after convertFromSystem by unit2", "value2",
                 value2);
 
-        return value2;
+        return value1 / value2;
 
     }
 
@@ -85,22 +86,23 @@ public class NumericUnitQuotientImpl<U1 extends NumericUnit<? super U1>, U2 exte
     /**
      * @see org.java0.unit.Unit#getSystemUnit()
      */
+    @SuppressWarnings("unchecked")
     @Override
-    public NumericUnitQuotient<U1, U2> getSystemUnit() {
+    public NumericUnitQuotient<UNIT_1_TYPE, UNIT_2_TYPE> getSystemUnit() {
         if (isSystemUnit()) {
             return this;
         } else {
-            return new NumericUnitQuotientImpl<U1, U2>(
-                    (U1) unit1.getSystemUnit(), (U2) unit2.getSystemUnit());
+            return new NumericUnitQuotientImpl<UNIT_1_TYPE, UNIT_2_TYPE>(
+                    (UNIT_1_TYPE) unit1.getSystemUnit(),
+                    (UNIT_2_TYPE) unit2.getSystemUnit());
         }
-
     }
 
     /**
      * @see org.java0.unit.NumericUnitQuotient#multiplyAndCancel2(org.java0.unit.NumericUnit)
      */
     @Override
-    public U1 multiplyAndCancel2(U2 unit) {
+    public UNIT_1_TYPE multiplyAndCancel2(UNIT_2_TYPE unit) {
         return unit1;
     }
 
@@ -108,7 +110,7 @@ public class NumericUnitQuotientImpl<U1 extends NumericUnit<? super U1>, U2 exte
      * @see org.java0.unit.NumericUnitQuotient#divideAndCancel2(org.java0.unit.InverseUnit)
      */
     @Override
-    public U1 divideAndCancel2(InverseUnit<U2> unit) {
+    public UNIT_1_TYPE divideAndCancel2(InverseUnit<UNIT_2_TYPE> unit) {
         return unit1;
     }
 
@@ -116,7 +118,7 @@ public class NumericUnitQuotientImpl<U1 extends NumericUnit<? super U1>, U2 exte
      * @see org.java0.unit.NumericUnitQuotient#multiplyAndCancel1(org.java0.unit.InverseUnit)
      */
     @Override
-    public U2 multiplyAndCancel1(InverseUnit<U1> unit) {
+    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit) {
         return unit2;
     }
 
@@ -124,7 +126,7 @@ public class NumericUnitQuotientImpl<U1 extends NumericUnit<? super U1>, U2 exte
      * @see org.java0.unit.NumericUnitQuotient#divideAndCancel1(org.java0.unit.NumericUnit)
      */
     @Override
-    public U2 divideAndCancel1(U1 unit) {
+    public UNIT_2_TYPE divideAndCancel1(UNIT_1_TYPE unit) {
         return unit2;
     }
 

@@ -25,7 +25,6 @@ import java.util.Set;
 
 import junit.framework.TestSuite;
 
-import org.java0.collection.HashSetMap;
 import org.java0.test.BaseTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
@@ -48,7 +47,6 @@ import com.google.common.collect.testing.features.MapFeature;
 public class HashSetMapSuite extends BaseTest {
 
     public static TestSuite suite() {
-        setupLogging();
 
         TestMapGenerator<String, Set<String>> generator = new TestMapGenerator<String, Set<String>>() {
 

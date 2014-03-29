@@ -23,17 +23,17 @@ import org.java0.unit.NumericUnit;
  * @author Hugh Eaves
  * 
  */
-public class InverseUnitImpl<U extends NumericUnit<? super U>> extends
-        AbstractNumericUnit<InverseUnit<U>> implements InverseUnit<U> {
+public class InverseUnitImpl<UNIT_TYPE extends NumericUnit<?>> extends
+        AbstractNumericUnit<UNIT_TYPE> implements InverseUnit<UNIT_TYPE> {
 
-    protected U targetUnit;
+    protected UNIT_TYPE targetUnit;
 
     /**
      * Create a new InverseImpl.
      * 
      * @param name
      */
-    public InverseUnitImpl(U targetUnit) {
+    public InverseUnitImpl(UNIT_TYPE targetUnit) {
         super("1/" + targetUnit.getName());
         this.targetUnit = targetUnit;
     }
@@ -42,7 +42,7 @@ public class InverseUnitImpl<U extends NumericUnit<? super U>> extends
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override
-    public InverseUnit<U> getSystemUnit() {
+    public UNIT_TYPE getSystemUnit() {
         throw new UnsupportedOperationException();
     }
 
@@ -74,7 +74,7 @@ public class InverseUnitImpl<U extends NumericUnit<? super U>> extends
      * @see org.java0.unit.InverseUnit#uninvert()
      */
     @Override
-    public U uninvert() {
+    public UNIT_TYPE uninvert() {
         return targetUnit;
     }
 

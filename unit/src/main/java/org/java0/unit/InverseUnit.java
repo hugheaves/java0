@@ -16,16 +16,16 @@
  */
 package org.java0.unit;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class represents an "inverse" or "inverted" unit. (i.e. 1 / UNIT instead
  * of just UNIT)
  * 
  * @author Hugh Eaves
- * 
+ * @param <U>
+ *            the generic type
  */
-public interface InverseUnit<U extends NumericUnit<? super U>> extends
-        NumericUnit<InverseUnit<U>> {
-
+public interface InverseUnit<U extends NumericUnit<?>> extends NumericUnit<U> {
     /**
      * Returns the uninverted unit. (or the inverse of the inverse).
      * 

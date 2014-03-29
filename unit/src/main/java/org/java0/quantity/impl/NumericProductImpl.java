@@ -23,13 +23,12 @@ import org.java0.quantity.NumericProduct;
 import org.java0.unit.InverseUnit;
 import org.java0.unit.NumericUnit;
 import org.java0.unit.NumericUnitProduct;
-import org.java0.unit.Unit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class NumericProductImpl<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>>
+public class NumericProductImpl<U1 extends NumericUnit<?>, U2 extends NumericUnit<?>>
         extends NumericImpl<NumericUnitProduct<U1, U2>> implements
         NumericProduct<U1, U2> {
     @SuppressWarnings("unused")
@@ -37,15 +36,13 @@ public class NumericProductImpl<U1 extends NumericUnit<? super U1>, U2 extends N
             .getLogger(NumericProductImpl.class.getName());
 
     /**
-     * Create a new AbstractNumericQuantityQuotient.
+     * Create a new NumericProductImpl.
      * 
      * @param value
      * @param unit
      */
-    public NumericProductImpl(
-            Number value,
-            Unit<Number, ? extends NumericUnitProduct<? extends U1, ? extends U2>> unit) {
-        super(value, (NumericUnitProduct<U1, U2>) unit);
+    public NumericProductImpl(Number value, NumericUnitProduct<U1, U2> unit) {
+        super(value, unit);
     }
 
     /**

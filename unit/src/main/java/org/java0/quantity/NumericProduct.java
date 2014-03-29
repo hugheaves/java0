@@ -24,7 +24,7 @@ import org.java0.unit.NumericUnitProduct;
  * @author Hugh Eaves
  * 
  */
-public interface NumericProduct<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>>
+public interface NumericProduct<U1 extends NumericUnit<?>, U2 extends NumericUnit<?>>
         extends Numeric<NumericUnitProduct<U1, U2>> {
 
     /**

@@ -16,42 +16,56 @@
  */
 package org.java0.unit;
 
-public interface NumericUnitQuotient<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>>
-        extends BinaryNumericUnit<U1, U2, NumericUnitQuotient<U1, U2>> {
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface NumericUnitQuotient.
+ * 
+ * @param <UNIT_1_TYPE>
+ *            the generic type
+ * @param <UNIT_2_TYPE>
+ *            the generic type
+ */
+public interface NumericUnitQuotient<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_TYPE extends NumericUnit<?>>
+        extends
+        BinaryNumericUnit<UNIT_1_TYPE, UNIT_2_TYPE, NumericUnitQuotient<UNIT_1_TYPE, UNIT_2_TYPE>> {
 
     /**
      * Returns this unit with the denominator unit cancelled by multiplying by
      * the given unit.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
-    public U1 multiplyAndCancel2(U2 unit);
+    public UNIT_1_TYPE multiplyAndCancel2(UNIT_2_TYPE unit);
 
     /**
      * Returns this unit with the denominator unit cancelled by dividing by the
      * given unit.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
-    public U1 divideAndCancel2(InverseUnit<U2> unit);
+    public UNIT_1_TYPE divideAndCancel2(InverseUnit<UNIT_2_TYPE> unit);
 
     /**
      * Returns this unit with the numerator unit cancelled by multiplying by the
      * given unit.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
-    public U2 multiplyAndCancel1(InverseUnit<U1> unit);
+    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit);
 
     /**
      * Returns this unit with the numerator unit cancelled by dividing by the
      * given unit.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
-    public U2 divideAndCancel1(U1 unit);
+    public UNIT_2_TYPE divideAndCancel1(UNIT_1_TYPE unit);
 }

@@ -28,8 +28,8 @@ import org.java0.unit.NumericUnit;
  * @author Hugh Eaves
  * 
  */
-public abstract class OffsetNumericUnit<T extends NumericUnit<? super T>>
-        extends ScalableNumericUnit<T> {
+public abstract class OffsetNumericUnit<UNIT_TYPE extends NumericUnit<?>>
+        extends ScalableNumericUnit<UNIT_TYPE> {
 
     @SuppressWarnings("unused")
     private static final Logger logger = Logger

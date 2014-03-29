@@ -17,9 +17,8 @@
 package org.java0.quantity.angularacceleration;
 
 import org.java0.quantity.impl.NumericQuotientImpl;
-import org.java0.unit.NumericUnitQuotient;
-import org.java0.unit.angle.AngleUnit;
 import org.java0.unit.angularacceleration.AngularAccelerationUnit;
+import org.java0.unit.angularvelocity.AngularVelocityUnit;
 import org.java0.unit.time.TimeUnit;
 
 /**
@@ -27,7 +26,7 @@ import org.java0.unit.time.TimeUnit;
  * 
  */
 public class AngularAcceleration extends
-        NumericQuotientImpl<NumericUnitQuotient<AngleUnit, TimeUnit>, TimeUnit> {
+        NumericQuotientImpl<AngularVelocityUnit, TimeUnit> {
 
     /**
      * @param value

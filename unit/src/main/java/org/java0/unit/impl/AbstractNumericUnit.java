@@ -28,8 +28,8 @@ import org.java0.unit.NumericUnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public abstract class AbstractNumericUnit<U extends NumericUnit<? super U>>
-        extends AbstractNamedObject implements NumericUnit<U> {
+public abstract class AbstractNumericUnit<UNIT_TYPE extends NumericUnit<?>>
+        extends AbstractNamedObject implements NumericUnit<UNIT_TYPE> {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
             .getLogger(AbstractNumericUnit.class.getName());
@@ -59,31 +59,32 @@ public abstract class AbstractNumericUnit<U extends NumericUnit<? super U>>
         return getClass().hashCode();
     }
 
-    /**
-     * @see org.java0.unit.NumericUnit#multiply(org.java0.unit.NumericUnit)
-     */
-    @Override
-    public <P extends NumericUnit<? super P>, Q extends P> NumericUnitProduct<U, P> multiply(
-            Q unit) {
-        return new NumericUnitProductImpl<U, P>((U) this, unit);
-    }
-
-    /**
-     * @see org.java0.unit.NumericUnit#divide(org.java0.unit.NumericUnit)
-     */
-    @Override
-    public <P extends NumericUnit<? super P>, Q extends P> NumericUnitQuotient<U, P> divide(
-            Q unit) {
-        return new NumericUnitQuotientImpl<U, P>((U) this, unit);
-
-    }
+    //
+    // @Override
+    // public <P extends NumericUnit<P>, Q extends P> NumericUnitProduct<U, P>
+    // multiply(
+    // Q unit) {
+    // return new NumericUnitProductImpl<U, P>((U) this, unit);
+    // }
+    //
+    // /**
+    // * @see org.java0.unit.NumericUnit#divide(org.java0.unit.NumericUnit)
+    // */
+    // @Override
+    // public <P extends NumericUnit<P>, Q extends P> NumericUnitQuotient<U, P>
+    // divide(
+    // Q unit) {
+    // return new NumericUnitQuotientImpl<U, P>((U) this, unit);
+    //
+    // }
 
     /**
      * @see org.java0.unit.NumericUnit#invert()
      */
     @Override
-    public InverseUnit<U> invert() {
-        return new InverseUnitImpl<U>((U) this);
+    public InverseUnit<UNIT_TYPE> invert() {
+        // return new InverseUnitImpl<UNIT_TYPE>((UNIT_TYPE) this);
+        return null;
     }
 
     /**
@@ -93,4 +94,27 @@ public abstract class AbstractNumericUnit<U extends NumericUnit<? super U>>
     public boolean isSystemUnit() {
         return equals(getSystemUnit());
     }
+
+    /**
+     * Returns the product of two numeric units.
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public <LOWER_BOUND extends NumericUnit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> NumericUnitProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+            PARAM_UNIT_TYPE unit) {
+        return new NumericUnitProductImpl<UNIT_TYPE, LOWER_BOUND>(
+                (UNIT_TYPE) this, unit);
+    }
+
+    /**
+     * Returns the quotient of two numeric units.
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public <LOWER_BOUND extends NumericUnit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> NumericUnitQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+            PARAM_UNIT_TYPE unit) {
+        return new NumericUnitQuotientImpl<UNIT_TYPE, LOWER_BOUND>(
+                (UNIT_TYPE) this, unit);
+    }
+
 }

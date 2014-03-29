@@ -16,42 +16,43 @@
  */
 package org.java0.unit;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Hugh Eaves
+ * The Interface NumericUnit.
  * 
+ * @author Hugh Eaves
+ * @param <U>
+ *            the generic type
  */
-public interface NumericUnit<U extends NumericUnit<? super U>> extends
-        Unit<Number, U>
+public interface NumericUnit<UNIT_TYPE extends NumericUnit<?>> extends
+        Unit<Number, UNIT_TYPE>
 /* ,org.unitsofmeasurement.unit.Unit<NumericQuantity<U>> */{
 
     /**
      * Returns the product of two numeric units.
-     * 
-     * @param unit
-     * @return
      */
-    public <P extends NumericUnit<? super P>, Q extends P> NumericUnitProduct<U, P> multiply(
-            Q unit);
+    public <LOWER_BOUND extends NumericUnit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> NumericUnitProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+            PARAM_UNIT_TYPE unit);
 
     /**
      * Returns the quotient of two numeric units.
-     * 
-     * @param unit
-     * @return
      */
-    public <P extends NumericUnit<? super P>, Q extends P> NumericUnitQuotient<U, P> divide(
-            Q unit);
+    public <LOWER_BOUND extends NumericUnit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> NumericUnitQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+            PARAM_UNIT_TYPE unit);
 
     /**
      * Returns the inverse of this unit.
      * 
-     * @return
+     * @return the inverse unit
      */
-    public InverseUnit<U> invert();
+    public InverseUnit<UNIT_TYPE> invert();
 
     /**
+     * Gets the system unit.
+     * 
+     * @return the system unit
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override
-    public U getSystemUnit();
+    public UNIT_TYPE getSystemUnit();
 }

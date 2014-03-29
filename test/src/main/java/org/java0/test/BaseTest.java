@@ -19,17 +19,15 @@ package org.java0.test;
 import java.util.logging.Level;
 
 import org.java0.logging.LogUtil;
-import org.junit.BeforeClass;
 
 public class BaseTest {
-	public BaseTest() {
-	}
+    public BaseTest() {
+        this(Level.INFO);
+    }
 
-	@BeforeClass
-	public static void setupLogging() {
-		if (!LogUtil.initLogging("test-logging.properties")) {
-			LogUtil.initLoggingSimple(Level.FINEST);
-		}
-	}
-
+    public BaseTest(Level level) {
+        if (!LogUtil.initLogging("test-logging.properties")) {
+            LogUtil.initLoggingSimple(level);
+        }
+    }
 }

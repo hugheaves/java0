@@ -17,15 +17,13 @@
 package org.java0.quantity;
 
 import org.java0.unit.NumericUnit;
-import org.java0.unit.NumericUnitProduct;
-import org.java0.unit.NumericUnitQuotient;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public interface Numeric<U extends NumericUnit<? super U>> extends
-        Quantity<Number, U>
+public interface Numeric<UNIT_TYPE extends NumericUnit<?>> extends
+        Quantity<Number, UNIT_TYPE>
 /* , org.unitsofmeasurement.quantity.Quantity<NumericQuantity<U>> */{
 
     /**
@@ -34,7 +32,7 @@ public interface Numeric<U extends NumericUnit<? super U>> extends
      * @param quantity
      * @return
      */
-    public Numeric<U> subtract(Numeric<U> quantity);
+    public Numeric<UNIT_TYPE> subtract(Numeric<UNIT_TYPE> quantity);
 
     /**
      * Adds the given quantity to this one.
@@ -42,7 +40,7 @@ public interface Numeric<U extends NumericUnit<? super U>> extends
      * @param quantity
      * @return
      */
-    public Numeric<U> add(Numeric<U> quantity);
+    public Numeric<UNIT_TYPE> add(Numeric<UNIT_TYPE> quantity);
 
     /**
      * Multiplies the given quantity by this one.
@@ -50,8 +48,8 @@ public interface Numeric<U extends NumericUnit<? super U>> extends
      * @param quantity
      * @return
      */
-    public <A extends Numeric<P>, P extends NumericUnit<? super P>> Numeric<NumericUnitProduct<U, P>> multiply(
-            A quantity);
+    public <LOWER_BOUND extends NumericUnit<?>, QUANTITY_TYPE extends Numeric<LOWER_BOUND>> NumericProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+            QUANTITY_TYPE quantity);
 
     /**
      * Divides this quantity by the given one.
@@ -59,8 +57,8 @@ public interface Numeric<U extends NumericUnit<? super U>> extends
      * @param quantity
      * @return
      */
-    public <A extends Numeric<P>, P extends NumericUnit<? super P>> Numeric<NumericUnitQuotient<U, P>> divide(
-            A quantity);
+    public <LOWER_BOUND extends NumericUnit<?>, QUANTITY_TYPE extends Numeric<LOWER_BOUND>> NumericQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+            QUANTITY_TYPE quantity);
 
     /**
      * Returns this quantity as the specified concrete type.
@@ -74,5 +72,5 @@ public interface Numeric<U extends NumericUnit<? super U>> extends
      * @see org.java0.quantity.Quantity#unit()
      */
     @Override
-    public NumericUnit<U> unit();
+    public UNIT_TYPE unit();
 }

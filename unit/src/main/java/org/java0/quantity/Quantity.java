@@ -30,13 +30,13 @@ import org.java0.unit.Unit;
  * @param <U>
  *            the Unit type of this Quantity type.
  */
-public interface Quantity<T, U extends Unit<T, ? super U>> {
+public interface Quantity<T, U extends Unit<T, ?>> {
     /**
      * Returns the Unit for this Quantity.
      * 
      * @return the Unit for this Quantity.
      */
-    public Unit<T, ? extends U> unit();
+    public U unit();
 
     /**
      * Returns the value of this Quantity, expressed in the given Unit.

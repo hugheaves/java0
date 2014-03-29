@@ -47,7 +47,8 @@ public class AngularVelocityTest {
         AngularVelocity a = new AngularVelocity(45,
                 DegreesPerMillisecondUnit.INSTANCE);
         double b = a.value(RadiansPerSecondUnit.INSTANCE).doubleValue();
-        Assert.assertEquals(Math.PI / 4000, b, SMALL_AMOUNT);
+        Assert.assertEquals(((45 * 1000.0) / 360) * 2 * Math.PI, b,
+                SMALL_AMOUNT);
     }
 
     @Test
@@ -55,6 +56,6 @@ public class AngularVelocityTest {
         AngularVelocity a = new AngularVelocity(Math.PI / 1000,
                 RadiansPerSecondUnit.INSTANCE);
         double b = a.value(DegreesPerMillisecondUnit.INSTANCE).doubleValue();
-        Assert.assertEquals(180, b, SMALL_AMOUNT);
+        Assert.assertEquals(.00018, b, SMALL_AMOUNT);
     }
 }

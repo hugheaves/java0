@@ -18,17 +18,24 @@ package org.java0.unit;
 
 import org.java0.core.type.NamedObject;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Hugh Eaves
+ * The Interface Unit.
  * 
+ * @author Hugh Eaves
+ * @param <VALUE_TYPE>
+ *            the generic type
+ * @param <U>
+ *            the generic type
  */
-public interface Unit<T, U extends Unit<T, ? super U>> extends NamedObject {
+public interface Unit<VALUE_TYPE, UNIT_TYPE extends Unit<VALUE_TYPE, ?>>
+        extends NamedObject {
     /**
      * Returns the system unit compatible with this Unit.
      * 
      * @return the system unit compatible with this Unit.
      */
-    public U getSystemUnit();
+    public UNIT_TYPE getSystemUnit();
 
     /**
      * Returns whether or not this unit is a system unit.
@@ -41,15 +48,17 @@ public interface Unit<T, U extends Unit<T, ? super U>> extends NamedObject {
      * Converts a value in this unit type, to a value in the system unit type.
      * 
      * @param value
-     * @return
+     *            the value
+     * @return the t
      */
-    public T convertToSystem(T value);
+    public VALUE_TYPE convertToSystem(VALUE_TYPE value);
 
     /**
      * Converts a value in the system unit type, to a value in this unit type.
      * 
      * @param value
-     * @return
+     *            the value
+     * @return the t
      */
-    public T convertFromSystem(T value);
+    public VALUE_TYPE convertFromSystem(VALUE_TYPE value);
 }

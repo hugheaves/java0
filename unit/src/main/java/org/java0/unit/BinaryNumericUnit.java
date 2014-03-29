@@ -16,30 +16,38 @@
  */
 package org.java0.unit;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Hugh Eaves
+ * The Interface BinaryNumericUnit.
  * 
+ * @author Hugh Eaves
+ * @param <U1>
+ *            the generic type
+ * @param <U2>
+ *            the generic type
+ * @param <T>
+ *            the generic type
  */
-public interface BinaryNumericUnit<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>, T extends NumericUnit<? super T>>
-        extends NumericUnit<T> {
+public interface BinaryNumericUnit<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_TYPE extends NumericUnit<?>, UNIT_TYPE extends NumericUnit<?>>
+        extends NumericUnit<UNIT_TYPE> {
     /**
      * Returns the first / left unit of this binary numeric unit.
      * 
      * @return a unit
      */
-    public U1 getUnit1();
+    public UNIT_1_TYPE getUnit1();
 
     /**
      * Returns the second / right unit of this binary numeric unit.
      * 
      * @return a unit
      */
-    public U2 getUnit2();
+    public UNIT_2_TYPE getUnit2();
 
     /**
-     * Gets the relationship between these two units;
+     * Gets the relationship between these two units;.
      * 
-     * @return
+     * @return the operator
      */
     public String getOperator();
 }

@@ -49,9 +49,12 @@ public class GenericUnitTest extends BaseTest {
         NumericUnitProduct<GenericUnit, GenericUnit> ab = a.multiply(b);
         logger.info(ab.getName());
 
-        assertEquals(ab.convertToSystem(0.5).doubleValue(), 0.5, SMALL_AMOUNT);
-        assertEquals(ab.convertToSystem(1).doubleValue(), 1.0, SMALL_AMOUNT);
-        assertEquals(ab.convertToSystem(2).doubleValue(), 2.0, SMALL_AMOUNT);
+        assertEquals(0.5, ab.convertToSystem(0.5).doubleValue(), SMALL_AMOUNT);
+        assertEquals(1.0, ab.convertToSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(2.0, ab.convertToSystem(2).doubleValue(), SMALL_AMOUNT);
+        assertEquals(0.5, ab.convertFromSystem(0.5).doubleValue(), SMALL_AMOUNT);
+        assertEquals(1.0, ab.convertFromSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(2.0, ab.convertFromSystem(2).doubleValue(), SMALL_AMOUNT);
     }
 
     @Test
@@ -59,9 +62,13 @@ public class GenericUnitTest extends BaseTest {
         NumericUnitProduct<GenericUnit, GenericUnit> dadb = da.multiply(db);
         logger.info(dadb.getName());
 
-        assertEquals(dadb.convertToSystem(0.5).doubleValue(), 50, SMALL_AMOUNT);
-        assertEquals(dadb.convertToSystem(1).doubleValue(), 100, SMALL_AMOUNT);
-        assertEquals(dadb.convertToSystem(2).doubleValue(), 200, SMALL_AMOUNT);
+        assertEquals(50, dadb.convertToSystem(0.5).doubleValue(), SMALL_AMOUNT);
+        assertEquals(100, dadb.convertToSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(200, dadb.convertToSystem(2).doubleValue(), SMALL_AMOUNT);
+        assertEquals(.005, dadb.convertFromSystem(0.5).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(.01, dadb.convertFromSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(.02, dadb.convertFromSystem(2).doubleValue(), SMALL_AMOUNT);
     }
 
     @Test
@@ -73,6 +80,10 @@ public class GenericUnitTest extends BaseTest {
                 SMALL_AMOUNT);
         assertEquals(damb.convertToSystem(1).doubleValue(), .01, SMALL_AMOUNT);
         assertEquals(damb.convertToSystem(2).doubleValue(), .02, SMALL_AMOUNT);
+        assertEquals(50, damb.convertFromSystem(0.5).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(100, damb.convertFromSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(200, damb.convertFromSystem(2).doubleValue(), SMALL_AMOUNT);
     }
 
     @Test
@@ -84,6 +95,10 @@ public class GenericUnitTest extends BaseTest {
                 SMALL_AMOUNT);
         assertEquals(mbda.convertToSystem(1).doubleValue(), .01, SMALL_AMOUNT);
         assertEquals(mbda.convertToSystem(2).doubleValue(), .02, SMALL_AMOUNT);
+        assertEquals(50, mbda.convertFromSystem(0.5).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(100, mbda.convertFromSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(200, mbda.convertFromSystem(2).doubleValue(), SMALL_AMOUNT);
     }
 
     @Test
@@ -91,9 +106,12 @@ public class GenericUnitTest extends BaseTest {
         NumericUnitQuotient<GenericUnit, GenericUnit> ab = a.divide(b);
         logger.info(ab.getName());
 
-        assertEquals(ab.convertToSystem(0.5).doubleValue(), 0.5, SMALL_AMOUNT);
-        assertEquals(ab.convertToSystem(1).doubleValue(), 1.0, SMALL_AMOUNT);
-        assertEquals(ab.convertToSystem(2).doubleValue(), 2.0, SMALL_AMOUNT);
+        assertEquals(0.5, ab.convertToSystem(0.5).doubleValue(), SMALL_AMOUNT);
+        assertEquals(1.0, ab.convertToSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(2.0, ab.convertToSystem(2).doubleValue(), SMALL_AMOUNT);
+        assertEquals(0.5, ab.convertFromSystem(0.5).doubleValue(), SMALL_AMOUNT);
+        assertEquals(1.0, ab.convertFromSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(2.0, ab.convertFromSystem(2).doubleValue(), SMALL_AMOUNT);
     }
 
     @Test
@@ -101,9 +119,13 @@ public class GenericUnitTest extends BaseTest {
         NumericUnitQuotient<GenericUnit, GenericUnit> dadb = da.divide(db);
         logger.info(dadb.getName());
 
-        assertEquals(dadb.convertToSystem(0.5).doubleValue(), 0.5, SMALL_AMOUNT);
-        assertEquals(dadb.convertToSystem(1).doubleValue(), 1, SMALL_AMOUNT);
-        assertEquals(dadb.convertToSystem(2).doubleValue(), 2, SMALL_AMOUNT);
+        assertEquals(0.5, dadb.convertToSystem(0.5).doubleValue(), SMALL_AMOUNT);
+        assertEquals(1.0, dadb.convertToSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(2.0, dadb.convertToSystem(2).doubleValue(), SMALL_AMOUNT);
+        assertEquals(0.5, dadb.convertFromSystem(0.5).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(1.0, dadb.convertFromSystem(1).doubleValue(), SMALL_AMOUNT);
+        assertEquals(2.0, dadb.convertFromSystem(2).doubleValue(), SMALL_AMOUNT);
     }
 
     @Test
@@ -115,6 +137,12 @@ public class GenericUnitTest extends BaseTest {
                 SMALL_AMOUNT);
         assertEquals(damb.convertToSystem(1).doubleValue(), 10000, SMALL_AMOUNT);
         assertEquals(damb.convertToSystem(2).doubleValue(), 20000, SMALL_AMOUNT);
+        assertEquals(0.00005, damb.convertFromSystem(0.5).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(0.0001, damb.convertFromSystem(1).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(0.0002, damb.convertFromSystem(2).doubleValue(),
+                SMALL_AMOUNT);
     }
 
     @Test
@@ -126,6 +154,12 @@ public class GenericUnitTest extends BaseTest {
                 SMALL_AMOUNT);
         assertEquals(.0001, mbda.convertToSystem(1).doubleValue(), SMALL_AMOUNT);
         assertEquals(.0002, mbda.convertToSystem(2).doubleValue(), SMALL_AMOUNT);
+        assertEquals(5000, mbda.convertFromSystem(0.5).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(10000, mbda.convertFromSystem(1).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(20000, mbda.convertFromSystem(2).doubleValue(),
+                SMALL_AMOUNT);
     }
 
     @Test
@@ -142,6 +176,12 @@ public class GenericUnitTest extends BaseTest {
         assertEquals(.000001, mbdaca.convertToSystem(1).doubleValue(),
                 SMALL_AMOUNT);
         assertEquals(.000002, mbdaca.convertToSystem(2).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(500000, mbdaca.convertFromSystem(0.5).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(1000000, mbdaca.convertFromSystem(1).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(2000000, mbdaca.convertFromSystem(2).doubleValue(),
                 SMALL_AMOUNT);
     }
 
@@ -163,6 +203,12 @@ public class GenericUnitTest extends BaseTest {
         assertEquals(.00001, dbmbdaca.convertToSystem(1).doubleValue(),
                 SMALL_AMOUNT);
         assertEquals(.00002, dbmbdaca.convertToSystem(2).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(50000, dbmbdaca.convertFromSystem(0.5).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(100000, dbmbdaca.convertFromSystem(1).doubleValue(),
+                SMALL_AMOUNT);
+        assertEquals(200000, dbmbdaca.convertFromSystem(2).doubleValue(),
                 SMALL_AMOUNT);
     }
 }

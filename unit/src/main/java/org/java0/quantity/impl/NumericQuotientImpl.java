@@ -23,15 +23,15 @@ import org.java0.quantity.NumericQuotient;
 import org.java0.unit.InverseUnit;
 import org.java0.unit.NumericUnit;
 import org.java0.unit.NumericUnitQuotient;
-import org.java0.unit.Unit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class NumericQuotientImpl<U1 extends NumericUnit<? super U1>, U2 extends NumericUnit<? super U2>>
+public class NumericQuotientImpl<U1 extends NumericUnit<?>, U2 extends NumericUnit<?>>
         extends NumericImpl<NumericUnitQuotient<U1, U2>> implements
         NumericQuotient<U1, U2> {
+
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
             .getLogger(NumericQuotientImpl.class.getName());
@@ -42,10 +42,8 @@ public class NumericQuotientImpl<U1 extends NumericUnit<? super U1>, U2 extends 
      * @param value
      * @param unit
      */
-    public NumericQuotientImpl(
-            Number value,
-            Unit<Number, ? extends NumericUnitQuotient<? extends U1, ? extends U2>> unit) {
-        super(value, (NumericUnitQuotient<U1, U2>) unit);
+    public NumericQuotientImpl(Number value, NumericUnitQuotient<U1, U2> unit) {
+        super(value, unit);
     }
 
     /**

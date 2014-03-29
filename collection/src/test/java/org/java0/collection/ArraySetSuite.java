@@ -21,7 +21,6 @@ import java.util.Set;
 
 import junit.framework.TestSuite;
 
-import org.java0.collection.ArraySet;
 import org.java0.test.BaseTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
@@ -32,39 +31,39 @@ import com.google.common.collect.testing.TestStringSetGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
 import com.google.common.collect.testing.features.SetFeature;
+
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 @RunWith(AllTests.class)
 @SuiteClasses(ArraySetSuite.class)
 public class ArraySetSuite extends BaseTest {
 
-	public static TestSuite suite() {
-		setupLogging();
+    public static TestSuite suite() {
 
-		TestStringSetGenerator generator = new TestStringSetGenerator() {
+        TestStringSetGenerator generator = new TestStringSetGenerator() {
 
-			@Override
-			protected Set<String> create(String[] elements) {
-				Set<String> set = new ArraySet<String>();
-				set.addAll(Arrays.asList(elements));
-				return set;
-			}
+            @Override
+            protected Set<String> create(String[] elements) {
+                Set<String> set = new ArraySet<String>();
+                set.addAll(Arrays.asList(elements));
+                return set;
+            }
 
-		};
+        };
 
-		TestSuite suite = SetTestSuiteBuilder
-				.using(generator)
-				.named("ArraySetTest")
-				.withFeatures(SetFeature.GENERAL_PURPOSE,
-						CollectionFeature.SUPPORTS_ADD,
-						CollectionFeature.SUPPORTS_REMOVE,
-						CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
-						CollectionFeature.GENERAL_PURPOSE, CollectionSize.ANY)
-				.createTestSuite();
+        TestSuite suite = SetTestSuiteBuilder
+                .using(generator)
+                .named("ArraySetTest")
+                .withFeatures(SetFeature.GENERAL_PURPOSE,
+                        CollectionFeature.SUPPORTS_ADD,
+                        CollectionFeature.SUPPORTS_REMOVE,
+                        CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
+                        CollectionFeature.GENERAL_PURPOSE, CollectionSize.ANY)
+                .createTestSuite();
 
-		return suite;
-	}
+        return suite;
+    }
 
 }

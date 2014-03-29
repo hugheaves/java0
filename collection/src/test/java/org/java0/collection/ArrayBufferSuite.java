@@ -22,7 +22,6 @@ import java.util.Queue;
 
 import junit.framework.TestSuite;
 
-import org.java0.collection.ArrayBuffer;
 import org.java0.test.BaseTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
@@ -34,16 +33,16 @@ import com.google.common.collect.testing.TestStringListGenerator;
 import com.google.common.collect.testing.TestStringQueueGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
+
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 @RunWith(AllTests.class)
 @SuiteClasses(ArrayBufferSuite.class)
 public class ArrayBufferSuite extends BaseTest {
 
     public static TestSuite suite() {
-        setupLogging();
 
         TestStringListGenerator listGenerator = new TestStringListGenerator() {
 
@@ -70,24 +69,20 @@ public class ArrayBufferSuite extends BaseTest {
         TestSuite listSuite = ListTestSuiteBuilder
                 .using(listGenerator)
                 .named("ArrayBufferSuite")
-                .withFeatures(
-                        CollectionFeature.ALLOWS_NULL_VALUES,
+                .withFeatures(CollectionFeature.ALLOWS_NULL_VALUES,
                         CollectionFeature.SUPPORTS_ADD,
                         CollectionFeature.SUPPORTS_REMOVE,
                         CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
-                        CollectionSize.ANY)
-                .createTestSuite();
+                        CollectionSize.ANY).createTestSuite();
 
         TestSuite queueSuite = QueueTestSuiteBuilder
                 .using(queueGenerator)
                 .named("ArrayBufferSuite")
-                .withFeatures(
-                        CollectionFeature.ALLOWS_NULL_VALUES,
+                .withFeatures(CollectionFeature.ALLOWS_NULL_VALUES,
                         CollectionFeature.SUPPORTS_ADD,
                         CollectionFeature.SUPPORTS_REMOVE,
                         CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
-                        CollectionSize.ANY)
-                .createTestSuite();
+                        CollectionSize.ANY).createTestSuite();
 
         for (int i = 0; i < queueSuite.testCount(); ++i) {
             listSuite.addTest(queueSuite.testAt(i));
