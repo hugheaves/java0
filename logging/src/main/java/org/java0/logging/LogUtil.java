@@ -34,7 +34,7 @@ public class LogUtil {
 
     /**
      * Convenience method to log an exception.
-     *
+     * 
      * @param exception
      * @return exception
      */
@@ -46,9 +46,9 @@ public class LogUtil {
     /**
      * Convenience method to log a series of variable values at the Level.INFO
      * logging level.
-     *
+     * 
      * @see LogUtil#values(Level, String, Object...)
-     *
+     * 
      * @param message
      * @param objects
      */
@@ -57,11 +57,24 @@ public class LogUtil {
     }
 
     /**
+     * Convenience method to log a series of variable values at the Level.CONFIG
+     * logging level.
+     * 
+     * @see LogUtil#values(Level, String, Object...)
+     * 
+     * @param message
+     * @param objects
+     */
+    public void valuesConfig(String message, Object... objects) {
+        values(Level.CONFIG, message, objects);
+    }
+
+    /**
      * Convenience method to log a series of variable values at the Level.FINE
      * logging level.
-     *
+     * 
      * @see LogUtil#values(Level, String, Object...)
-     *
+     * 
      * @param message
      * @param objects
      */
@@ -72,9 +85,9 @@ public class LogUtil {
     /**
      * Convenience method to log a series of variable values at the Level.FINER
      * logging level.
-     *
+     * 
      * @see LogUtil#values(Level, String, Object...)
-     *
+     * 
      * @param message
      * @param objects
      */
@@ -85,9 +98,9 @@ public class LogUtil {
     /**
      * Convenience method to log a series of variable values at the Level.FINEST
      * logging level.
-     *
+     * 
      * @see LogUtil#values(Level, String, Object...)
-     *
+     * 
      * @param message
      * @param objects
      */
@@ -100,13 +113,13 @@ public class LogUtil {
      * Convenience method to log a series of variable values for debugging. This
      * method should be called with a log level and message, followed by a
      * series of name / value pairs.
-     *
+     * 
      * <p>
      * Ex. :
-     *
+     * 
      * <p>
      * {@code logUtil.values(Level.FINE, "Inside for loop", "i", i, "j", j, "total", total); }
-     *
+     * 
      * @param level
      *            Logging level
      * @param message
@@ -137,7 +150,7 @@ public class LogUtil {
     /**
      * Initialize the {@link java.util.logging.LogManager} from the named
      * properties file, loaded from the classpath.
-     *
+     * 
      * @param propertiesFile
      * @return True if the file was found on the classpath and logging was
      *         successfully configured
@@ -170,11 +183,12 @@ public class LogUtil {
     }
 
     /**
-     * Initialize the logging system using a simple programmatic
-     * configuration. Any messages at the specified level or higher
-     * will be logged to System.err.
-     *
-     * @param level The lowest level at which to log messages
+     * Initialize the logging system using a simple programmatic configuration.
+     * Any messages at the specified level or higher will be logged to
+     * System.err.
+     * 
+     * @param level
+     *            The lowest level at which to log messages
      * @return
      */
     public static boolean initLoggingSimple(Level level) {
