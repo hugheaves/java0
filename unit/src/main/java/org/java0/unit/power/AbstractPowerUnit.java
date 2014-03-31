@@ -14,21 +14,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.unit.time;
+package org.java0.unit.power;
+
+import org.java0.unit.impl.ScalableUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public final class NanosecondsUnit extends TimeUnit<NanosecondsUnit> {
-    public static final NanosecondsUnit INSTANCE = new NanosecondsUnit();
-
-    public NanosecondsUnit() {
-        super("nanoseconds", 0.000000001);
+public abstract class AbstractPowerUnit<T extends AbstractPowerUnit<T>> extends
+        ScalableUnit<AbstractPowerUnit<?>, T> {
+    public AbstractPowerUnit(String name, double toSystemUnitConversionFactor) {
+        super(name, toSystemUnitConversionFactor);
     }
 
     @Override
-    public java.util.concurrent.TimeUnit convertToJavaTimeUnit() {
-        return java.util.concurrent.TimeUnit.NANOSECONDS;
+    public AbstractPowerUnit<?> getSystemUnit() {
+        return WattsUnit.INSTANCE;
     }
 }

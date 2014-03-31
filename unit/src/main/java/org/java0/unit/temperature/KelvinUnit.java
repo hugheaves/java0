@@ -20,7 +20,7 @@ package org.java0.unit.temperature;
  * @author Hugh Eaves
  * 
  */
-public final class KelvinUnit extends TemperatureUnit {
+public final class KelvinUnit extends TemperatureUnit<KelvinUnit> {
     public static final KelvinUnit INSTANCE = new KelvinUnit();
 
     private KelvinUnit() {

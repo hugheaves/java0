@@ -28,7 +28,7 @@ import org.java0.unit.UnitProduct;
  * @author Hugh Eaves
  * 
  */
-public class QuantityProductImpl<U1 extends Unit<?>, U2 extends Unit<?>>
+public class QuantityProductImpl<U1 extends Unit<?, ?>, U2 extends Unit<?, ?>>
         extends QuantityImpl<UnitProduct<U1, U2>> implements
         QuantityProduct<U1, U2> {
     @SuppressWarnings("unused")
@@ -49,7 +49,7 @@ public class QuantityProductImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityProduct#multiplyAndCancelRight(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U1> multiplyAndCancelRight(Quantity<InverseUnit<U2>> unit) {
+    public Quantity<U1> multiplyAndCancelRight(Quantity<InverseUnit<?, ?>> unit) {
         return null;
     }
 
@@ -57,7 +57,7 @@ public class QuantityProductImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityProduct#multiplyAndCancelLeft(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U2> multiplyAndCancelLeft(Quantity<InverseUnit<U1>> unit) {
+    public Quantity<U2> multiplyAndCancelLeft(Quantity<InverseUnit<?, ?>> unit) {
         return null;
     }
 

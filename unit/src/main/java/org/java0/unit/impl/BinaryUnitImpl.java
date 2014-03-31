@@ -26,13 +26,13 @@ import org.java0.unit.UnitProduct;
  * @author Hugh Eaves
  * 
  */
-public abstract class BinaryUnitImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>, UNIT_TYPE extends Unit<?>>
-        extends AbstractUnit<UNIT_TYPE> implements
+public abstract class BinaryUnitImpl<UNIT_1_TYPE extends Unit<?, ?>, UNIT_2_TYPE extends Unit<?, ?>, UNIT_TYPE extends BinaryUnit<UNIT_1_TYPE, UNIT_2_TYPE, UNIT_TYPE>>
+        extends AbstractUnit<UNIT_TYPE, UNIT_TYPE> implements
         BinaryUnit<UNIT_1_TYPE, UNIT_2_TYPE, UNIT_TYPE> {
 
     @SuppressWarnings("unused")
-    private static final Logger logger = Logger
-            .getLogger(BinaryUnitImpl.class.getName());
+    private static final Logger logger = Logger.getLogger(BinaryUnitImpl.class
+            .getName());
 
     protected UNIT_1_TYPE unit1;
     protected UNIT_2_TYPE unit2;

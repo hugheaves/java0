@@ -25,8 +25,8 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public abstract class ScalableUnit<UNIT_TYPE extends Unit<?>>
-        extends AbstractUnit<UNIT_TYPE> {
+public abstract class ScalableUnit<BASE_TYPE extends Unit<?, ?>, SUB_TYPE extends Unit<BASE_TYPE, SUB_TYPE>>
+        extends AbstractUnit<BASE_TYPE, SUB_TYPE> {
 
     protected double toSystemUnitConversionFactor;
 

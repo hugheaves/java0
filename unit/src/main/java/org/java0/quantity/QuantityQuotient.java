@@ -24,7 +24,7 @@ import org.java0.unit.UnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public interface QuantityQuotient<U1 extends Unit<?>, U2 extends Unit<?>>
+public interface QuantityQuotient<U1 extends Unit<?, ?>, U2 extends Unit<?, ?>>
         extends Quantity<UnitQuotient<U1, U2>> {
 
     /**
@@ -43,7 +43,8 @@ public interface QuantityQuotient<U1 extends Unit<?>, U2 extends Unit<?>>
      * @param unit
      * @return a unit
      */
-    public Quantity<U1> divideAndCancelDenominator(Quantity<InverseUnit<U2>> unit);
+    public Quantity<U1> divideAndCancelDenominator(
+            Quantity<InverseUnit<?, ?>> unit);
 
     /**
      * Returns this quantity with the numerator unit cancelled by multiplying by
@@ -52,7 +53,8 @@ public interface QuantityQuotient<U1 extends Unit<?>, U2 extends Unit<?>>
      * @param unit
      * @return a unit
      */
-    public Quantity<U2> multiplyAndCancelNumerator(Quantity<InverseUnit<U1>> unit);
+    public Quantity<U2> multiplyAndCancelNumerator(
+            Quantity<InverseUnit<?, ?>> unit);
 
     /**
      * Returns this quantity with the numerator unit cancelled by dividing by

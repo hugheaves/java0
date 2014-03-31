@@ -23,17 +23,17 @@ import org.java0.unit.time.TimeUnit;
  * @author Hugh Eaves
  * 
  */
-public class Time extends QuantityImpl<TimeUnit> {
+public class Time extends QuantityImpl<TimeUnit<?>> {
 
     /**
      * @param value
      * @param unit
      */
-    public Time(Number value, TimeUnit unit) {
+    public Time(Number value, TimeUnit<?> unit) {
         super(value, unit);
     }
 
     public Time(Number value, java.util.concurrent.TimeUnit unit) {
-        super(value, TimeUnit.convertToTimeUnit(unit));
+        super(value, TimeUnit.convertFromJavaTimeUnit(unit));
     }
 }

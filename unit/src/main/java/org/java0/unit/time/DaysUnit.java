@@ -20,18 +20,15 @@ package org.java0.unit.time;
  * @author Hugh Eaves
  * 
  */
-public final class DaysUnit extends TimeUnit {
+public final class DaysUnit extends TimeUnit<DaysUnit> {
     public static final DaysUnit INSTANCE = new DaysUnit();
 
     public DaysUnit() {
         super("days", 86400);
     }
 
-    /**
-     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
-     */
     @Override
-    public java.util.concurrent.TimeUnit convertFromTimeUnit(TimeUnit unit) {
+    public java.util.concurrent.TimeUnit convertToJavaTimeUnit() {
         return java.util.concurrent.TimeUnit.DAYS;
     }
 }

@@ -28,7 +28,7 @@ import org.java0.unit.UnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
+public class QuantityQuotientImpl<U1 extends Unit<?, ?>, U2 extends Unit<?, ?>>
         extends QuantityImpl<UnitQuotient<U1, U2>> implements
         QuantityQuotient<U1, U2> {
 
@@ -58,7 +58,8 @@ public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityQuotient#divideAndCancelDenominator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U1> divideAndCancelDenominator(Quantity<InverseUnit<U2>> unit) {
+    public Quantity<U1> divideAndCancelDenominator(
+            Quantity<InverseUnit<?, ?>> unit) {
         return null;
     }
 
@@ -66,7 +67,8 @@ public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityQuotient#multiplyAndCancelNumerator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U2> multiplyAndCancelNumerator(Quantity<InverseUnit<U1>> unit) {
+    public Quantity<U2> multiplyAndCancelNumerator(
+            Quantity<InverseUnit<?, ?>> unit) {
         return null;
     }
 

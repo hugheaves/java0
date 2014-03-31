@@ -20,7 +20,7 @@ package org.java0.unit.temperature;
  * @author Hugh Eaves
  * 
  */
-public class FahrenheitUnit extends TemperatureUnit {
+public class FahrenheitUnit extends TemperatureUnit<FahrenheitUnit> {
     public static final FahrenheitUnit INSTANCE = new FahrenheitUnit();
 
     private FahrenheitUnit() {

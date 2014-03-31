@@ -27,7 +27,7 @@ import org.java0.unit.UnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public class UnitQuotientImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>>
+public class UnitQuotientImpl<UNIT_1_TYPE extends Unit<?, ?>, UNIT_2_TYPE extends Unit<?, ?>>
         extends
         BinaryUnitImpl<UNIT_1_TYPE, UNIT_2_TYPE, UnitQuotient<UNIT_1_TYPE, UNIT_2_TYPE>>
         implements UnitQuotient<UNIT_1_TYPE, UNIT_2_TYPE> {
@@ -110,7 +110,7 @@ public class UnitQuotientImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends U
      * @see org.java0.unit.UnitQuotient#divideAndCancel2(org.java0.unit.InverseUnit)
      */
     @Override
-    public UNIT_1_TYPE divideAndCancel2(InverseUnit<UNIT_2_TYPE> unit) {
+    public UNIT_1_TYPE divideAndCancel2(InverseUnit<?, ?> unit) {
         return unit1;
     }
 
@@ -118,7 +118,7 @@ public class UnitQuotientImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends U
      * @see org.java0.unit.UnitQuotient#multiplyAndCancel1(org.java0.unit.InverseUnit)
      */
     @Override
-    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit) {
+    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<?, ?> unit) {
         return unit2;
     }
 

@@ -26,7 +26,7 @@ import org.java0.unit.time.TimeUnit;
  * 
  */
 public class AngularAcceleration extends
-        QuantityQuotientImpl<AngularVelocityUnit, TimeUnit> {
+        QuantityQuotientImpl<AngularVelocityUnit, TimeUnit<?>> {
 
     /**
      * @param value

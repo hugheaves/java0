@@ -20,7 +20,7 @@ package org.java0.unit.angle;
  * @author Hugh Eaves
  * 
  */
-public final class Revolutions extends AngleUnit {
+public final class Revolutions extends AngleUnit<Revolutions> {
     public static final Revolutions INSTANCE = new Revolutions();
 
     private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = Math.PI * 2;

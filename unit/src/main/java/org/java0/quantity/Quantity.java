@@ -22,7 +22,7 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public interface Quantity<UNIT_TYPE extends Unit<?>> extends
+public interface Quantity<UNIT_TYPE extends Unit<?, ?>> extends
         Comparable<Quantity<UNIT_TYPE>>
 /* , org.unitsofmeasurement.quantity.Quantity<NumericQuantity<U>> */{
 
@@ -48,7 +48,7 @@ public interface Quantity<UNIT_TYPE extends Unit<?>> extends
      * @param quantity
      * @return
      */
-    public <LOWER_BOUND extends Unit<?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+    public <LOWER_BOUND extends Unit<?, ?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityProduct<UNIT_TYPE, LOWER_BOUND> multiply(
             QUANTITY_TYPE quantity);
 
     /**
@@ -57,7 +57,7 @@ public interface Quantity<UNIT_TYPE extends Unit<?>> extends
      * @param quantity
      * @return
      */
-    public <LOWER_BOUND extends Unit<?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+    public <LOWER_BOUND extends Unit<?, ?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityQuotient<UNIT_TYPE, LOWER_BOUND> divide(
             QUANTITY_TYPE quantity);
 
     /**

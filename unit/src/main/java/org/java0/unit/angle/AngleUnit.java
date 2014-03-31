@@ -22,7 +22,8 @@ import org.java0.unit.impl.ScalableUnit;
  * @author Hugh Eaves
  * 
  */
-public abstract class AngleUnit extends ScalableUnit<AngleUnit> {
+public abstract class AngleUnit<T extends AngleUnit<T>> extends
+        ScalableUnit<AngleUnit<?>, T> {
 
     /**
      * Create a new AngleUnit.
@@ -35,7 +36,7 @@ public abstract class AngleUnit extends ScalableUnit<AngleUnit> {
     }
 
     @Override
-    public AngleUnit getSystemUnit() {
+    public AngleUnit<?> getSystemUnit() {
         return RadiansUnit.INSTANCE;
     }
 }

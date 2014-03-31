@@ -20,18 +20,15 @@ package org.java0.unit.time;
  * @author Hugh Eaves
  * 
  */
-public final class HoursUnit extends TimeUnit {
+public final class HoursUnit extends TimeUnit<HoursUnit> {
     public static final HoursUnit INSTANCE = new HoursUnit();
 
     public HoursUnit() {
         super("hours", 3600);
     }
 
-    /**
-     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
-     */
     @Override
-    public java.util.concurrent.TimeUnit convertFromTimeUnit(TimeUnit unit) {
+    public java.util.concurrent.TimeUnit convertToJavaTimeUnit() {
         return java.util.concurrent.TimeUnit.HOURS;
     }
 }

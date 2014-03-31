@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author Hugh Eaves
  * 
  */
-public class GenericUnit extends OffsetUnit<GenericUnit> {
+public class GenericUnit extends OffsetUnit<GenericUnit, GenericUnit> {
     private static final GenericUnit SYSTEM_UNIT = new GenericUnit("generic",
             1, 0);
 

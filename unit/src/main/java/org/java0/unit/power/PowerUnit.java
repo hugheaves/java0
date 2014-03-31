@@ -16,19 +16,12 @@
  */
 package org.java0.unit.power;
 
-import org.java0.unit.impl.ScalableUnit;
+import org.java0.unit.Unit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public abstract class PowerUnit extends ScalableUnit<PowerUnit> {
-    public PowerUnit(String name, double toSystemUnitConversionFactor) {
-        super(name, toSystemUnitConversionFactor);
-    }
-
-    @Override
-    public PowerUnit getSystemUnit() {
-        return WattsUnit.INSTANCE;
-    }
+public interface PowerUnit<T extends PowerUnit<T>> extends
+        Unit<PowerUnit<?>, T> {
 }

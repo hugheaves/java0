@@ -30,7 +30,7 @@ import org.java0.unit.UnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public class QuantityImpl<UNIT_TYPE extends Unit<?>> implements
+public class QuantityImpl<UNIT_TYPE extends Unit<?, ?>> implements
         Quantity<UNIT_TYPE> {
 
     private static final Logger logger = Logger.getLogger(QuantityImpl.class
@@ -123,7 +123,7 @@ public class QuantityImpl<UNIT_TYPE extends Unit<?>> implements
     // NumericUnitProduct<U, P> multiply(Q unit);
 
     @Override
-    public <LOWER_BOUND extends Unit<?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+    public <LOWER_BOUND extends Unit<?, ?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityProduct<UNIT_TYPE, LOWER_BOUND> multiply(
             QUANTITY_TYPE quantity) {
 
         UNIT_TYPE a = unit();
@@ -143,8 +143,8 @@ public class QuantityImpl<UNIT_TYPE extends Unit<?>> implements
      * @see org.java0.quantity.Quantity#divide(org.java0.quantity.Quantity)
      */
     @Override
-    public <LOWER_BOUND extends Unit<?>, PARAM_QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityQuotient<UNIT_TYPE, LOWER_BOUND> divide(
-            PARAM_QUANTITY_TYPE quantity) {
+    public <LOWER_BOUND extends Unit<?, ?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+            QUANTITY_TYPE quantity) {
         UNIT_TYPE a = unit();
         LOWER_BOUND b = quantity.unit();
 

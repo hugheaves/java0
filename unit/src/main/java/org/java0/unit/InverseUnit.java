@@ -25,11 +25,12 @@ package org.java0.unit;
  * @param <U>
  *            the generic type
  */
-public interface InverseUnit<U extends Unit<?>> extends Unit<U> {
+public interface InverseUnit<BASE_TYPE extends Unit<?, ?>, SUB_TYPE extends Unit<BASE_TYPE, SUB_TYPE>>
+        extends Unit<BASE_TYPE, SUB_TYPE> {
     /**
      * Returns the uninverted unit. (or the inverse of the inverse).
      * 
      * @return the uninverted unit.
      */
-    public U uninvert();
+    public SUB_TYPE uninvert();
 }

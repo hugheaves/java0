@@ -38,14 +38,15 @@ public class NumericUnitTest extends BaseTest {
     @Test
     public void test1() {
         DegreesUnit degreesUnit = DegreesUnit.INSTANCE;
+        AngleUnit<DegreesUnit> unit = DegreesUnit.INSTANCE;
 
-        UnitProduct<AngleUnit, TimeUnit> b = degreesUnit
+        UnitProduct<AngleUnit<?>, TimeUnit<?>> b = degreesUnit
                 .multiply(SecondsUnit.INSTANCE);
 
-        UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit> c = b
+        UnitProduct<UnitProduct<AngleUnit<?>, TimeUnit<?>>, TimeUnit<?>> c = b
                 .multiply(SecondsUnit.INSTANCE);
 
-        UnitQuotient<UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit>, AngularVelocityUnit> d = c
+        UnitQuotient<UnitProduct<UnitProduct<AngleUnit<?>, TimeUnit<?>>, TimeUnit<?>>, AngularVelocityUnit> d = c
                 .divide(DegreesPerMillisecondUnit.INSTANCE);
 
         logger.info(d.getName());

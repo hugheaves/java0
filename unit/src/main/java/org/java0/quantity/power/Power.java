@@ -17,13 +17,13 @@
 package org.java0.quantity.power;
 
 import org.java0.quantity.impl.QuantityImpl;
-import org.java0.unit.power.PowerUnit;
+import org.java0.unit.power.AbstractPowerUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class Power extends QuantityImpl<PowerUnit> {
+public class Power extends QuantityImpl<AbstractPowerUnit<?>> {
 
     protected Power() {
     }
@@ -32,7 +32,7 @@ public class Power extends QuantityImpl<PowerUnit> {
      * @param value
      * @param unit
      */
-    public Power(Number value, PowerUnit unit) {
+    public Power(Number value, AbstractPowerUnit<?> unit) {
         super(value, unit);
     }
 }

@@ -23,7 +23,7 @@ import org.java0.unit.angle.AngleUnit;
  * @author Hugh Eaves
  * 
  */
-public class Angle extends QuantityImpl<AngleUnit> {
+public class Angle extends QuantityImpl<AngleUnit<?>> {
 
     protected Angle() {
     }
@@ -32,7 +32,7 @@ public class Angle extends QuantityImpl<AngleUnit> {
      * @param value
      * @param unit
      */
-    public Angle(Number value, AngleUnit unit) {
+    public Angle(Number value, AngleUnit<?> unit) {
         super(value, unit);
     }
 }

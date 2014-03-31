@@ -20,7 +20,7 @@ package org.java0.unit.temperature;
  * @author Hugh Eaves
  * 
  */
-public final class CelsiusUnit extends TemperatureUnit {
+public final class CelsiusUnit extends TemperatureUnit<CelsiusUnit> {
     public static final CelsiusUnit INSTANCE = new CelsiusUnit();
 
     private CelsiusUnit() {

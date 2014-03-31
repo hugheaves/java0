@@ -20,7 +20,7 @@ package org.java0.unit.angle;
  * @author Hugh Eaves
  * 
  */
-public final class RadiansUnit extends AngleUnit {
+public final class RadiansUnit extends AngleUnit<RadiansUnit> {
     public static final RadiansUnit INSTANCE = new RadiansUnit();
 
     private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = 1.0;

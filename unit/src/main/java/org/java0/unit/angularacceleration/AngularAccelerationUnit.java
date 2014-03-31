@@ -25,9 +25,9 @@ import org.java0.unit.time.TimeUnit;
  * 
  */
 public abstract class AngularAccelerationUnit extends
-        UnitQuotientImpl<AngularVelocityUnit, TimeUnit> {
+        UnitQuotientImpl<AngularVelocityUnit, TimeUnit<?>> {
 
-    public AngularAccelerationUnit(AngularVelocityUnit unit1, TimeUnit unit2) {
+    public AngularAccelerationUnit(AngularVelocityUnit unit1, TimeUnit<?> unit2) {
         super(unit1, unit2);
     }
 

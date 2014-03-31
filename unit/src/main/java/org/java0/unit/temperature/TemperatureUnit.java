@@ -24,8 +24,9 @@ import org.java0.unit.impl.OffsetUnit;
  * @author Hugh Eaves
  * 
  */
-public abstract class TemperatureUnit extends
-        OffsetUnit<TemperatureUnit> {
+
+public abstract class TemperatureUnit<T extends TemperatureUnit<T>> extends
+        OffsetUnit<TemperatureUnit<?>, T> {
     /**
      * Create a new TemperatureUnit.
      * 
@@ -46,7 +47,7 @@ public abstract class TemperatureUnit extends
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override
-    public TemperatureUnit getSystemUnit() {
+    public TemperatureUnit<?> getSystemUnit() {
         return CelsiusUnit.INSTANCE;
     }
 }

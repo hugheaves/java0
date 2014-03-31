@@ -16,11 +16,12 @@
  */
 package org.java0.unit.power;
 
+
 /**
  * @author Hugh Eaves
  * 
  */
-public final class MilliwattsUnit extends PowerUnit {
+public final class MilliwattsUnit extends AbstractPowerUnit<MilliwattsUnit> {
     public static final MilliwattsUnit INSTANCE = new MilliwattsUnit();
 
     public MilliwattsUnit() {

@@ -23,17 +23,18 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public class InverseUnitImpl<UNIT_TYPE extends Unit<?>> extends
-        AbstractUnit<UNIT_TYPE> implements InverseUnit<UNIT_TYPE> {
+public class InverseUnitImpl<BASE_TYPE extends Unit<BASE_TYPE, ?>, SUB_TYPE extends Unit<BASE_TYPE, SUB_TYPE>>
+        extends AbstractUnit<BASE_TYPE, SUB_TYPE> implements
+        InverseUnit<BASE_TYPE, SUB_TYPE> {
 
-    protected UNIT_TYPE targetUnit;
+    protected SUB_TYPE targetUnit;
 
     /**
      * Create a new InverseImpl.
      * 
      * @param name
      */
-    public InverseUnitImpl(UNIT_TYPE targetUnit) {
+    public InverseUnitImpl(SUB_TYPE targetUnit) {
         super("1/" + targetUnit.getName());
         this.targetUnit = targetUnit;
     }
@@ -42,7 +43,7 @@ public class InverseUnitImpl<UNIT_TYPE extends Unit<?>> extends
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override
-    public UNIT_TYPE getSystemUnit() {
+    public BASE_TYPE getSystemUnit() {
         throw new UnsupportedOperationException();
     }
 
@@ -74,7 +75,7 @@ public class InverseUnitImpl<UNIT_TYPE extends Unit<?>> extends
      * @see org.java0.unit.InverseUnit#uninvert()
      */
     @Override
-    public UNIT_TYPE uninvert() {
+    public SUB_TYPE uninvert() {
         return targetUnit;
     }
 

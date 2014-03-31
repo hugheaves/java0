@@ -24,7 +24,7 @@ import org.java0.unit.UnitProduct;
  * @author Hugh Eaves
  * 
  */
-public class UnitProductImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>>
+public class UnitProductImpl<UNIT_1_TYPE extends Unit<?, ?>, UNIT_2_TYPE extends Unit<?, ?>>
         extends
         BinaryUnitImpl<UNIT_1_TYPE, UNIT_2_TYPE, UnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>>
         implements UnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>
@@ -67,7 +67,7 @@ public class UnitProductImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Un
      * @see org.java0.unit.UnitProduct#multiplyAndCancel2(org.java0.unit.InverseUnit)
      */
     @Override
-    public UNIT_1_TYPE multiplyAndCancel2(InverseUnit<UNIT_2_TYPE> unit) {
+    public UNIT_1_TYPE multiplyAndCancel2(InverseUnit<?, ?> unit) {
         return unit1;
     }
 
@@ -75,7 +75,7 @@ public class UnitProductImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Un
      * @see org.java0.unit.UnitProduct#multiplyAndCancel1(org.java0.unit.InverseUnit)
      */
     @Override
-    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit) {
+    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<?, ?> unit) {
         return unit2;
     }
 

@@ -26,7 +26,7 @@ package org.java0.unit;
  * @param <U2>
  *            the generic type
  */
-public interface UnitProduct<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>>
+public interface UnitProduct<UNIT_1_TYPE extends Unit<?, ?>, UNIT_2_TYPE extends Unit<?, ?>>
         extends
         BinaryUnit<UNIT_1_TYPE, UNIT_2_TYPE, UnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>> {
 
@@ -38,7 +38,7 @@ public interface UnitProduct<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Un
      *            the unit
      * @return a unit
      */
-    public UNIT_1_TYPE multiplyAndCancel2(InverseUnit<UNIT_2_TYPE> unit);
+    public UNIT_1_TYPE multiplyAndCancel2(InverseUnit<?, ?> unit);
 
     /**
      * Returns this unit with the left unit cancelled by multiplying by the
@@ -48,7 +48,7 @@ public interface UnitProduct<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Un
      *            the unit
      * @return a unit
      */
-    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit);
+    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<?, ?> unit);
 
     /**
      * Returns this unit with the right unit cancelled by dividing by the given

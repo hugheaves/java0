@@ -20,18 +20,15 @@ package org.java0.unit.time;
  * @author Hugh Eaves
  * 
  */
-public final class MicrosecondsUnit extends TimeUnit {
+public final class MicrosecondsUnit extends TimeUnit<MicrosecondsUnit> {
     public static final MicrosecondsUnit INSTANCE = new MicrosecondsUnit();
 
     public MicrosecondsUnit() {
         super("microseconds", 0.000001);
     }
 
-    /**
-     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
-     */
     @Override
-    public java.util.concurrent.TimeUnit convertFromTimeUnit(TimeUnit unit) {
+    public java.util.concurrent.TimeUnit convertToJavaTimeUnit() {
         return java.util.concurrent.TimeUnit.MICROSECONDS;
     }
 }

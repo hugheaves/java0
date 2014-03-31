@@ -20,7 +20,7 @@ package org.java0.unit.angle;
  * @author Hugh Eaves
  * 
  */
-public final class DegreesUnit extends AngleUnit {
+public final class DegreesUnit extends AngleUnit<DegreesUnit> {
     public static final DegreesUnit INSTANCE = new DegreesUnit();
 
     private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = Math.PI / 180;
