@@ -24,6 +24,12 @@ import org.java0.unit.impl.ScalableNumericUnit;
  */
 public abstract class AngleUnit extends ScalableNumericUnit<AngleUnit> {
 
+    /**
+     * Create a new AngleUnit.
+     * 
+     * @param name
+     * @param toSystemUnitConversionFactor
+     */
     public AngleUnit(String name, double toSystemUnitConversionFactor) {
         super(name, toSystemUnitConversionFactor);
     }

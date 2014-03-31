@@ -162,7 +162,8 @@ public class NumericImpl<UNIT_TYPE extends NumericUnit<?>> implements
      * @see org.java0.quantity.Numeric#asType(java.lang.Class)
      */
     @Override
-    public <P extends Numeric<? super P>> P asType(Class<P> type) {
+    public <CAST_TYPE extends Numeric<UNIT_TYPE>> CAST_TYPE asType(
+            Class<CAST_TYPE> type) {
         throw new UnsupportedOperationException();
     }
 }

@@ -20,12 +20,12 @@ package org.java0.unit.angle;
  * @author Hugh Eaves
  * 
  */
-public final class DegreesUnit extends AngleUnit {
-    public static final DegreesUnit INSTANCE = new DegreesUnit();
+public final class Revolutions extends AngleUnit {
+    public static final Revolutions INSTANCE = new Revolutions();
 
-    private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = Math.PI / 180;
+    private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = Math.PI * 2;
 
-    public DegreesUnit() {
-        super("degrees", TO_SYSTEM_UNIT_CONVERSION_FACTOR);
+    public Revolutions() {
+        super("revolutions", TO_SYSTEM_UNIT_CONVERSION_FACTOR);
     }
 }

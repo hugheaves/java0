@@ -14,18 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.unit.angle;
+package org.java0.unit.angularvelocity;
+
+import org.java0.unit.angle.Revolutions;
+import org.java0.unit.time.MinutesUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public final class DegreesUnit extends AngleUnit {
-    public static final DegreesUnit INSTANCE = new DegreesUnit();
+public class RevolutionsPerMinuteUnit extends AngularVelocityUnit {
+    public static final RevolutionsPerMinuteUnit INSTANCE = new RevolutionsPerMinuteUnit();
 
-    private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = Math.PI / 180;
-
-    public DegreesUnit() {
-        super("degrees", TO_SYSTEM_UNIT_CONVERSION_FACTOR);
+    public RevolutionsPerMinuteUnit() {
+        super(Revolutions.INSTANCE, MinutesUnit.INSTANCE);
     }
 }

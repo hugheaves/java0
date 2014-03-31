@@ -14,18 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.unit.angle;
+package org.java0.unit.time;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public final class DegreesUnit extends AngleUnit {
-    public static final DegreesUnit INSTANCE = new DegreesUnit();
+public final class MinutesUnit extends TimeUnit {
+    public static final MinutesUnit INSTANCE = new MinutesUnit();
 
-    private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = Math.PI / 180;
-
-    public DegreesUnit() {
-        super("degrees", TO_SYSTEM_UNIT_CONVERSION_FACTOR);
+    public MinutesUnit() {
+        super("seconds", 60.0);
     }
 }

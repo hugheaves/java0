@@ -28,20 +28,17 @@ import org.java0.unit.time.TimeUnit;
  */
 public class AngularVelocity extends NumericQuotientImpl<AngleUnit, TimeUnit> {
 
-    /**
-     * @param value
-     * @param unit
-     */
     public AngularVelocity(Number value,
             NumericUnitQuotient<AngleUnit, TimeUnit> unit) {
         super(value, unit);
     }
 
-    /**
-     * Create a new AngularVelocity.
-     * 
-     * @param divide
-     */
+    public AngularVelocity(
+            Numeric<NumericUnitQuotient<AngleUnit, TimeUnit>> angularVelocity,
+            NumericUnitQuotient<AngleUnit, TimeUnit> unit) {
+        super(angularVelocity.value(unit), unit);
+    }
+
     public AngularVelocity(
             Numeric<NumericUnitQuotient<AngleUnit, TimeUnit>> angularVelocity) {
         super(angularVelocity.value(), angularVelocity.unit());
