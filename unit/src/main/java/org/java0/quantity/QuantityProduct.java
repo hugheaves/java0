@@ -17,15 +17,15 @@
 package org.java0.quantity;
 
 import org.java0.unit.InverseUnit;
-import org.java0.unit.NumericUnit;
-import org.java0.unit.NumericUnitProduct;
+import org.java0.unit.Unit;
+import org.java0.unit.UnitProduct;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public interface NumericProduct<U1 extends NumericUnit<?>, U2 extends NumericUnit<?>>
-        extends Numeric<NumericUnitProduct<U1, U2>> {
+public interface QuantityProduct<U1 extends Unit<?>, U2 extends Unit<?>>
+        extends Quantity<UnitProduct<U1, U2>> {
 
     /**
      * Returns this quantity with the right unit cancelled by multiplying by the
@@ -34,7 +34,7 @@ public interface NumericProduct<U1 extends NumericUnit<?>, U2 extends NumericUni
      * @param unit
      * @return a unit
      */
-    public Numeric<U1> multiplyAndCancelRight(Numeric<InverseUnit<U2>> unit);
+    public Quantity<U1> multiplyAndCancelRight(Quantity<InverseUnit<U2>> unit);
 
     /**
      * Returns this quantity with the left unit cancelled by multiplying by the
@@ -43,7 +43,7 @@ public interface NumericProduct<U1 extends NumericUnit<?>, U2 extends NumericUni
      * @param unit
      * @return a unit
      */
-    public Numeric<U2> multiplyAndCancelLeft(Numeric<InverseUnit<U1>> unit);
+    public Quantity<U2> multiplyAndCancelLeft(Quantity<InverseUnit<U1>> unit);
 
     /**
      * Returns this quantity with the right unit cancelled by dividing by the
@@ -52,7 +52,7 @@ public interface NumericProduct<U1 extends NumericUnit<?>, U2 extends NumericUni
      * @param unit
      * @return a unit
      */
-    public Numeric<U1> divideAndCancelRight(Numeric<U2> unit);
+    public Quantity<U1> divideAndCancelRight(Quantity<U2> unit);
 
     /**
      * Returns this quantity with the left unit cancelled by dividing by the
@@ -61,5 +61,5 @@ public interface NumericProduct<U1 extends NumericUnit<?>, U2 extends NumericUni
      * @param unit
      * @return a unit
      */
-    public Numeric<U2> divideAndCancelLeft(Numeric<U1> unit);
+    public Quantity<U2> divideAndCancelLeft(Quantity<U1> unit);
 }

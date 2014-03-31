@@ -18,39 +18,30 @@ package org.java0.unit;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Interface NumericUnitQuotient.
+ * The Interface NumericUnitProduct.
  * 
- * @param <UNIT_1_TYPE>
+ * @author Hugh Eaves
+ * @param <U1>
  *            the generic type
- * @param <UNIT_2_TYPE>
+ * @param <U2>
  *            the generic type
  */
-public interface NumericUnitQuotient<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_TYPE extends NumericUnit<?>>
+public interface UnitProduct<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>>
         extends
-        BinaryNumericUnit<UNIT_1_TYPE, UNIT_2_TYPE, NumericUnitQuotient<UNIT_1_TYPE, UNIT_2_TYPE>> {
+        BinaryUnit<UNIT_1_TYPE, UNIT_2_TYPE, UnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>> {
 
     /**
-     * Returns this unit with the denominator unit cancelled by multiplying by
-     * the given unit.
-     * 
-     * @param unit
-     *            the unit
-     * @return a unit
-     */
-    public UNIT_1_TYPE multiplyAndCancel2(UNIT_2_TYPE unit);
-
-    /**
-     * Returns this unit with the denominator unit cancelled by dividing by the
+     * Returns this unit with the right unit cancelled by multiplying by the
      * given unit.
      * 
      * @param unit
      *            the unit
      * @return a unit
      */
-    public UNIT_1_TYPE divideAndCancel2(InverseUnit<UNIT_2_TYPE> unit);
+    public UNIT_1_TYPE multiplyAndCancel2(InverseUnit<UNIT_2_TYPE> unit);
 
     /**
-     * Returns this unit with the numerator unit cancelled by multiplying by the
+     * Returns this unit with the left unit cancelled by multiplying by the
      * given unit.
      * 
      * @param unit
@@ -60,8 +51,18 @@ public interface NumericUnitQuotient<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_
     public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit);
 
     /**
-     * Returns this unit with the numerator unit cancelled by dividing by the
-     * given unit.
+     * Returns this unit with the right unit cancelled by dividing by the given
+     * unit.
+     * 
+     * @param unit
+     *            the unit
+     * @return a unit
+     */
+    public UNIT_1_TYPE divideAndCancel2(UNIT_2_TYPE unit);
+
+    /**
+     * Returns this unit with the left unit cancelled by dividing by the given
+     * unit.
      * 
      * @param unit
      *            the unit

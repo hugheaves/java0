@@ -26,4 +26,12 @@ public final class MillisecondsUnit extends TimeUnit {
     public MillisecondsUnit() {
         super("milliseconds", 0.001);
     }
+
+    /**
+     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
+     */
+    @Override
+    public java.util.concurrent.TimeUnit convertFromTimeUnit(TimeUnit unit) {
+        return java.util.concurrent.TimeUnit.MILLISECONDS;
+    }
 }

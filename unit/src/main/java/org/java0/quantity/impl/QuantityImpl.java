@@ -19,43 +19,43 @@ package org.java0.quantity.impl;
 import java.util.logging.Logger;
 
 import org.java0.logging.LogUtil;
-import org.java0.quantity.Numeric;
-import org.java0.quantity.NumericProduct;
-import org.java0.quantity.NumericQuotient;
-import org.java0.unit.NumericUnit;
-import org.java0.unit.NumericUnitProduct;
-import org.java0.unit.NumericUnitQuotient;
+import org.java0.quantity.Quantity;
+import org.java0.quantity.QuantityProduct;
+import org.java0.quantity.QuantityQuotient;
+import org.java0.unit.Unit;
+import org.java0.unit.UnitProduct;
+import org.java0.unit.UnitQuotient;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class NumericImpl<UNIT_TYPE extends NumericUnit<?>> implements
-        Numeric<UNIT_TYPE> {
+public class QuantityImpl<UNIT_TYPE extends Unit<?>> implements
+        Quantity<UNIT_TYPE> {
 
-    private static final Logger logger = Logger.getLogger(NumericImpl.class
+    private static final Logger logger = Logger.getLogger(QuantityImpl.class
             .getName());
     private static final LogUtil logUtil = new LogUtil(logger);
 
     protected Number value;
     protected UNIT_TYPE unit;
 
-    protected NumericImpl() {
+    protected QuantityImpl() {
 
     }
 
-    public NumericImpl(Number value, UNIT_TYPE unit) {
+    public QuantityImpl(Number value, UNIT_TYPE unit) {
         this.value = value;
         this.unit = unit;
     }
 
-    public NumericImpl(double value, UNIT_TYPE unit) {
+    public QuantityImpl(double value, UNIT_TYPE unit) {
         this.value = value;
         this.unit = unit;
     }
 
     /**
-     * @see org.java0.quantity.Numeric#unit()
+     * @see org.java0.quantity.Quantity#unit()
      */
     @Override
     public UNIT_TYPE unit() {
@@ -103,67 +103,82 @@ public class NumericImpl<UNIT_TYPE extends NumericUnit<?>> implements
     }
 
     @Override
-    public Numeric<UNIT_TYPE> add(Numeric<UNIT_TYPE> amount) {
+    public Quantity<UNIT_TYPE> add(Quantity<UNIT_TYPE> amount) {
         double sum = value().doubleValue() + amount.value(unit()).doubleValue();
-        return new NumericImpl<UNIT_TYPE>(sum, unit());
+        return new QuantityImpl<UNIT_TYPE>(sum, unit());
     }
 
     @Override
-    public Numeric<UNIT_TYPE> subtract(Numeric<UNIT_TYPE> amount) {
+    public Quantity<UNIT_TYPE> subtract(Quantity<UNIT_TYPE> amount) {
         double difference = value().doubleValue()
                 - amount.value(unit()).doubleValue();
-        return new NumericImpl<UNIT_TYPE>(difference, unit());
+        return new QuantityImpl<UNIT_TYPE>(difference, unit());
     }
 
     /**
-     * @see org.java0.quantity.Numeric#multiply(org.java0.quantity.Numeric)
+     * @see org.java0.quantity.Quantity#multiply(org.java0.quantity.Quantity)
      */
 
     // public <P extends NumericUnit<? super P>, Q extends P>
     // NumericUnitProduct<U, P> multiply(Q unit);
 
     @Override
-    public <LOWER_BOUND extends NumericUnit<?>, QUANTITY_TYPE extends Numeric<LOWER_BOUND>> NumericProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+    public <LOWER_BOUND extends Unit<?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityProduct<UNIT_TYPE, LOWER_BOUND> multiply(
             QUANTITY_TYPE quantity) {
 
         UNIT_TYPE a = unit();
         LOWER_BOUND b = quantity.unit();
 
         @SuppressWarnings("unchecked")
-        NumericUnitProduct<UNIT_TYPE, LOWER_BOUND> c = (NumericUnitProduct<UNIT_TYPE, LOWER_BOUND>) a
+        UnitProduct<UNIT_TYPE, LOWER_BOUND> c = (UnitProduct<UNIT_TYPE, LOWER_BOUND>) a
                 .multiply(b);
 
         double result = value().doubleValue() * quantity.value().doubleValue();
 
-        return new NumericProductImpl<UNIT_TYPE, LOWER_BOUND>(result, c);
+        return new QuantityProductImpl<UNIT_TYPE, LOWER_BOUND>(result, c);
 
     }
 
     /**
-     * @see org.java0.quantity.Numeric#divide(org.java0.quantity.Numeric)
+     * @see org.java0.quantity.Quantity#divide(org.java0.quantity.Quantity)
      */
     @Override
-    public <LOWER_BOUND extends NumericUnit<?>, PARAM_QUANTITY_TYPE extends Numeric<LOWER_BOUND>> NumericQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+    public <LOWER_BOUND extends Unit<?>, PARAM_QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityQuotient<UNIT_TYPE, LOWER_BOUND> divide(
             PARAM_QUANTITY_TYPE quantity) {
         UNIT_TYPE a = unit();
         LOWER_BOUND b = quantity.unit();
 
         @SuppressWarnings("unchecked")
-        NumericUnitQuotient<UNIT_TYPE, LOWER_BOUND> c = (NumericUnitQuotient<UNIT_TYPE, LOWER_BOUND>) a
+        UnitQuotient<UNIT_TYPE, LOWER_BOUND> c = (UnitQuotient<UNIT_TYPE, LOWER_BOUND>) a
                 .divide(b);
 
         double result = value().doubleValue() / quantity.value().doubleValue();
 
-        return new NumericQuotientImpl<UNIT_TYPE, LOWER_BOUND>(result, c);
+        return new QuantityQuotientImpl<UNIT_TYPE, LOWER_BOUND>(result, c);
 
     }
 
     /**
-     * @see org.java0.quantity.Numeric#asType(java.lang.Class)
+     * @see org.java0.quantity.Quantity#asType(java.lang.Class)
      */
     @Override
-    public <CAST_TYPE extends Numeric<UNIT_TYPE>> CAST_TYPE asType(
-            Class<CAST_TYPE> type) {
+    public <CAST_UNIT extends UNIT_TYPE, CAST_QUANTITY extends Quantity<CAST_UNIT>> CAST_QUANTITY asType(
+            Class<CAST_QUANTITY> type) {
         throw new UnsupportedOperationException();
+    }
+
+    /**
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
+    @Override
+    public int compareTo(Quantity<UNIT_TYPE> quantity) {
+        double val = quantity.value(unit()).doubleValue();
+        if (val < value().doubleValue()) {
+            return -1;
+        } else if (val > value().doubleValue()) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

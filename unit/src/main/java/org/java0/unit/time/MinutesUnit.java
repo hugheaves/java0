@@ -26,4 +26,12 @@ public final class MinutesUnit extends TimeUnit {
     public MinutesUnit() {
         super("seconds", 60.0);
     }
+
+    /**
+     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
+     */
+    @Override
+    public java.util.concurrent.TimeUnit convertFromTimeUnit(TimeUnit unit) {
+        return java.util.concurrent.TimeUnit.MINUTES;
+    }
 }

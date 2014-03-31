@@ -39,13 +39,13 @@ public class NumericUnitTest extends BaseTest {
     public void test1() {
         DegreesUnit degreesUnit = DegreesUnit.INSTANCE;
 
-        NumericUnitProduct<AngleUnit, TimeUnit> b = degreesUnit
+        UnitProduct<AngleUnit, TimeUnit> b = degreesUnit
                 .multiply(SecondsUnit.INSTANCE);
 
-        NumericUnitProduct<NumericUnitProduct<AngleUnit, TimeUnit>, TimeUnit> c = b
+        UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit> c = b
                 .multiply(SecondsUnit.INSTANCE);
 
-        NumericUnitQuotient<NumericUnitProduct<NumericUnitProduct<AngleUnit, TimeUnit>, TimeUnit>, AngularVelocityUnit> d = c
+        UnitQuotient<UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit>, AngularVelocityUnit> d = c
                 .divide(DegreesPerMillisecondUnit.INSTANCE);
 
         logger.info(d.getName());

@@ -20,11 +20,11 @@ package org.java0.unit.time;
  * @author Hugh Eaves
  * 
  */
-public final class NanosecondsUnit extends TimeUnit {
-    public static final NanosecondsUnit INSTANCE = new NanosecondsUnit();
+public final class DaysUnit extends TimeUnit {
+    public static final DaysUnit INSTANCE = new DaysUnit();
 
-    public NanosecondsUnit() {
-        super("nanoseconds", 0.000000001);
+    public DaysUnit() {
+        super("days", 86400);
     }
 
     /**
@@ -32,6 +32,6 @@ public final class NanosecondsUnit extends TimeUnit {
      */
     @Override
     public java.util.concurrent.TimeUnit convertFromTimeUnit(TimeUnit unit) {
-        return java.util.concurrent.TimeUnit.NANOSECONDS;
+        return java.util.concurrent.TimeUnit.DAYS;
     }
 }

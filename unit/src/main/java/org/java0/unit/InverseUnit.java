@@ -25,7 +25,7 @@ package org.java0.unit;
  * @param <U>
  *            the generic type
  */
-public interface InverseUnit<U extends NumericUnit<?>> extends NumericUnit<U> {
+public interface InverseUnit<U extends Unit<?>> extends Unit<U> {
     /**
      * Returns the uninverted unit. (or the inverse of the inverse).
      * 

@@ -16,13 +16,13 @@
  */
 package org.java0.unit.angle;
 
-import org.java0.unit.impl.ScalableNumericUnit;
+import org.java0.unit.impl.ScalableUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public abstract class AngleUnit extends ScalableNumericUnit<AngleUnit> {
+public abstract class AngleUnit extends ScalableUnit<AngleUnit> {
 
     /**
      * Create a new AngleUnit.

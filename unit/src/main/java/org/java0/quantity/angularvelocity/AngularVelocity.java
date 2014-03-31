@@ -16,9 +16,9 @@
  */
 package org.java0.quantity.angularvelocity;
 
-import org.java0.quantity.Numeric;
-import org.java0.quantity.impl.NumericQuotientImpl;
-import org.java0.unit.NumericUnitQuotient;
+import org.java0.quantity.Quantity;
+import org.java0.quantity.impl.QuantityQuotientImpl;
+import org.java0.unit.UnitQuotient;
 import org.java0.unit.angle.AngleUnit;
 import org.java0.unit.time.TimeUnit;
 
@@ -26,21 +26,21 @@ import org.java0.unit.time.TimeUnit;
  * @author Hugh Eaves
  * 
  */
-public class AngularVelocity extends NumericQuotientImpl<AngleUnit, TimeUnit> {
+public class AngularVelocity extends QuantityQuotientImpl<AngleUnit, TimeUnit> {
 
     public AngularVelocity(Number value,
-            NumericUnitQuotient<AngleUnit, TimeUnit> unit) {
+            UnitQuotient<AngleUnit, TimeUnit> unit) {
         super(value, unit);
     }
 
     public AngularVelocity(
-            Numeric<NumericUnitQuotient<AngleUnit, TimeUnit>> angularVelocity,
-            NumericUnitQuotient<AngleUnit, TimeUnit> unit) {
+            Quantity<UnitQuotient<AngleUnit, TimeUnit>> angularVelocity,
+            UnitQuotient<AngleUnit, TimeUnit> unit) {
         super(angularVelocity.value(unit), unit);
     }
 
     public AngularVelocity(
-            Numeric<NumericUnitQuotient<AngleUnit, TimeUnit>> angularVelocity) {
+            Quantity<UnitQuotient<AngleUnit, TimeUnit>> angularVelocity) {
         super(angularVelocity.value(), angularVelocity.unit());
     }
 }

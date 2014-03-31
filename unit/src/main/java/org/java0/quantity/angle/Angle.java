@@ -16,14 +16,14 @@
  */
 package org.java0.quantity.angle;
 
-import org.java0.quantity.impl.NumericImpl;
+import org.java0.quantity.impl.QuantityImpl;
 import org.java0.unit.angle.AngleUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class Angle extends NumericImpl<AngleUnit> {
+public class Angle extends QuantityImpl<AngleUnit> {
 
     protected Angle() {
     }

@@ -20,16 +20,35 @@ import org.java0.core.type.NamedObject;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Interface Unit.
+ * The Interface NumericUnit.
  * 
  * @author Hugh Eaves
- * @param <VALUE_TYPE>
- *            the generic type
  * @param <U>
  *            the generic type
  */
-public interface Unit<VALUE_TYPE, UNIT_TYPE extends Unit<VALUE_TYPE, ?>>
-        extends NamedObject {
+public interface Unit<UNIT_TYPE extends Unit<?>> extends
+        NamedObject
+/* ,org.unitsofmeasurement.unit.Unit<NumericQuantity<U>> */{
+
+    /**
+     * Returns the product of two numeric units.
+     */
+    public <LOWER_BOUND extends Unit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> UnitProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+            PARAM_UNIT_TYPE unit);
+
+    /**
+     * Returns the quotient of two numeric units.
+     */
+    public <LOWER_BOUND extends Unit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> UnitQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+            PARAM_UNIT_TYPE unit);
+
+    /**
+     * Returns the inverse of this unit.
+     * 
+     * @return the inverse unit
+     */
+    public InverseUnit<UNIT_TYPE> invert();
+
     /**
      * Returns the system unit compatible with this Unit.
      * 
@@ -51,7 +70,7 @@ public interface Unit<VALUE_TYPE, UNIT_TYPE extends Unit<VALUE_TYPE, ?>>
      *            the value
      * @return the t
      */
-    public VALUE_TYPE convertToSystem(VALUE_TYPE value);
+    public Number convertToSystem(Number value);
 
     /**
      * Converts a value in the system unit type, to a value in this unit type.
@@ -60,5 +79,6 @@ public interface Unit<VALUE_TYPE, UNIT_TYPE extends Unit<VALUE_TYPE, ?>>
      *            the value
      * @return the t
      */
-    public VALUE_TYPE convertFromSystem(VALUE_TYPE value);
+    public Number convertFromSystem(Number value);
+
 }

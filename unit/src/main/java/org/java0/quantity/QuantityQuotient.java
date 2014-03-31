@@ -17,15 +17,15 @@
 package org.java0.quantity;
 
 import org.java0.unit.InverseUnit;
-import org.java0.unit.NumericUnit;
-import org.java0.unit.NumericUnitQuotient;
+import org.java0.unit.Unit;
+import org.java0.unit.UnitQuotient;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public interface NumericQuotient<U1 extends NumericUnit<?>, U2 extends NumericUnit<?>>
-        extends Numeric<NumericUnitQuotient<U1, U2>> {
+public interface QuantityQuotient<U1 extends Unit<?>, U2 extends Unit<?>>
+        extends Quantity<UnitQuotient<U1, U2>> {
 
     /**
      * Returns this quantity with the denominator unit cancelled by multiplying
@@ -34,7 +34,7 @@ public interface NumericQuotient<U1 extends NumericUnit<?>, U2 extends NumericUn
      * @param unit
      * @return a unit
      */
-    public Numeric<U1> multiplyAndCancelDenominator(Numeric<U2> unit);
+    public Quantity<U1> multiplyAndCancelDenominator(Quantity<U2> unit);
 
     /**
      * Returns this quantity with the denominator unit cancelled by dividing by
@@ -43,7 +43,7 @@ public interface NumericQuotient<U1 extends NumericUnit<?>, U2 extends NumericUn
      * @param unit
      * @return a unit
      */
-    public Numeric<U1> divideAndCancelDenominator(Numeric<InverseUnit<U2>> unit);
+    public Quantity<U1> divideAndCancelDenominator(Quantity<InverseUnit<U2>> unit);
 
     /**
      * Returns this quantity with the numerator unit cancelled by multiplying by
@@ -52,7 +52,7 @@ public interface NumericQuotient<U1 extends NumericUnit<?>, U2 extends NumericUn
      * @param unit
      * @return a unit
      */
-    public Numeric<U2> multiplyAndCancelNumerator(Numeric<InverseUnit<U1>> unit);
+    public Quantity<U2> multiplyAndCancelNumerator(Quantity<InverseUnit<U1>> unit);
 
     /**
      * Returns this quantity with the numerator unit cancelled by dividing by
@@ -61,5 +61,5 @@ public interface NumericQuotient<U1 extends NumericUnit<?>, U2 extends NumericUn
      * @param unit
      * @return a unit
      */
-    public Numeric<U2> divideAndCancelNumerator(Numeric<U1> unit);
+    public Quantity<U2> divideAndCancelNumerator(Quantity<U1> unit);
 }

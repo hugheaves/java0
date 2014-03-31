@@ -18,14 +18,14 @@ package org.java0.unit.temperature;
 
 import java.util.logging.Logger;
 
-import org.java0.unit.impl.OffsetNumericUnit;
+import org.java0.unit.impl.OffsetUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
 public abstract class TemperatureUnit extends
-        OffsetNumericUnit<TemperatureUnit> {
+        OffsetUnit<TemperatureUnit> {
     /**
      * Create a new TemperatureUnit.
      * 
@@ -43,7 +43,7 @@ public abstract class TemperatureUnit extends
             .getName());
 
     /**
-     * @see org.java0.unit.NumericUnit#getSystemUnit()
+     * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override
     public TemperatureUnit getSystemUnit() {

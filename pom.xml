@@ -132,6 +132,7 @@
 		<module>tag</module>
 		<module>test</module>
 		<module>unit</module>
-		<module>util</module>
+        <module>util</module>
+        <module>io</module>
 	</modules>
 </project>

@@ -18,23 +18,23 @@ package org.java0.quantity.impl;
 
 import java.util.logging.Logger;
 
-import org.java0.quantity.Numeric;
-import org.java0.quantity.NumericQuotient;
+import org.java0.quantity.Quantity;
+import org.java0.quantity.QuantityQuotient;
 import org.java0.unit.InverseUnit;
-import org.java0.unit.NumericUnit;
-import org.java0.unit.NumericUnitQuotient;
+import org.java0.unit.Unit;
+import org.java0.unit.UnitQuotient;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class NumericQuotientImpl<U1 extends NumericUnit<?>, U2 extends NumericUnit<?>>
-        extends NumericImpl<NumericUnitQuotient<U1, U2>> implements
-        NumericQuotient<U1, U2> {
+public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
+        extends QuantityImpl<UnitQuotient<U1, U2>> implements
+        QuantityQuotient<U1, U2> {
 
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
-            .getLogger(NumericQuotientImpl.class.getName());
+            .getLogger(QuantityQuotientImpl.class.getName());
 
     /**
      * Create a new AbstractNumericQuantityQuotient.
@@ -42,39 +42,39 @@ public class NumericQuotientImpl<U1 extends NumericUnit<?>, U2 extends NumericUn
      * @param value
      * @param unit
      */
-    public NumericQuotientImpl(Number value, NumericUnitQuotient<U1, U2> unit) {
+    public QuantityQuotientImpl(Number value, UnitQuotient<U1, U2> unit) {
         super(value, unit);
     }
 
     /**
-     * @see org.java0.quantity.NumericQuotient#multiplyAndCancelDenominator(org.java0.quantity.Numeric)
+     * @see org.java0.quantity.QuantityQuotient#multiplyAndCancelDenominator(org.java0.quantity.Quantity)
      */
     @Override
-    public Numeric<U1> multiplyAndCancelDenominator(Numeric<U2> unit) {
+    public Quantity<U1> multiplyAndCancelDenominator(Quantity<U2> unit) {
         return null;
     }
 
     /**
-     * @see org.java0.quantity.NumericQuotient#divideAndCancelDenominator(org.java0.quantity.Numeric)
+     * @see org.java0.quantity.QuantityQuotient#divideAndCancelDenominator(org.java0.quantity.Quantity)
      */
     @Override
-    public Numeric<U1> divideAndCancelDenominator(Numeric<InverseUnit<U2>> unit) {
+    public Quantity<U1> divideAndCancelDenominator(Quantity<InverseUnit<U2>> unit) {
         return null;
     }
 
     /**
-     * @see org.java0.quantity.NumericQuotient#multiplyAndCancelNumerator(org.java0.quantity.Numeric)
+     * @see org.java0.quantity.QuantityQuotient#multiplyAndCancelNumerator(org.java0.quantity.Quantity)
      */
     @Override
-    public Numeric<U2> multiplyAndCancelNumerator(Numeric<InverseUnit<U1>> unit) {
+    public Quantity<U2> multiplyAndCancelNumerator(Quantity<InverseUnit<U1>> unit) {
         return null;
     }
 
     /**
-     * @see org.java0.quantity.NumericQuotient#divideAndCancelNumerator(org.java0.quantity.Numeric)
+     * @see org.java0.quantity.QuantityQuotient#divideAndCancelNumerator(org.java0.quantity.Quantity)
      */
     @Override
-    public Numeric<U2> divideAndCancelNumerator(Numeric<U1> unit) {
+    public Quantity<U2> divideAndCancelNumerator(Quantity<U1> unit) {
         return null;
     }
 }

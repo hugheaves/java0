@@ -16,14 +16,14 @@
  */
 package org.java0.quantity.power;
 
-import org.java0.quantity.impl.NumericImpl;
+import org.java0.quantity.impl.QuantityImpl;
 import org.java0.unit.power.PowerUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class Power extends NumericImpl<PowerUnit> {
+public class Power extends QuantityImpl<PowerUnit> {
 
     protected Power() {
     }

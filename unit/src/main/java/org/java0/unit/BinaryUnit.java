@@ -28,8 +28,8 @@ package org.java0.unit;
  * @param <T>
  *            the generic type
  */
-public interface BinaryNumericUnit<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_TYPE extends NumericUnit<?>, UNIT_TYPE extends NumericUnit<?>>
-        extends NumericUnit<UNIT_TYPE> {
+public interface BinaryUnit<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>, UNIT_TYPE extends Unit<?>>
+        extends Unit<UNIT_TYPE> {
     /**
      * Returns the first / left unit of this binary numeric unit.
      * 

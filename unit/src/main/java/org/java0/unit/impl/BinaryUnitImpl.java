@@ -18,21 +18,21 @@ package org.java0.unit.impl;
 
 import java.util.logging.Logger;
 
-import org.java0.unit.BinaryNumericUnit;
-import org.java0.unit.NumericUnit;
-import org.java0.unit.NumericUnitProduct;
+import org.java0.unit.BinaryUnit;
+import org.java0.unit.Unit;
+import org.java0.unit.UnitProduct;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public abstract class BinaryNumericUnitImpl<UNIT_1_TYPE extends NumericUnit<?>, UNIT_2_TYPE extends NumericUnit<?>, UNIT_TYPE extends NumericUnit<?>>
-        extends AbstractNumericUnit<UNIT_TYPE> implements
-        BinaryNumericUnit<UNIT_1_TYPE, UNIT_2_TYPE, UNIT_TYPE> {
+public abstract class BinaryUnitImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>, UNIT_TYPE extends Unit<?>>
+        extends AbstractUnit<UNIT_TYPE> implements
+        BinaryUnit<UNIT_1_TYPE, UNIT_2_TYPE, UNIT_TYPE> {
 
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
-            .getLogger(BinaryNumericUnitImpl.class.getName());
+            .getLogger(BinaryUnitImpl.class.getName());
 
     protected UNIT_1_TYPE unit1;
     protected UNIT_2_TYPE unit2;
@@ -43,7 +43,7 @@ public abstract class BinaryNumericUnitImpl<UNIT_1_TYPE extends NumericUnit<?>, 
      * 
      * @param name
      */
-    public BinaryNumericUnitImpl(String operator, UNIT_1_TYPE unit1, UNIT_2_TYPE unit2) {
+    public BinaryUnitImpl(String operator, UNIT_1_TYPE unit1, UNIT_2_TYPE unit2) {
         super("(" + unit1.getName() + " " + operator + " " + unit2.getName()
                 + ")");
         this.unit1 = unit1;
@@ -59,8 +59,8 @@ public abstract class BinaryNumericUnitImpl<UNIT_1_TYPE extends NumericUnit<?>, 
             return false;
         } else if (object == this) {
             return true;
-        } else if (object instanceof NumericUnitProduct) {
-            NumericUnitProduct<?, ?> nup = (NumericUnitProduct<?, ?>) object;
+        } else if (object instanceof UnitProduct) {
+            UnitProduct<?, ?> nup = (UnitProduct<?, ?>) object;
             return (getUnit1().equals(nup.getUnit1())
                     && getUnit2().equals(nup.getUnit2()) && nup.getOperator()
                     .equals(getOperator()));
@@ -84,7 +84,7 @@ public abstract class BinaryNumericUnitImpl<UNIT_1_TYPE extends NumericUnit<?>, 
     }
 
     /**
-     * @see org.java0.unit.BinaryNumericUnit#getUnit1()
+     * @see org.java0.unit.BinaryUnit#getUnit1()
      */
     @Override
     public UNIT_1_TYPE getUnit1() {
@@ -92,7 +92,7 @@ public abstract class BinaryNumericUnitImpl<UNIT_1_TYPE extends NumericUnit<?>, 
     }
 
     /**
-     * @see org.java0.unit.BinaryNumericUnit#getUnit2()
+     * @see org.java0.unit.BinaryUnit#getUnit2()
      */
     @Override
     public UNIT_2_TYPE getUnit2() {

@@ -16,13 +16,13 @@
  */
 package org.java0.unit.time;
 
-import org.java0.unit.impl.ScalableNumericUnit;
+import org.java0.unit.impl.ScalableUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public abstract class TimeUnit extends ScalableNumericUnit<TimeUnit> {
+public abstract class TimeUnit extends ScalableUnit<TimeUnit> {
 
     public TimeUnit(String name, double toSystemUnitConversionFactor) {
         super(name, toSystemUnitConversionFactor);
@@ -32,5 +32,29 @@ public abstract class TimeUnit extends ScalableNumericUnit<TimeUnit> {
     public TimeUnit getSystemUnit() {
         return SecondsUnit.INSTANCE;
     }
+
+    public static TimeUnit convertToTimeUnit(java.util.concurrent.TimeUnit unit) {
+        switch (unit) {
+        case DAYS:
+            return DaysUnit.INSTANCE;
+        case HOURS:
+            return HoursUnit.INSTANCE;
+        case MICROSECONDS:
+            return MicrosecondsUnit.INSTANCE;
+        case MILLISECONDS:
+            return MillisecondsUnit.INSTANCE;
+        case MINUTES:
+            return MinutesUnit.INSTANCE;
+        case NANOSECONDS:
+            return NanosecondsUnit.INSTANCE;
+        case SECONDS:
+            return SecondsUnit.INSTANCE;
+        default:
+            return null;
+        }
+    }
+
+    public abstract java.util.concurrent.TimeUnit convertFromTimeUnit(
+            TimeUnit unit);
 
 }

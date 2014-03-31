@@ -17,14 +17,14 @@
 package org.java0.unit.impl;
 
 import org.java0.unit.InverseUnit;
-import org.java0.unit.NumericUnit;
+import org.java0.unit.Unit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class InverseUnitImpl<UNIT_TYPE extends NumericUnit<?>> extends
-        AbstractNumericUnit<UNIT_TYPE> implements InverseUnit<UNIT_TYPE> {
+public class InverseUnitImpl<UNIT_TYPE extends Unit<?>> extends
+        AbstractUnit<UNIT_TYPE> implements InverseUnit<UNIT_TYPE> {
 
     protected UNIT_TYPE targetUnit;
 

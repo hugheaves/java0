@@ -16,7 +16,7 @@
  */
 package org.java0.unit.impl;
 
-import org.java0.unit.NumericUnit;
+import org.java0.unit.Unit;
 
 /**
  * Implements a numeric unit that converts to and from the system unit by
@@ -25,8 +25,8 @@ import org.java0.unit.NumericUnit;
  * @author Hugh Eaves
  * 
  */
-public abstract class ScalableNumericUnit<UNIT_TYPE extends NumericUnit<?>>
-        extends AbstractNumericUnit<UNIT_TYPE> {
+public abstract class ScalableUnit<UNIT_TYPE extends Unit<?>>
+        extends AbstractUnit<UNIT_TYPE> {
 
     protected double toSystemUnitConversionFactor;
 
@@ -39,7 +39,7 @@ public abstract class ScalableNumericUnit<UNIT_TYPE extends NumericUnit<?>>
      *            the value to multiply by to convert a value in this unit, to a
      *            value in the system unit.
      */
-    public ScalableNumericUnit(String name, double toSystemUnitConversionFactor) {
+    public ScalableUnit(String name, double toSystemUnitConversionFactor) {
         super(name);
         this.toSystemUnitConversionFactor = toSystemUnitConversionFactor;
     }

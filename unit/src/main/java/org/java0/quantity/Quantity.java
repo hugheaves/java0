@@ -19,24 +19,62 @@ package org.java0.quantity;
 import org.java0.unit.Unit;
 
 /**
- * TODO Fix sucky docs...
- * 
- * Represents an Quantity as measured in a specific Unit.
- * 
  * @author Hugh Eaves
  * 
- * @param <T>
- *            the type of the measurement / value
- * @param <U>
- *            the Unit type of this Quantity type.
  */
-public interface Quantity<T, U extends Unit<T, ?>> {
+public interface Quantity<UNIT_TYPE extends Unit<?>> extends
+        Comparable<Quantity<UNIT_TYPE>>
+/* , org.unitsofmeasurement.quantity.Quantity<NumericQuantity<U>> */{
+
+    /**
+     * Subtracts the given quantity from this one.
+     * 
+     * @param quantity
+     * @return
+     */
+    public Quantity<UNIT_TYPE> subtract(Quantity<UNIT_TYPE> quantity);
+
+    /**
+     * Adds the given quantity to this one.
+     * 
+     * @param quantity
+     * @return
+     */
+    public Quantity<UNIT_TYPE> add(Quantity<UNIT_TYPE> quantity);
+
+    /**
+     * Multiplies the given quantity by this one.
+     * 
+     * @param quantity
+     * @return
+     */
+    public <LOWER_BOUND extends Unit<?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+            QUANTITY_TYPE quantity);
+
+    /**
+     * Divides this quantity by the given one.
+     * 
+     * @param quantity
+     * @return
+     */
+    public <LOWER_BOUND extends Unit<?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+            QUANTITY_TYPE quantity);
+
+    /**
+     * Returns this quantity as the specified type.
+     * 
+     * @param type
+     * @return
+     */
+    public <CAST_UNIT extends UNIT_TYPE, CAST_QUANTITY extends Quantity<CAST_UNIT>> CAST_QUANTITY asType(
+            Class<CAST_QUANTITY> type);
+
     /**
      * Returns the Unit for this Quantity.
      * 
      * @return the Unit for this Quantity.
      */
-    public U unit();
+    public UNIT_TYPE unit();
 
     /**
      * Returns the value of this Quantity, expressed in the given Unit.
@@ -46,12 +84,13 @@ public interface Quantity<T, U extends Unit<T, ?>> {
      *            expressed.
      * @return the value of this Quantity, expressed in the given Unit.
      */
-    public <A extends U> T value(A unit);
+    public <A extends UNIT_TYPE> Number value(A unit);
 
     /**
      * Returns the value of this Quantity expressed in its Unit.
      * 
      * @return
      */
-    public T value();
+    public Number value();
+
 }

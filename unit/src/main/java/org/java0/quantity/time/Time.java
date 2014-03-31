@@ -16,17 +16,14 @@
  */
 package org.java0.quantity.time;
 
-import org.java0.quantity.impl.NumericImpl;
+import org.java0.quantity.impl.QuantityImpl;
 import org.java0.unit.time.TimeUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class Time extends NumericImpl<TimeUnit> {
-
-    protected Time() {
-    }
+public class Time extends QuantityImpl<TimeUnit> {
 
     /**
      * @param value
@@ -34,5 +31,9 @@ public class Time extends NumericImpl<TimeUnit> {
      */
     public Time(Number value, TimeUnit unit) {
         super(value, unit);
+    }
+
+    public Time(Number value, java.util.concurrent.TimeUnit unit) {
+        super(value, TimeUnit.convertToTimeUnit(unit));
     }
 }

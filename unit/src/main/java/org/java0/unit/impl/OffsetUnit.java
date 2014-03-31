@@ -18,7 +18,7 @@ package org.java0.unit.impl;
 
 import java.util.logging.Logger;
 
-import org.java0.unit.NumericUnit;
+import org.java0.unit.Unit;
 
 /**
  * Implements a numeric unit that converts to and from the system unit by
@@ -28,12 +28,12 @@ import org.java0.unit.NumericUnit;
  * @author Hugh Eaves
  * 
  */
-public abstract class OffsetNumericUnit<UNIT_TYPE extends NumericUnit<?>>
-        extends ScalableNumericUnit<UNIT_TYPE> {
+public abstract class OffsetUnit<UNIT_TYPE extends Unit<?>>
+        extends ScalableUnit<UNIT_TYPE> {
 
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
-            .getLogger(OffsetNumericUnit.class.getName());
+            .getLogger(OffsetUnit.class.getName());
 
     protected double toSystemUnitOffset;
 
@@ -50,7 +50,7 @@ public abstract class OffsetNumericUnit<UNIT_TYPE extends NumericUnit<?>>
      *            value in the system unit
      * 
      */
-    public OffsetNumericUnit(String name, double toSystemUnitConversionFactor,
+    public OffsetUnit(String name, double toSystemUnitConversionFactor,
             double toSystemUnitOffset) {
         super(name, toSystemUnitConversionFactor);
         this.toSystemUnitOffset = toSystemUnitOffset;

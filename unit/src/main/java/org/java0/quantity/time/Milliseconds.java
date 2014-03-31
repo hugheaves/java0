@@ -14,24 +14,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.unit.time;
+package org.java0.quantity.time;
+
+import org.java0.unit.time.MillisecondsUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public final class NanosecondsUnit extends TimeUnit {
-    public static final NanosecondsUnit INSTANCE = new NanosecondsUnit();
-
-    public NanosecondsUnit() {
-        super("nanoseconds", 0.000000001);
-    }
-
+public class Milliseconds extends Time {
     /**
-     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
+     * Create a new Milliseconds.
+     * 
+     * @param value
+     * @param unit
      */
-    @Override
-    public java.util.concurrent.TimeUnit convertFromTimeUnit(TimeUnit unit) {
-        return java.util.concurrent.TimeUnit.NANOSECONDS;
+    public Milliseconds(Number value) {
+        super(value, MillisecondsUnit.INSTANCE);
     }
 }

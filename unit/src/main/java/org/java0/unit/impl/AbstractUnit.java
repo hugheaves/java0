@@ -20,26 +20,26 @@ import java.util.logging.Logger;
 
 import org.java0.core.type.AbstractNamedObject;
 import org.java0.unit.InverseUnit;
-import org.java0.unit.NumericUnit;
-import org.java0.unit.NumericUnitProduct;
-import org.java0.unit.NumericUnitQuotient;
+import org.java0.unit.Unit;
+import org.java0.unit.UnitProduct;
+import org.java0.unit.UnitQuotient;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public abstract class AbstractNumericUnit<UNIT_TYPE extends NumericUnit<?>>
-        extends AbstractNamedObject implements NumericUnit<UNIT_TYPE> {
+public abstract class AbstractUnit<UNIT_TYPE extends Unit<?>>
+        extends AbstractNamedObject implements Unit<UNIT_TYPE> {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
-            .getLogger(AbstractNumericUnit.class.getName());
+            .getLogger(AbstractUnit.class.getName());
 
     /**
      * Create a new AbstractNumericUnit.
      * 
      * @param name
      */
-    public AbstractNumericUnit(String name) {
+    public AbstractUnit(String name) {
         super(name);
     }
 
@@ -79,7 +79,7 @@ public abstract class AbstractNumericUnit<UNIT_TYPE extends NumericUnit<?>>
     // }
 
     /**
-     * @see org.java0.unit.NumericUnit#invert()
+     * @see org.java0.unit.Unit#invert()
      */
     @Override
     public InverseUnit<UNIT_TYPE> invert() {
@@ -100,9 +100,9 @@ public abstract class AbstractNumericUnit<UNIT_TYPE extends NumericUnit<?>>
      */
     @SuppressWarnings("unchecked")
     @Override
-    public <LOWER_BOUND extends NumericUnit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> NumericUnitProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+    public <LOWER_BOUND extends Unit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> UnitProduct<UNIT_TYPE, LOWER_BOUND> multiply(
             PARAM_UNIT_TYPE unit) {
-        return new NumericUnitProductImpl<UNIT_TYPE, LOWER_BOUND>(
+        return new UnitProductImpl<UNIT_TYPE, LOWER_BOUND>(
                 (UNIT_TYPE) this, unit);
     }
 
@@ -111,9 +111,9 @@ public abstract class AbstractNumericUnit<UNIT_TYPE extends NumericUnit<?>>
      */
     @SuppressWarnings("unchecked")
     @Override
-    public <LOWER_BOUND extends NumericUnit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> NumericUnitQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+    public <LOWER_BOUND extends Unit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> UnitQuotient<UNIT_TYPE, LOWER_BOUND> divide(
             PARAM_UNIT_TYPE unit) {
-        return new NumericUnitQuotientImpl<UNIT_TYPE, LOWER_BOUND>(
+        return new UnitQuotientImpl<UNIT_TYPE, LOWER_BOUND>(
                 (UNIT_TYPE) this, unit);
     }
 
