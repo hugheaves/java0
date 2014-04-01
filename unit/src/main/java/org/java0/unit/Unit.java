@@ -26,7 +26,7 @@ import org.java0.core.type.NamedObject;
  * @param <U>
  *            the generic type
  */
-public interface Unit<BASE_TYPE extends Unit<?, ?>, SUB_TYPE extends Unit<BASE_TYPE, SUB_TYPE>>
+public interface Unit<BASE_TYPE extends Unit<?, ?>, SUB_TYPE extends BASE_TYPE>
         extends NamedObject
 /* ,org.unitsofmeasurement.unit.Unit<NumericQuantity<U>> */{
 

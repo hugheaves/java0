@@ -22,7 +22,7 @@ import org.java0.unit.time.MillisecondsUnit;
  * @author Hugh Eaves
  * 
  */
-public class Milliseconds extends Time {
+public class Milliseconds extends Time<MillisecondsUnit> {
     /**
      * Create a new Milliseconds.
      * 

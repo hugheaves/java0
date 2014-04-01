@@ -20,7 +20,7 @@ package org.java0.unit.time;
  * @author Hugh Eaves
  * 
  */
-public final class MinutesUnit extends TimeUnit {
+public final class MinutesUnit extends TimeUnit<MinutesUnit> {
     public static final MinutesUnit INSTANCE = new MinutesUnit();
 
     public MinutesUnit() {

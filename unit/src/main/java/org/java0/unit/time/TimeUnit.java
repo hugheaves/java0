@@ -22,7 +22,7 @@ import org.java0.unit.impl.ScalableUnit;
  * @author Hugh Eaves
  * 
  */
-public abstract class TimeUnit<T extends TimeUnit<T>> extends
+public abstract class TimeUnit<T extends TimeUnit<?>> extends
         ScalableUnit<TimeUnit<?>, T> {
 
     /**

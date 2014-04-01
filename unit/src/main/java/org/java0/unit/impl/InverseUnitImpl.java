@@ -23,7 +23,7 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public class InverseUnitImpl<BASE_TYPE extends Unit<BASE_TYPE, ?>, SUB_TYPE extends Unit<BASE_TYPE, SUB_TYPE>>
+public class InverseUnitImpl<BASE_TYPE extends Unit<BASE_TYPE, ?>, SUB_TYPE extends BASE_TYPE>
         extends AbstractUnit<BASE_TYPE, SUB_TYPE> implements
         InverseUnit<BASE_TYPE, SUB_TYPE> {
 

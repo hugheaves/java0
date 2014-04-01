@@ -17,6 +17,9 @@
 package org.java0.quantity;
 
 import org.java0.quantity.angularvelocity.AngularVelocity;
+import org.java0.unit.Unit;
+import org.java0.unit.angle.DegreesUnit;
+import org.java0.unit.angularvelocity.AngularVelocityUnit;
 import org.java0.unit.angularvelocity.DegreesPerMillisecondUnit;
 import org.java0.unit.angularvelocity.DegreesPerSecondUnit;
 import org.java0.unit.angularvelocity.RadiansPerSecondUnit;
@@ -57,5 +60,13 @@ public class AngularVelocityTest {
                 RadiansPerSecondUnit.INSTANCE);
         double b = a.value(DegreesPerMillisecondUnit.INSTANCE).doubleValue();
         Assert.assertEquals(.00018, b, SMALL_AMOUNT);
+    }
+
+    @SuppressWarnings("unused")
+    @Test
+    public void test5() {
+        Quantity<AngularVelocityUnit, DegreesPerSecondUnit> quantity = null;
+        Quantity<DegreesUnit, DegreesUnit> quantity2 = null;
+        Unit<DegreesUnit, DegreesUnit> unit = null;
     }
 }

@@ -22,6 +22,6 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public interface PowerUnit<T extends PowerUnit<T>> extends
+public interface PowerUnit<T extends PowerUnit<?>> extends
         Unit<PowerUnit<?>, T> {
 }

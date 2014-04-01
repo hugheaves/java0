@@ -22,8 +22,8 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public interface Quantity<UNIT_TYPE extends Unit<?, ?>> extends
-        Comparable<Quantity<UNIT_TYPE>>
+public interface Quantity<BASE_TYPE extends Unit<?, ?>, SUB_TYPE extends BASE_TYPE>
+        extends Comparable<Quantity<BASE_TYPE, ?>>
 /* , org.unitsofmeasurement.quantity.Quantity<NumericQuantity<U>> */{
 
     /**
@@ -32,7 +32,8 @@ public interface Quantity<UNIT_TYPE extends Unit<?, ?>> extends
      * @param quantity
      * @return
      */
-    public Quantity<UNIT_TYPE> subtract(Quantity<UNIT_TYPE> quantity);
+    public Quantity<BASE_TYPE, SUB_TYPE> subtract(
+            Quantity<BASE_TYPE, ?> quantity);
 
     /**
      * Adds the given quantity to this one.
@@ -40,7 +41,7 @@ public interface Quantity<UNIT_TYPE extends Unit<?, ?>> extends
      * @param quantity
      * @return
      */
-    public Quantity<UNIT_TYPE> add(Quantity<UNIT_TYPE> quantity);
+    public Quantity<BASE_TYPE, SUB_TYPE> add(Quantity<BASE_TYPE, ?> quantity);
 
     /**
      * Multiplies the given quantity by this one.
@@ -48,33 +49,23 @@ public interface Quantity<UNIT_TYPE extends Unit<?, ?>> extends
      * @param quantity
      * @return
      */
-    public <LOWER_BOUND extends Unit<?, ?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityProduct<UNIT_TYPE, LOWER_BOUND> multiply(
+    public <LOWER_BOUND extends Unit<?, ?>, UPPER_BOUND extends LOWER_BOUND, QUANTITY_TYPE extends Quantity<LOWER_BOUND, UPPER_BOUND>> QuantityProduct<BASE_TYPE, LOWER_BOUND> multiply(
             QUANTITY_TYPE quantity);
-
     /**
      * Divides this quantity by the given one.
      * 
      * @param quantity
      * @return
      */
-    public <LOWER_BOUND extends Unit<?, ?>, QUANTITY_TYPE extends Quantity<LOWER_BOUND>> QuantityQuotient<UNIT_TYPE, LOWER_BOUND> divide(
+    public <LOWER_BOUND extends Unit<?, ?>, UPPER_BOUND extends LOWER_BOUND, QUANTITY_TYPE extends Quantity<LOWER_BOUND, UPPER_BOUND>> QuantityQuotient<BASE_TYPE, LOWER_BOUND> divide(
             QUANTITY_TYPE quantity);
-
-    /**
-     * Returns this quantity as the specified type.
-     * 
-     * @param type
-     * @return
-     */
-    public <CAST_UNIT extends UNIT_TYPE, CAST_QUANTITY extends Quantity<CAST_UNIT>> CAST_QUANTITY asType(
-            Class<CAST_QUANTITY> type);
 
     /**
      * Returns the Unit for this Quantity.
      * 
      * @return the Unit for this Quantity.
      */
-    public UNIT_TYPE unit();
+    public BASE_TYPE unit();
 
     /**
      * Returns the value of this Quantity, expressed in the given Unit.
@@ -84,7 +75,7 @@ public interface Quantity<UNIT_TYPE extends Unit<?, ?>> extends
      *            expressed.
      * @return the value of this Quantity, expressed in the given Unit.
      */
-    public <A extends UNIT_TYPE> Number value(A unit);
+    public <A extends BASE_TYPE> Number value(A unit);
 
     /**
      * Returns the value of this Quantity expressed in its Unit.

@@ -38,7 +38,6 @@ public class NumericUnitTest extends BaseTest {
     @Test
     public void test1() {
         DegreesUnit degreesUnit = DegreesUnit.INSTANCE;
-        AngleUnit<DegreesUnit> unit = DegreesUnit.INSTANCE;
 
         UnitProduct<AngleUnit<?>, TimeUnit<?>> b = degreesUnit
                 .multiply(SecondsUnit.INSTANCE);
@@ -50,5 +49,17 @@ public class NumericUnitTest extends BaseTest {
                 .divide(DegreesPerMillisecondUnit.INSTANCE);
 
         logger.info(d.getName());
+    }
+
+    @SuppressWarnings("unused")
+    @Test
+    public void test2() {
+        Unit<AngleUnit<?>, DegreesUnit> unit1 = DegreesUnit.INSTANCE;
+        Unit<AngleUnit<?>, ?> unit2 = DegreesUnit.INSTANCE;
+        AngleUnit<?> unit3 = DegreesUnit.INSTANCE;
+        AngleUnit<DegreesUnit> unit4 = DegreesUnit.INSTANCE;
+        Unit<AngleUnit<?>, ?> unit5 = unit3;
+        Unit<AngleUnit<?>, DegreesUnit> unit6 = unit4;
+
     }
 }

@@ -17,22 +17,23 @@
 package org.java0.quantity.power;
 
 import org.java0.quantity.impl.QuantityImpl;
-import org.java0.unit.power.AbstractPowerUnit;
+import org.java0.unit.power.PowerUnit;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public class Power extends QuantityImpl<AbstractPowerUnit<?>> {
+public class Power<T extends PowerUnit<?>> extends
+        QuantityImpl<PowerUnit<?>, T> {
 
-    protected Power() {
+    public Power() {
     }
 
     /**
      * @param value
      * @param unit
      */
-    public Power(Number value, AbstractPowerUnit<?> unit) {
+    public Power(Number value, PowerUnit<?> unit) {
         super(value, unit);
     }
 }

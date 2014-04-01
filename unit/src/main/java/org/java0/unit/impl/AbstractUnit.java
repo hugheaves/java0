@@ -28,7 +28,7 @@ import org.java0.unit.UnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public abstract class AbstractUnit<BASE_TYPE extends Unit<?, ?>, SUB_TYPE extends Unit<BASE_TYPE, SUB_TYPE>>
+public abstract class AbstractUnit<BASE_TYPE extends Unit<?, ?>, SUB_TYPE extends BASE_TYPE>
         extends AbstractNamedObject implements Unit<BASE_TYPE, SUB_TYPE> {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(AbstractUnit.class

@@ -22,14 +22,15 @@ import org.java0.unit.impl.ScalableUnit;
  * @author Hugh Eaves
  * 
  */
-public abstract class AbstractPowerUnit<T extends AbstractPowerUnit<T>> extends
-        ScalableUnit<AbstractPowerUnit<?>, T> {
+public abstract class AbstractPowerUnit<T extends PowerUnit<T>> extends
+        ScalableUnit<PowerUnit<?>, T> implements PowerUnit<T> {
+
     public AbstractPowerUnit(String name, double toSystemUnitConversionFactor) {
         super(name, toSystemUnitConversionFactor);
     }
 
     @Override
-    public AbstractPowerUnit<?> getSystemUnit() {
+    public PowerUnit<?> getSystemUnit() {
         return WattsUnit.INSTANCE;
     }
 }

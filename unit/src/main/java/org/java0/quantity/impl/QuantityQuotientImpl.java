@@ -29,8 +29,8 @@ import org.java0.unit.UnitQuotient;
  * 
  */
 public class QuantityQuotientImpl<U1 extends Unit<?, ?>, U2 extends Unit<?, ?>>
-        extends QuantityImpl<UnitQuotient<U1, U2>> implements
-        QuantityQuotient<U1, U2> {
+        extends QuantityImpl<UnitQuotient<U1, U2>, UnitQuotient<U1, U2>>
+        implements QuantityQuotient<U1, U2> {
 
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
@@ -50,7 +50,7 @@ public class QuantityQuotientImpl<U1 extends Unit<?, ?>, U2 extends Unit<?, ?>>
      * @see org.java0.quantity.QuantityQuotient#multiplyAndCancelDenominator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U1> multiplyAndCancelDenominator(Quantity<U2> unit) {
+    public Quantity<U1, ?> multiplyAndCancelDenominator(Quantity<U2, ?> unit) {
         return null;
     }
 
@@ -58,8 +58,8 @@ public class QuantityQuotientImpl<U1 extends Unit<?, ?>, U2 extends Unit<?, ?>>
      * @see org.java0.quantity.QuantityQuotient#divideAndCancelDenominator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U1> divideAndCancelDenominator(
-            Quantity<InverseUnit<?, ?>> unit) {
+    public Quantity<U1, ?> divideAndCancelDenominator(
+            Quantity<InverseUnit<U2, ?>, ?> unit) {
         return null;
     }
 
@@ -67,8 +67,8 @@ public class QuantityQuotientImpl<U1 extends Unit<?, ?>, U2 extends Unit<?, ?>>
      * @see org.java0.quantity.QuantityQuotient#multiplyAndCancelNumerator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U2> multiplyAndCancelNumerator(
-            Quantity<InverseUnit<?, ?>> unit) {
+    public Quantity<U2, ?> multiplyAndCancelNumerator(
+            Quantity<InverseUnit<U2, ?>, ?> unit) {
         return null;
     }
 
@@ -76,7 +76,8 @@ public class QuantityQuotientImpl<U1 extends Unit<?, ?>, U2 extends Unit<?, ?>>
      * @see org.java0.quantity.QuantityQuotient#divideAndCancelNumerator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U2> divideAndCancelNumerator(Quantity<U1> unit) {
+    public Quantity<U2, ?> divideAndCancelNumerator(Quantity<U1, ?> unit) {
         return null;
     }
+
 }

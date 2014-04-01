@@ -25,7 +25,7 @@ import org.java0.unit.impl.OffsetUnit;
  * 
  */
 
-public abstract class TemperatureUnit<T extends TemperatureUnit<T>> extends
+public abstract class TemperatureUnit<T extends TemperatureUnit<?>> extends
         OffsetUnit<TemperatureUnit<?>, T> {
     /**
      * Create a new TemperatureUnit.

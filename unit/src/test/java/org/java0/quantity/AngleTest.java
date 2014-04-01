@@ -27,21 +27,21 @@ public class AngleTest {
 
     @Test
     public void test1() {
-        Angle a = new Angle(360, DegreesUnit.INSTANCE);
+        Angle<?> a = new Angle<DegreesUnit>(360, DegreesUnit.INSTANCE);
         double b = a.value(DegreesUnit.INSTANCE).doubleValue();
         Assert.assertEquals(360.0, b, SMALL_AMOUNT);
     }
 
     @Test
     public void test2() {
-        Angle a = new Angle(360, DegreesUnit.INSTANCE);
+        Angle<?> a = new Angle<DegreesUnit>(360, DegreesUnit.INSTANCE);
         double b = a.value(RadiansUnit.INSTANCE).doubleValue();
         Assert.assertEquals(Math.PI * 2, b, SMALL_AMOUNT);
     }
 
     @Test
     public void test3() {
-        Angle a = new Angle(Math.PI * 4, RadiansUnit.INSTANCE);
+        Angle<?> a = new Angle<RadiansUnit>(Math.PI * 4, RadiansUnit.INSTANCE);
         double b = a.value(DegreesUnit.INSTANCE).doubleValue();
         Assert.assertEquals(720.0, b, SMALL_AMOUNT);
     }

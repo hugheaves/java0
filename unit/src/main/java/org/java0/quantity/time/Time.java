@@ -23,7 +23,7 @@ import org.java0.unit.time.TimeUnit;
  * @author Hugh Eaves
  * 
  */
-public class Time extends QuantityImpl<TimeUnit<?>> {
+public class Time<T extends TimeUnit<?>> extends QuantityImpl<TimeUnit<?>, T> {
 
     /**
      * @param value
