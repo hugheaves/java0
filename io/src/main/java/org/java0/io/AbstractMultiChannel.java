@@ -17,6 +17,8 @@
 package org.java0.io;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -27,6 +29,8 @@ public abstract class AbstractMultiChannel implements MultiChannel {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
             .getLogger(AbstractMultiChannel.class.getName());
+
+    protected Map<ChannelId<?>, ObjectChannel> channels = new HashMap<ChannelId<?>, ObjectChannel>();
 
     /**
      * @see java.nio.channels.Channel#isOpen()
@@ -67,6 +71,15 @@ public abstract class AbstractMultiChannel implements MultiChannel {
     public <T> void configureBlocking(ChannelId<T> channel, boolean blocking)
             throws IOException {
         getChannel(channel).configureBlocking(blocking);
+    }
 
+    @Override
+    public <T extends Object> ObjectChannel getChannel(ChannelId<T> channelId) {
+        return channels.get(channelId);
+    }
+
+    protected <T extends Object> void addChannel(ChannelId<T> channelId,
+            ObjectChannel channel) {
+        channels.put(channelId, channel);
     }
 }
