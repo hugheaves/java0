@@ -26,35 +26,34 @@ import org.java0.core.type.NamedObject;
  * @param <U>
  *            the generic type
  */
-public interface Unit<UNIT_TYPE extends Unit<?>> extends
-        NamedObject
+public interface Unit<BASE_UNIT extends Unit<?>> extends NamedObject
 /* ,org.unitsofmeasurement.unit.Unit<NumericQuantity<U>> */{
 
     /**
      * Returns the product of two numeric units.
      */
-    public <LOWER_BOUND extends Unit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> UnitProduct<UNIT_TYPE, LOWER_BOUND> multiply(
-            PARAM_UNIT_TYPE unit);
+    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
+            PARAM_UNIT unit);
 
     /**
      * Returns the quotient of two numeric units.
      */
-    public <LOWER_BOUND extends Unit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> UnitQuotient<UNIT_TYPE, LOWER_BOUND> divide(
-            PARAM_UNIT_TYPE unit);
+    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(
+            PARAM_UNIT unit);
 
     /**
      * Returns the inverse of this unit.
      * 
      * @return the inverse unit
      */
-    public InverseUnit<UNIT_TYPE> invert();
+    public InverseUnit<BASE_UNIT> invert();
 
     /**
      * Returns the system unit compatible with this Unit.
      * 
      * @return the system unit compatible with this Unit.
      */
-    public UNIT_TYPE getSystemUnit();
+    public Unit<BASE_UNIT> getSystemUnit();
 
     /**
      * Returns whether or not this unit is a system unit.

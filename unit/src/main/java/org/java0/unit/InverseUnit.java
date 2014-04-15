@@ -22,14 +22,14 @@ package org.java0.unit;
  * of just UNIT)
  * 
  * @author Hugh Eaves
- * @param <U>
+ * @param <BASE_UNIT>
  *            the generic type
  */
-public interface InverseUnit<U extends Unit<?>> extends Unit<U> {
+public interface InverseUnit<BASE_UNIT extends Unit<?>> extends Unit<BASE_UNIT> {
     /**
      * Returns the uninverted unit. (or the inverse of the inverse).
      * 
      * @return the uninverted unit.
      */
-    public U uninvert();
+    public Unit<BASE_UNIT> uninvert();
 }

@@ -28,11 +28,11 @@ import org.java0.unit.UnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public abstract class AbstractUnit<UNIT_TYPE extends Unit<?>>
-        extends AbstractNamedObject implements Unit<UNIT_TYPE> {
+public abstract class AbstractUnit<BASE_UNIT extends Unit<?>> extends
+        AbstractNamedObject implements Unit<BASE_UNIT> {
     @SuppressWarnings("unused")
-    private static final Logger logger = Logger
-            .getLogger(AbstractUnit.class.getName());
+    private static final Logger logger = Logger.getLogger(AbstractUnit.class
+            .getName());
 
     /**
      * Create a new AbstractNumericUnit.
@@ -82,7 +82,7 @@ public abstract class AbstractUnit<UNIT_TYPE extends Unit<?>>
      * @see org.java0.unit.Unit#invert()
      */
     @Override
-    public InverseUnit<UNIT_TYPE> invert() {
+    public InverseUnit<BASE_UNIT> invert() {
         // return new InverseUnitImpl<UNIT_TYPE>((UNIT_TYPE) this);
         return null;
     }
@@ -98,23 +98,21 @@ public abstract class AbstractUnit<UNIT_TYPE extends Unit<?>>
     /**
      * Returns the product of two numeric units.
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public <LOWER_BOUND extends Unit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> UnitProduct<UNIT_TYPE, LOWER_BOUND> multiply(
-            PARAM_UNIT_TYPE unit) {
-        return new UnitProductImpl<UNIT_TYPE, LOWER_BOUND>(
-                (UNIT_TYPE) this, unit);
+    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
+            PARAM_UNIT unit) {
+        return new UnitProductImpl<BASE_UNIT, PARAM_BASE_UNIT>(
+                (BASE_UNIT) this, (PARAM_BASE_UNIT) unit);
     }
 
-    /**
+    /*
      * Returns the quotient of two numeric units.
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public <LOWER_BOUND extends Unit<?>, PARAM_UNIT_TYPE extends LOWER_BOUND> UnitQuotient<UNIT_TYPE, LOWER_BOUND> divide(
-            PARAM_UNIT_TYPE unit) {
-        return new UnitQuotientImpl<UNIT_TYPE, LOWER_BOUND>(
-                (UNIT_TYPE) this, unit);
+    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(
+            PARAM_UNIT unit) {
+        return new UnitQuotientImpl<BASE_UNIT, PARAM_BASE_UNIT>(
+                (BASE_UNIT) this, (PARAM_BASE_UNIT) unit);
     }
 
 }

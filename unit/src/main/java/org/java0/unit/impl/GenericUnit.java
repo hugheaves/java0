@@ -18,13 +18,15 @@ package org.java0.unit.impl;
 
 import java.util.logging.Logger;
 
+import org.java0.unit.Unit;
+
 /**
  * @author Hugh Eaves
  * 
  */
 public class GenericUnit extends OffsetUnit<GenericUnit> {
-    private static final GenericUnit SYSTEM_UNIT = new GenericUnit("generic",
-            1, 0);
+    private static final Unit<GenericUnit> SYSTEM_UNIT = new GenericUnit(
+            "generic", 1, 0);
 
     /**
      * Create a new GenericUnit.
@@ -47,7 +49,7 @@ public class GenericUnit extends OffsetUnit<GenericUnit> {
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override
-    public GenericUnit getSystemUnit() {
+    public Unit<GenericUnit> getSystemUnit() {
         return SYSTEM_UNIT;
     }
 }

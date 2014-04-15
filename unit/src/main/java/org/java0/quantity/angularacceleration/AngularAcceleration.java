@@ -17,8 +17,8 @@
 package org.java0.quantity.angularacceleration;
 
 import org.java0.quantity.impl.QuantityQuotientImpl;
-import org.java0.unit.angularacceleration.AngularAccelerationUnit;
-import org.java0.unit.angularvelocity.AngularVelocityUnit;
+import org.java0.unit.UnitQuotient;
+import org.java0.unit.angle.AngleUnit;
 import org.java0.unit.time.TimeUnit;
 
 /**
@@ -26,13 +26,14 @@ import org.java0.unit.time.TimeUnit;
  * 
  */
 public class AngularAcceleration extends
-        QuantityQuotientImpl<AngularVelocityUnit, TimeUnit> {
+        QuantityQuotientImpl<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit> {
 
     /**
      * @param value
      * @param unit
      */
-    public AngularAcceleration(Number value, AngularAccelerationUnit unit) {
+    public AngularAcceleration(Number value,
+            UnitQuotient<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit> unit) {
         super(value, unit);
     }
 }

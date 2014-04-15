@@ -28,21 +28,21 @@ package org.java0.unit;
  * @param <T>
  *            the generic type
  */
-public interface BinaryUnit<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>, UNIT_TYPE extends Unit<?>>
-        extends Unit<UNIT_TYPE> {
+public interface BinaryUnit<UNIT_1 extends Unit<?>, UNIT_2 extends Unit<?>, COMBINED_UNIT extends Unit<?>>
+        extends Unit<COMBINED_UNIT> {
     /**
      * Returns the first / left unit of this binary numeric unit.
      * 
      * @return a unit
      */
-    public UNIT_1_TYPE getUnit1();
+    public UNIT_1 getUnit1();
 
     /**
      * Returns the second / right unit of this binary numeric unit.
      * 
      * @return a unit
      */
-    public UNIT_2_TYPE getUnit2();
+    public UNIT_2 getUnit2();
 
     /**
      * Gets the relationship between these two units;.

@@ -24,13 +24,13 @@ import org.java0.unit.UnitProduct;
  * @author Hugh Eaves
  * 
  */
-public class UnitProductImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>>
+public class UnitProductImpl<UNIT_1 extends Unit<?>, UNIT_2 extends Unit<?>>
         extends
-        BinaryUnitImpl<UNIT_1_TYPE, UNIT_2_TYPE, UnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>>
-        implements UnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>
+        BinaryUnitImpl<UNIT_1, UNIT_2, UnitProduct<UNIT_1, UNIT_2>>
+        implements UnitProduct<UNIT_1, UNIT_2>
 
 {
-    public UnitProductImpl(UNIT_1_TYPE unit1, UNIT_2_TYPE unit2) {
+    public UnitProductImpl(UNIT_1 unit1, UNIT_2 unit2) {
         super("*", unit1, unit2);
     }
 
@@ -53,13 +53,13 @@ public class UnitProductImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Un
      */
     @SuppressWarnings("unchecked")
     @Override
-    public UnitProduct<UNIT_1_TYPE, UNIT_2_TYPE> getSystemUnit() {
+    public UnitProduct<UNIT_1, UNIT_2> getSystemUnit() {
         if (isSystemUnit()) {
             return this;
         } else {
-            return new UnitProductImpl<UNIT_1_TYPE, UNIT_2_TYPE>(
-                    (UNIT_1_TYPE) unit1.getSystemUnit(),
-                    (UNIT_2_TYPE) unit2.getSystemUnit());
+            return new UnitProductImpl<UNIT_1, UNIT_2>(
+                    (UNIT_1) unit1.getSystemUnit(),
+                    (UNIT_2) unit2.getSystemUnit());
         }
     }
 
@@ -67,7 +67,7 @@ public class UnitProductImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Un
      * @see org.java0.unit.UnitProduct#multiplyAndCancel2(org.java0.unit.InverseUnit)
      */
     @Override
-    public UNIT_1_TYPE multiplyAndCancel2(InverseUnit<UNIT_2_TYPE> unit) {
+    public UNIT_1 multiplyAndCancel2(InverseUnit<UNIT_2> unit) {
         return unit1;
     }
 
@@ -75,7 +75,7 @@ public class UnitProductImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Un
      * @see org.java0.unit.UnitProduct#multiplyAndCancel1(org.java0.unit.InverseUnit)
      */
     @Override
-    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit) {
+    public UNIT_2 multiplyAndCancel1(InverseUnit<UNIT_1> unit) {
         return unit2;
     }
 
@@ -83,7 +83,7 @@ public class UnitProductImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Un
      * @see org.java0.unit.UnitProduct#divideAndCancel2(org.java0.unit.Unit)
      */
     @Override
-    public UNIT_1_TYPE divideAndCancel2(UNIT_2_TYPE unit) {
+    public UNIT_1 divideAndCancel2(UNIT_2 unit) {
         return unit1;
     }
 
@@ -91,7 +91,7 @@ public class UnitProductImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Un
      * @see org.java0.unit.UnitProduct#divideAndCancel1(org.java0.unit.Unit)
      */
     @Override
-    public UNIT_2_TYPE divideAndCancel1(UNIT_1_TYPE unit) {
+    public UNIT_2 divideAndCancel1(UNIT_1 unit) {
         return unit2;
     }
 }

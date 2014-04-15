@@ -26,16 +26,16 @@ import org.java0.unit.UnitProduct;
  * @author Hugh Eaves
  * 
  */
-public abstract class BinaryUnitImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>, UNIT_TYPE extends Unit<?>>
-        extends AbstractUnit<UNIT_TYPE> implements
-        BinaryUnit<UNIT_1_TYPE, UNIT_2_TYPE, UNIT_TYPE> {
+public abstract class BinaryUnitImpl<UNIT_1 extends Unit<?>, UNIT_2 extends Unit<?>, COMBINED_UNIT extends Unit<?>>
+        extends AbstractUnit<COMBINED_UNIT> implements
+        BinaryUnit<UNIT_1, UNIT_2, COMBINED_UNIT> {
 
     @SuppressWarnings("unused")
-    private static final Logger logger = Logger
-            .getLogger(BinaryUnitImpl.class.getName());
+    private static final Logger logger = Logger.getLogger(BinaryUnitImpl.class
+            .getName());
 
-    protected UNIT_1_TYPE unit1;
-    protected UNIT_2_TYPE unit2;
+    protected UNIT_1 unit1;
+    protected UNIT_2 unit2;
     protected String operator;
 
     /**
@@ -43,7 +43,7 @@ public abstract class BinaryUnitImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE ex
      * 
      * @param name
      */
-    public BinaryUnitImpl(String operator, UNIT_1_TYPE unit1, UNIT_2_TYPE unit2) {
+    public BinaryUnitImpl(String operator, UNIT_1 unit1, UNIT_2 unit2) {
         super("(" + unit1.getName() + " " + operator + " " + unit2.getName()
                 + ")");
         this.unit1 = unit1;
@@ -87,7 +87,7 @@ public abstract class BinaryUnitImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE ex
      * @see org.java0.unit.BinaryUnit#getUnit1()
      */
     @Override
-    public UNIT_1_TYPE getUnit1() {
+    public UNIT_1 getUnit1() {
         return unit1;
     }
 
@@ -95,7 +95,7 @@ public abstract class BinaryUnitImpl<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE ex
      * @see org.java0.unit.BinaryUnit#getUnit2()
      */
     @Override
-    public UNIT_2_TYPE getUnit2() {
+    public UNIT_2 getUnit2() {
         return unit2;
     }
 

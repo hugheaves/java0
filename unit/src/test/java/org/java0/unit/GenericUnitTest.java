@@ -164,10 +164,10 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test9() {
-        UnitQuotient<GenericUnit, GenericUnit> mbda = mb.divide(da);
+        Unit<UnitQuotient<GenericUnit, GenericUnit>> mbda = mb.divide(da);
         logger.info(mbda.getName());
 
-        UnitQuotient<UnitQuotient<GenericUnit, GenericUnit>, GenericUnit> mbdaca = mbda
+        Unit<UnitQuotient<UnitQuotient<GenericUnit, GenericUnit>, GenericUnit>> mbdaca = mbda
                 .divide(ca);
         logger.info(mbdaca.getName());
 
@@ -193,7 +193,6 @@ public class GenericUnitTest extends BaseTest {
         UnitQuotient<UnitQuotient<GenericUnit, GenericUnit>, GenericUnit> mbdaca = mbda
                 .divide(ca);
         logger.info(mbdaca.getName());
-
         UnitProduct<GenericUnit, UnitQuotient<UnitQuotient<GenericUnit, GenericUnit>, GenericUnit>> dbmbdaca = db
                 .multiply(mbdaca);
         logger.info(mbdaca.getName());

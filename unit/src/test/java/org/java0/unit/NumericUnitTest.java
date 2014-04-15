@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 import org.java0.test.BaseTest;
 import org.java0.unit.angle.AngleUnit;
 import org.java0.unit.angle.DegreesUnit;
-import org.java0.unit.angularvelocity.AngularVelocityUnit;
 import org.java0.unit.angularvelocity.DegreesPerMillisecondUnit;
 import org.java0.unit.time.SecondsUnit;
 import org.java0.unit.time.TimeUnit;
@@ -45,7 +44,7 @@ public class NumericUnitTest extends BaseTest {
         UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit> c = b
                 .multiply(SecondsUnit.INSTANCE);
 
-        UnitQuotient<UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit>, AngularVelocityUnit> d = c
+        UnitQuotient<UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit>, UnitQuotient<AngleUnit, TimeUnit>> d = c
                 .divide(DegreesPerMillisecondUnit.INSTANCE);
 
         logger.info(d.getName());
