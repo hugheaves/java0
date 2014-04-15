@@ -196,7 +196,7 @@ public class QuantityImpl<UNIT extends Unit<UNIT>> implements Quantity<UNIT> {
     @Override
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends InverseUnit<PARAM_BASE_UNIT>>> Number multiplyAndCancel(
             PARAM_TYPE quantity) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -206,7 +206,7 @@ public class QuantityImpl<UNIT extends Unit<UNIT>> implements Quantity<UNIT> {
     @Override
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends PARAM_BASE_UNIT, PARAM_TYPE extends Quantity<? extends PARAM_BASE_UNIT>> Number divideAndCancel(
             PARAM_TYPE quantity) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
 }

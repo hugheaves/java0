@@ -16,18 +16,29 @@
  */
 package org.java0.unit.time;
 
+
 /**
+ * The Class NanosecondsUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class NanosecondsUnit extends TimeUnit {
+    
+    /** The Constant INSTANCE. */
     public static final NanosecondsUnit INSTANCE = new NanosecondsUnit();
 
+    /**
+     * Instantiates a new nanoseconds unit.
+     */
     public NanosecondsUnit() {
         super("nanoseconds", 0.000000001);
     }
 
     /**
+     * Convert from time unit.
+     *
+     * @param unit the unit
+     * @return the java.util.concurrent. time unit
      * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
      */
     @Override

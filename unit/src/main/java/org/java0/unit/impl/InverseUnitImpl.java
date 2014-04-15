@@ -19,19 +19,23 @@ package org.java0.unit.impl;
 import org.java0.unit.InverseUnit;
 import org.java0.unit.Unit;
 
+
 /**
+ * The Class InverseUnitImpl.
+ *
  * @author Hugh Eaves
- * 
+ * @param <BASE_UNIT> the generic type
  */
 public class InverseUnitImpl<BASE_UNIT extends Unit<BASE_UNIT>> extends
         AbstractUnit<InverseUnit<BASE_UNIT>> implements InverseUnit<BASE_UNIT> {
 
+    /** The target unit. */
     protected Unit<BASE_UNIT> targetUnit;
 
     /**
      * Create a new InverseImpl.
-     * 
-     * @param name
+     *
+     * @param targetUnit the target unit
      */
     public InverseUnitImpl(Unit<BASE_UNIT> targetUnit) {
         super("1/" + targetUnit.getName());
@@ -39,6 +43,9 @@ public class InverseUnitImpl<BASE_UNIT extends Unit<BASE_UNIT>> extends
     }
 
     /**
+     * Gets the system unit.
+     *
+     * @return the system unit
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override
@@ -47,6 +54,9 @@ public class InverseUnitImpl<BASE_UNIT extends Unit<BASE_UNIT>> extends
     }
 
     /**
+     * Checks if is system unit.
+     *
+     * @return true, if is system unit
      * @see org.java0.unit.Unit#isSystemUnit()
      */
     @Override
@@ -55,6 +65,10 @@ public class InverseUnitImpl<BASE_UNIT extends Unit<BASE_UNIT>> extends
     }
 
     /**
+     * Convert to system.
+     *
+     * @param value the value
+     * @return the number
      * @see org.java0.unit.Unit#convertToSystem(java.lang.Object)
      */
     @Override
@@ -63,6 +77,10 @@ public class InverseUnitImpl<BASE_UNIT extends Unit<BASE_UNIT>> extends
     }
 
     /**
+     * Convert from system.
+     *
+     * @param value the value
+     * @return the number
      * @see org.java0.unit.Unit#convertFromSystem(java.lang.Object)
      */
     @Override
@@ -71,6 +89,9 @@ public class InverseUnitImpl<BASE_UNIT extends Unit<BASE_UNIT>> extends
     }
 
     /**
+     * Uninvert.
+     *
+     * @return the unit
      * @see org.java0.unit.InverseUnit#uninvert()
      */
     @Override

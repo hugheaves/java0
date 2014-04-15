@@ -20,17 +20,21 @@ import java.util.logging.Logger;
 
 import org.java0.unit.impl.OffsetUnit;
 
+
 /**
+ * The Class TemperatureUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public abstract class TemperatureUnit extends
         OffsetUnit<TemperatureUnit> {
+    
     /**
      * Create a new TemperatureUnit.
-     * 
-     * @param name
-     * @param toSystemUnitConversionFactor
+     *
+     * @param name the name
+     * @param toSystemUnitConversionFactor the to system unit conversion factor
+     * @param toSystemUnitOffset the to system unit offset
      */
     public TemperatureUnit(String name, double toSystemUnitConversionFactor,
             double toSystemUnitOffset) {
@@ -38,11 +42,15 @@ public abstract class TemperatureUnit extends
 
     }
 
+    /** The Constant logger. */
     @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(TemperatureUnit.class
             .getName());
 
     /**
+     * Gets the system unit.
+     *
+     * @return the system unit
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override

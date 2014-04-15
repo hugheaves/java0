@@ -51,7 +51,7 @@ public class QuantityQuotientImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Un
      */
     @Override
     public Quantity<UNIT_1> multiplyAndCancelDenominator(Quantity<UNIT_2> unit) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -60,7 +60,7 @@ public class QuantityQuotientImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Un
     @Override
     public Quantity<UNIT_1> divideAndCancelDenominator(
             Quantity<InverseUnit<UNIT_2>> unit) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -69,7 +69,7 @@ public class QuantityQuotientImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Un
     @Override
     public Quantity<UNIT_2> multiplyAndCancelNumerator(
             Quantity<InverseUnit<UNIT_1>> unit) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -77,6 +77,6 @@ public class QuantityQuotientImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Un
      */
     @Override
     public Quantity<UNIT_2> divideAndCancelNumerator(Quantity<UNIT_1> unit) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 }

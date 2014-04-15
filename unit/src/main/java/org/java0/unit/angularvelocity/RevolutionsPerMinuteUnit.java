@@ -19,13 +19,20 @@ package org.java0.unit.angularvelocity;
 import org.java0.unit.angle.Revolutions;
 import org.java0.unit.time.MinutesUnit;
 
+
 /**
+ * The Class RevolutionsPerMinuteUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public class RevolutionsPerMinuteUnit extends AngularVelocityUnit {
+    
+    /** The Constant INSTANCE. */
     public static final RevolutionsPerMinuteUnit INSTANCE = new RevolutionsPerMinuteUnit();
 
+    /**
+     * Instantiates a new revolutions per minute unit.
+     */
     public RevolutionsPerMinuteUnit() {
         super(Revolutions.INSTANCE, MinutesUnit.INSTANCE);
     }

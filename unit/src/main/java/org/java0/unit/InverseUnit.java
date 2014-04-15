@@ -16,7 +16,7 @@
  */
 package org.java0.unit;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * This class represents an "inverse" or "inverted" unit. (i.e. 1 / UNIT instead
  * of just UNIT)

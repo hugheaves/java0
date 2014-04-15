@@ -16,7 +16,7 @@
  */
 package org.java0.unit;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface NumericUnitQuotient.
  * 

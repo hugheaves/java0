@@ -20,17 +20,26 @@ import org.java0.unit.angle.AngleUnit;
 import org.java0.unit.impl.UnitQuotientImpl;
 import org.java0.unit.time.TimeUnit;
 
+
 /**
- * // * @author Hugh Eaves
- * 
+ * // * @author Hugh Eaves.
  */
 public class AngularVelocityUnit extends
         UnitQuotientImpl<AngleUnit, TimeUnit> {
 
+    /**
+     * Instantiates a new angular velocity unit.
+     *
+     * @param unit1 the unit1
+     * @param unit2 the unit2
+     */
     public AngularVelocityUnit(AngleUnit unit1, TimeUnit unit2) {
         super(unit1, unit2);
     }
 
+    /**
+     * @see org.java0.unit.impl.UnitQuotientImpl#getSystemUnit()
+     */
     @Override
     public AngularVelocityUnit getSystemUnit() {
         return RadiansPerSecondUnit.INSTANCE;

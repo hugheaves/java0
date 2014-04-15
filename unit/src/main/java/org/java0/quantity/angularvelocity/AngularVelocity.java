@@ -22,22 +22,41 @@ import org.java0.unit.UnitQuotient;
 import org.java0.unit.angle.AngleUnit;
 import org.java0.unit.time.TimeUnit;
 
+
 /**
+ * The Class AngularVelocity.
+ *
  * @author Hugh Eaves
- * 
  */
 public class AngularVelocity extends QuantityQuotientImpl<AngleUnit, TimeUnit> {
 
+    /**
+     * Instantiates a new angular velocity.
+     *
+     * @param value the value
+     * @param unit the unit
+     */
     public AngularVelocity(Number value, UnitQuotient<AngleUnit, TimeUnit> unit) {
         super(value, unit);
     }
 
+    /**
+     * Instantiates a new angular velocity.
+     *
+     * @param angularVelocity the angular velocity
+     * @param unit the unit
+     */
     public AngularVelocity(
             Quantity<UnitQuotient<AngleUnit, TimeUnit>> angularVelocity,
             UnitQuotient<AngleUnit, TimeUnit> unit) {
         super(angularVelocity.value(unit), unit);
     }
 
+    /**
+     * Instantiates a new angular velocity.
+     *
+     * @param angularVelocity the angular velocity
+     */
     public AngularVelocity(
             Quantity<UnitQuotient<AngleUnit, TimeUnit>> angularVelocity) {
         super(angularVelocity.value(), angularVelocity.unit());

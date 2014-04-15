@@ -24,12 +24,18 @@ import org.java0.unit.Unit;
 import org.java0.unit.UnitProduct;
 import org.java0.unit.UnitQuotient;
 
+
 /**
- * @author Hugh Eaves
+ * The Class AbstractUnit.
  * 
+ * @author Hugh Eaves
+ * @param <BASE_UNIT>
+ *            the generic type
  */
 public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
         AbstractNamedObject implements Unit<BASE_UNIT> {
+
+    /** The Constant logger. */
     @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(AbstractUnit.class
             .getName());
@@ -38,11 +44,15 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
      * Create a new AbstractNumericUnit.
      * 
      * @param name
+     *            the name
      */
     public AbstractUnit(String name) {
         super(name);
     }
 
+    /**
+     * @see org.java0.core.type.AbstractNamedObject#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object object) {
         if (object == null) {
@@ -54,31 +64,18 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
         }
     }
 
+    /**
+     * @see org.java0.core.type.AbstractNamedObject#hashCode()
+     */
     @Override
     public int hashCode() {
         return getClass().hashCode();
     }
 
-    //
-    // @Override
-    // public <P extends NumericUnit<P>, Q extends P> NumericUnitProduct<U, P>
-    // multiply(
-    // Q unit) {
-    // return new NumericUnitProductImpl<U, P>((U) this, unit);
-    // }
-    //
-    // /**
-    // * @see org.java0.unit.NumericUnit#divide(org.java0.unit.NumericUnit)
-    // */
-    // @Override
-    // public <P extends NumericUnit<P>, Q extends P> NumericUnitQuotient<U, P>
-    // divide(
-    // Q unit) {
-    // return new NumericUnitQuotientImpl<U, P>((U) this, unit);
-    //
-    // }
-
     /**
+     * Invert.
+     * 
+     * @return the inverse unit
      * @see org.java0.unit.Unit#invert()
      */
     @Override
@@ -88,6 +85,9 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
     }
 
     /**
+     * Checks if is system unit.
+     * 
+     * @return true, if is system unit
      * @see org.java0.unit.Unit#isSystemUnit()
      */
     @Override
@@ -97,6 +97,14 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
 
     /**
      * Returns the product of two numeric units.
+     * 
+     * @param <PARAM_BASE_UNIT>
+     *            the generic type
+     * @param <PARAM_UNIT>
+     *            the generic type
+     * @param unit
+     *            the unit
+     * @return the unit product
      */
     @Override
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
@@ -107,6 +115,9 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
 
     /*
      * Returns the quotient of two numeric units.
+     */
+    /**
+     * @see org.java0.unit.Unit#divide(org.java0.unit.Unit)
      */
     @Override
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(

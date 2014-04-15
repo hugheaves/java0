@@ -19,13 +19,20 @@ package org.java0.unit.angularvelocity;
 import org.java0.unit.angle.DegreesUnit;
 import org.java0.unit.time.MillisecondsUnit;
 
+
 /**
+ * The Class DegreesPerMillisecondUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public class DegreesPerMillisecondUnit extends AngularVelocityUnit {
+    
+    /** The Constant INSTANCE. */
     public static final DegreesPerMillisecondUnit INSTANCE = new DegreesPerMillisecondUnit();
 
+    /**
+     * Instantiates a new degrees per millisecond unit.
+     */
     public DegreesPerMillisecondUnit() {
         super(DegreesUnit.INSTANCE, MillisecondsUnit.INSTANCE);
     }

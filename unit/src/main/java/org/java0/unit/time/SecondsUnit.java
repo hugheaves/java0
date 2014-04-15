@@ -16,18 +16,29 @@
  */
 package org.java0.unit.time;
 
+
 /**
+ * The Class SecondsUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class SecondsUnit extends TimeUnit {
+    
+    /** The Constant INSTANCE. */
     public static final SecondsUnit INSTANCE = new SecondsUnit();
 
+    /**
+     * Instantiates a new seconds unit.
+     */
     public SecondsUnit() {
         super("seconds", 1.0);
     }
 
     /**
+     * Convert from time unit.
+     *
+     * @param unit the unit
+     * @return the java.util.concurrent. time unit
      * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
      */
     @Override

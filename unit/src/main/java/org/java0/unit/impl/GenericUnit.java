@@ -20,20 +20,24 @@ import java.util.logging.Logger;
 
 import org.java0.unit.Unit;
 
+
 /**
+ * The Class GenericUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public class GenericUnit extends OffsetUnit<GenericUnit> {
+    
+    /** The Constant SYSTEM_UNIT. */
     private static final Unit<GenericUnit> SYSTEM_UNIT = new GenericUnit(
             "generic", 1, 0);
 
     /**
      * Create a new GenericUnit.
-     * 
-     * @param name
-     * @param toSystemUnitConversionFactor
-     * @param toSystemUnitOffset
+     *
+     * @param name the name
+     * @param toSystemUnitConversionFactor the to system unit conversion factor
+     * @param toSystemUnitOffset the to system unit offset
      */
     public GenericUnit(String name, double toSystemUnitConversionFactor,
             double toSystemUnitOffset) {
@@ -41,11 +45,15 @@ public class GenericUnit extends OffsetUnit<GenericUnit> {
 
     }
 
+    /** The Constant logger. */
     @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(GenericUnit.class
             .getName());
 
     /**
+     * Gets the system unit.
+     *
+     * @return the system unit
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override

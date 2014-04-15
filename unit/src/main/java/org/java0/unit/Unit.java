@@ -18,12 +18,12 @@ package org.java0.unit;
 
 import org.java0.core.type.NamedObject;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface NumericUnit.
  * 
  * @author Hugh Eaves
- * @param <U>
+ * @param <BASE_UNIT>
  *            the generic type
  */
 public interface Unit<BASE_UNIT extends Unit<BASE_UNIT>> extends NamedObject
@@ -31,12 +31,28 @@ public interface Unit<BASE_UNIT extends Unit<BASE_UNIT>> extends NamedObject
 
     /**
      * Returns the product of two numeric units.
+     * 
+     * @param <PARAM_BASE_UNIT>
+     *            the generic type
+     * @param <PARAM_UNIT>
+     *            the generic type
+     * @param unit
+     *            the unit
+     * @return the unit product
      */
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
             PARAM_UNIT unit);
 
     /**
      * Returns the quotient of two numeric units.
+     * 
+     * @param <PARAM_BASE_UNIT>
+     *            the generic type
+     * @param <PARAM_UNIT>
+     *            the generic type
+     * @param unit
+     *            the unit
+     * @return the unit quotient
      */
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(
             PARAM_UNIT unit);

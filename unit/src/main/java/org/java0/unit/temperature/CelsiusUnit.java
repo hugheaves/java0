@@ -16,13 +16,20 @@
  */
 package org.java0.unit.temperature;
 
+
 /**
+ * The Class CelsiusUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class CelsiusUnit extends TemperatureUnit {
+    
+    /** The Constant INSTANCE. */
     public static final CelsiusUnit INSTANCE = new CelsiusUnit();
 
+    /**
+     * Instantiates a new celsius unit.
+     */
     private CelsiusUnit() {
         super("Celsius", 1, 0);
     }

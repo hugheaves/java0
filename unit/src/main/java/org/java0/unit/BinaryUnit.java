@@ -16,17 +16,14 @@
  */
 package org.java0.unit;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface BinaryNumericUnit.
- * 
+ *
  * @author Hugh Eaves
- * @param <U1>
- *            the generic type
- * @param <U2>
- *            the generic type
- * @param <T>
- *            the generic type
+ * @param <UNIT_1> the generic type
+ * @param <UNIT_2> the generic type
+ * @param <COMBINED_UNIT> the generic type
  */
 public interface BinaryUnit<UNIT_1 extends Unit<?>, UNIT_2 extends Unit<?>, COMBINED_UNIT extends Unit<COMBINED_UNIT>>
         extends Unit<COMBINED_UNIT> {

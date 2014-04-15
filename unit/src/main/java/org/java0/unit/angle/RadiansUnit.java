@@ -16,15 +16,23 @@
  */
 package org.java0.unit.angle;
 
+
 /**
+ * The Class RadiansUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class RadiansUnit extends AngleUnit {
+    
+    /** The Constant INSTANCE. */
     public static final RadiansUnit INSTANCE = new RadiansUnit();
 
+    /** The Constant TO_SYSTEM_UNIT_CONVERSION_FACTOR. */
     private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = 1.0;
 
+    /**
+     * Instantiates a new radians unit.
+     */
     public RadiansUnit() {
         super("radians", TO_SYSTEM_UNIT_CONVERSION_FACTOR);
     }

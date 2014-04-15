@@ -16,18 +16,30 @@
  */
 package org.java0.unit.time;
 
+
 /**
- * @author Hugh Eaves
+ * The Class DaysUnit.
  * 
+ * @author Hugh Eaves
  */
 public final class DaysUnit extends TimeUnit {
+
+    /** The Constant INSTANCE. */
     public static final DaysUnit INSTANCE = new DaysUnit();
 
+    /**
+     * Instantiates a new days unit.
+     */
     public DaysUnit() {
         super("days", 86400);
     }
 
     /**
+     * Convert from time unit.
+     * 
+     * @param unit
+     *            the unit
+     * @return the java.util.concurrent. time unit
      * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
      */
     @Override

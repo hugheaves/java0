@@ -51,7 +51,7 @@ public class QuantityProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Uni
     @Override
     public Quantity<UNIT_1> multiplyAndCancelRight(
             Quantity<InverseUnit<UNIT_2>> unit) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -60,7 +60,7 @@ public class QuantityProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Uni
     @Override
     public Quantity<UNIT_2> multiplyAndCancelLeft(
             Quantity<InverseUnit<UNIT_1>> unit) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -68,7 +68,7 @@ public class QuantityProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Uni
      */
     @Override
     public Quantity<UNIT_1> divideAndCancelRight(Quantity<UNIT_2> unit) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -76,7 +76,7 @@ public class QuantityProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Uni
      */
     @Override
     public Quantity<UNIT_2> divideAndCancelLeft(Quantity<UNIT_1> unit) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
 }

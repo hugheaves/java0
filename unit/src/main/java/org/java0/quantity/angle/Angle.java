@@ -19,18 +19,27 @@ package org.java0.quantity.angle;
 import org.java0.quantity.impl.QuantityImpl;
 import org.java0.unit.angle.AngleUnit;
 
+
 /**
- * @author Hugh Eaves
+ * The Class Angle.
  * 
+ * @author Hugh Eaves
  */
 public class Angle extends QuantityImpl<AngleUnit> {
 
+    /**
+     * Instantiates a new angle.
+     */
     protected Angle() {
     }
 
     /**
+     * Instantiates a new angle.
+     * 
      * @param value
+     *            the value
      * @param unit
+     *            the unit
      */
     public Angle(Number value, AngleUnit unit) {
         super(value, unit);

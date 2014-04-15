@@ -16,13 +16,20 @@
  */
 package org.java0.unit.power;
 
+
 /**
+ * The Class MilliwattsUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class MilliwattsUnit extends PowerUnit {
+    
+    /** The Constant INSTANCE. */
     public static final MilliwattsUnit INSTANCE = new MilliwattsUnit();
 
+    /**
+     * Instantiates a new milliwatts unit.
+     */
     public MilliwattsUnit() {
         super("milliwatts", 0.001);
     }

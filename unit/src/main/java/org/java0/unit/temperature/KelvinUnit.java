@@ -16,13 +16,20 @@
  */
 package org.java0.unit.temperature;
 
+
 /**
+ * The Class KelvinUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class KelvinUnit extends TemperatureUnit {
+    
+    /** The Constant INSTANCE. */
     public static final KelvinUnit INSTANCE = new KelvinUnit();
 
+    /**
+     * Instantiates a new kelvin unit.
+     */
     private KelvinUnit() {
         super("Kelvin", 1, 273);
     }

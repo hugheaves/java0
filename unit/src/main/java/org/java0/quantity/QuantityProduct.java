@@ -20,9 +20,15 @@ import org.java0.unit.InverseUnit;
 import org.java0.unit.Unit;
 import org.java0.unit.UnitProduct;
 
+
 /**
- * @author Hugh Eaves
+ * The Interface QuantityProduct.
  * 
+ * @author Hugh Eaves
+ * @param <UNIT_1>
+ *            the generic type
+ * @param <UNIT_2>
+ *            the generic type
  */
 public interface QuantityProduct<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>>
         extends Quantity<UnitProduct<UNIT_1, UNIT_2>> {
@@ -32,6 +38,7 @@ public interface QuantityProduct<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Uni
      * given quantity.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
     public Quantity<UNIT_1> multiplyAndCancelRight(
@@ -42,6 +49,7 @@ public interface QuantityProduct<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Uni
      * given quantity.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
     public Quantity<UNIT_2> multiplyAndCancelLeft(
@@ -52,6 +60,7 @@ public interface QuantityProduct<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Uni
      * given quantity.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
     public Quantity<UNIT_1> divideAndCancelRight(Quantity<UNIT_2> unit);
@@ -61,6 +70,7 @@ public interface QuantityProduct<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Uni
      * given quantity.
      * 
      * @param unit
+     *            the unit
      * @return a unit
      */
     public Quantity<UNIT_2> divideAndCancelLeft(Quantity<UNIT_1> unit);

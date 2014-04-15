@@ -18,21 +18,41 @@ package org.java0.unit.time;
 
 import org.java0.unit.impl.ScalableUnit;
 
+
 /**
+ * The Class TimeUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public abstract class TimeUnit extends ScalableUnit<TimeUnit> {
 
+    /**
+     * Instantiates a new time unit.
+     *
+     * @param name the name
+     * @param toSystemUnitConversionFactor the to system unit conversion factor
+     */
     public TimeUnit(String name, double toSystemUnitConversionFactor) {
         super(name, toSystemUnitConversionFactor);
     }
 
+    /**
+     * Gets the system unit.
+     *
+     * @return the system unit
+     * @see org.java0.unit.Unit#getSystemUnit()
+     */
     @Override
     public TimeUnit getSystemUnit() {
         return SecondsUnit.INSTANCE;
     }
 
+    /**
+     * Convert to time unit.
+     *
+     * @param unit the unit
+     * @return the time unit
+     */
     public static TimeUnit convertToTimeUnit(java.util.concurrent.TimeUnit unit) {
         switch (unit) {
         case DAYS:
@@ -54,6 +74,12 @@ public abstract class TimeUnit extends ScalableUnit<TimeUnit> {
         }
     }
 
+    /**
+     * Convert from time unit.
+     *
+     * @param unit the unit
+     * @return the java.util.concurrent. time unit
+     */
     public abstract java.util.concurrent.TimeUnit convertFromTimeUnit(
             TimeUnit unit);
 

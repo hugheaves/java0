@@ -16,15 +16,23 @@
  */
 package org.java0.unit.angle;
 
+
 /**
+ * The Class Revolutions.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class Revolutions extends AngleUnit {
+    
+    /** The Constant INSTANCE. */
     public static final Revolutions INSTANCE = new Revolutions();
 
+    /** The Constant TO_SYSTEM_UNIT_CONVERSION_FACTOR. */
     private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = Math.PI * 2;
 
+    /**
+     * Instantiates a new revolutions.
+     */
     public Revolutions() {
         super("revolutions", TO_SYSTEM_UNIT_CONVERSION_FACTOR);
     }

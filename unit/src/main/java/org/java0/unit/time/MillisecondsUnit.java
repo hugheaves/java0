@@ -16,18 +16,29 @@
  */
 package org.java0.unit.time;
 
+
 /**
+ * The Class MillisecondsUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class MillisecondsUnit extends TimeUnit {
+    
+    /** The Constant INSTANCE. */
     public static final MillisecondsUnit INSTANCE = new MillisecondsUnit();
 
+    /**
+     * Instantiates a new milliseconds unit.
+     */
     public MillisecondsUnit() {
         super("milliseconds", 0.001);
     }
 
     /**
+     * Convert from time unit.
+     *
+     * @param unit the unit
+     * @return the java.util.concurrent. time unit
      * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
      */
     @Override

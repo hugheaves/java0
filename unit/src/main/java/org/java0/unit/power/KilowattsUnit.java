@@ -16,13 +16,20 @@
  */
 package org.java0.unit.power;
 
+
 /**
+ * The Class KilowattsUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class KilowattsUnit extends PowerUnit {
+    
+    /** The Constant INSTANCE. */
     public static final KilowattsUnit INSTANCE = new KilowattsUnit();
 
+    /**
+     * Instantiates a new kilowatts unit.
+     */
     public KilowattsUnit() {
         super("kilowatts", 1000);
     }

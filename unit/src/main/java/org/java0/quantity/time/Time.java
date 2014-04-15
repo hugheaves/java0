@@ -19,20 +19,30 @@ package org.java0.quantity.time;
 import org.java0.quantity.impl.QuantityImpl;
 import org.java0.unit.time.TimeUnit;
 
+
 /**
+ * The Class Time.
+ *
  * @author Hugh Eaves
- * 
  */
 public class Time extends QuantityImpl<TimeUnit> {
 
     /**
-     * @param value
-     * @param unit
+     * Instantiates a new time.
+     *
+     * @param value the value
+     * @param unit the unit
      */
     public Time(Number value, TimeUnit unit) {
         super(value, unit);
     }
 
+    /**
+     * Instantiates a new time.
+     *
+     * @param value the value
+     * @param unit the unit
+     */
     public Time(Number value, java.util.concurrent.TimeUnit unit) {
         super(value, TimeUnit.convertToTimeUnit(unit));
     }

@@ -19,13 +19,20 @@ package org.java0.unit.angularacceleration;
 import org.java0.unit.angularvelocity.RadiansPerSecondUnit;
 import org.java0.unit.time.SecondsUnit;
 
+
 /**
+ * The Class RadiansPerSecondPerSecondUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public class RadiansPerSecondPerSecondUnit extends AngularAccelerationUnit {
+    
+    /** The Constant INSTANCE. */
     public static final RadiansPerSecondPerSecondUnit INSTANCE = new RadiansPerSecondPerSecondUnit();
 
+    /**
+     * Instantiates a new radians per second per second unit.
+     */
     public RadiansPerSecondPerSecondUnit() {
         super(RadiansPerSecondUnit.INSTANCE, SecondsUnit.INSTANCE);
     }

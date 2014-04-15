@@ -19,9 +19,12 @@ package org.java0.quantity;
 import org.java0.unit.InverseUnit;
 import org.java0.unit.Unit;
 
+
 /**
+ * The Interface Quantity.
+ *
  * @author Hugh Eaves
- * 
+ * @param <UNIT> the generic type
  */
 public interface Quantity<UNIT extends Unit<UNIT>> extends
         Comparable<Quantity<UNIT>>
@@ -29,51 +32,57 @@ public interface Quantity<UNIT extends Unit<UNIT>> extends
 
     /**
      * Subtracts the given quantity from this one.
-     * 
-     * @param quantity
-     * @return
+     *
+     * @param quantity the quantity
+     * @return the quantity
      */
     public Quantity<UNIT> subtract(Quantity<UNIT> quantity);
 
     /**
      * Adds the given quantity to this one.
-     * 
-     * @param quantity
-     * @return
+     *
+     * @param quantity the quantity
+     * @return the quantity
      */
     public Quantity<UNIT> add(Quantity<UNIT> quantity);
 
     /**
      * Multiplies the given quantity by this one.
-     * 
-     * @param quantity
-     * @return
+     *
+     * @param <PARAM_BASE_UNIT> the generic type
+     * @param <PARAM_UNIT> the generic type
+     * @param <PARAM_TYPE> the generic type
+     * @param quantity the quantity
+     * @return the quantity product
      */
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityProduct<UNIT, PARAM_BASE_UNIT> multiply(
             PARAM_TYPE quantity);
 
     /**
      * Divides this quantity by the given one.
-     * 
-     * @param quantity
-     * @return
+     *
+     * @param <PARAM_BASE_UNIT> the generic type
+     * @param <PARAM_UNIT> the generic type
+     * @param <PARAM_TYPE> the generic type
+     * @param quantity the quantity
+     * @return the quantity quotient
      */
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityQuotient<UNIT, PARAM_BASE_UNIT> divide(
             PARAM_TYPE quantity);
 
     /**
      * Scales this quantity by multiplying by the given amount.
-     * 
-     * @param quantity
-     * @return
+     *
+     * @param quantity the quantity
+     * @return the quantity
      */
     public Quantity<UNIT> multiply(Number quantity);
 
     /**
      * Scales this quantity by dividing by the given amount.
-     * 
-     * @param quantity
-     * @return
+     *
+     * @param quantity the quantity
+     * @return the quantity
      */
     public Quantity<UNIT> divide(Number quantity);
 
@@ -86,9 +95,9 @@ public interface Quantity<UNIT extends Unit<UNIT>> extends
 
     /**
      * Returns the value of this Quantity, expressed in the given Unit.
-     * 
-     * @param unit
-     *            the unit in which the value of this Quantity should be
+     *
+     * @param <A> the generic type
+     * @param unit            the unit in which the value of this Quantity should be
      *            expressed.
      * @return the value of this Quantity, expressed in the given Unit.
      */
@@ -96,26 +105,38 @@ public interface Quantity<UNIT extends Unit<UNIT>> extends
 
     /**
      * Returns the value of this Quantity expressed in its Unit.
-     * 
-     * @return
+     *
+     * @return the number
      */
     public Number value();
 
     /**
-     * @return
+     * Abs.
+     *
+     * @return the quantity
      */
     public Quantity<UNIT> abs();
 
     /**
-     * @param quantity
-     * @return
+     * Multiply and cancel.
+     *
+     * @param <PARAM_BASE_UNIT> the generic type
+     * @param <PARAM_UNIT> the generic type
+     * @param <PARAM_TYPE> the generic type
+     * @param quantity the quantity
+     * @return the number
      */
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends InverseUnit<PARAM_BASE_UNIT>>> Number multiplyAndCancel(
             PARAM_TYPE quantity);
 
     /**
-     * @param quantity
-     * @return
+     * Divide and cancel.
+     *
+     * @param <PARAM_BASE_UNIT> the generic type
+     * @param <PARAM_UNIT> the generic type
+     * @param <PARAM_TYPE> the generic type
+     * @param quantity the quantity
+     * @return the number
      */
     public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends PARAM_BASE_UNIT, PARAM_TYPE extends Quantity<? extends PARAM_BASE_UNIT>> Number divideAndCancel(
             PARAM_TYPE quantity);

@@ -20,19 +20,33 @@ import org.java0.unit.InverseUnit;
 import org.java0.unit.Unit;
 import org.java0.unit.UnitProduct;
 
+
 /**
+ * The Class UnitProductImpl.
+ *
  * @author Hugh Eaves
- * 
+ * @param <UNIT_1> the generic type
+ * @param <UNIT_2> the generic type
  */
 public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>>
         extends BinaryUnitImpl<UNIT_1, UNIT_2, UnitProduct<UNIT_1, UNIT_2>>
         implements UnitProduct<UNIT_1, UNIT_2>
 
 {
+    
+    /**
+     * Instantiates a new unit product impl.
+     *
+     * @param unit1 the unit1
+     * @param unit2 the unit2
+     */
     public UnitProductImpl(UNIT_1 unit1, UNIT_2 unit2) {
         super("*", unit1, unit2);
     }
 
+    /**
+     * @see org.java0.unit.Unit#convertToSystem(java.lang.Number)
+     */
     @Override
     public Number convertToSystem(Number value) {
         Number value1 = unit1.convertToSystem(value);
@@ -40,6 +54,9 @@ public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UN
         return value2;
     }
 
+    /**
+     * @see org.java0.unit.Unit#convertFromSystem(java.lang.Number)
+     */
     @Override
     public Number convertFromSystem(Number value) {
         Number value1 = unit1.convertFromSystem(value);
@@ -48,6 +65,9 @@ public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UN
     }
 
     /**
+     * Gets the system unit.
+     *
+     * @return the system unit
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @SuppressWarnings("unchecked")
@@ -63,6 +83,10 @@ public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UN
     }
 
     /**
+     * Multiply and cancel2.
+     *
+     * @param unit the unit
+     * @return the UNI t_1
      * @see org.java0.unit.UnitProduct#multiplyAndCancel2(org.java0.unit.InverseUnit)
      */
     @Override
@@ -71,6 +95,10 @@ public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UN
     }
 
     /**
+     * Multiply and cancel1.
+     *
+     * @param unit the unit
+     * @return the UNI t_2
      * @see org.java0.unit.UnitProduct#multiplyAndCancel1(org.java0.unit.InverseUnit)
      */
     @Override
@@ -79,6 +107,10 @@ public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UN
     }
 
     /**
+     * Divide and cancel2.
+     *
+     * @param unit the unit
+     * @return the UNI t_1
      * @see org.java0.unit.UnitProduct#divideAndCancel2(org.java0.unit.Unit)
      */
     @Override
@@ -87,6 +119,10 @@ public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UN
     }
 
     /**
+     * Divide and cancel1.
+     *
+     * @param unit the unit
+     * @return the UNI t_2
      * @see org.java0.unit.UnitProduct#divideAndCancel1(org.java0.unit.Unit)
      */
     @Override

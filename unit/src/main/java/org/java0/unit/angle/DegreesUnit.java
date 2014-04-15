@@ -16,15 +16,23 @@
  */
 package org.java0.unit.angle;
 
+
 /**
+ * The Class DegreesUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class DegreesUnit extends AngleUnit {
+    
+    /** The Constant INSTANCE. */
     public static final DegreesUnit INSTANCE = new DegreesUnit();
 
+    /** The Constant TO_SYSTEM_UNIT_CONVERSION_FACTOR. */
     private static final double TO_SYSTEM_UNIT_CONVERSION_FACTOR = Math.PI / 180;
 
+    /**
+     * Instantiates a new degrees unit.
+     */
     public DegreesUnit() {
         super("degrees", TO_SYSTEM_UNIT_CONVERSION_FACTOR);
     }

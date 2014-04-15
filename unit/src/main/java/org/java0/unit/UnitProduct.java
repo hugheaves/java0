@@ -16,14 +16,14 @@
  */
 package org.java0.unit;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface NumericUnitProduct.
  * 
  * @author Hugh Eaves
- * @param <U1>
+ * @param <UNIT_1_TYPE>
  *            the generic type
- * @param <U2>
+ * @param <UNIT_2_TYPE>
  *            the generic type
  */
 public interface UnitProduct<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE extends Unit<UNIT_2_TYPE>>

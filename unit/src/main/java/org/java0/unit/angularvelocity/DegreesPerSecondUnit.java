@@ -19,7 +19,7 @@ package org.java0.unit.angularvelocity;
 import org.java0.unit.angle.DegreesUnit;
 import org.java0.unit.time.SecondsUnit;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class DegreesPerSecondUnit.
  * 

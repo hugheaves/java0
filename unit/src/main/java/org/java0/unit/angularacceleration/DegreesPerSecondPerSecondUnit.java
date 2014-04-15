@@ -19,13 +19,20 @@ package org.java0.unit.angularacceleration;
 import org.java0.unit.angularvelocity.DegreesPerSecondUnit;
 import org.java0.unit.time.SecondsUnit;
 
+
 /**
+ * The Class DegreesPerSecondPerSecondUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public class DegreesPerSecondPerSecondUnit extends AngularAccelerationUnit {
+    
+    /** The Constant INSTANCE. */
     public static final DegreesPerSecondPerSecondUnit INSTANCE = new DegreesPerSecondPerSecondUnit();
 
+    /**
+     * Instantiates a new degrees per second per second unit.
+     */
     public DegreesPerSecondPerSecondUnit() {
         super(DegreesPerSecondUnit.INSTANCE, SecondsUnit.INSTANCE);
     }

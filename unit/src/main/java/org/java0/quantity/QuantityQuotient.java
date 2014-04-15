@@ -20,9 +20,13 @@ import org.java0.unit.InverseUnit;
 import org.java0.unit.Unit;
 import org.java0.unit.UnitQuotient;
 
+
 /**
+ * The Interface QuantityQuotient.
+ *
  * @author Hugh Eaves
- * 
+ * @param <UNIT_1> the generic type
+ * @param <UNIT_2> the generic type
  */
 public interface QuantityQuotient<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>>
         extends Quantity<UnitQuotient<UNIT_1, UNIT_2>> {
@@ -30,8 +34,8 @@ public interface QuantityQuotient<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Un
     /**
      * Returns this quantity with the denominator unit cancelled by multiplying
      * by the given quantity.
-     * 
-     * @param unit
+     *
+     * @param unit the unit
      * @return a unit
      */
     public Quantity<UNIT_1> multiplyAndCancelDenominator(Quantity<UNIT_2> unit);
@@ -39,8 +43,8 @@ public interface QuantityQuotient<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Un
     /**
      * Returns this quantity with the denominator unit cancelled by dividing by
      * the given quantity.
-     * 
-     * @param unit
+     *
+     * @param unit the unit
      * @return a unit
      */
     public Quantity<UNIT_1> divideAndCancelDenominator(
@@ -49,8 +53,8 @@ public interface QuantityQuotient<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Un
     /**
      * Returns this quantity with the numerator unit cancelled by multiplying by
      * the given quantity.
-     * 
-     * @param unit
+     *
+     * @param unit the unit
      * @return a unit
      */
     public Quantity<UNIT_2> multiplyAndCancelNumerator(
@@ -59,8 +63,8 @@ public interface QuantityQuotient<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Un
     /**
      * Returns this quantity with the numerator unit cancelled by dividing by
      * the given quantity.
-     * 
-     * @param unit
+     *
+     * @param unit the unit
      * @return a unit
      */
     public Quantity<UNIT_2> divideAndCancelNumerator(Quantity<UNIT_1> unit);

@@ -16,13 +16,20 @@
  */
 package org.java0.unit.temperature;
 
+
 /**
+ * The Class FahrenheitUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public class FahrenheitUnit extends TemperatureUnit {
+    
+    /** The Constant INSTANCE. */
     public static final FahrenheitUnit INSTANCE = new FahrenheitUnit();
 
+    /**
+     * Instantiates a new fahrenheit unit.
+     */
     private FahrenheitUnit() {
         super("Fahrenheit", (5.0 / 9.0), -32);
     }

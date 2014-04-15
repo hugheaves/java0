@@ -16,18 +16,29 @@
  */
 package org.java0.unit.time;
 
+
 /**
+ * The Class HoursUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class HoursUnit extends TimeUnit {
+    
+    /** The Constant INSTANCE. */
     public static final HoursUnit INSTANCE = new HoursUnit();
 
+    /**
+     * Instantiates a new hours unit.
+     */
     public HoursUnit() {
         super("hours", 3600);
     }
 
     /**
+     * Convert from time unit.
+     *
+     * @param unit the unit
+     * @return the java.util.concurrent. time unit
      * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
      */
     @Override

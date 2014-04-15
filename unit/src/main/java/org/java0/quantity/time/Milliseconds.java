@@ -18,16 +18,18 @@ package org.java0.quantity.time;
 
 import org.java0.unit.time.MillisecondsUnit;
 
+
 /**
+ * The Class Milliseconds.
+ *
  * @author Hugh Eaves
- * 
  */
 public class Milliseconds extends Time {
+    
     /**
      * Create a new Milliseconds.
-     * 
-     * @param value
-     * @param unit
+     *
+     * @param value the value
      */
     public Milliseconds(Number value) {
         super(value, MillisecondsUnit.INSTANCE);

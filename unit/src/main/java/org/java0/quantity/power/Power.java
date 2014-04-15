@@ -19,18 +19,25 @@ package org.java0.quantity.power;
 import org.java0.quantity.impl.QuantityImpl;
 import org.java0.unit.power.PowerUnit;
 
+
 /**
+ * The Class Power.
+ *
  * @author Hugh Eaves
- * 
  */
 public class Power extends QuantityImpl<PowerUnit> {
 
+    /**
+     * Instantiates a new power.
+     */
     protected Power() {
     }
 
     /**
-     * @param value
-     * @param unit
+     * Instantiates a new power.
+     *
+     * @param value the value
+     * @param unit the unit
      */
     public Power(Number value, PowerUnit unit) {
         super(value, unit);

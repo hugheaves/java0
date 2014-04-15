@@ -22,26 +22,39 @@ import org.java0.unit.BinaryUnit;
 import org.java0.unit.Unit;
 import org.java0.unit.UnitProduct;
 
+
 /**
+ * The Class BinaryUnitImpl.
+ *
  * @author Hugh Eaves
- * 
+ * @param <UNIT_1> the generic type
+ * @param <UNIT_2> the generic type
+ * @param <COMBINED_UNIT> the generic type
  */
 public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>, COMBINED_UNIT extends Unit<COMBINED_UNIT>>
         extends AbstractUnit<COMBINED_UNIT> implements
         BinaryUnit<UNIT_1, UNIT_2, COMBINED_UNIT> {
 
+    /** The Constant logger. */
     @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(BinaryUnitImpl.class
             .getName());
 
+    /** The unit1. */
     protected UNIT_1 unit1;
+    
+    /** The unit2. */
     protected UNIT_2 unit2;
+    
+    /** The operator. */
     protected String operator;
 
     /**
      * Create a new BinaryNumericUnitImpl.
-     * 
-     * @param name
+     *
+     * @param operator the operator
+     * @param unit1 the unit1
+     * @param unit2 the unit2
      */
     public BinaryUnitImpl(String operator, UNIT_1 unit1, UNIT_2 unit2) {
         super("(" + unit1.getName() + " " + operator + " " + unit2.getName()
@@ -51,6 +64,10 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
     }
 
     /**
+     * Equals.
+     *
+     * @param object the object
+     * @return true, if successful
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -69,6 +86,9 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
         }
     }
 
+    /**
+     * @see org.java0.unit.impl.AbstractUnit#hashCode()
+     */
     @Override
     public int hashCode() {
         return getUnit1().hashCode() ^ getUnit2().hashCode()
@@ -76,6 +96,9 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
     }
 
     /**
+     * Checks if is system unit.
+     *
+     * @return true, if is system unit
      * @see org.java0.unit.Unit#isSystemUnit()
      */
     @Override
@@ -84,6 +107,9 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
     }
 
     /**
+     * Gets the unit1.
+     *
+     * @return the unit1
      * @see org.java0.unit.BinaryUnit#getUnit1()
      */
     @Override
@@ -92,6 +118,9 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
     }
 
     /**
+     * Gets the unit2.
+     *
+     * @return the unit2
      * @see org.java0.unit.BinaryUnit#getUnit2()
      */
     @Override
@@ -99,6 +128,9 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
         return unit2;
     }
 
+    /**
+     * @see org.java0.unit.BinaryUnit#getOperator()
+     */
     @Override
     public String getOperator() {
         return operator;

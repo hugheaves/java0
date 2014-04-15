@@ -16,13 +16,20 @@
  */
 package org.java0.unit.power;
 
+
 /**
+ * The Class WattsUnit.
+ *
  * @author Hugh Eaves
- * 
  */
 public final class WattsUnit extends PowerUnit {
+    
+    /** The Constant INSTANCE. */
     public static final WattsUnit INSTANCE = new WattsUnit();
 
+    /**
+     * Instantiates a new watts unit.
+     */
     public WattsUnit() {
         super("watts", 1.0);
     }

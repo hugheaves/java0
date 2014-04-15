@@ -21,16 +21,22 @@ import org.java0.unit.UnitQuotient;
 import org.java0.unit.angle.AngleUnit;
 import org.java0.unit.time.TimeUnit;
 
+
 /**
- * @author Hugh Eaves
+ * The Class AngularAcceleration.
  * 
+ * @author Hugh Eaves
  */
 public class AngularAcceleration extends
         QuantityQuotientImpl<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit> {
 
     /**
+     * Instantiates a new angular acceleration.
+     * 
      * @param value
+     *            the value
      * @param unit
+     *            the unit
      */
     public AngularAcceleration(Number value,
             UnitQuotient<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit> unit) {
