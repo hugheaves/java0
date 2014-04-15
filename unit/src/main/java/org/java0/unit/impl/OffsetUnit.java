@@ -28,12 +28,12 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public abstract class OffsetUnit<UNIT_TYPE extends Unit<?>>
-        extends ScalableUnit<UNIT_TYPE> {
+public abstract class OffsetUnit<BASE_UNIT extends Unit<?>> extends
+        ScalableUnit<BASE_UNIT> {
 
     @SuppressWarnings("unused")
-    private static final Logger logger = Logger
-            .getLogger(OffsetUnit.class.getName());
+    private static final Logger logger = Logger.getLogger(OffsetUnit.class
+            .getName());
 
     protected double toSystemUnitOffset;
 
