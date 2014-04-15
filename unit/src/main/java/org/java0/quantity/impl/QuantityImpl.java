@@ -31,7 +31,7 @@ import org.java0.unit.UnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public class QuantityImpl<UNIT extends Unit<?>> implements Quantity<UNIT> {
+public class QuantityImpl<UNIT extends Unit<UNIT>> implements Quantity<UNIT> {
 
     private static final Logger logger = Logger.getLogger(QuantityImpl.class
             .getName());
@@ -120,14 +120,13 @@ public class QuantityImpl<UNIT extends Unit<?>> implements Quantity<UNIT> {
      */
 
     @Override
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityProduct<UNIT, PARAM_BASE_UNIT> multiply(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityProduct<UNIT, PARAM_BASE_UNIT> multiply(
             PARAM_TYPE quantity) {
 
         UNIT a = unit();
         Unit<PARAM_BASE_UNIT> b = quantity.unit();
 
-        UnitProduct<UNIT, PARAM_BASE_UNIT> c = (UnitProduct<UNIT, PARAM_BASE_UNIT>) a
-                .multiply(b);
+        UnitProduct<UNIT, PARAM_BASE_UNIT> c = a.multiply(b);
 
         double result = value().doubleValue() * quantity.value().doubleValue();
 
@@ -138,25 +137,15 @@ public class QuantityImpl<UNIT extends Unit<?>> implements Quantity<UNIT> {
      * @see org.java0.quantity.Quantity#divide(org.java0.quantity.Quantity)
      */
     @Override
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityQuotient<UNIT, PARAM_BASE_UNIT> divide(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityQuotient<UNIT, PARAM_BASE_UNIT> divide(
             PARAM_TYPE quantity) {
         UNIT a = unit();
         Unit<PARAM_BASE_UNIT> b = quantity.unit();
 
-        UnitQuotient<UNIT, PARAM_BASE_UNIT> c = (UnitQuotient<UNIT, PARAM_BASE_UNIT>) a
-                .divide(b);
+        UnitQuotient<UNIT, PARAM_BASE_UNIT> c = a.divide(b);
         double result = value().doubleValue() / quantity.value().doubleValue();
 
         return new QuantityQuotientImpl<UNIT, PARAM_BASE_UNIT>(result, c);
-    }
-
-    /**
-     * @see org.java0.quantity.Quantity#asType(java.lang.Class)
-     */
-    @Override
-    public <CAST_UNIT extends UNIT, CAST_QUANTITY extends Quantity<CAST_UNIT>> CAST_QUANTITY asType(
-            Class<CAST_QUANTITY> type) {
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -201,19 +190,21 @@ public class QuantityImpl<UNIT extends Unit<?>> implements Quantity<UNIT> {
     }
 
     /**
-     * @see org.java0.quantity.Quantity#multiplyAndCancel(org.java0.quantity.Quantity)
+     * @param quantity
+     * @return
      */
     @Override
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends InverseUnit<PARAM_BASE_UNIT>>> Number multiplyAndCancel(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends InverseUnit<PARAM_BASE_UNIT>>> Number multiplyAndCancel(
             PARAM_TYPE quantity) {
         return null;
     }
 
     /**
-     * @see org.java0.quantity.Quantity#divideAndCancel(org.java0.quantity.Quantity)
+     * @param quantity
+     * @return
      */
     @Override
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> Number divideAndCancel(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends PARAM_BASE_UNIT, PARAM_TYPE extends Quantity<? extends PARAM_BASE_UNIT>> Number divideAndCancel(
             PARAM_TYPE quantity) {
         return null;
     }

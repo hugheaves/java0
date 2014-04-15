@@ -23,8 +23,8 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public class InverseUnitImpl<BASE_UNIT extends Unit<?>> extends
-        AbstractUnit<BASE_UNIT> implements InverseUnit<BASE_UNIT> {
+public class InverseUnitImpl<BASE_UNIT extends Unit<BASE_UNIT>> extends
+        AbstractUnit<InverseUnit<BASE_UNIT>> implements InverseUnit<BASE_UNIT> {
 
     protected Unit<BASE_UNIT> targetUnit;
 
@@ -42,7 +42,7 @@ public class InverseUnitImpl<BASE_UNIT extends Unit<?>> extends
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override
-    public Unit<BASE_UNIT> getSystemUnit() {
+    public Unit<InverseUnit<BASE_UNIT>> getSystemUnit() {
         throw new UnsupportedOperationException();
     }
 

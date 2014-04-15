@@ -26,7 +26,7 @@ import org.java0.unit.UnitProduct;
  * @author Hugh Eaves
  * 
  */
-public abstract class BinaryUnitImpl<UNIT_1 extends Unit<?>, UNIT_2 extends Unit<?>, COMBINED_UNIT extends Unit<?>>
+public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>, COMBINED_UNIT extends Unit<COMBINED_UNIT>>
         extends AbstractUnit<COMBINED_UNIT> implements
         BinaryUnit<UNIT_1, UNIT_2, COMBINED_UNIT> {
 

@@ -24,9 +24,8 @@ import org.java0.unit.UnitProduct;
  * @author Hugh Eaves
  * 
  */
-public class UnitProductImpl<UNIT_1 extends Unit<?>, UNIT_2 extends Unit<?>>
-        extends
-        BinaryUnitImpl<UNIT_1, UNIT_2, UnitProduct<UNIT_1, UNIT_2>>
+public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>>
+        extends BinaryUnitImpl<UNIT_1, UNIT_2, UnitProduct<UNIT_1, UNIT_2>>
         implements UnitProduct<UNIT_1, UNIT_2>
 
 {

@@ -47,6 +47,19 @@ public class NumericUnitTest extends BaseTest {
         UnitQuotient<UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit>, UnitQuotient<AngleUnit, TimeUnit>> d = c
                 .divide(DegreesPerMillisecondUnit.INSTANCE);
 
+        UnitQuotient<AngleUnit, TimeUnit> u1 = DegreesUnit.INSTANCE
+                .divide(SecondsUnit.INSTANCE);
+
+        UnitQuotient<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit> u2 = u1
+                .divide(SecondsUnit.INSTANCE);
+
+        UnitProduct<UnitQuotient<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit>, AngleUnit> u3 = u2
+                .multiply(DegreesUnit.INSTANCE);
+
+        UnitProduct<UnitQuotient<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit>, AngleUnit> velocitySquaredUnit = DegreesUnit.INSTANCE
+                .divide(SecondsUnit.INSTANCE).divide(SecondsUnit.INSTANCE)
+                .multiply(DegreesUnit.INSTANCE);
+
         logger.info(d.getName());
     }
 }

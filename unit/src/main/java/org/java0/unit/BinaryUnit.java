@@ -28,7 +28,7 @@ package org.java0.unit;
  * @param <T>
  *            the generic type
  */
-public interface BinaryUnit<UNIT_1 extends Unit<?>, UNIT_2 extends Unit<?>, COMBINED_UNIT extends Unit<?>>
+public interface BinaryUnit<UNIT_1 extends Unit<?>, UNIT_2 extends Unit<?>, COMBINED_UNIT extends Unit<COMBINED_UNIT>>
         extends Unit<COMBINED_UNIT> {
     /**
      * Returns the first / left unit of this binary numeric unit.

@@ -26,19 +26,19 @@ import org.java0.core.type.NamedObject;
  * @param <U>
  *            the generic type
  */
-public interface Unit<BASE_UNIT extends Unit<?>> extends NamedObject
+public interface Unit<BASE_UNIT extends Unit<BASE_UNIT>> extends NamedObject
 /* ,org.unitsofmeasurement.unit.Unit<NumericQuantity<U>> */{
 
     /**
      * Returns the product of two numeric units.
      */
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
             PARAM_UNIT unit);
 
     /**
      * Returns the quotient of two numeric units.
      */
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(
             PARAM_UNIT unit);
 
     /**

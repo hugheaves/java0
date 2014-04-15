@@ -23,7 +23,7 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public interface Quantity<UNIT extends Unit<?>> extends
+public interface Quantity<UNIT extends Unit<UNIT>> extends
         Comparable<Quantity<UNIT>>
 /* , org.unitsofmeasurement.quantity.Quantity<NumericQuantity<U>> */{
 
@@ -49,7 +49,7 @@ public interface Quantity<UNIT extends Unit<?>> extends
      * @param quantity
      * @return
      */
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityProduct<UNIT, PARAM_BASE_UNIT> multiply(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityProduct<UNIT, PARAM_BASE_UNIT> multiply(
             PARAM_TYPE quantity);
 
     /**
@@ -58,7 +58,7 @@ public interface Quantity<UNIT extends Unit<?>> extends
      * @param quantity
      * @return
      */
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityQuotient<UNIT, PARAM_BASE_UNIT> divide(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> QuantityQuotient<UNIT, PARAM_BASE_UNIT> divide(
             PARAM_TYPE quantity);
 
     /**
@@ -76,15 +76,6 @@ public interface Quantity<UNIT extends Unit<?>> extends
      * @return
      */
     public Quantity<UNIT> divide(Number quantity);
-
-    /**
-     * Returns this quantity as the specified type.
-     * 
-     * @param type
-     * @return
-     */
-    public <CAST_UNIT extends UNIT, CAST_QUANTITY extends Quantity<CAST_UNIT>> CAST_QUANTITY asType(
-            Class<CAST_QUANTITY> type);
 
     /**
      * Returns the Unit for this Quantity.
@@ -119,14 +110,14 @@ public interface Quantity<UNIT extends Unit<?>> extends
      * @param quantity
      * @return
      */
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends InverseUnit<PARAM_BASE_UNIT>>> Number multiplyAndCancel(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends InverseUnit<PARAM_BASE_UNIT>>> Number multiplyAndCancel(
             PARAM_TYPE quantity);
 
     /**
      * @param quantity
      * @return
      */
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_TYPE extends Quantity<? extends Unit<PARAM_BASE_UNIT>>> Number divideAndCancel(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends PARAM_BASE_UNIT, PARAM_TYPE extends Quantity<? extends PARAM_BASE_UNIT>> Number divideAndCancel(
             PARAM_TYPE quantity);
 
 }

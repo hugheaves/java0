@@ -25,7 +25,7 @@ package org.java0.unit;
  * @param <UNIT_2_TYPE>
  *            the generic type
  */
-public interface UnitQuotient<UNIT_1_TYPE extends Unit<?>, UNIT_2_TYPE extends Unit<?>>
+public interface UnitQuotient<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE extends Unit<UNIT_2_TYPE>>
         extends
         BinaryUnit<UNIT_1_TYPE, UNIT_2_TYPE, UnitQuotient<UNIT_1_TYPE, UNIT_2_TYPE>> {
 

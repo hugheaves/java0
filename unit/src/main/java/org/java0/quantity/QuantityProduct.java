@@ -24,8 +24,8 @@ import org.java0.unit.UnitProduct;
  * @author Hugh Eaves
  * 
  */
-public interface QuantityProduct<U1 extends Unit<?>, U2 extends Unit<?>>
-        extends Quantity<UnitProduct<U1, U2>> {
+public interface QuantityProduct<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>>
+        extends Quantity<UnitProduct<UNIT_1, UNIT_2>> {
 
     /**
      * Returns this quantity with the right unit cancelled by multiplying by the
@@ -34,7 +34,8 @@ public interface QuantityProduct<U1 extends Unit<?>, U2 extends Unit<?>>
      * @param unit
      * @return a unit
      */
-    public Quantity<U1> multiplyAndCancelRight(Quantity<InverseUnit<U2>> unit);
+    public Quantity<UNIT_1> multiplyAndCancelRight(
+            Quantity<InverseUnit<UNIT_2>> unit);
 
     /**
      * Returns this quantity with the left unit cancelled by multiplying by the
@@ -43,7 +44,8 @@ public interface QuantityProduct<U1 extends Unit<?>, U2 extends Unit<?>>
      * @param unit
      * @return a unit
      */
-    public Quantity<U2> multiplyAndCancelLeft(Quantity<InverseUnit<U1>> unit);
+    public Quantity<UNIT_2> multiplyAndCancelLeft(
+            Quantity<InverseUnit<UNIT_1>> unit);
 
     /**
      * Returns this quantity with the right unit cancelled by dividing by the
@@ -52,7 +54,7 @@ public interface QuantityProduct<U1 extends Unit<?>, U2 extends Unit<?>>
      * @param unit
      * @return a unit
      */
-    public Quantity<U1> divideAndCancelRight(Quantity<U2> unit);
+    public Quantity<UNIT_1> divideAndCancelRight(Quantity<UNIT_2> unit);
 
     /**
      * Returns this quantity with the left unit cancelled by dividing by the
@@ -61,5 +63,5 @@ public interface QuantityProduct<U1 extends Unit<?>, U2 extends Unit<?>>
      * @param unit
      * @return a unit
      */
-    public Quantity<U2> divideAndCancelLeft(Quantity<U1> unit);
+    public Quantity<UNIT_2> divideAndCancelLeft(Quantity<UNIT_1> unit);
 }

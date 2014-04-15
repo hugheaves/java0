@@ -28,9 +28,9 @@ import org.java0.unit.UnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
-        extends QuantityImpl<UnitQuotient<U1, U2>> implements
-        QuantityQuotient<U1, U2> {
+public class QuantityQuotientImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>>
+        extends QuantityImpl<UnitQuotient<UNIT_1, UNIT_2>> implements
+        QuantityQuotient<UNIT_1, UNIT_2> {
 
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
@@ -42,7 +42,7 @@ public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @param value
      * @param unit
      */
-    public QuantityQuotientImpl(Number value, UnitQuotient<U1, U2> unit) {
+    public QuantityQuotientImpl(Number value, UnitQuotient<UNIT_1, UNIT_2> unit) {
         super(value, unit);
     }
 
@@ -50,7 +50,7 @@ public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityQuotient#multiplyAndCancelDenominator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U1> multiplyAndCancelDenominator(Quantity<U2> unit) {
+    public Quantity<UNIT_1> multiplyAndCancelDenominator(Quantity<UNIT_2> unit) {
         return null;
     }
 
@@ -58,7 +58,8 @@ public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityQuotient#divideAndCancelDenominator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U1> divideAndCancelDenominator(Quantity<InverseUnit<U2>> unit) {
+    public Quantity<UNIT_1> divideAndCancelDenominator(
+            Quantity<InverseUnit<UNIT_2>> unit) {
         return null;
     }
 
@@ -66,7 +67,8 @@ public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityQuotient#multiplyAndCancelNumerator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U2> multiplyAndCancelNumerator(Quantity<InverseUnit<U1>> unit) {
+    public Quantity<UNIT_2> multiplyAndCancelNumerator(
+            Quantity<InverseUnit<UNIT_1>> unit) {
         return null;
     }
 
@@ -74,7 +76,7 @@ public class QuantityQuotientImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityQuotient#divideAndCancelNumerator(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U2> divideAndCancelNumerator(Quantity<U1> unit) {
+    public Quantity<UNIT_2> divideAndCancelNumerator(Quantity<UNIT_1> unit) {
         return null;
     }
 }

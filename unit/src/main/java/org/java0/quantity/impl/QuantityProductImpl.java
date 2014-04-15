@@ -28,9 +28,9 @@ import org.java0.unit.UnitProduct;
  * @author Hugh Eaves
  * 
  */
-public class QuantityProductImpl<U1 extends Unit<?>, U2 extends Unit<?>>
-        extends QuantityImpl<UnitProduct<U1, U2>> implements
-        QuantityProduct<U1, U2> {
+public class QuantityProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>>
+        extends QuantityImpl<UnitProduct<UNIT_1, UNIT_2>> implements
+        QuantityProduct<UNIT_1, UNIT_2> {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger
             .getLogger(QuantityProductImpl.class.getName());
@@ -41,7 +41,7 @@ public class QuantityProductImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @param value
      * @param unit
      */
-    public QuantityProductImpl(Number value, UnitProduct<U1, U2> unit) {
+    public QuantityProductImpl(Number value, UnitProduct<UNIT_1, UNIT_2> unit) {
         super(value, unit);
     }
 
@@ -49,7 +49,8 @@ public class QuantityProductImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityProduct#multiplyAndCancelRight(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U1> multiplyAndCancelRight(Quantity<InverseUnit<U2>> unit) {
+    public Quantity<UNIT_1> multiplyAndCancelRight(
+            Quantity<InverseUnit<UNIT_2>> unit) {
         return null;
     }
 
@@ -57,7 +58,8 @@ public class QuantityProductImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityProduct#multiplyAndCancelLeft(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U2> multiplyAndCancelLeft(Quantity<InverseUnit<U1>> unit) {
+    public Quantity<UNIT_2> multiplyAndCancelLeft(
+            Quantity<InverseUnit<UNIT_1>> unit) {
         return null;
     }
 
@@ -65,7 +67,7 @@ public class QuantityProductImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityProduct#divideAndCancelRight(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U1> divideAndCancelRight(Quantity<U2> unit) {
+    public Quantity<UNIT_1> divideAndCancelRight(Quantity<UNIT_2> unit) {
         return null;
     }
 
@@ -73,7 +75,7 @@ public class QuantityProductImpl<U1 extends Unit<?>, U2 extends Unit<?>>
      * @see org.java0.quantity.QuantityProduct#divideAndCancelLeft(org.java0.quantity.Quantity)
      */
     @Override
-    public Quantity<U2> divideAndCancelLeft(Quantity<U1> unit) {
+    public Quantity<UNIT_2> divideAndCancelLeft(Quantity<UNIT_1> unit) {
         return null;
     }
 

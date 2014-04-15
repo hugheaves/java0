@@ -28,7 +28,7 @@ import org.java0.unit.UnitQuotient;
  * @author Hugh Eaves
  * 
  */
-public abstract class AbstractUnit<BASE_UNIT extends Unit<?>> extends
+public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
         AbstractNamedObject implements Unit<BASE_UNIT> {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(AbstractUnit.class
@@ -99,7 +99,7 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<?>> extends
      * Returns the product of two numeric units.
      */
     @Override
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
             PARAM_UNIT unit) {
         return new UnitProductImpl<BASE_UNIT, PARAM_BASE_UNIT>(
                 (BASE_UNIT) this, (PARAM_BASE_UNIT) unit);
@@ -109,7 +109,7 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<?>> extends
      * Returns the quotient of two numeric units.
      */
     @Override
-    public <PARAM_BASE_UNIT extends Unit<?>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(
+    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(
             PARAM_UNIT unit) {
         return new UnitQuotientImpl<BASE_UNIT, PARAM_BASE_UNIT>(
                 (BASE_UNIT) this, (PARAM_BASE_UNIT) unit);

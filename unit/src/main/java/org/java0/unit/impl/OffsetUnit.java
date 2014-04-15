@@ -28,7 +28,7 @@ import org.java0.unit.Unit;
  * @author Hugh Eaves
  * 
  */
-public abstract class OffsetUnit<BASE_UNIT extends Unit<?>> extends
+public abstract class OffsetUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
         ScalableUnit<BASE_UNIT> {
 
     @SuppressWarnings("unused")
