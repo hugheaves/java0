@@ -22,7 +22,7 @@ package org.java0.unit.angle;
  *
  * @author Hugh Eaves
  */
-public final class RadiansUnit extends AngleUnit {
+public final class RadiansUnit extends AbstractAngleUnit {
     
     /** The Constant INSTANCE. */
     public static final RadiansUnit INSTANCE = new RadiansUnit();

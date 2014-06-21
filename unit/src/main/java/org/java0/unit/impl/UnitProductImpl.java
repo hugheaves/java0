@@ -16,31 +16,36 @@
  */
 package org.java0.unit.impl;
 
+import org.java0.quantity.Quantity;
+import org.java0.quantity.QuantityProduct;
 import org.java0.unit.InverseUnit;
 import org.java0.unit.Unit;
 import org.java0.unit.UnitProduct;
 
-
 /**
  * The Class UnitProductImpl.
- *
+ * 
  * @author Hugh Eaves
- * @param <UNIT_1> the generic type
- * @param <UNIT_2> the generic type
+ * @param <UNIT_1>
+ *            the generic type
+ * @param <UNIT_2>
+ *            the generic type
  */
-public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>>
-        extends BinaryUnitImpl<UNIT_1, UNIT_2, UnitProduct<UNIT_1, UNIT_2>>
-        implements UnitProduct<UNIT_1, UNIT_2>
+public class UnitProductImpl<COMBINED_QUANTITY extends QuantityProduct<QUANTITY_1, QUANTITY_2>, QUANTITY_1 extends Quantity, QUANTITY_2 extends Quantity>
+        extends BinaryUnitImpl<COMBINED_QUANTITY, QUANTITY_1, QUANTITY_2>
+        implements UnitProduct<COMBINED_QUANTITY, QUANTITY_1, QUANTITY_2>
 
 {
-    
+
     /**
      * Instantiates a new unit product impl.
-     *
-     * @param unit1 the unit1
-     * @param unit2 the unit2
+     * 
+     * @param unit1
+     *            the unit1
+     * @param unit2
+     *            the unit2
      */
-    public UnitProductImpl(UNIT_1 unit1, UNIT_2 unit2) {
+    public UnitProductImpl(Unit<QUANTITY_1> unit1, Unit<QUANTITY_2> unit2) {
         super("*", unit1, unit2);
     }
 
@@ -66,67 +71,50 @@ public class UnitProductImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UN
 
     /**
      * Gets the system unit.
-     *
+     * 
      * @return the system unit
      * @see org.java0.unit.Unit#getSystemUnit()
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public UnitProduct<UNIT_1, UNIT_2> getSystemUnit() {
+    public UnitProduct<COMBINED_QUANTITY, QUANTITY_1, QUANTITY_2> getSystemUnit() {
         if (isSystemUnit()) {
             return this;
         } else {
-            return new UnitProductImpl<UNIT_1, UNIT_2>(
-                    (UNIT_1) unit1.getSystemUnit(),
-                    (UNIT_2) unit2.getSystemUnit());
+            return new UnitProductImpl<COMBINED_QUANTITY, QUANTITY_1, QUANTITY_2>(
+                    unit1.getSystemUnit(), unit2.getSystemUnit());
         }
     }
 
     /**
-     * Multiply and cancel2.
-     *
-     * @param unit the unit
-     * @return the UNI t_1
      * @see org.java0.unit.UnitProduct#multiplyAndCancel2(org.java0.unit.InverseUnit)
      */
     @Override
-    public UNIT_1 multiplyAndCancel2(InverseUnit<UNIT_2> unit) {
-        return unit1;
+    public Unit<QUANTITY_1> multiplyAndCancel2(InverseUnit<QUANTITY_2> unit) {
+        return null;
     }
 
     /**
-     * Multiply and cancel1.
-     *
-     * @param unit the unit
-     * @return the UNI t_2
      * @see org.java0.unit.UnitProduct#multiplyAndCancel1(org.java0.unit.InverseUnit)
      */
     @Override
-    public UNIT_2 multiplyAndCancel1(InverseUnit<UNIT_1> unit) {
-        return unit2;
+    public Unit<QUANTITY_2> multiplyAndCancel1(InverseUnit<QUANTITY_1> unit) {
+        return null;
     }
 
     /**
-     * Divide and cancel2.
-     *
-     * @param unit the unit
-     * @return the UNI t_1
      * @see org.java0.unit.UnitProduct#divideAndCancel2(org.java0.unit.Unit)
      */
     @Override
-    public UNIT_1 divideAndCancel2(UNIT_2 unit) {
-        return unit1;
+    public Unit<QUANTITY_1> divideAndCancel2(Unit<QUANTITY_1> unit) {
+        return null;
     }
 
     /**
-     * Divide and cancel1.
-     *
-     * @param unit the unit
-     * @return the UNI t_2
      * @see org.java0.unit.UnitProduct#divideAndCancel1(org.java0.unit.Unit)
      */
     @Override
-    public UNIT_2 divideAndCancel1(UNIT_1 unit) {
-        return unit2;
+    public Unit<QUANTITY_1> divideAndCancel1(Unit<QUANTITY_1> unit) {
+        return null;
     }
+
 }

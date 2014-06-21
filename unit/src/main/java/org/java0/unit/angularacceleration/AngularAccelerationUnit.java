@@ -16,36 +16,13 @@
  */
 package org.java0.unit.angularacceleration;
 
-import org.java0.unit.UnitQuotient;
-import org.java0.unit.angle.AngleUnit;
-import org.java0.unit.impl.UnitQuotientImpl;
-import org.java0.unit.time.TimeUnit;
-
+import org.java0.quantity.AngularAcceleration;
+import org.java0.unit.Unit;
 
 /**
- * The Class AngularAccelerationUnit.
- *
  * @author Hugh Eaves
+ * 
  */
-public abstract class AngularAccelerationUnit extends
-        UnitQuotientImpl<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit> {
+public interface AngularAccelerationUnit extends Unit<AngularAcceleration> {
 
-    /**
-     * Instantiates a new angular acceleration unit.
-     *
-     * @param unit1 the unit1
-     * @param unit2 the unit2
-     */
-    public AngularAccelerationUnit(UnitQuotient<AngleUnit, TimeUnit> unit1,
-            TimeUnit unit2) {
-        super(unit1, unit2);
-    }
-
-    /**
-     * @see org.java0.unit.impl.UnitQuotientImpl#getSystemUnit()
-     */
-    @Override
-    public AngularAccelerationUnit getSystemUnit() {
-        return RadiansPerSecondPerSecondUnit.INSTANCE;
-    }
 }

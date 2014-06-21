@@ -25,7 +25,7 @@ import org.java0.unit.time.SecondsUnit;
  * 
  * @author Hugh Eaves
  */
-public class DegreesPerSecondUnit extends AngularVelocityUnit {
+public class DegreesPerSecondUnit extends AbstractAngularVelocityUnit {
 
     /** The Constant INSTANCE. */
     public static final DegreesPerSecondUnit INSTANCE = new DegreesPerSecondUnit();

@@ -16,19 +16,20 @@
  */
 package org.java0.unit;
 
+import org.java0.quantity.Quantity;
+import org.java0.quantity.QuantityProduct;
 
 /**
  * The Interface NumericUnitProduct.
  * 
  * @author Hugh Eaves
- * @param <UNIT_1_TYPE>
+ * @param <UNIT_1>
  *            the generic type
- * @param <UNIT_2_TYPE>
+ * @param <UNIT_2>
  *            the generic type
  */
-public interface UnitProduct<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE extends Unit<UNIT_2_TYPE>>
-        extends
-        BinaryUnit<UNIT_1_TYPE, UNIT_2_TYPE, UnitProduct<UNIT_1_TYPE, UNIT_2_TYPE>> {
+public interface UnitProduct<COMBINED_QUANTITY extends QuantityProduct<QUANTITY_1, QUANTITY_2>, QUANTITY_1 extends Quantity, QUANTITY_2 extends Quantity>
+        extends BinaryUnit<COMBINED_QUANTITY, QUANTITY_1, QUANTITY_2> {
 
     /**
      * Returns this unit with the right unit cancelled by multiplying by the
@@ -38,7 +39,7 @@ public interface UnitProduct<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE 
      *            the unit
      * @return a unit
      */
-    public UNIT_1_TYPE multiplyAndCancel2(InverseUnit<UNIT_2_TYPE> unit);
+    public Unit<QUANTITY_1> multiplyAndCancel2(InverseUnit<QUANTITY_2> unit);
 
     /**
      * Returns this unit with the left unit cancelled by multiplying by the
@@ -48,7 +49,7 @@ public interface UnitProduct<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE 
      *            the unit
      * @return a unit
      */
-    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit);
+    public Unit<QUANTITY_2> multiplyAndCancel1(InverseUnit<QUANTITY_1> unit);
 
     /**
      * Returns this unit with the right unit cancelled by dividing by the given
@@ -58,7 +59,7 @@ public interface UnitProduct<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE 
      *            the unit
      * @return a unit
      */
-    public UNIT_1_TYPE divideAndCancel2(UNIT_2_TYPE unit);
+    public Unit<QUANTITY_1> divideAndCancel2(Unit<QUANTITY_1> unit);
 
     /**
      * Returns this unit with the left unit cancelled by dividing by the given
@@ -68,5 +69,5 @@ public interface UnitProduct<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE 
      *            the unit
      * @return a unit
      */
-    public UNIT_2_TYPE divideAndCancel1(UNIT_1_TYPE unit);
+    public Unit<QUANTITY_1> divideAndCancel1(Unit<QUANTITY_1> unit);
 }

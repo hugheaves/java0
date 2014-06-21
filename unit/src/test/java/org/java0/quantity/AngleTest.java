@@ -16,7 +16,7 @@
  */
 package org.java0.quantity;
 
-import org.java0.quantity.angle.Angle;
+import org.java0.amount.angle.AngleAmount;
 import org.java0.unit.angle.DegreesUnit;
 import org.java0.unit.angle.RadiansUnit;
 import org.junit.Assert;
@@ -27,21 +27,21 @@ public class AngleTest {
 
     @Test
     public void test1() {
-        Angle a = new Angle(360, DegreesUnit.INSTANCE);
+        AngleAmount a = new AngleAmount(360, DegreesUnit.INSTANCE);
         double b = a.value(DegreesUnit.INSTANCE).doubleValue();
         Assert.assertEquals(360.0, b, SMALL_AMOUNT);
     }
 
     @Test
     public void test2() {
-        Angle a = new Angle(360, DegreesUnit.INSTANCE);
+        AngleAmount a = new AngleAmount(360, DegreesUnit.INSTANCE);
         double b = a.value(RadiansUnit.INSTANCE).doubleValue();
         Assert.assertEquals(Math.PI * 2, b, SMALL_AMOUNT);
     }
 
     @Test
     public void test3() {
-        Angle a = new Angle(Math.PI * 4, RadiansUnit.INSTANCE);
+        AngleAmount a = new AngleAmount(Math.PI * 4, RadiansUnit.INSTANCE);
         double b = a.value(DegreesUnit.INSTANCE).doubleValue();
         Assert.assertEquals(720.0, b, SMALL_AMOUNT);
     }

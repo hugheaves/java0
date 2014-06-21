@@ -16,6 +16,7 @@
  */
 package org.java0.unit;
 
+import org.java0.quantity.Quantity;
 
 /**
  * This class represents an "inverse" or "inverted" unit. (i.e. 1 / UNIT instead
@@ -25,12 +26,11 @@ package org.java0.unit;
  * @param <BASE_UNIT>
  *            the generic type
  */
-public interface InverseUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
-        Unit<InverseUnit<BASE_UNIT>> {
+public interface InverseUnit<QUANTITY extends Quantity> extends Unit<QUANTITY> {
     /**
      * Returns the uninverted unit. (or the inverse of the inverse).
      * 
      * @return the uninverted unit.
      */
-    public Unit<BASE_UNIT> uninvert();
+    public Unit<QUANTITY> uninvert();
 }

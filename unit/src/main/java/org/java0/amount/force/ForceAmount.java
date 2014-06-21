@@ -14,32 +14,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.quantity.angularacceleration;
+package org.java0.amount.force;
 
-import org.java0.quantity.impl.QuantityQuotientImpl;
-import org.java0.unit.UnitQuotient;
-import org.java0.unit.angle.AngleUnit;
-import org.java0.unit.time.TimeUnit;
+import java.util.logging.Logger;
 
+import org.java0.amount.impl.AmountImpl;
+import org.java0.quantity.Force;
 
 /**
- * The Class AngularAcceleration.
- * 
  * @author Hugh Eaves
+ * 
  */
-public class AngularAcceleration extends
-        QuantityQuotientImpl<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit> {
-
-    /**
-     * Instantiates a new angular acceleration.
-     * 
-     * @param value
-     *            the value
-     * @param unit
-     *            the unit
-     */
-    public AngularAcceleration(Number value,
-            UnitQuotient<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit> unit) {
-        super(value, unit);
-    }
+public class ForceAmount extends AmountImpl<Force> {
+    @SuppressWarnings("unused")
+    private static final Logger logger = Logger.getLogger(ForceAmount.class
+            .getName());
 }

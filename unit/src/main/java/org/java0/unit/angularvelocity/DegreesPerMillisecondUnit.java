@@ -25,7 +25,7 @@ import org.java0.unit.time.MillisecondsUnit;
  *
  * @author Hugh Eaves
  */
-public class DegreesPerMillisecondUnit extends AngularVelocityUnit {
+public class DegreesPerMillisecondUnit extends AbstractAngularVelocityUnit {
     
     /** The Constant INSTANCE. */
     public static final DegreesPerMillisecondUnit INSTANCE = new DegreesPerMillisecondUnit();

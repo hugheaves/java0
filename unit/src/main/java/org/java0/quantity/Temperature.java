@@ -14,36 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.quantity.time;
-
-import org.java0.quantity.impl.QuantityImpl;
-import org.java0.unit.time.TimeUnit;
-
+package org.java0.quantity;
 
 /**
- * The Class Time.
- *
  * @author Hugh Eaves
+ * 
  */
-public class Time extends QuantityImpl<TimeUnit> {
+public interface Temperature extends Quantity {
 
-    /**
-     * Instantiates a new time.
-     *
-     * @param value the value
-     * @param unit the unit
-     */
-    public Time(Number value, TimeUnit unit) {
-        super(value, unit);
-    }
-
-    /**
-     * Instantiates a new time.
-     *
-     * @param value the value
-     * @param unit the unit
-     */
-    public Time(Number value, java.util.concurrent.TimeUnit unit) {
-        super(value, TimeUnit.convertToTimeUnit(unit));
-    }
 }

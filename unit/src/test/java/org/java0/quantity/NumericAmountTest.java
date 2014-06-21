@@ -18,11 +18,12 @@ package org.java0.quantity;
 
 import java.util.logging.Logger;
 
-import org.java0.quantity.angle.Angle;
-import org.java0.quantity.angularvelocity.AngularVelocity;
-import org.java0.quantity.time.Time;
+import org.java0.amount.AmountProduct;
+import org.java0.amount.AmountQuotient;
+import org.java0.amount.angle.AngleAmount;
+import org.java0.amount.angularvelocity.AngularVelocityAmount;
+import org.java0.amount.time.TimeAmount;
 import org.java0.test.BaseTest;
-import org.java0.unit.angle.AngleUnit;
 import org.java0.unit.angle.DegreesUnit;
 import org.java0.unit.angle.RadiansUnit;
 import org.java0.unit.angularvelocity.DegreesPerSecondUnit;
@@ -30,7 +31,6 @@ import org.java0.unit.angularvelocity.RadiansPerSecondUnit;
 import org.java0.unit.impl.UnitQuotientImpl;
 import org.java0.unit.time.MillisecondsUnit;
 import org.java0.unit.time.SecondsUnit;
-import org.java0.unit.time.TimeUnit;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,41 +52,41 @@ public class NumericAmountTest extends BaseTest {
 
     @Test
     public void test0() {
-        Angle a = new Angle(360, DegreesUnit.INSTANCE);
-        Angle b = new Angle(2 * Math.PI, RadiansUnit.INSTANCE);
+        AngleAmount a = new AngleAmount(360, DegreesUnit.INSTANCE);
+        AngleAmount b = new AngleAmount(2 * Math.PI, RadiansUnit.INSTANCE);
         double result = a.subtract(b).value(DegreesUnit.INSTANCE).doubleValue();
         Assert.assertEquals(0.0, result, SMALL_AMOUNT);
     }
 
     @Test
     public void test1() {
-        Angle a = new Angle(360, DegreesUnit.INSTANCE);
-        Angle b = new Angle(360, DegreesUnit.INSTANCE);
+        AngleAmount a = new AngleAmount(360, DegreesUnit.INSTANCE);
+        AngleAmount b = new AngleAmount(360, DegreesUnit.INSTANCE);
         double result = a.add(b).value(DegreesUnit.INSTANCE).doubleValue();
         Assert.assertEquals(720.0, result, SMALL_AMOUNT);
     }
 
     @Test
     public void test2() {
-        Angle a = new Angle(500, DegreesUnit.INSTANCE);
-        Angle b = new Angle(1000, DegreesUnit.INSTANCE);
+        AngleAmount a = new AngleAmount(500, DegreesUnit.INSTANCE);
+        AngleAmount b = new AngleAmount(1000, DegreesUnit.INSTANCE);
         double result = a.subtract(b).value(DegreesUnit.INSTANCE).doubleValue();
         Assert.assertEquals(-500.0, result, SMALL_AMOUNT);
     }
 
     @Test
     public void test3() {
-        Angle a = new Angle(Math.PI * 2, RadiansUnit.INSTANCE);
-        Angle b = new Angle(1000, DegreesUnit.INSTANCE);
+        AngleAmount a = new AngleAmount(Math.PI * 2, RadiansUnit.INSTANCE);
+        AngleAmount b = new AngleAmount(1000, DegreesUnit.INSTANCE);
         double result = a.add(b).value(DegreesUnit.INSTANCE).doubleValue();
         Assert.assertEquals(1360.0, result, SMALL_AMOUNT);
     }
 
     @Test
     public void test4() {
-        Angle a = new Angle(Math.PI * 2, RadiansUnit.INSTANCE);
-        Time b = new Time(60, SecondsUnit.INSTANCE);
-        QuantityQuotient<AngleUnit, TimeUnit> quotient = a.divide(b);
+        AngleAmount a = new AngleAmount(Math.PI * 2, RadiansUnit.INSTANCE);
+        TimeAmount b = new TimeAmount(60, SecondsUnit.INSTANCE);
+        AmountQuotient<AngularVelocity, Angle, Time> quotient = a.divide(b);
         double result = quotient.value(DegreesPerSecondUnit.INSTANCE)
                 .doubleValue();
         Assert.assertEquals(6.0, result, SMALL_AMOUNT);
@@ -94,10 +94,12 @@ public class NumericAmountTest extends BaseTest {
 
     @Test
     public void test5() {
-        Angle a = new Angle(Math.PI * 2, RadiansUnit.INSTANCE);
-        Time b = new Time(60, SecondsUnit.INSTANCE);
-        QuantityQuotient<AngleUnit, TimeUnit> resultQuotient = a.divide(b);
-        AngularVelocity quotient = new AngularVelocity(resultQuotient);
+        AngleAmount a = new AngleAmount(Math.PI * 2, RadiansUnit.INSTANCE);
+        TimeAmount b = new TimeAmount(60, SecondsUnit.INSTANCE);
+        AmountQuotient<AngularVelocity, Angle, Time> resultQuotient = a
+                .divide(b);
+        AngularVelocityAmount quotient = new AngularVelocityAmount(
+                resultQuotient);
         double result = quotient.value(DegreesPerSecondUnit.INSTANCE)
                 .doubleValue();
         Assert.assertEquals(6.0, result, SMALL_AMOUNT);
@@ -105,10 +107,12 @@ public class NumericAmountTest extends BaseTest {
 
     @Test
     public void test6() {
-        Angle a = new Angle(600, DegreesUnit.INSTANCE);
-        Time b = new Time(2.5, SecondsUnit.INSTANCE);
-        QuantityQuotient<AngleUnit, TimeUnit> resultQuotient = a.divide(b);
-        AngularVelocity quotient = new AngularVelocity(resultQuotient);
+        AngleAmount a = new AngleAmount(600, DegreesUnit.INSTANCE);
+        TimeAmount b = new TimeAmount(2.5, SecondsUnit.INSTANCE);
+        AmountQuotient<AngularVelocity, Angle, Time> resultQuotient = a
+                .divide(b);
+        AngularVelocityAmount quotient = new AngularVelocityAmount(
+                resultQuotient);
         double result = quotient.value(RadiansPerSecondUnit.INSTANCE)
                 .doubleValue();
         Assert.assertEquals((Math.PI * 2.0 * 2.0 / 3.0), result, SMALL_AMOUNT);
@@ -116,10 +120,12 @@ public class NumericAmountTest extends BaseTest {
 
     @Test
     public void test7() {
-        Angle a = new Angle(600, DegreesUnit.INSTANCE);
-        Time b = new Time(2500, MillisecondsUnit.INSTANCE);
-        QuantityQuotient<AngleUnit, TimeUnit> resultQuotient = a.divide(b);
-        AngularVelocity quotient = new AngularVelocity(resultQuotient);
+        AngleAmount a = new AngleAmount(600, DegreesUnit.INSTANCE);
+        TimeAmount b = new TimeAmount(2500, MillisecondsUnit.INSTANCE);
+        AmountQuotient<AngularVelocity, Angle, Time> resultQuotient = a
+                .divide(b);
+        AngularVelocityAmount quotient = new AngularVelocityAmount(
+                resultQuotient);
         double result = quotient.value(RadiansPerSecondUnit.INSTANCE)
                 .doubleValue();
         Assert.assertEquals((Math.PI * 2.0 * 2.0 / 3.0), result, SMALL_AMOUNT);
@@ -127,22 +133,25 @@ public class NumericAmountTest extends BaseTest {
 
     @Test
     public void test8() {
-        Angle a = new Angle(Math.PI * 2, RadiansUnit.INSTANCE);
-        Time b = new Time(10, SecondsUnit.INSTANCE);
-        QuantityQuotient<TimeUnit, AngleUnit> resultQuotient = b.divide(a);
-        double result = resultQuotient.value(
-                new UnitQuotientImpl<TimeUnit, AngleUnit>(SecondsUnit.INSTANCE,
-                        RadiansUnit.INSTANCE)).doubleValue();
+        AngleAmount a = new AngleAmount(Math.PI * 2, RadiansUnit.INSTANCE);
+        TimeAmount b = new TimeAmount(10, SecondsUnit.INSTANCE);
+        AmountQuotient<QuantityQuotient<Time, Angle>, Time, Angle> resultQuotient = b
+                .divide(a);
+        double result = resultQuotient
+                .value(new UnitQuotientImpl<QuantityQuotient<Time, Angle>, Time, Angle>(
+                        SecondsUnit.INSTANCE, RadiansUnit.INSTANCE))
+                .doubleValue();
         Assert.assertEquals(10 / (Math.PI * 2), result, SMALL_AMOUNT);
     }
 
     @Test
     public void test9() {
-        Angle a = new Angle(Math.PI * 2, RadiansUnit.INSTANCE);
-        Time b = new Time(10, SecondsUnit.INSTANCE);
-        QuantityQuotient<TimeUnit, AngleUnit> quotient = b.divide(a);
-        double result = quotient.value(
-                new UnitQuotientImpl<TimeUnit, AngleUnit>(
+        AngleAmount a = new AngleAmount(Math.PI * 2, RadiansUnit.INSTANCE);
+        TimeAmount b = new TimeAmount(10, SecondsUnit.INSTANCE);
+        AmountQuotient<QuantityQuotient<Time, Angle>, Time, Angle> quotient = b
+                .divide(a);
+        double result = quotient
+                .value(new UnitQuotientImpl<QuantityQuotient<Time, Angle>, Time, Angle>(
                         MillisecondsUnit.INSTANCE, DegreesUnit.INSTANCE))
                 .doubleValue();
         Assert.assertEquals(10000.0 / 360, result, SMALL_AMOUNT);
@@ -150,9 +159,10 @@ public class NumericAmountTest extends BaseTest {
 
     @Test
     public void test10() {
-        Angle a = new Angle(Math.PI * 2, RadiansUnit.INSTANCE);
-        Time b = new Time(10, SecondsUnit.INSTANCE);
-        QuantityProduct<AngleUnit, TimeUnit> product = a.multiply(b);
+        AngleAmount a = new AngleAmount(Math.PI * 2, RadiansUnit.INSTANCE);
+        TimeAmount b = new TimeAmount(10, SecondsUnit.INSTANCE);
+        AmountProduct<QuantityProduct<Angle, Time>, Angle, Time> product = a
+                .multiply(b);
         double result = product.value().doubleValue();
         Assert.assertEquals(Math.PI * 2 * 10, result, SMALL_AMOUNT);
     }

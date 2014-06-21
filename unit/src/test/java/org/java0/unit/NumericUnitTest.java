@@ -18,12 +18,16 @@ package org.java0.unit;
 
 import java.util.logging.Logger;
 
+import org.java0.quantity.Angle;
+import org.java0.quantity.AngularAcceleration;
+import org.java0.quantity.AngularVelocity;
+import org.java0.quantity.QuantityProduct;
+import org.java0.quantity.QuantityQuotient;
+import org.java0.quantity.Time;
 import org.java0.test.BaseTest;
-import org.java0.unit.angle.AngleUnit;
 import org.java0.unit.angle.DegreesUnit;
 import org.java0.unit.angularvelocity.DegreesPerMillisecondUnit;
 import org.java0.unit.time.SecondsUnit;
-import org.java0.unit.time.TimeUnit;
 import org.junit.Test;
 
 /**
@@ -38,25 +42,26 @@ public class NumericUnitTest extends BaseTest {
     public void test1() {
         DegreesUnit degreesUnit = DegreesUnit.INSTANCE;
 
-        UnitProduct<AngleUnit, TimeUnit> b = degreesUnit
-                .multiply(SecondsUnit.INSTANCE);
-
-        UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit> c = b
-                .multiply(SecondsUnit.INSTANCE);
-
-        UnitQuotient<UnitProduct<UnitProduct<AngleUnit, TimeUnit>, TimeUnit>, UnitQuotient<AngleUnit, TimeUnit>> d = c
-                .divide(DegreesPerMillisecondUnit.INSTANCE);
-
-        UnitQuotient<AngleUnit, TimeUnit> u1 = DegreesUnit.INSTANCE
+        UnitQuotient<AngularVelocity, Angle, Time> b = degreesUnit
                 .divide(SecondsUnit.INSTANCE);
 
-        UnitQuotient<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit> u2 = u1
+        UnitQuotient<AngularAcceleration, AngularVelocity, Time> c = b
                 .divide(SecondsUnit.INSTANCE);
 
-        UnitProduct<UnitQuotient<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit>, AngleUnit> u3 = u2
+        Unit<Time> d = c.divideAndCancel1(DegreesPerMillisecondUnit.INSTANCE);
+
+        UnitQuotient<AngularVelocity, Angle, Time> u1 = DegreesUnit.INSTANCE
+                .divide(SecondsUnit.INSTANCE);
+
+        UnitQuotient<AngularAcceleration, AngularVelocity, Time> u2 = u1
+                .divide(SecondsUnit.INSTANCE);
+
+        @SuppressWarnings("unused")
+        UnitProduct<QuantityProduct<AngularAcceleration, Angle>, AngularAcceleration, Angle> u3 = u2
                 .multiply(DegreesUnit.INSTANCE);
 
-        UnitProduct<UnitQuotient<UnitQuotient<AngleUnit, TimeUnit>, TimeUnit>, AngleUnit> velocitySquaredUnit = DegreesUnit.INSTANCE
+        @SuppressWarnings("unused")
+        UnitProduct<QuantityProduct<QuantityQuotient<QuantityQuotient<Angle, Time>, Time>, Angle>, QuantityQuotient<QuantityQuotient<Angle, Time>, Time>, Angle> velocitySquaredUnit = DegreesUnit.INSTANCE
                 .divide(SecondsUnit.INSTANCE).divide(SecondsUnit.INSTANCE)
                 .multiply(DegreesUnit.INSTANCE);
 

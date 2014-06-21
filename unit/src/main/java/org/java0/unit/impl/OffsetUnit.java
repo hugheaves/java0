@@ -18,19 +18,19 @@ package org.java0.unit.impl;
 
 import java.util.logging.Logger;
 
-import org.java0.unit.Unit;
-
+import org.java0.quantity.Quantity;
 
 /**
  * Implements a numeric unit that converts to and from the system unit by
  * multiplying / dividing by a conversion factor and adding / subtracting an
  * offset.
- *
+ * 
  * @author Hugh Eaves
- * @param <BASE_UNIT> the generic type
+ * @param <BASE_UNIT>
+ *            the generic type
  */
-public abstract class OffsetUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
-        ScalableUnit<BASE_UNIT> {
+public abstract class OffsetUnit<QUANTITY extends Quantity> extends
+        ScalableUnit<QUANTITY> {
 
     /** The Constant logger. */
     @SuppressWarnings("unused")
@@ -80,7 +80,7 @@ public abstract class OffsetUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
 
     /**
      * Gets the to system unit offset.
-     *
+     * 
      * @return the toSystemUnitOffset
      */
     public double getToSystemUnitOffset() {

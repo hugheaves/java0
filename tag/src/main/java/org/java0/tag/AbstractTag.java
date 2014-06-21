@@ -16,7 +16,9 @@
  */
 package org.java0.tag;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -24,7 +26,7 @@ import org.java0.core.type.Constants;
 
 /**
  * @author Hugh Eaves
- *
+ * 
  */
 // TODO Returned collections should be unmodifiable
 public class AbstractTag implements Tag {
@@ -56,9 +58,6 @@ public class AbstractTag implements Tag {
         this.value = value;
     }
 
-    /**
-     * @see org.java0.tag.Tag#link(org.java0.tag.Tag)
-     */
     @Override
     public Tag link(Tag tag) {
         if (tag == null) {
@@ -67,7 +66,7 @@ public class AbstractTag implements Tag {
         if (delegate != null) {
             delegate.link(tag);
         } else {
-            if (tag.numTags() > 1){
+            if (tag.size() > 1) {
                 if (allTags == null) {
                     allTags = tag.allTags();
                     allTags.add(this);
@@ -123,13 +122,10 @@ public class AbstractTag implements Tag {
         allTags = null;
     }
 
-    /**
-     * @see org.java0.tag.Tag#numTags()
-     */
     @Override
-    public int numTags() {
+    public int size() {
         if (delegate != null) {
-            return delegate.numTags();
+            return delegate.size();
         } else {
             if (allTags == null) {
                 return 1;
@@ -168,5 +164,100 @@ public class AbstractTag implements Tag {
     @Override
     public String toString() {
         return getType().getName() + "/" + value.toString();
+    }
+
+    /**
+     * @see java.util.Set#isEmpty()
+     */
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    /**
+     * @see java.util.Set#contains(java.lang.Object)
+     */
+    @Override
+    public boolean contains(Object o) {
+        return false;
+    }
+
+    /**
+     * @see java.util.Set#iterator()
+     */
+    @Override
+    public Iterator<Tag> iterator() {
+        return null;
+    }
+
+    /**
+     * @see java.util.Set#toArray()
+     */
+    @Override
+    public Object[] toArray() {
+        return null;
+    }
+
+    /**
+     * @see java.util.Set#toArray(java.lang.Object[])
+     */
+    @Override
+    public <T> T[] toArray(T[] a) {
+        return null;
+    }
+
+    /**
+     * @see java.util.Set#remove(java.lang.Object)
+     */
+    @Override
+    public boolean remove(Object o) {
+        return false;
+    }
+
+    /**
+     * @see java.util.Set#containsAll(java.util.Collection)
+     */
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return false;
+    }
+
+    /**
+     * @see java.util.Set#addAll(java.util.Collection)
+     */
+    @Override
+    public boolean addAll(Collection<? extends Tag> c) {
+        return false;
+    }
+
+    /**
+     * @see java.util.Set#retainAll(java.util.Collection)
+     */
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        return false;
+    }
+
+    /**
+     * @see java.util.Set#removeAll(java.util.Collection)
+     */
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        return false;
+    }
+
+    /**
+     * @see java.util.Set#clear()
+     */
+    @Override
+    public void clear() {
+    }
+
+    /**
+     * @see java.util.Set#add(java.lang.Object)
+     */
+    @Override
+    public boolean add(Tag e) {
+        return false;
     }
 }

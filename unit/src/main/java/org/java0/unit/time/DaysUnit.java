@@ -37,13 +37,11 @@ public final class DaysUnit extends TimeUnit {
     /**
      * Convert from time unit.
      * 
-     * @param unit
-     *            the unit
      * @return the java.util.concurrent. time unit
-     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
+     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit()
      */
     @Override
-    public java.util.concurrent.TimeUnit convertFromTimeUnit(TimeUnit unit) {
+    public java.util.concurrent.TimeUnit convertFromTimeUnit() {
         return java.util.concurrent.TimeUnit.DAYS;
     }
 }

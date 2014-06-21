@@ -33,6 +33,7 @@ public class WritableChannelIdImpl<T> extends ChannelIdImpl<T> implements
 
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

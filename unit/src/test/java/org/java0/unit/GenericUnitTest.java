@@ -20,6 +20,10 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.logging.Logger;
 
+import org.java0.quantity.Numeric;
+import org.java0.quantity.NumericProduct;
+import org.java0.quantity.QuantityProduct;
+import org.java0.quantity.QuantityQuotient;
 import org.java0.test.BaseTest;
 import org.java0.unit.impl.GenericUnit;
 import org.junit.Test;
@@ -46,7 +50,8 @@ public class GenericUnitTest extends BaseTest {
     @Test
     public void test1() {
 
-        UnitProduct<GenericUnit, GenericUnit> ab = a.multiply(b);
+        UnitProduct<NumericProduct, Numeric, Numeric> ab = a.multiply(b);
+
         logger.info(ab.getName());
 
         assertEquals(0.5, ab.convertToSystem(0.5).doubleValue(), SMALL_AMOUNT);
@@ -59,7 +64,8 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test2() {
-        UnitProduct<GenericUnit, GenericUnit> dadb = da.multiply(db);
+        UnitProduct<QuantityProduct<Numeric, Numeric>, Numeric, Numeric> dadb = da
+                .multiply(db);
         logger.info(dadb.getName());
 
         assertEquals(50, dadb.convertToSystem(0.5).doubleValue(), SMALL_AMOUNT);
@@ -73,7 +79,8 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test3() {
-        UnitProduct<GenericUnit, GenericUnit> damb = da.multiply(mb);
+        UnitProduct<QuantityProduct<Numeric, Numeric>, Numeric, Numeric> damb = da
+                .multiply(mb);
         logger.info(damb.getName());
 
         assertEquals(damb.convertToSystem(0.5).doubleValue(), .005,
@@ -88,7 +95,8 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test4() {
-        UnitProduct<GenericUnit, GenericUnit> mbda = mb.multiply(da);
+        UnitProduct<QuantityProduct<Numeric, Numeric>, Numeric, Numeric> mbda = mb
+                .multiply(da);
         logger.info(mbda.getName());
 
         assertEquals(mbda.convertToSystem(0.5).doubleValue(), .005,
@@ -103,7 +111,8 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test5() {
-        UnitQuotient<GenericUnit, GenericUnit> ab = a.divide(b);
+        UnitQuotient<QuantityQuotient<Numeric, Numeric>, Numeric, Numeric> ab = a
+                .divide(b);
         logger.info(ab.getName());
 
         assertEquals(0.5, ab.convertToSystem(0.5).doubleValue(), SMALL_AMOUNT);
@@ -116,7 +125,8 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test6() {
-        UnitQuotient<GenericUnit, GenericUnit> dadb = da.divide(db);
+        UnitQuotient<QuantityQuotient<Numeric, Numeric>, Numeric, Numeric> dadb = da
+                .divide(db);
         logger.info(dadb.getName());
 
         assertEquals(0.5, dadb.convertToSystem(0.5).doubleValue(), SMALL_AMOUNT);
@@ -130,7 +140,8 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test7() {
-        UnitQuotient<GenericUnit, GenericUnit> damb = da.divide(mb);
+        UnitQuotient<QuantityQuotient<Numeric, Numeric>, Numeric, Numeric> damb = da
+                .divide(mb);
         logger.info(damb.getName());
 
         assertEquals(damb.convertToSystem(0.5).doubleValue(), 5000,
@@ -147,7 +158,8 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test8() {
-        UnitQuotient<GenericUnit, GenericUnit> mbda = mb.divide(da);
+        UnitQuotient<QuantityQuotient<Numeric, Numeric>, Numeric, Numeric> mbda = mb
+                .divide(da);
         logger.info(mbda.getName());
 
         assertEquals(.00005, mbda.convertToSystem(0.5).doubleValue(),
@@ -164,11 +176,13 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test9() {
-        Unit<UnitQuotient<GenericUnit, GenericUnit>> mbda = mb.divide(da);
+        UnitQuotient<QuantityQuotient<Numeric, Numeric>, Numeric, Numeric> mbda = mb
+                .divide(da);
         logger.info(mbda.getName());
 
-        Unit<UnitQuotient<UnitQuotient<GenericUnit, GenericUnit>, GenericUnit>> mbdaca = mbda
+        UnitQuotient<QuantityQuotient<QuantityQuotient<Numeric, Numeric>, Numeric>, QuantityQuotient<Numeric, Numeric>, Numeric> mbdaca = mbda
                 .divide(ca);
+
         logger.info(mbdaca.getName());
 
         assertEquals(.0000005, mbdaca.convertToSystem(0.5).doubleValue(),
@@ -187,13 +201,15 @@ public class GenericUnitTest extends BaseTest {
 
     @Test
     public void test10() {
-        UnitQuotient<GenericUnit, GenericUnit> mbda = mb.divide(da);
+        UnitQuotient<QuantityQuotient<Numeric, Numeric>, Numeric, Numeric> mbda = mb
+                .divide(da);
         logger.info(mbda.getName());
 
-        UnitQuotient<UnitQuotient<GenericUnit, GenericUnit>, GenericUnit> mbdaca = mbda
+        UnitQuotient<QuantityQuotient<QuantityQuotient<Numeric, Numeric>, Numeric>, QuantityQuotient<Numeric, Numeric>, Numeric> mbdaca = mbda
                 .divide(ca);
         logger.info(mbdaca.getName());
-        UnitProduct<GenericUnit, UnitQuotient<UnitQuotient<GenericUnit, GenericUnit>, GenericUnit>> dbmbdaca = db
+
+        UnitProduct<QuantityProduct<Numeric, QuantityQuotient<QuantityQuotient<Numeric, Numeric>, Numeric>>, Numeric, QuantityQuotient<QuantityQuotient<Numeric, Numeric>, Numeric>> dbmbdaca = db
                 .multiply(mbdaca);
         logger.info(mbdaca.getName());
 

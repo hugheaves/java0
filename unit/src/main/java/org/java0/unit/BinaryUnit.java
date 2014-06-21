@@ -16,30 +16,35 @@
  */
 package org.java0.unit;
 
+import org.java0.quantity.BinaryQuantity;
+import org.java0.quantity.Quantity;
 
 /**
  * The Interface BinaryNumericUnit.
- *
+ * 
  * @author Hugh Eaves
- * @param <UNIT_1> the generic type
- * @param <UNIT_2> the generic type
- * @param <COMBINED_UNIT> the generic type
+ * @param <UNIT_1>
+ *            the generic type
+ * @param <UNIT_2>
+ *            the generic type
+ * @param <COMBINED_UNIT>
+ *            the generic type
  */
-public interface BinaryUnit<UNIT_1 extends Unit<?>, UNIT_2 extends Unit<?>, COMBINED_UNIT extends Unit<COMBINED_UNIT>>
-        extends Unit<COMBINED_UNIT> {
+public interface BinaryUnit<COMBINED_QUANTITY extends BinaryQuantity<QUANTITY_1, QUANTITY_2>, QUANTITY_1 extends Quantity, QUANTITY_2 extends Quantity>
+        extends Unit<COMBINED_QUANTITY> {
     /**
      * Returns the first / left unit of this binary numeric unit.
      * 
      * @return a unit
      */
-    public UNIT_1 getUnit1();
+    public Unit<QUANTITY_1> getUnit1();
 
     /**
      * Returns the second / right unit of this binary numeric unit.
      * 
      * @return a unit
      */
-    public UNIT_2 getUnit2();
+    public Unit<QUANTITY_2> getUnit2();
 
     /**
      * Gets the relationship between these two units;.

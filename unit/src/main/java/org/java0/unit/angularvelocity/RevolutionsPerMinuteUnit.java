@@ -25,7 +25,7 @@ import org.java0.unit.time.MinutesUnit;
  *
  * @author Hugh Eaves
  */
-public class RevolutionsPerMinuteUnit extends AngularVelocityUnit {
+public class RevolutionsPerMinuteUnit extends AbstractAngularVelocityUnit {
     
     /** The Constant INSTANCE. */
     public static final RevolutionsPerMinuteUnit INSTANCE = new RevolutionsPerMinuteUnit();

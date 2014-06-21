@@ -19,11 +19,13 @@ package org.java0.unit.impl;
 import java.util.logging.Logger;
 
 import org.java0.core.type.AbstractNamedObject;
+import org.java0.quantity.Quantity;
+import org.java0.quantity.QuantityProduct;
+import org.java0.quantity.QuantityQuotient;
 import org.java0.unit.InverseUnit;
 import org.java0.unit.Unit;
 import org.java0.unit.UnitProduct;
 import org.java0.unit.UnitQuotient;
-
 
 /**
  * The Class AbstractUnit.
@@ -32,8 +34,8 @@ import org.java0.unit.UnitQuotient;
  * @param <BASE_UNIT>
  *            the generic type
  */
-public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
-        AbstractNamedObject implements Unit<BASE_UNIT> {
+public abstract class AbstractUnit<QUANTITY extends Quantity> extends
+        AbstractNamedObject implements Unit<QUANTITY> {
 
     /** The Constant logger. */
     @SuppressWarnings("unused")
@@ -51,6 +53,11 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
     }
 
     /**
+     * Equals.
+     * 
+     * @param object
+     *            the object
+     * @return true, if successful
      * @see org.java0.core.type.AbstractNamedObject#equals(java.lang.Object)
      */
     @Override
@@ -65,6 +72,9 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
     }
 
     /**
+     * Hash code.
+     * 
+     * @return the int
      * @see org.java0.core.type.AbstractNamedObject#hashCode()
      */
     @Override
@@ -79,9 +89,8 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
      * @see org.java0.unit.Unit#invert()
      */
     @Override
-    public InverseUnit<BASE_UNIT> invert() {
-        // return new InverseUnitImpl<UNIT_TYPE>((UNIT_TYPE) this);
-        return null;
+    public InverseUnit<QUANTITY> invert() {
+        return new InverseUnitImpl<QUANTITY>(this);
     }
 
     /**
@@ -96,34 +105,22 @@ public abstract class AbstractUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
     }
 
     /**
-     * Returns the product of two numeric units.
-     * 
-     * @param <PARAM_BASE_UNIT>
-     *            the generic type
-     * @param <PARAM_UNIT>
-     *            the generic type
-     * @param unit
-     *            the unit
-     * @return the unit product
+     * @see org.java0.unit.Unit#multiply(org.java0.unit.Unit)
      */
     @Override
-    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
+    public <PARAM_QUANTITY extends Quantity, PARAM_UNIT extends Unit<PARAM_QUANTITY>, COMBINED_QUANTITY extends QuantityProduct<QUANTITY, PARAM_QUANTITY>> UnitProduct<COMBINED_QUANTITY, QUANTITY, PARAM_QUANTITY> multiply(
             PARAM_UNIT unit) {
-        return new UnitProductImpl<BASE_UNIT, PARAM_BASE_UNIT>(
-                (BASE_UNIT) this, (PARAM_BASE_UNIT) unit);
+        return new UnitProductImpl<COMBINED_QUANTITY, QUANTITY, PARAM_QUANTITY>(
+                this, unit);
     }
 
-    /*
-     * Returns the quotient of two numeric units.
-     */
     /**
      * @see org.java0.unit.Unit#divide(org.java0.unit.Unit)
      */
     @Override
-    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(
+    public <PARAM_QUANTITY extends Quantity, PARAM_UNIT extends Unit<PARAM_QUANTITY>, COMBINED_QUANTITY extends QuantityQuotient<QUANTITY, PARAM_QUANTITY>> UnitQuotient<COMBINED_QUANTITY, QUANTITY, PARAM_QUANTITY> divide(
             PARAM_UNIT unit) {
-        return new UnitQuotientImpl<BASE_UNIT, PARAM_BASE_UNIT>(
-                (BASE_UNIT) this, (PARAM_BASE_UNIT) unit);
+        return new UnitQuotientImpl<COMBINED_QUANTITY, QUANTITY, PARAM_QUANTITY>(
+                this, unit);
     }
-
 }

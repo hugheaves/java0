@@ -32,6 +32,7 @@ public class ReadableChannelIdImpl<T> extends ChannelIdImpl<T> implements
         super(name, dataType);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

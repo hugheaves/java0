@@ -14,32 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.quantity.power;
-
-import org.java0.quantity.impl.QuantityImpl;
-import org.java0.unit.power.PowerUnit;
-
+package org.java0.quantity;
 
 /**
- * The Class Power.
- *
  * @author Hugh Eaves
+ * 
  */
-public class Power extends QuantityImpl<PowerUnit> {
+public interface Energy extends Quantity, QuantityProduct<Force, Length> {
 
-    /**
-     * Instantiates a new power.
-     */
-    protected Power() {
-    }
-
-    /**
-     * Instantiates a new power.
-     *
-     * @param value the value
-     * @param unit the unit
-     */
-    public Power(Number value, PowerUnit unit) {
-        super(value, unit);
-    }
 }

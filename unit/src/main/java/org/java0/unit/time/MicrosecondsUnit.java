@@ -19,11 +19,11 @@ package org.java0.unit.time;
 
 /**
  * The Class MicrosecondsUnit.
- *
+ * 
  * @author Hugh Eaves
  */
 public final class MicrosecondsUnit extends TimeUnit {
-    
+
     /** The Constant INSTANCE. */
     public static final MicrosecondsUnit INSTANCE = new MicrosecondsUnit();
 
@@ -36,13 +36,12 @@ public final class MicrosecondsUnit extends TimeUnit {
 
     /**
      * Convert from time unit.
-     *
-     * @param unit the unit
+     * 
      * @return the java.util.concurrent. time unit
-     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit(org.java0.unit.time.TimeUnit)
+     * @see org.java0.unit.time.TimeUnit#convertFromTimeUnit()
      */
     @Override
-    public java.util.concurrent.TimeUnit convertFromTimeUnit(TimeUnit unit) {
+    public java.util.concurrent.TimeUnit convertFromTimeUnit() {
         return java.util.concurrent.TimeUnit.MICROSECONDS;
     }
 }

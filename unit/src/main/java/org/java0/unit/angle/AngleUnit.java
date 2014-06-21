@@ -16,31 +16,13 @@
  */
 package org.java0.unit.angle;
 
-import org.java0.unit.impl.ScalableUnit;
-
+import org.java0.quantity.Angle;
+import org.java0.unit.Unit;
 
 /**
- * The Class AngleUnit.
- *
  * @author Hugh Eaves
+ * 
  */
-public abstract class AngleUnit extends ScalableUnit<AngleUnit> {
+public interface AngleUnit extends Unit<Angle> {
 
-    /**
-     * Create a new AngleUnit.
-     *
-     * @param name the name
-     * @param toSystemUnitConversionFactor the to system unit conversion factor
-     */
-    public AngleUnit(String name, double toSystemUnitConversionFactor) {
-        super(name, toSystemUnitConversionFactor);
-    }
-
-    /**
-     * @see org.java0.unit.Unit#getSystemUnit()
-     */
-    @Override
-    public AngleUnit getSystemUnit() {
-        return RadiansUnit.INSTANCE;
-    }
 }

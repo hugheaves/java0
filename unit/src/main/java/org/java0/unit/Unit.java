@@ -17,17 +17,18 @@
 package org.java0.unit;
 
 import org.java0.core.type.NamedObject;
-
+import org.java0.quantity.Quantity;
+import org.java0.quantity.QuantityProduct;
+import org.java0.quantity.QuantityQuotient;
 
 /**
- * The Interface NumericUnit.
+ * The Interface Unit.
  * 
  * @author Hugh Eaves
  * @param <BASE_UNIT>
  *            the generic type
  */
-public interface Unit<BASE_UNIT extends Unit<BASE_UNIT>> extends NamedObject
-/* ,org.unitsofmeasurement.unit.Unit<NumericQuantity<U>> */{
+public interface Unit<QUANTITY extends Quantity> extends NamedObject {
 
     /**
      * Returns the product of two numeric units.
@@ -40,7 +41,7 @@ public interface Unit<BASE_UNIT extends Unit<BASE_UNIT>> extends NamedObject
      *            the unit
      * @return the unit product
      */
-    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitProduct<BASE_UNIT, PARAM_BASE_UNIT> multiply(
+    public <PARAM_QUANTITY extends Quantity, PARAM_UNIT extends Unit<PARAM_QUANTITY>, COMBINED_QUANTITY extends QuantityProduct<QUANTITY, PARAM_QUANTITY>> UnitProduct<COMBINED_QUANTITY, QUANTITY, PARAM_QUANTITY> multiply(
             PARAM_UNIT unit);
 
     /**
@@ -54,7 +55,7 @@ public interface Unit<BASE_UNIT extends Unit<BASE_UNIT>> extends NamedObject
      *            the unit
      * @return the unit quotient
      */
-    public <PARAM_BASE_UNIT extends Unit<PARAM_BASE_UNIT>, PARAM_UNIT extends Unit<PARAM_BASE_UNIT>> UnitQuotient<BASE_UNIT, PARAM_BASE_UNIT> divide(
+    public <PARAM_QUANTITY extends Quantity, PARAM_UNIT extends Unit<PARAM_QUANTITY>, COMBINED_QUANTITY extends QuantityQuotient<QUANTITY, PARAM_QUANTITY>> UnitQuotient<COMBINED_QUANTITY, QUANTITY, PARAM_QUANTITY> divide(
             PARAM_UNIT unit);
 
     /**
@@ -62,14 +63,14 @@ public interface Unit<BASE_UNIT extends Unit<BASE_UNIT>> extends NamedObject
      * 
      * @return the inverse unit
      */
-    public InverseUnit<BASE_UNIT> invert();
+    public InverseUnit<QUANTITY> invert();
 
     /**
      * Returns the system unit compatible with this Unit.
      * 
      * @return the system unit compatible with this Unit.
      */
-    public Unit<BASE_UNIT> getSystemUnit();
+    public Unit<QUANTITY> getSystemUnit();
 
     /**
      * Returns whether or not this unit is a system unit.

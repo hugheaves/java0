@@ -16,18 +16,18 @@
  */
 package org.java0.unit.impl;
 
-import org.java0.unit.Unit;
-
+import org.java0.quantity.Quantity;
 
 /**
  * Implements a numeric unit that converts to and from the system unit by
  * multiplying / dividing by a conversion factor.
- *
+ * 
  * @author Hugh Eaves
- * @param <BASE_UNIT> the generic type
+ * @param <BASE_UNIT>
+ *            the generic type
  */
-public abstract class ScalableUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
-        AbstractUnit<BASE_UNIT> {
+public abstract class ScalableUnit<QUANTITY extends Quantity> extends
+        AbstractUnit<QUANTITY> {
 
     /** The to system unit conversion factor. */
     protected double toSystemUnitConversionFactor;
@@ -48,8 +48,9 @@ public abstract class ScalableUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
 
     /**
      * Convert to system.
-     *
-     * @param value the value
+     * 
+     * @param value
+     *            the value
      * @return the number
      * @see org.java0.unit.Unit#convertToSystem(java.lang.Object)
      */
@@ -60,8 +61,9 @@ public abstract class ScalableUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
 
     /**
      * Convert from system.
-     *
-     * @param value the value
+     * 
+     * @param value
+     *            the value
      * @return the number
      * @see org.java0.unit.Unit#convertFromSystem(java.lang.Object)
      */
@@ -72,7 +74,7 @@ public abstract class ScalableUnit<BASE_UNIT extends Unit<BASE_UNIT>> extends
 
     /**
      * Gets the to system unit conversion factor.
-     *
+     * 
      * @return the toSystemUnitConversionFactor
      */
     public double getToSystemUnitConversionFactor() {

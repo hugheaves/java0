@@ -14,51 +14,58 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.quantity.angularvelocity;
+package org.java0.amount.angularvelocity;
 
-import org.java0.quantity.Quantity;
-import org.java0.quantity.impl.QuantityQuotientImpl;
+import org.java0.amount.Amount;
+import org.java0.amount.AmountQuotient;
+import org.java0.amount.impl.AmountQuotientImpl;
+import org.java0.quantity.Angle;
+import org.java0.quantity.AngularVelocity;
+import org.java0.quantity.Time;
 import org.java0.unit.UnitQuotient;
-import org.java0.unit.angle.AngleUnit;
-import org.java0.unit.time.TimeUnit;
-
 
 /**
  * The Class AngularVelocity.
- *
+ * 
  * @author Hugh Eaves
  */
-public class AngularVelocity extends QuantityQuotientImpl<AngleUnit, TimeUnit> {
+public class AngularVelocityAmount extends
+        AmountQuotientImpl<AngularVelocity, Angle, Time> {
 
     /**
      * Instantiates a new angular velocity.
-     *
-     * @param value the value
-     * @param unit the unit
+     * 
+     * @param value
+     *            the value
+     * @param unit
+     *            the unit
      */
-    public AngularVelocity(Number value, UnitQuotient<AngleUnit, TimeUnit> unit) {
+    public AngularVelocityAmount(Number value,
+            UnitQuotient<AngularVelocity, Angle, Time> unit) {
         super(value, unit);
     }
 
     /**
      * Instantiates a new angular velocity.
-     *
-     * @param angularVelocity the angular velocity
-     * @param unit the unit
+     * 
+     * @param angularVelocity
+     *            the angular velocity
+     * @param unit
+     *            the unit
      */
-    public AngularVelocity(
-            Quantity<UnitQuotient<AngleUnit, TimeUnit>> angularVelocity,
-            UnitQuotient<AngleUnit, TimeUnit> unit) {
+    public AngularVelocityAmount(Amount<AngularVelocity> angularVelocity,
+            UnitQuotient<AngularVelocity, Angle, Time> unit) {
         super(angularVelocity.value(unit), unit);
     }
 
     /**
      * Instantiates a new angular velocity.
-     *
-     * @param angularVelocity the angular velocity
+     * 
+     * @param angularVelocity
+     *            the angular velocity
      */
-    public AngularVelocity(
-            Quantity<UnitQuotient<AngleUnit, TimeUnit>> angularVelocity) {
+    public AngularVelocityAmount(
+            AmountQuotient<AngularVelocity, Angle, Time> angularVelocity) {
         super(angularVelocity.value(), angularVelocity.unit());
     }
 }

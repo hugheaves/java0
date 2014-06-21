@@ -18,23 +18,25 @@ package org.java0.unit.temperature;
 
 import java.util.logging.Logger;
 
+import org.java0.quantity.Temperature;
 import org.java0.unit.impl.OffsetUnit;
-
 
 /**
  * The Class TemperatureUnit.
- *
+ * 
  * @author Hugh Eaves
  */
-public abstract class TemperatureUnit extends
-        OffsetUnit<TemperatureUnit> {
-    
+public abstract class TemperatureUnit extends OffsetUnit<Temperature> {
+
     /**
      * Create a new TemperatureUnit.
-     *
-     * @param name the name
-     * @param toSystemUnitConversionFactor the to system unit conversion factor
-     * @param toSystemUnitOffset the to system unit offset
+     * 
+     * @param name
+     *            the name
+     * @param toSystemUnitConversionFactor
+     *            the to system unit conversion factor
+     * @param toSystemUnitOffset
+     *            the to system unit offset
      */
     public TemperatureUnit(String name, double toSystemUnitConversionFactor,
             double toSystemUnitOffset) {
@@ -49,12 +51,12 @@ public abstract class TemperatureUnit extends
 
     /**
      * Gets the system unit.
-     *
+     * 
      * @return the system unit
      * @see org.java0.unit.Unit#getSystemUnit()
      */
     @Override
     public TemperatureUnit getSystemUnit() {
-        return CelsiusUnit.INSTANCE;
+        return KelvinUnit.INSTANCE;
     }
 }

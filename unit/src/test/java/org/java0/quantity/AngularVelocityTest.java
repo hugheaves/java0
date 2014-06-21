@@ -16,7 +16,7 @@
  */
 package org.java0.quantity;
 
-import org.java0.quantity.angularvelocity.AngularVelocity;
+import org.java0.amount.angularvelocity.AngularVelocityAmount;
 import org.java0.unit.angularvelocity.DegreesPerMillisecondUnit;
 import org.java0.unit.angularvelocity.DegreesPerSecondUnit;
 import org.java0.unit.angularvelocity.RadiansPerSecondUnit;
@@ -28,7 +28,7 @@ public class AngularVelocityTest {
 
     @Test
     public void test1() {
-        AngularVelocity a = new AngularVelocity(45,
+        AngularVelocityAmount a = new AngularVelocityAmount(45,
                 DegreesPerSecondUnit.INSTANCE);
         double b = a.value(DegreesPerSecondUnit.INSTANCE).doubleValue();
         Assert.assertEquals(45.0, b, SMALL_AMOUNT);
@@ -36,7 +36,7 @@ public class AngularVelocityTest {
 
     @Test
     public void test2() {
-        AngularVelocity a = new AngularVelocity(45,
+        AngularVelocityAmount a = new AngularVelocityAmount(45,
                 DegreesPerSecondUnit.INSTANCE);
         double b = a.value(RadiansPerSecondUnit.INSTANCE).doubleValue();
         Assert.assertEquals(Math.PI / 4, b, SMALL_AMOUNT);
@@ -44,7 +44,7 @@ public class AngularVelocityTest {
 
     @Test
     public void test3() {
-        AngularVelocity a = new AngularVelocity(45,
+        AngularVelocityAmount a = new AngularVelocityAmount(45,
                 DegreesPerMillisecondUnit.INSTANCE);
         double b = a.value(RadiansPerSecondUnit.INSTANCE).doubleValue();
         Assert.assertEquals(((45 * 1000.0) / 360) * 2 * Math.PI, b,
@@ -53,7 +53,7 @@ public class AngularVelocityTest {
 
     @Test
     public void test4() {
-        AngularVelocity a = new AngularVelocity(Math.PI / 1000,
+        AngularVelocityAmount a = new AngularVelocityAmount(Math.PI / 1000,
                 RadiansPerSecondUnit.INSTANCE);
         double b = a.value(DegreesPerMillisecondUnit.INSTANCE).doubleValue();
         Assert.assertEquals(.00018, b, SMALL_AMOUNT);

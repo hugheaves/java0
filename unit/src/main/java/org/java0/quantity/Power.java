@@ -14,24 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.quantity.time;
-
-import org.java0.unit.time.MillisecondsUnit;
-
+package org.java0.quantity;
 
 /**
- * The Class Milliseconds.
- *
  * @author Hugh Eaves
+ * 
  */
-public class Milliseconds extends Time {
-    
-    /**
-     * Create a new Milliseconds.
-     *
-     * @param value the value
-     */
-    public Milliseconds(Number value) {
-        super(value, MillisecondsUnit.INSTANCE);
-    }
+public interface Power extends Quantity, QuantityQuotient<Energy, Time> {
+
 }

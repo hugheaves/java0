@@ -22,7 +22,7 @@ package org.java0.unit.power;
  *
  * @author Hugh Eaves
  */
-public final class WattsUnit extends PowerUnit {
+public final class WattsUnit extends AbstractPowerUnit {
     
     /** The Constant INSTANCE. */
     public static final WattsUnit INSTANCE = new WattsUnit();

@@ -23,18 +23,18 @@ import java.util.Set;
  * A {@code Tag} is a lightweight container for a value object, that also has
  * the ability to link to other {@code Tag} objects to form a collection of
  * related tags. This collection of related tags is known as a tag "group".
- *
+ * 
  * The linking between tags is bidirectional, so that all tags in a group
  * provide the ability to access all other tags in the group.
- *
+ * 
  * @author Hugh Eaves
- *
+ * 
  */
-public interface Tag {
+public interface Tag extends Set<Tag> {
     /**
-     * Links a tag to this tag. This method is used to create groups of
-     * linked tags.
-     *
+     * Links a tag to this tag. This method is used to create groups of linked
+     * tags.
+     * 
      * @param tag
      *            the tag to link
      * @return a reference to this tag (for chaining invocations)
@@ -44,38 +44,39 @@ public interface Tag {
 
     /**
      * Retrieve all the tags in this group of tags. (including this Tag)
-     *
+     * 
      * @return a set of tags containing all the tags in this group of tags
      */
     public Set<Tag> allTags();
 
     /**
      * Retrieve the type (Class) of this tag.
-     *
+     * 
      * @return the class of this tag.
      */
     public Class<? extends Tag> getType();
 
     /**
      * Retrieve the value of this tag.
-     *
+     * 
      * @return the value of this tag.
      */
     public Object getValue();
 
     /**
-     * This method is called on a tag that has just been added using the
-     * link() method to set the "parent" tag. This method is not
-     * normally called directly.
-     *
+     * This method is called on a tag that has just been added using the link()
+     * method to set the "parent" tag. This method is not normally called
+     * directly.
+     * 
      * @param tag
      */
     public void setParent(Tag tag);
 
     /**
      * Retrieves the number of tags is this tag group (including this Tag).
-     *
+     * 
      * @return the number of tags is this tag group (including this Tag).
      */
-    public int numTags();
+    @Override
+    public int size();
 }

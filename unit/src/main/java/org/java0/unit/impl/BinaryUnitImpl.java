@@ -18,22 +18,26 @@ package org.java0.unit.impl;
 
 import java.util.logging.Logger;
 
+import org.java0.quantity.BinaryQuantity;
+import org.java0.quantity.Quantity;
 import org.java0.unit.BinaryUnit;
 import org.java0.unit.Unit;
 import org.java0.unit.UnitProduct;
 
-
 /**
  * The Class BinaryUnitImpl.
- *
+ * 
  * @author Hugh Eaves
- * @param <UNIT_1> the generic type
- * @param <UNIT_2> the generic type
- * @param <COMBINED_UNIT> the generic type
+ * @param <UNIT_1>
+ *            the generic type
+ * @param <UNIT_2>
+ *            the generic type
+ * @param <COMBINED_UNIT>
+ *            the generic type
  */
-public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends Unit<UNIT_2>, COMBINED_UNIT extends Unit<COMBINED_UNIT>>
-        extends AbstractUnit<COMBINED_UNIT> implements
-        BinaryUnit<UNIT_1, UNIT_2, COMBINED_UNIT> {
+public abstract class BinaryUnitImpl<COMBINED_QUANTITY extends BinaryQuantity<QUANTITY_1, QUANTITY_2>, QUANTITY_1 extends Quantity, QUANTITY_2 extends Quantity>
+        extends AbstractUnit<COMBINED_QUANTITY> implements
+        BinaryUnit<COMBINED_QUANTITY, QUANTITY_1, QUANTITY_2> {
 
     /** The Constant logger. */
     @SuppressWarnings("unused")
@@ -41,22 +45,26 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
             .getName());
 
     /** The unit1. */
-    protected UNIT_1 unit1;
-    
+    protected Unit<QUANTITY_1> unit1;
+
     /** The unit2. */
-    protected UNIT_2 unit2;
-    
+    protected Unit<QUANTITY_2> unit2;
+
     /** The operator. */
     protected String operator;
 
     /**
      * Create a new BinaryNumericUnitImpl.
-     *
-     * @param operator the operator
-     * @param unit1 the unit1
-     * @param unit2 the unit2
+     * 
+     * @param operator
+     *            the operator
+     * @param unit1
+     *            the unit1
+     * @param unit2
+     *            the unit2
      */
-    public BinaryUnitImpl(String operator, UNIT_1 unit1, UNIT_2 unit2) {
+    public BinaryUnitImpl(String operator, Unit<QUANTITY_1> unit1,
+            Unit<QUANTITY_2> unit2) {
         super("(" + unit1.getName() + " " + operator + " " + unit2.getName()
                 + ")");
         this.unit1 = unit1;
@@ -65,8 +73,9 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
 
     /**
      * Equals.
-     *
-     * @param object the object
+     * 
+     * @param object
+     *            the object
      * @return true, if successful
      * @see java.lang.Object#equals(java.lang.Object)
      */
@@ -77,7 +86,7 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
         } else if (object == this) {
             return true;
         } else if (object instanceof UnitProduct) {
-            UnitProduct<?, ?> nup = (UnitProduct<?, ?>) object;
+            UnitProduct<?, ?, ?> nup = (UnitProduct<?, ?, ?>) object;
             return (getUnit1().equals(nup.getUnit1())
                     && getUnit2().equals(nup.getUnit2()) && nup.getOperator()
                     .equals(getOperator()));
@@ -97,7 +106,7 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
 
     /**
      * Checks if is system unit.
-     *
+     * 
      * @return true, if is system unit
      * @see org.java0.unit.Unit#isSystemUnit()
      */
@@ -108,23 +117,23 @@ public abstract class BinaryUnitImpl<UNIT_1 extends Unit<UNIT_1>, UNIT_2 extends
 
     /**
      * Gets the unit1.
-     *
+     * 
      * @return the unit1
      * @see org.java0.unit.BinaryUnit#getUnit1()
      */
     @Override
-    public UNIT_1 getUnit1() {
+    public Unit<QUANTITY_1> getUnit1() {
         return unit1;
     }
 
     /**
      * Gets the unit2.
-     *
+     * 
      * @return the unit2
      * @see org.java0.unit.BinaryUnit#getUnit2()
      */
     @Override
-    public UNIT_2 getUnit2() {
+    public Unit<QUANTITY_2> getUnit2() {
         return unit2;
     }
 

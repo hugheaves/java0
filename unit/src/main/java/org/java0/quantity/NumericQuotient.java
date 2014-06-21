@@ -14,34 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.quantity.angle;
-
-import org.java0.quantity.impl.QuantityImpl;
-import org.java0.unit.angle.AngleUnit;
-
+package org.java0.quantity;
 
 /**
- * The Class Angle.
- * 
  * @author Hugh Eaves
+ * 
  */
-public class Angle extends QuantityImpl<AngleUnit> {
+public interface NumericQuotient extends Numeric,
+        QuantityQuotient<Numeric, Numeric> {
 
-    /**
-     * Instantiates a new angle.
-     */
-    protected Angle() {
-    }
-
-    /**
-     * Instantiates a new angle.
-     * 
-     * @param value
-     *            the value
-     * @param unit
-     *            the unit
-     */
-    public Angle(Number value, AngleUnit unit) {
-        super(value, unit);
-    }
 }

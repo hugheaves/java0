@@ -25,7 +25,7 @@ import org.java0.unit.time.SecondsUnit;
  *
  * @author Hugh Eaves
  */
-public class RadiansPerSecondPerSecondUnit extends AngularAccelerationUnit {
+public class RadiansPerSecondPerSecondUnit extends AbstractAngularAccelerationUnit {
     
     /** The Constant INSTANCE. */
     public static final RadiansPerSecondPerSecondUnit INSTANCE = new RadiansPerSecondPerSecondUnit();

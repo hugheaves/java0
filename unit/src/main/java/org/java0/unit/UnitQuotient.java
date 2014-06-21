@@ -16,18 +16,19 @@
  */
 package org.java0.unit;
 
+import org.java0.quantity.Quantity;
+import org.java0.quantity.QuantityQuotient;
 
 /**
  * The Interface NumericUnitQuotient.
  * 
- * @param <UNIT_1_TYPE>
+ * @param <UNIT_1>
  *            the generic type
- * @param <UNIT_2_TYPE>
+ * @param <UNIT_2>
  *            the generic type
  */
-public interface UnitQuotient<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE extends Unit<UNIT_2_TYPE>>
-        extends
-        BinaryUnit<UNIT_1_TYPE, UNIT_2_TYPE, UnitQuotient<UNIT_1_TYPE, UNIT_2_TYPE>> {
+public interface UnitQuotient<COMBINED_QUANTITY extends QuantityQuotient<QUANTITY_1, QUANTITY_2>, QUANTITY_1 extends Quantity, QUANTITY_2 extends Quantity>
+        extends BinaryUnit<COMBINED_QUANTITY, QUANTITY_1, QUANTITY_2> {
 
     /**
      * Returns this unit with the denominator unit cancelled by multiplying by
@@ -37,7 +38,7 @@ public interface UnitQuotient<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE
      *            the unit
      * @return a unit
      */
-    public UNIT_1_TYPE multiplyAndCancel2(UNIT_2_TYPE unit);
+    public Unit<QUANTITY_1> multiplyAndCancel2(Unit<QUANTITY_2> unit);
 
     /**
      * Returns this unit with the denominator unit cancelled by dividing by the
@@ -47,7 +48,7 @@ public interface UnitQuotient<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE
      *            the unit
      * @return a unit
      */
-    public UNIT_1_TYPE divideAndCancel2(InverseUnit<UNIT_2_TYPE> unit);
+    public Unit<QUANTITY_1> divideAndCancel2(InverseUnit<QUANTITY_2> unit);
 
     /**
      * Returns this unit with the numerator unit cancelled by multiplying by the
@@ -57,7 +58,7 @@ public interface UnitQuotient<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE
      *            the unit
      * @return a unit
      */
-    public UNIT_2_TYPE multiplyAndCancel1(InverseUnit<UNIT_1_TYPE> unit);
+    public Unit<QUANTITY_2> multiplyAndCancel1(InverseUnit<QUANTITY_1> unit);
 
     /**
      * Returns this unit with the numerator unit cancelled by dividing by the
@@ -67,5 +68,5 @@ public interface UnitQuotient<UNIT_1_TYPE extends Unit<UNIT_1_TYPE>, UNIT_2_TYPE
      *            the unit
      * @return a unit
      */
-    public UNIT_2_TYPE divideAndCancel1(UNIT_1_TYPE unit);
+    public Unit<QUANTITY_2> divideAndCancel1(Unit<QUANTITY_1> unit);
 }
