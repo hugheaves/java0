@@ -65,6 +65,6 @@ public class NumericUnitTest extends BaseTest {
                 .divide(SecondsUnit.INSTANCE).divide(SecondsUnit.INSTANCE)
                 .multiply(DegreesUnit.INSTANCE);
 
-        logger.info(d.getName());
+        // logger.info(d.getName());
     }
 }

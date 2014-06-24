@@ -14,15 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.attribute;
-
-import java.util.Map;
+package org.java0.collection;
 
 /**
  * @author Hugh Eaves
  * 
  */
-public interface Attribute extends Map<Object, Attribute> {
-    @Override
-    Attribute put(Object key, Attribute value);
+public interface AttributeKey {
+    long getId();
+
+    Object getValue();
 }
