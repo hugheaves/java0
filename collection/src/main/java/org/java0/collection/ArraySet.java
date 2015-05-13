@@ -25,135 +25,140 @@ import java.util.NoSuchElementException;
  *
  */
 public class ArraySet<E> extends AbstractSet<E> {
+	/**
+	 *
+	 */
+	private static final int INITIAL_CAPACITY = 4;
+
 	/*
 	 * Array of set elements
 	 */
-    private E[] elements;
+	private E[] elements;
 
-    /*
-     * Number of empty elements in the array
-     */
-    private int emptyElements;
+	/*
+	 * Number of empty elements in the array
+	 */
+	private int emptyElements;
 
-    /*
-     * Array (index + 1) of next unused element in array
-     */
-    private int nextElement;
+	/*
+	 * Index of first unused element in array
+	 */
+	private int lastElement;
 
-    public ArraySet() {
-        this(4);
-    }
+	public ArraySet() {
+		this(INITIAL_CAPACITY);
+	}
 
-    @SuppressWarnings("unchecked")
-    public ArraySet(int capacity) {
-        elements = (E[]) new Object[capacity];
-        nextElement = 0;
-        emptyElements = 0;
-   }
+	@SuppressWarnings("unchecked")
+	public ArraySet(int capacity) {
+		elements = (E[]) new Object[capacity];
+		lastElement = 0;
+		emptyElements = 0;
+	}
 
-    protected class ArraySetIterator implements Iterator<E> {
-        private int position = 0;
-        private boolean nextCalled = false;
+	protected class ArraySetIterator implements Iterator<E> {
+		private int position = 0;
+		private boolean nextCalled = false;
 
-        /**
-         * @see java.util.Iterator#hasNext()
-         */
-        @Override
-        public boolean hasNext() {
-        	while (position < nextElement
-                    && elements[position] == null) {
-                ++position;
-            }
+		/**
+		 * @see java.util.Iterator#hasNext()
+		 */
+		@Override
+		public boolean hasNext() {
+			while (position < lastElement && elements[position] == null) {
+				++position;
+			}
 
-            if (position >= nextElement) {
-                return false;
+			if (position >= lastElement) {
+				return false;
 
-            }
-            return true;
+			}
+			return true;
 
-        }
+		}
 
-        /**
-         * @see java.util.Iterator#next()
-         */
-        @Override
-        public E next() {
-            if (position >= nextElement) {
-                throw new NoSuchElementException();
-            }
-            nextCalled = true;
-            return elements[position++];
-        }
+		/**
+		 * @see java.util.Iterator#next()
+		 */
+		@Override
+		public E next() {
+			if (position >= lastElement) {
+				throw new NoSuchElementException();
+			}
+			nextCalled = true;
+			return elements[position++];
+		}
 
-        /**
-         * @see java.util.Iterator#remove()
-         */
-        @Override
-        public void remove() {
-            if (!nextCalled)  {
-                throw new IllegalStateException();
-            }
-            nextCalled = false;
-            elements[position-1] = null;
-            ++emptyElements;
-        }
-    }
+		/**
+		 * @see java.util.Iterator#remove()
+		 */
+		@Override
+		public void remove() {
+			if (!nextCalled) {
+				throw new IllegalStateException();
+			}
+			nextCalled = false;
+			elements[position - 1] = null;
+			++emptyElements;
+		}
+	}
 
-    /**
-     * @see java.util.AbstractCollection#iterator()
-     */
-    @Override
-    public Iterator<E> iterator() {
-        return new ArraySetIterator();
-    }
+	/**
+	 * @see java.util.AbstractCollection#iterator()
+	 */
+	@Override
+	public Iterator<E> iterator() {
+		return new ArraySetIterator();
+	}
 
-    /**
-     * @see java.util.AbstractCollection#size()
-     */
-    @Override
-    public int size() {
-        return nextElement - emptyElements;
-    }
+	/**
+	 * @see java.util.AbstractCollection#size()
+	 */
+	@Override
+	public int size() {
+		return lastElement - emptyElements;
+	}
 
-    /**
-     * @see java.util.Set#add(java.lang.Object)
-     */
-    @Override
-    public boolean add(E e) {
-        if (e == null) {
-            throw new NullPointerException();
-        }
-        int nullPos = -1;
-        for (int i = 0; i < nextElement; ++i) {
-            if (elements[i] == null) {
-                nullPos = i;
-            } else if (elements[i].equals(e)) {
-                return false;
-            }
-        }
+	/**
+	 * @see java.util.Set#add(java.lang.Object)
+	 */
+	@Override
+	public boolean add(E e) {
+		if (e == null) {
+			throw new NullPointerException();
+		}
+		int nullPos = -1;
+		for (int i = 0; i < lastElement; ++i) {
+			if (elements[i] == null) {
+				nullPos = i;
+			} else if (elements[i].equals(e)) {
+				return false;
+			}
+		}
 
-        if (nullPos != -1) {
-            elements[nullPos] = e;
-            --emptyElements;
-        } else if (nextElement < elements.length) {
-        	elements[nextElement++] = e;
-        } else {
-        	expandArray();
-        	elements[nextElement++] = e;
-        }
-        return true;
-    }
+		if (nullPos != -1) {
+			elements[nullPos] = e;
+			--emptyElements;
+		} else if (lastElement < elements.length) {
+			elements[lastElement++] = e;
+		} else {
+			expandArray();
+			elements[lastElement++] = e;
+		}
+		return true;
+	}
 
-    private void expandArray() {
-        @SuppressWarnings("unchecked")
-        E newElements[] = (E[]) new Object[elements.length * 2];
-        System.arraycopy(elements, 0, newElements, 0, elements.length);
-        elements = newElements;
-    }
+	private void expandArray() {
+		@SuppressWarnings("unchecked")
+		E newElements[] = (E[]) new Object[elements.length * 2];
+		System.arraycopy(elements, 0, newElements, 0, elements.length);
+		elements = newElements;
+	}
 
-    @Override
+	@Override
 	public void clear() {
-    	nextElement = 0;
-    	emptyElements = 0;
-    }
+		elements = (E[]) new Object[INITIAL_CAPACITY];
+		lastElement = 0;
+		emptyElements = 0;
+	}
 }

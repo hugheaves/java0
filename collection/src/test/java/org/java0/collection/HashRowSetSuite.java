@@ -23,6 +23,9 @@ import java.util.Set;
 
 import junit.framework.TestSuite;
 
+import org.java0.collection.rowset.FourColumnRow;
+import org.java0.collection.rowset.HashRowSet;
+import org.java0.collection.rowset.Row;
 import org.java0.test.BaseTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;

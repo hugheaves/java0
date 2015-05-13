@@ -14,8 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection;
+package org.java0.collection.rowset;
 
+import org.java0.collection.Null;
 import org.java0.core.type.Constants;
 
 public class AbstractRow implements Row {

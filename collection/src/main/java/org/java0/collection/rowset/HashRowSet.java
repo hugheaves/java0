@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection;
+package org.java0.collection.rowset;
 
 import java.util.AbstractSet;
 import java.util.Collection;
@@ -23,6 +23,10 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.java0.collection.Null;
+import org.java0.collection.setmap.HashSetMap;
+import org.java0.collection.setmap.SetMap;
 
 /**
  * @author Hugh Eaves

@@ -33,63 +33,65 @@ import com.google.common.collect.testing.TestStringListGenerator;
 import com.google.common.collect.testing.TestStringQueueGenerator;
 import com.google.common.collect.testing.features.CollectionFeature;
 import com.google.common.collect.testing.features.CollectionSize;
+import com.google.common.collect.testing.features.ListFeature;
 
 /**
  * @author Hugh Eaves
- * 
+ *
  */
 @RunWith(AllTests.class)
 @SuiteClasses(ArrayBufferSuite.class)
 public class ArrayBufferSuite extends BaseTest {
 
-    public static TestSuite suite() {
+	public static TestSuite suite() {
 
-        TestStringListGenerator listGenerator = new TestStringListGenerator() {
+		TestStringListGenerator listGenerator = new TestStringListGenerator() {
 
-            @Override
-            protected List<String> create(String[] elements) {
-                List<String> buffer = new ArrayBuffer<String>(1000);
-                buffer.addAll(Arrays.asList(elements));
-                return buffer;
-            }
+			@Override
+			protected List<String> create(String[] elements) {
+				List<String> buffer = new ArrayBuffer<String>(1000);
+				buffer.addAll(Arrays.asList(elements));
+				return buffer;
+			}
 
-        };
+		};
 
-        TestStringQueueGenerator queueGenerator = new TestStringQueueGenerator() {
+		TestStringQueueGenerator queueGenerator = new TestStringQueueGenerator() {
 
-            @Override
-            protected Queue<String> create(String[] elements) {
-                Queue<String> buffer = new ArrayBuffer<String>(1000);
-                buffer.addAll(Arrays.asList(elements));
-                return buffer;
-            }
+			@Override
+			protected Queue<String> create(String[] elements) {
+				Queue<String> buffer = new ArrayBuffer<String>(1000);
+				buffer.addAll(Arrays.asList(elements));
+				return buffer;
+			}
 
-        };
+		};
 
-        TestSuite listSuite = ListTestSuiteBuilder
-                .using(listGenerator)
-                .named("ArrayBufferSuite")
-                .withFeatures(CollectionFeature.ALLOWS_NULL_VALUES,
-                        CollectionFeature.SUPPORTS_ADD,
-                        CollectionFeature.SUPPORTS_REMOVE,
-                        CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
-                        CollectionSize.ANY).createTestSuite();
+		TestSuite listSuite = ListTestSuiteBuilder
+				.using(listGenerator)
+				.named("ArrayBufferSuite")
+				.withFeatures(CollectionFeature.ALLOWS_NULL_VALUES,
+						ListFeature.SUPPORTS_SET,
+						CollectionFeature.SUPPORTS_ADD,
+						CollectionFeature.SUPPORTS_REMOVE,
+						CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
+						CollectionSize.ANY).createTestSuite();
 
-        TestSuite queueSuite = QueueTestSuiteBuilder
-                .using(queueGenerator)
-                .named("ArrayBufferSuite")
-                .withFeatures(CollectionFeature.ALLOWS_NULL_VALUES,
-                        CollectionFeature.SUPPORTS_ADD,
-                        CollectionFeature.SUPPORTS_REMOVE,
-                        CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
-                        CollectionSize.ANY).createTestSuite();
+		TestSuite queueSuite = QueueTestSuiteBuilder
+				.using(queueGenerator)
+				.named("ArrayBufferSuite")
+				.withFeatures(CollectionFeature.ALLOWS_NULL_VALUES,
+						CollectionFeature.SUPPORTS_ADD,
+						CollectionFeature.SUPPORTS_REMOVE,
+						CollectionFeature.SUPPORTS_ITERATOR_REMOVE,
+						CollectionSize.ANY).createTestSuite();
 
-        for (int i = 0; i < queueSuite.testCount(); ++i) {
-            listSuite.addTest(queueSuite.testAt(i));
+		for (int i = 0; i < queueSuite.testCount(); ++i) {
+			listSuite.addTest(queueSuite.testAt(i));
 
-        }
+		}
 
-        return listSuite;
-    }
+		return listSuite;
+	}
 
 }

@@ -17,47 +17,19 @@
 package org.java0.factory;
 
 import org.java0.core.type.AbstractNamedObject;
-import org.java0.tag.Tag;
 
 /**
  * @author Hugh Eaves
- * 
+ *
  */
 public abstract class AbstractFactory extends AbstractNamedObject implements
-        Factory {
-    /**
-     * Create a new AbstractFactory.
-     * 
-     * @param name
-     */
-    public AbstractFactory(String name) {
-        super(name);
-    }
-
-    /**
-     * @see org.java0.factory.Factory#getObject(java.lang.Class)
-     */
-    @Override
-    public <T> T getObject(Class<T> type) throws FactoryException {
-        return getObject(type, null, null);
-    }
-
-    /**
-     * @see org.java0.factory.Factory#getObject(java.lang.Class,
-     *      org.java0.tag.Tag)
-     */
-    @Override
-    public <T> T getObject(Class<T> type, Tag tag) throws FactoryException {
-        return getObject(type, tag, null);
-    }
-
-    /**
-     * @see org.java0.factory.Factory#getObject(java.lang.Class,
-     *      org.java0.factory.Config)
-     */
-    @Override
-    public <T> T getObject(Class<T> type, Config<T> config)
-            throws FactoryException {
-        return getObject(type, null, config);
-    }
+		Factory {
+	/**
+	 * Create a new AbstractFactory.
+	 * 
+	 * @param name
+	 */
+	public AbstractFactory(String name) {
+		super(name);
+	}
 }

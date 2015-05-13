@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>org.java0</groupId>
 			<artifactId>java0-collection</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${java0.version}</version>
 		</dependency>
 	</dependencies>
 </project>

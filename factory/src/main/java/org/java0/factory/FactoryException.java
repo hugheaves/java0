@@ -16,7 +16,7 @@
  */
 package org.java0.factory;
 
-import org.java0.core.type.UncheckedException;
+import org.java0.core.exception.UncheckedException;
 
 public class FactoryException extends UncheckedException {
 

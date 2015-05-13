@@ -16,8 +16,8 @@
  */
 package org.java0.factory;
 
-import org.java0.collection.RowSet;
-import org.java0.collection.TwoColumnRow;
+import org.java0.collection.rowset.RowSet;
+import org.java0.collection.rowset.TwoColumnRow;
 import org.java0.tag.Tag;
 
 public interface DelegableFactory extends Factory {

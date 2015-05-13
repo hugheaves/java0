@@ -25,6 +25,7 @@ import java.util.Set;
 
 import junit.framework.TestSuite;
 
+import org.java0.collection.setmap.HashSetMap;
 import org.java0.test.BaseTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;

@@ -22,10 +22,10 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.java0.collection.HashRowSet;
-import org.java0.collection.RowSet;
-import org.java0.collection.ThreeColumnRow;
-import org.java0.collection.TwoColumnRow;
+import org.java0.collection.rowset.HashRowSet;
+import org.java0.collection.rowset.RowSet;
+import org.java0.collection.rowset.ThreeColumnRow;
+import org.java0.collection.rowset.TwoColumnRow;
 import org.java0.tag.DefaultTagComparator;
 import org.java0.tag.Tag;
 import org.java0.tag.TagComparator;

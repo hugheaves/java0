@@ -20,50 +20,57 @@ import org.java0.tag.Tag;
 
 public interface Factory {
 
-    /**
-     * Obtains an object of the specified type (or a subtype of the specified
-     * type).
-     * 
-     * @param type
-     * @return
-     * @throws FactoryException
-     */
-    public <T> T getObject(Class<T> type) throws FactoryException;
+	/**
+	 * Obtains an object of the specified type (or a subtype of the specified
+	 * type).
+	 *
+	 * @param type
+	 * @return
+	 * @throws FactoryException
+	 */
+	public default <T> T getObject(Class<T> type) throws FactoryException {
+		return getObject(type, null, null);
+	}
 
-    /**
-     * Obtains an object of the specified type (or a subtype of the specified
-     * type) selected using the given tag.
-     * 
-     * @param type
-     * @param tag
-     * @return
-     * @throws FactoryException
-     */
-    public <T> T getObject(Class<T> type, Tag tag) throws FactoryException;
+	/**
+	 * Obtains an object of the specified type (or a subtype of the specified
+	 * type) selected using the given tag.
+	 *
+	 * @param type
+	 * @param tag
+	 * @return
+	 * @throws FactoryException
+	 */
+	public default <T> T getObject(Class<T> type, Tag tag)
+			throws FactoryException {
+		return getObject(type, tag, null);
+	}
 
-    /**
-     * Obtains an object of the specified type (or a subtype of the specified
-     * type) created using the given config.
-     * 
-     * @param type
-     * @param config
-     * @return
-     * @throws FactoryException
-     */
-    public <T> T getObject(Class<T> type, Config<T> config)
-            throws FactoryException;
+	/**
+	 * Obtains an object of the specified type (or a subtype of the specified
+	 * type) created using the given config.
+	 *
+	 * @param type
+	 * @param config
+	 * @return
+	 * @throws FactoryException
+	 */
+	public default <T> T getObject(Class<T> type, Config<T> config)
+			throws FactoryException {
+		return getObject(type, null, config);
+	}
 
-    /**
-     * Obtains an object of the specified type (or a subtype of the specified
-     * type) selected using the given tag, and created using the given config.
-     * 
-     * @param type
-     * @param tag
-     * @param config
-     * @return
-     * @throws FactoryException
-     */
-    public <T> T getObject(Class<T> type, Tag tag, Config<T> config)
-            throws FactoryException;
+	/**
+	 * Obtains an object of the specified type (or a subtype of the specified
+	 * type) selected using the given tag, and created using the given config.
+	 *
+	 * @param type
+	 * @param tag
+	 * @param config
+	 * @return
+	 * @throws FactoryException
+	 */
+	public <T> T getObject(Class<T> type, Tag tag, Config<T> config)
+			throws FactoryException;
 
 }

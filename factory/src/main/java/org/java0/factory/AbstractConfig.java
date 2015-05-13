@@ -16,23 +16,41 @@
  */
 package org.java0.factory;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * @author Hugh Eaves
- * 
+ *
  */
 public class AbstractConfig<T> implements Config<T> {
 
-    protected Object[] values = null;
+	protected Map<String, Object> values = new TreeMap<>();
 
-    public AbstractConfig(Object... values) {
-        this.values = values;
-    }
+	public AbstractConfig(Object... values) {
+		int i = 0;
+		for (Object value : values) {
+			this.values.put(Integer.toString(i++), value);
+		}
+	}
 
-    /**
-     * @see org.java0.factory.Config#values()
-     */
-    @Override
-    public Object[] values() {
-        return values;
-    }
+	/**
+	 * @see org.java0.factory.Config#values()
+	 */
+	@Override
+	public Object[] values() {
+		return values.values().toArray();
+	}
+
+	/**
+	 * @see org.java0.factory.Config#getValue(java.lang.String)
+	 */
+	@Override
+	public Object getValue(String key) {
+		return values.get(key);
+	}
+
+	public void setValue(String key, Object value) {
+		values.put(key, value);
+	}
 }

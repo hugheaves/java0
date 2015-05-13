@@ -31,256 +31,255 @@ package org.java0.util.bits;
  *
  */
 public final class BitStringUtil {
-    /**
-     * Private constructor.
-     *
-     */
-    private BitStringUtil() {
-    }
+	/**
+	 * Private constructor.
+	 *
+	 */
+	private BitStringUtil() {
+	}
 
-    /**
-     * Convert an array of bytes into their bit string representation.
-     *
-     * @param array
-     *            The array to convert
-     * @param numBits
-     *            The number of bits to convert from the array.
-     * @return The bit string
-     */
-    public static String toString(byte[] array, int numBits) {
-        assert (numBits <= array.length * Byte.SIZE);
+	/**
+	 * Convert an array of bytes into their bit string representation.
+	 *
+	 * @param array
+	 *            The array to convert
+	 * @param numBits
+	 *            The number of bits to convert from the array.
+	 * @return The bit string
+	 */
+	public static String toString(byte[] array, int numBits) {
+		assert (numBits <= array.length * Byte.SIZE);
 
-        StringBuffer buffer = new StringBuffer();
-        int remainingBits = numBits;
-        int byteNum = 0;
-        while (remainingBits > 0) {
-            if (remainingBits <= Byte.SIZE) {
-                int val = array[byteNum] >>> (Byte.SIZE - remainingBits);
-                buffer.append(toString(val, remainingBits));
-            } else {
-                buffer.append(toString(array[byteNum], Byte.SIZE));
-            }
-            ++byteNum;
-            remainingBits -= Byte.SIZE;
-        }
-        return buffer.toString();
-    }
+		StringBuffer buffer = new StringBuffer();
+		int remainingBits = numBits;
+		int byteNum = 0;
+		while (remainingBits > 0) {
+			if (remainingBits <= Byte.SIZE) {
+				int val = array[byteNum] >>> (Byte.SIZE - remainingBits);
+				buffer.append(toString(val, remainingBits));
+			} else {
+				buffer.append(toString(array[byteNum], Byte.SIZE));
+			}
+			++byteNum;
+			remainingBits -= Byte.SIZE;
+		}
+		return buffer.toString();
+	}
 
-    /**
-     * Converts a byte array to its bit string representation.
-     *
-     * @param array
-     *            The array to convert.
-     * @return The bit string.
-     */
-    public static String toString(byte[] array) {
-        return toString(array, array.length * Byte.SIZE);
-    }
+	/**
+	 * Converts a byte array to its bit string representation.
+	 *
+	 * @param array
+	 *            The array to convert.
+	 * @return The bit string.
+	 */
+	public static String toString(byte[] array) {
+		return toString(array, array.length * Byte.SIZE);
+	}
 
-    /**
-     * Convert a long value into its bit string representation.
-     *
-     * @param value
-     *            The value to convert
-     * @param numBitsToConvert
-     *            The number of bits (starting at the low order position) to
-     *            convert to a bit string
-     * @return The bit string
-     */
-    public static String toString(final long value, final int numBitsToConvert) {
-        assert (numBitsToConvert <= Long.SIZE);
+	/**
+	 * Convert a long value into its bit string representation.
+	 *
+	 * @param value
+	 *            The value to convert
+	 * @param numBitsToConvert
+	 *            The number of bits (starting at the low order position) to
+	 *            convert to a bit string
+	 * @return The bit string
+	 */
+	public static String toString(final long value, final int numBitsToConvert) {
+		assert (numBitsToConvert <= Long.SIZE);
 
-        StringBuffer buffer = new StringBuffer();
-        for (int shift = Long.SIZE - numBitsToConvert; shift < Long.SIZE;
-        /**/++shift) {
-            long shiftedValue = (value << shift);
-            long bitValue = shiftedValue & Long.MIN_VALUE;
-            if (bitValue != 0) {
-                buffer.append('1');
-            } else {
-                buffer.append('0');
-            }
-        }
-        return buffer.toString();
-    }
+		StringBuffer buffer = new StringBuffer();
+		for (int shift = Long.SIZE - numBitsToConvert; shift < Long.SIZE;
+		/**/++shift) {
+			long shiftedValue = (value << shift);
+			long bitValue = shiftedValue & Long.MIN_VALUE;
+			if (bitValue != 0) {
+				buffer.append('1');
+			} else {
+				buffer.append('0');
+			}
+		}
+		return buffer.toString();
+	}
 
-    /**
-     * Convert an int value into its bit string representation.
-     *
-     * @param value
-     *            The value to convert
-     * @param numBitsToConvert
-     *            The number of bits (starting at the low order position) to
-     *            convert to a bit string
-     * @return The bit string
-     */
-    public static String toString(final int value, final int numBitsToConvert) {
-        assert (numBitsToConvert <= Integer.SIZE);
+	/**
+	 * Convert an int value into its bit string representation.
+	 *
+	 * @param value
+	 *            The value to convert
+	 * @param numBitsToConvert
+	 *            The number of bits (starting at the low order position) to
+	 *            convert to a bit string
+	 * @return The bit string
+	 */
+	public static String toString(final int value, final int numBitsToConvert) {
+		assert (numBitsToConvert <= Integer.SIZE);
 
-        return toString((long) value, numBitsToConvert);
-    }
+		return toString((long) value, numBitsToConvert);
+	}
 
-    /**
-     * Convert a short value into its bit string representation.
-     *
-     * @param value
-     *            The value to convert
-     * @param numBitsToConvert
-     *            The number of bits (starting at the low order position) to
-     *            convert to a bit string
-     * @return The bit string
-     */
-    public static String
-            toString(final short value, final int numBitsToConvert) {
-        assert (numBitsToConvert <= Short.SIZE);
+	/**
+	 * Convert a short value into its bit string representation.
+	 *
+	 * @param value
+	 *            The value to convert
+	 * @param numBitsToConvert
+	 *            The number of bits (starting at the low order position) to
+	 *            convert to a bit string
+	 * @return The bit string
+	 */
+	public static String toString(final short value, final int numBitsToConvert) {
+		assert (numBitsToConvert <= Short.SIZE);
 
-        return toString((long) value, numBitsToConvert);
-    }
+		return toString((long) value, numBitsToConvert);
+	}
 
-    /**
-     * Convert a char value into its bit string representation.
-     *
-     * @param value
-     *            The value to convert
-     * @param numBitsToConvert
-     *            The number of bits (starting at the low order position) to
-     *            convert to a bit string
-     * @return The bit string
-     */
-    public static String toString(final char value, final int numBitsToConvert) {
-        assert (numBitsToConvert <= Character.SIZE);
+	/**
+	 * Convert a char value into its bit string representation.
+	 *
+	 * @param value
+	 *            The value to convert
+	 * @param numBitsToConvert
+	 *            The number of bits (starting at the low order position) to
+	 *            convert to a bit string
+	 * @return The bit string
+	 */
+	public static String toString(final char value, final int numBitsToConvert) {
+		assert (numBitsToConvert <= Character.SIZE);
 
-        return toString((long) value, numBitsToConvert);
-    }
+		return toString((long) value, numBitsToConvert);
+	}
 
-    /**
-     * Convert a byte value into its bit string representation.
-     *
-     * @param value
-     *            The value to convert
-     * @param numBitsToConvert
-     *            The number of bits (starting at the low order position) to
-     *            convert to a bit string
-     * @return The bit string
-     */
-    public static String toString(final byte value, final int numBitsToConvert) {
-        assert (numBitsToConvert <= Byte.SIZE);
+	/**
+	 * Convert a byte value into its bit string representation.
+	 *
+	 * @param value
+	 *            The value to convert
+	 * @param numBitsToConvert
+	 *            The number of bits (starting at the low order position) to
+	 *            convert to a bit string
+	 * @return The bit string
+	 */
+	public static String toString(final byte value, final int numBitsToConvert) {
+		assert (numBitsToConvert <= Byte.SIZE);
 
-        return toString((long) value, numBitsToConvert);
-    }
+		return toString((long) value, numBitsToConvert);
+	}
 
-    /**
-     * Convert a bit string into a long value. Any non zero or one characters in
-     * the string are ignored.
-     *
-     * @param bitString
-     *            The string to convert.
-     * @return The converted value.
-     */
-    public static long toLong(String bitString) {
-        assert (bitString.length() <= Long.SIZE);
+	/**
+	 * Convert a bit string into a long value. Any non zero or one characters in
+	 * the string are ignored.
+	 *
+	 * @param bitString
+	 *            The string to convert.
+	 * @return The converted value.
+	 */
+	public static long toLong(String bitString) {
+		assert (bitString.length() <= Long.SIZE);
 
-        long value = 0;
-        for (char ch : bitString.toCharArray()) {
-            if (ch == '1') {
-                value = value << 1;
-                value = value | 1;
-            } else if (ch == '0') {
-                value = value << 1;
-            }
-        }
-        return value;
-    }
+		long value = 0;
+		for (char ch : bitString.toCharArray()) {
+			if (ch == '1') {
+				value = value << 1;
+				value = value | 1;
+			} else if (ch == '0') {
+				value = value << 1;
+			}
+		}
+		return value;
+	}
 
-    /**
-     * Convert a bit string into an integer value.
-     *
-     * @see BitStringUtil#toLong(String)
-     *
-     * @param bitString
-     *            The string to convert.
-     * @return The converted value.
-     */
-    public static int toInteger(String bitString) {
-        assert (bitString.length() <= Integer.SIZE);
+	/**
+	 * Convert a bit string into an integer value.
+	 *
+	 * @see BitStringUtil#toLong(String)
+	 *
+	 * @param bitString
+	 *            The string to convert.
+	 * @return The converted value.
+	 */
+	public static int toInteger(String bitString) {
+		assert (bitString.length() <= Integer.SIZE);
 
-        return (int) toLong(bitString);
-    }
+		return (int) toLong(bitString);
+	}
 
-    /**
-     * Convert a bit string into a short value.
-     *
-     * @see BitStringUtil#toLong(String)
-     *
-     * @param bitString
-     *            The string to convert.
-     * @return The converted value.
-     */
-    public static short toShort(String bitString) {
-        assert (bitString.length() <= Short.SIZE);
+	/**
+	 * Convert a bit string into a short value.
+	 *
+	 * @see BitStringUtil#toLong(String)
+	 *
+	 * @param bitString
+	 *            The string to convert.
+	 * @return The converted value.
+	 */
+	public static short toShort(String bitString) {
+		assert (bitString.length() <= Short.SIZE);
 
-        return (short) toLong(bitString);
-    }
+		return (short) toLong(bitString);
+	}
 
-    /**
-     * Convert a bit string into a char value.
-     *
-     * @see BitStringUtil#toLong(String)
-     *
-     * @param bitString
-     *            The string to convert.
-     * @return The converted value.
-     */
-    public static char toChar(String bitString) {
-        assert (bitString.length() <= Character.SIZE);
+	/**
+	 * Convert a bit string into a char value.
+	 *
+	 * @see BitStringUtil#toLong(String)
+	 *
+	 * @param bitString
+	 *            The string to convert.
+	 * @return The converted value.
+	 */
+	public static char toChar(String bitString) {
+		assert (bitString.length() <= Character.SIZE);
 
-        return (char) toLong(bitString);
-    }
+		return (char) toLong(bitString);
+	}
 
-    /**
-     * Convert a bit string into an integer value.
-     *
-     * @see BitStringUtil#toLong(String)
-     *
-     * @param bitString
-     *            The string to convert.
-     * @return The converted value.
-     */
-    public static byte toByte(String bitString) {
-        assert (bitString.length() <= Byte.SIZE);
+	/**
+	 * Convert a bit string into an integer value.
+	 *
+	 * @see BitStringUtil#toLong(String)
+	 *
+	 * @param bitString
+	 *            The string to convert.
+	 * @return The converted value.
+	 */
+	public static byte toByte(String bitString) {
+		assert (bitString.length() <= Byte.SIZE);
 
-        return (byte) toLong(bitString);
-    }
+		return (byte) toLong(bitString);
+	}
 
-    /**
-     * Convert a bit string into a byte array.
-     *
-     * @param bitString
-     *            The string to convert.
-     * @return The converted value.
-     */
-    public static byte[] toByteArray(String bitString) {
-        byte[] array = new byte[bitString.length() / Byte.SIZE + 1];
-        int val = 0;
-        int bitCount = 0;
-        for (char ch : bitString.toCharArray()) {
-            if (ch == '1' || ch == '0') {
-                val = val << 1;
-                val = val | (ch - '0');
-                bitCount++;
-                if (bitCount % Byte.SIZE == 0) {
-                    array[(bitCount / Byte.SIZE) - 1] = (byte) val;
-                    val = 0;
-                }
-            }
-        }
+	/**
+	 * Convert a bit string into a byte array.
+	 *
+	 * @param bitString
+	 *            The string to convert.
+	 * @return The converted value.
+	 */
+	public static byte[] toByteArray(String bitString) {
+		byte[] array = new byte[bitString.length() / Byte.SIZE + 1];
+		int val = 0;
+		int bitCount = 0;
+		for (char ch : bitString.toCharArray()) {
+			if (ch == '1' || ch == '0') {
+				val = val << 1;
+				val = val | (ch - '0');
+				bitCount++;
+				if (bitCount % Byte.SIZE == 0) {
+					array[(bitCount / Byte.SIZE) - 1] = (byte) val;
+					val = 0;
+				}
+			}
+		}
 
-        if (bitCount % Byte.SIZE > 0) {
-            for (; bitCount % Byte.SIZE != 0; ++bitCount) {
-                val = val << 1;
-            }
-            array[(bitCount / Byte.SIZE) - 1] = (byte) val;
-        }
-        return array;
-    }
+		if (bitCount % Byte.SIZE > 0) {
+			for (; bitCount % Byte.SIZE != 0; ++bitCount) {
+				val = val << 1;
+			}
+			array[(bitCount / Byte.SIZE) - 1] = (byte) val;
+		}
+		return array;
+	}
 }

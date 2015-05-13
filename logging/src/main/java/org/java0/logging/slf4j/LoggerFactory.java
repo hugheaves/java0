@@ -14,24 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection;
+package org.java0.logging.slf4j;
 
-import java.util.Set;
+import org.slf4j.ILoggerFactory;
 
 /**
- * A RowSet is a Set that of Rows that defines some additional "associative"
- * operations on the set.
- *
  * @author Hugh Eaves
  *
  */
-public interface RowSet<R> extends Set<R> {
-    /**
-     * @param row
-     * @param keyColumn
-     * @return
-     */
-    RowSet<R> select(R row, boolean... keyColumn);
+public class LoggerFactory {
+	public static ILoggerFactory getILoggerFactory() {
+		return org.slf4j.LoggerFactory.getILoggerFactory();
+	}
 
- //   public <T extends R> void addRow(T row);
+	public static Logger getLogger(Class<?> clazz) {
+		return new SLF4JLogger(org.slf4j.LoggerFactory.getLogger(clazz));
+	}
+
+	public static Logger getLogger(String name) {
+		return new SLF4JLogger(org.slf4j.LoggerFactory.getLogger(name));
+	}
 }

@@ -14,14 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection;
+package org.java0.collection.rowset;
+
+import java.util.Set;
 
 /**
+ * A RowSet is a Set of Rows that defines some additional "associative"
+ * operations on the set.
+ *
  * @author Hugh Eaves
- * 
+ *
  */
-public interface AttributeKey {
-    long getId();
+public interface RowSet<R> extends Set<R> {
+	/**
+	 * @param row
+	 * @param keyColumn
+	 * @return
+	 */
+	RowSet<R> select(R row, boolean... keyColumn);
 
-    Object getValue();
+	// public <T extends R> void addRow(T row);
 }

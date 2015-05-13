@@ -14,25 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection;
+package org.java0.collection.rowset;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class FourColumnRow<T1, T2, T3, T4> extends ThreeColumnRow<T1, T2, T3> {
+public class FiveColumnRow<T1, T2, T3, T4, T5> extends
+        FourColumnRow<T1, T2, T3, T4> {
 
-    /**
-     * Create a new FourColumnRow.
-     *
-     * @param t1
-     * @param t2
-     * @param t3
-     * @param t4
-     */
-    public <V1 extends T1, V2 extends T2, V3 extends T3, V4 extends T4> FourColumnRow(
-            V1 t1, V2 t2, V3 t3, V4 t4) {
-        super(new Object[] { t1, t2, t3, t4 });
+    public <V1 extends T1, V2 extends T2, V3 extends T3, V4 extends T4, V5 extends T5> FiveColumnRow(
+            V1 t1, V2 t2, V3 t3, V4 t4, V5 t5) {
+        super(new Object[] { t1, t2, t3, t4, t5 });
     }
 
     /**
@@ -40,12 +33,12 @@ public class FourColumnRow<T1, T2, T3, T4> extends ThreeColumnRow<T1, T2, T3> {
      *
      * @param objects
      */
-    protected FourColumnRow(Object[] objects) {
+    protected FiveColumnRow(Object[] objects) {
         super(objects);
     }
 
     @SuppressWarnings("unchecked")
-    public T4 getColumn4() {
-        return (T4) this.getValue(3);
+    public T5 getColumn5() {
+        return (T5) this.getValue(4);
     }
 }

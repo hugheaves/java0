@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava-testlib</artifactId>
-			<version>16.0.1</version>
+			<version>18.0</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>org.java0</groupId>
             <artifactId>java0-logging</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${java0.version}</version>
         </dependency>
 	</dependencies>
 </project>

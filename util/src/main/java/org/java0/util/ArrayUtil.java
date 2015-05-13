@@ -14,31 +14,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection;
+package org.java0.util;
+
+import java.lang.reflect.Array;
+import java.util.function.IntFunction;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class FiveColumnRow<T1, T2, T3, T4, T5> extends
-        FourColumnRow<T1, T2, T3, T4> {
-
-    public <V1 extends T1, V2 extends T2, V3 extends T3, V4 extends T4, V5 extends T5> FiveColumnRow(
-            V1 t1, V2 t2, V3 t3, V4 t4, V5 t5) {
-        super(new Object[] { t1, t2, t3, t4, t5 });
-    }
-
-    /**
-     * Create a new TwoColumnRow.
-     *
-     * @param objects
-     */
-    protected FiveColumnRow(Object[] objects) {
-        super(objects);
-    }
-
-    @SuppressWarnings("unchecked")
-    public T5 getColumn5() {
-        return (T5) this.getValue(4);
-    }
+public class ArrayUtil {
+	public static <T> T[] newArray(Class<T> type, int length,
+			IntFunction<T> initializer) {
+		T[] array = (T[]) Array.newInstance(type, length);
+		for (int i = 0; i < length; ++i) {
+			array[i] = initializer.apply(i);
+		}
+		return array;
+	}
 }

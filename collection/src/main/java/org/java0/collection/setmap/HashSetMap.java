@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection;
+package org.java0.collection.setmap;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -65,7 +65,7 @@ public class HashSetMap<K, V> extends AbstractSetMap<K, V> {
 
 
     /**
-     * @see org.java0.collection.AbstractSetMap#newSet()
+     * @see org.java0.collection.setmap.AbstractSetMap#newSet()
      */
     @Override
     protected Set<V> newSet() {

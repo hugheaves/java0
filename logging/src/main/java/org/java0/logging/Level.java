@@ -14,41 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection;
-
+package org.java0.logging;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class TwoColumnRow<T1, T2> extends AbstractRow {
-
-    /**
-     * Create a new TwoColumnRow.
-     *
-     * @param t1
-     * @param t2
-     */
-    public <V1 extends T1, V2 extends T2> TwoColumnRow(V1 t1, V2 t2) {
-        super(new Object[] { t1, t2 });
-    }
-
-    /**
-     * Create a new TwoColumnRow.
-     *
-     * @param objects
-     */
-    protected TwoColumnRow(Object[] objects) {
-        super(objects);
-    }
-
-    @SuppressWarnings("unchecked")
-    public T1 getColumn1() {
-        return (T1) this.getValue(0);
-    }
-
-    @SuppressWarnings("unchecked")
-    public T2 getColumn2() {
-        return (T2) this.getValue(1);
-    }
+public enum Level {
+	ERROR, WARN, INFO, DEBUG, TRACE;
 }
