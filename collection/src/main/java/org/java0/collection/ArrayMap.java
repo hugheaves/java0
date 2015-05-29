@@ -24,6 +24,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import org.java0.core.type.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,11 +37,9 @@ public class ArrayMap<K, V> implements Map<K, V> {
 	private static final Logger logger = LoggerFactory.getLogger(ArrayMap.class
 			.getName());
 
-	public static final Object[] EMPTY = new Object[0];
-
 	private static final int INITIAL_CAPACITY = 4;
 
-	protected Object elements[] = EMPTY;
+	protected Object elements[] = Constants.EMPTY_OBJECT_ARRAY;
 
 	/*
 	 * Number of empty elements in the array
@@ -117,6 +116,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 		 * @see org.java0.collection.ArrayMap.ArrayMapAbstractIterator#getValueAt(int)
 		 */
 		@Override
+		@SuppressWarnings("unchecked")
 		protected V getValueAt(int position) {
 			return (V) elements[position + 1];
 		}
@@ -146,6 +146,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 		/**
 		 * @see org.java0.collection.ArrayMap.ArrayMapAbstractIterator#getValueAt(int)
 		 */
+		@SuppressWarnings("unchecked")
 		@Override
 		protected K getValueAt(int position) {
 			return (K) elements[position];
@@ -183,6 +184,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 		/**
 		 * @see java.util.Map.Entry#getKey()
 		 */
+		@SuppressWarnings("unchecked")
 		@Override
 		public K getKey() {
 			return (K) elements[position];
@@ -191,6 +193,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 		/**
 		 * @see java.util.Map.Entry#getValue()
 		 */
+		@SuppressWarnings("unchecked")
 		@Override
 		public V getValue() {
 			return (V) elements[position + 1];
@@ -201,6 +204,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 		 */
 		@Override
 		public V setValue(V value) {
+			@SuppressWarnings("unchecked")
 			V oldValue = (V) elements[position + 1];
 			elements[position + 1] = value;
 			return oldValue;
@@ -214,7 +218,8 @@ public class ArrayMap<K, V> implements Map<K, V> {
 			if (!(object instanceof Entry)) {
 				return false;
 			}
-			Entry entry = (Entry) object;
+			@SuppressWarnings("unchecked")
+			Entry<K, V> entry = (Entry<K, V>) object;
 			if (!getKey().equals(entry.getKey())) {
 				return false;
 			}
@@ -280,9 +285,8 @@ public class ArrayMap<K, V> implements Map<K, V> {
 	}
 
 	private final int keyLocation(Object key) {
-		Object[] array = (Object[]) elements;
-		for (int i = 0; i < array.length; i += 2) {
-			if (key.equals(array[i])) {
+		for (int i = 0; i < elements.length; i += 2) {
+			if (key.equals(elements[i])) {
 				return i;
 			}
 		}
@@ -335,6 +339,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 	/**
 	 * @see java.util.Map#get(java.lang.Object)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public V get(Object key) {
 		int i = keyLocation(key);
@@ -355,6 +360,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 			if (elements[i] == null) {
 				nullPos = i;
 			} else if (elements[i].equals(key)) {
+				@SuppressWarnings("unchecked")
 				V oldVal = (V) elements[i + 1];
 				elements[i + 1] = value;
 				return oldVal;
@@ -389,7 +395,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 
 	@Override
 	public void clear() {
-		elements = new Object[INITIAL_CAPACITY];
+		elements = Constants.EMPTY_OBJECT_ARRAY;
 		lastElement = 0;
 		emptyElements = 0;
 	}
@@ -397,6 +403,7 @@ public class ArrayMap<K, V> implements Map<K, V> {
 	/**
 	 * @see java.util.Map#remove(java.lang.Object)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public V remove(Object key) {
 		int i = keyLocation(key);

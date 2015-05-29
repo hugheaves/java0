@@ -16,8 +16,6 @@
  */
 package org.java0.tag;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Logger;
 
 /**
@@ -25,47 +23,48 @@ import java.util.logging.Logger;
  *
  */
 public class DefaultTagComparator implements TagComparator {
-    @SuppressWarnings("unused")
-    private static final Logger logger = Logger
-            .getLogger(DefaultTagComparator.class.getName());
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger
+			.getLogger(DefaultTagComparator.class.getName());
 
+	@Override
+	public int matchScore(Object a, Object b) {
+		int score = Integer.MIN_VALUE;
 
-    @Override
-    public int matchScore(Tag a, Tag b) {
-        int score = 0;
+		if (a == null || b == null) {
+			if (a == b) {
+				score = Integer.MAX_VALUE;
+			}
+		} else if (a instanceof Tag && b instanceof Tag) {
+			score = compareSets((Tag) a, (Tag) b);
+		} else if (a.equals(b)) {
+			score = Integer.MAX_VALUE;
+		}
+		return score;
+	}
 
-        if (a == null || b == null) {
-            if (a != b) {
-                score = Integer.MIN_VALUE;
-            }
-        } else {
-            score = compareSets(a.allTags(), b.allTags());
-        }
+	/**
+	 * @param tagSet
+	 * @param value
+	 * @return
+	 */
+	private int compareSets(Tag a, Tag b) {
+		int matches = 0;
 
-        return score;
-    }
+		if (a.size() == 1 && b.size() == 1) {
+			if (a.equals(b)) {
+				return 1;
+			} else {
+				return -2;
+			}
+		}
 
-    /**
-     * @param tagSet
-     * @param value
-     * @return
-     */
-    private int compareSets(Set<Tag> aSet, Set<Tag> bSet) {
-        int score = 0;
+		for (Tag bTag : b.getAll()) {
+			if (a.getAll().contains(bTag)) {
+				++matches;
+			}
+		}
 
-        Set<Tag> aSetCopy = new HashSet<>(aSet);
-
-        for (Tag b : bSet) {
-            if (aSet.contains(b)) {
-                aSetCopy.remove(b);
-                ++score;
-            } else {
-                --score;
-            }
-        }
-
-        score -= aSetCopy.size();
-
-        return score;
-    }
+		return (3 * matches) - a.size() - b.size();
+	}
 }

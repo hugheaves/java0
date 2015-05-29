@@ -14,17 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.factory;
+package org.java0.string;
 
-import org.java0.collection.rowset.RowSet;
-import org.java0.collection.rowset.TwoColumnRow;
 
-public interface DelegableFactory extends Factory {
-	/**
-	 * Returns the types that this factory is able to create, along with the
-	 * selector (if any) for those types
-	 *
-	 * @return
-	 */
-	public RowSet<TwoColumnRow<Class<?>, Object>> getSupportedTypes();
+/**
+ * @author Hugh Eaves
+ *
+ */
+public interface MutableCharSequence extends CharSequence {
+	void setCharAt(int index, char ch);
 }

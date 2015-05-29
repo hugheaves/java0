@@ -27,168 +27,170 @@ import org.java0.collection.rowset.RowSet;
 import org.java0.collection.rowset.ThreeColumnRow;
 import org.java0.collection.rowset.TwoColumnRow;
 import org.java0.tag.DefaultTagComparator;
-import org.java0.tag.Tag;
 import org.java0.tag.TagComparator;
 
 public class FullFactory extends AbstractFactory implements DelegableFactory,
-        DelegatingFactory, NotifiableFactory, NotifyingFactory {
-    private static Logger logger = Logger
-            .getLogger(FullFactory.class.getName());
+		DelegatingFactory, NotifiableFactory, NotifyingFactory {
+	private static Logger logger = Logger
+			.getLogger(FullFactory.class.getName());
 
-    protected final TagComparator tagComparator = new DefaultTagComparator();
+	protected final TagComparator tagComparator = new DefaultTagComparator();
 
-    private final Set<NotifiableFactory> notifiableFactories = new HashSet<NotifiableFactory>();
+	private final Set<NotifiableFactory> notifiableFactories = new HashSet<NotifiableFactory>();
 
-    private final Set<DelegableFactory> delegableFactories = new LinkedHashSet<DelegableFactory>();
+	private final Set<DelegableFactory> delegableFactories = new LinkedHashSet<DelegableFactory>();
 
-    private final RowSet<ThreeColumnRow<Class<?>, Tag, DelegableFactory>> typeTable = new HashRowSet<>();
+	private final RowSet<ThreeColumnRow<Class<?>, Object, DelegableFactory>> typeTable = new HashRowSet<>();
 
-    public FullFactory() {
-        super(FullFactory.class.getName());
-    }
+	public FullFactory() {
+		super(FullFactory.class.getName());
+	}
 
-    public FullFactory(String name) {
-        super(name);
-    }
+	public FullFactory(String name) {
+		super(name);
+	}
 
-    @Override
-    public void supportedTypesUpdated(DelegableFactory source,
-            RowSet<TwoColumnRow<Class<?>, Tag>> typesAdded,
-            RowSet<TwoColumnRow<Class<?>, Tag>> typesRemoved)
-            throws InvalidOverrideException {
-        logger.fine("Factory " + this.getClass().getName()
-                + " received update notification from " + source);
+	@Override
+	public void supportedTypesUpdated(DelegableFactory source,
+			RowSet<TwoColumnRow<Class<?>, Object>> typesAdded,
+			RowSet<TwoColumnRow<Class<?>, Object>> typesRemoved)
+			throws InvalidOverrideException {
+		logger.fine("Factory " + this.getClass().getName()
+				+ " received update notification from " + source);
 
-        // Remove types that are no longer present
-        for (TwoColumnRow<Class<?>, Tag> newType : typesAdded) {
-            typeTable.add(new ThreeColumnRow<Class<?>, Tag, DelegableFactory>(
-                    newType.getColumn1(), newType.getColumn2(), source));
-        }
+		// Remove types that are no longer present
+		for (TwoColumnRow<Class<?>, Object> newType : typesAdded) {
+			typeTable
+					.add(new ThreeColumnRow<Class<?>, Object, DelegableFactory>(
+							newType.getColumn1(), newType.getColumn2(), source));
+		}
 
-        // Add new types (or modify existing types)
-        for (TwoColumnRow<Class<?>, Tag> newType : typesAdded) {
-            typeTable.add(new ThreeColumnRow<Class<?>, Tag, DelegableFactory>(
-                    newType.getColumn1(), newType.getColumn2(), source));
-        }
+		// Add new types (or modify existing types)
+		for (TwoColumnRow<Class<?>, Object> newType : typesAdded) {
+			typeTable
+					.add(new ThreeColumnRow<Class<?>, Object, DelegableFactory>(
+							newType.getColumn1(), newType.getColumn2(), source));
+		}
 
-        // TODO This is broken because it doesn't properly handle overridden
-        // types
-        // We may still be providing support for a type that was removed
-        // from the DelegableFactory, if it is provided by another
-        // DelegableFactory that is a child of this factory.
-        for (NotifiableFactory notifiableFactory : notifiableFactories) {
-            notifiableFactory.supportedTypesUpdated(this, typesAdded,
-                    typesRemoved);
-        }
-    }
+		// TODO This is broken because it doesn't properly handle overridden
+		// types
+		// We may still be providing support for a type that was removed
+		// from the DelegableFactory, if it is provided by another
+		// DelegableFactory that is a child of this factory.
+		for (NotifiableFactory notifiableFactory : notifiableFactories) {
+			notifiableFactory.supportedTypesUpdated(this, typesAdded,
+					typesRemoved);
+		}
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.java0.core.factory.DelegableFactory#getSupportedTypes()
-     */
-    @Override
-    public RowSet<TwoColumnRow<Class<?>, Tag>> getSupportedTypes() {
-        RowSet<TwoColumnRow<Class<?>, Tag>> supportedTypes = new HashRowSet<>();
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.java0.core.factory.DelegableFactory#getSupportedTypes()
+	 */
+	@Override
+	public RowSet<TwoColumnRow<Class<?>, Object>> getSupportedTypes() {
+		RowSet<TwoColumnRow<Class<?>, Object>> supportedTypes = new HashRowSet<>();
 
-        for (ThreeColumnRow<Class<?>, Tag, DelegableFactory> row : typeTable) {
-            supportedTypes.add(row);
-        }
+		for (ThreeColumnRow<Class<?>, Object, DelegableFactory> row : typeTable) {
+			supportedTypes.add(row);
+		}
 
-        return supportedTypes;
-    }
+		return supportedTypes;
+	}
 
-    /**
-     * @see org.java0.factory.NotifyingFactory#
-     *      addNotifiableFactory(org.java0.factory.NotifiableFactory)
-     */
-    @Override
-    public void addNotifiableFactory(NotifiableFactory factory) {
-        factory.supportedTypesUpdated(this, getSupportedTypes(), null);
-        this.notifiableFactories.add(factory);
-    }
+	/**
+	 * @see org.java0.factory.NotifyingFactory#
+	 *      addNotifiableFactory(org.java0.factory.NotifiableFactory)
+	 */
+	@Override
+	public void addNotifiableFactory(NotifiableFactory factory) {
+		factory.supportedTypesUpdated(this, getSupportedTypes(), null);
+		this.notifiableFactories.add(factory);
+	}
 
-    /**
-     * @see org.java0.factory.NotifyingFactory#
-     *      removeNotifiableFactory(org.java0.factory.NotifiableFactory)
-     */
-    @Override
-    public void removeNotifiableFactory(NotifiableFactory factory) {
-        factory.supportedTypesUpdated(this, null, getSupportedTypes());
-        this.notifiableFactories.remove(factory);
+	/**
+	 * @see org.java0.factory.NotifyingFactory#
+	 *      removeNotifiableFactory(org.java0.factory.NotifiableFactory)
+	 */
+	@Override
+	public void removeNotifiableFactory(NotifiableFactory factory) {
+		factory.supportedTypesUpdated(this, null, getSupportedTypes());
+		this.notifiableFactories.remove(factory);
 
-    }
+	}
 
-    @Override
-    public void addDelegate(DelegableFactory factory) {
-        logger.fine("Adding delegate " + factory.getClass().getName() + " to "
-                + this.getName());
-        delegableFactories.add(factory);
-        supportedTypesUpdated(factory, factory.getSupportedTypes(), null);
-    }
+	@Override
+	public void addDelegate(DelegableFactory factory) {
+		logger.fine("Adding delegate " + factory.getClass().getName() + " to "
+				+ this.getName());
+		delegableFactories.add(factory);
+		supportedTypesUpdated(factory, factory.getSupportedTypes(), null);
+	}
 
-    @Override
-    public void removeDelegate(DelegableFactory factory) {
-        logger.fine("Removing delegate " + factory.getClass().getName()
-                + " from " + this.getName());
-        delegableFactories.remove(factory);
-        supportedTypesUpdated(factory, null, factory.getSupportedTypes());
-    }
+	@Override
+	public void removeDelegate(DelegableFactory factory) {
+		logger.fine("Removing delegate " + factory.getClass().getName()
+				+ " from " + this.getName());
+		delegableFactories.remove(factory);
+		supportedTypesUpdated(factory, null, factory.getSupportedTypes());
+	}
 
-    /**
-     * @see org.java0.factory.Factory#getObject(java.lang.Class,
-     *      org.java0.tag.Tag, org.java0.factory.Config)
-     */
-    @Override
-    public <T> T getObject(Class<T> type, Tag tag, Config<T> config)
-            throws FactoryException {
-        RowSet<ThreeColumnRow<Class<?>, Tag, DelegableFactory>> table = typeTable
-                .select(new ThreeColumnRow<Class<?>, Tag, DelegableFactory>(
-                        type, tag, null));
+	/**
+	 * @see org.java0.factory.Factory#getObject(java.lang.Class,
+	 *      org.java0.selector.Object, org.java0.factory.Config)
+	 */
+	@Override
+	public <T> T getObject(Class<T> type, Object selector, Config<T> config)
+			throws FactoryException {
+		RowSet<ThreeColumnRow<Class<?>, Object, DelegableFactory>> table = typeTable
+				.select(new ThreeColumnRow<Class<?>, Object, DelegableFactory>(
+						type, selector, null));
 
-        int maxScore = Integer.MIN_VALUE;
-        int count = 0;
-        Factory factory = null;
+		int maxScore = Integer.MIN_VALUE;
+		int count = 0;
+		Factory factory = null;
 
-        // find the highest scoring match
-        for (ThreeColumnRow<Class<?>, Tag, DelegableFactory> row : table) {
+		// find the highest scoring match
+		for (ThreeColumnRow<Class<?>, Object, DelegableFactory> row : table) {
 
-            int score = tagComparator.matchScore(row.getColumn2(), tag);
+			int score = tagComparator.matchScore(row.getColumn2(), selector);
 
-            if (score > maxScore) {
-                score = maxScore;
-                factory = row.getColumn3();
-                count = 1;
-            } else if (score == maxScore) {
-                ++count;
-            }
-        }
+			if (score > maxScore) {
+				score = maxScore;
+				factory = row.getColumn3();
+				count = 1;
+			} else if (score == maxScore) {
+				++count;
+			}
+		}
 
-        if (maxScore > Integer.MIN_VALUE) {
-            if (count > 1) {
-                throw new AmbiguousTypeException();
-            }
-            return factory.getObject(type, tag, config);
-        } else {
-            // No match found. If concrete type, try creating object using
-            // default constructor.
-            if (type.isLocalClass()) {
-                try {
-                    T object = type.newInstance();
-                    logger.log(Level.INFO, "Instantiated " + type
-                            + " using default constructor");
-                    return object;
-                } catch (InstantiationException e) {
-                    logger.log(Level.SEVERE,
-                            "Caught exception in auto-generated catch block", e);
-                } catch (IllegalAccessException e) {
-                    logger.log(Level.SEVERE,
-                            "Caught exception in auto-generated catch block", e);
-                }
-            }
-        }
+		if (maxScore > Integer.MIN_VALUE) {
+			if (count > 1) {
+				throw new AmbiguousTypeException();
+			}
+			return factory.getObject(type, selector, config);
+		} else {
+			// No match found. If concrete type, try creating object using
+			// default constructor.
+			if (type.isLocalClass()) {
+				try {
+					T object = type.newInstance();
+					logger.log(Level.INFO, "Instantiated " + type
+							+ " using default constructor");
+					return object;
+				} catch (InstantiationException e) {
+					logger.log(Level.SEVERE,
+							"Caught exception in auto-generated catch block", e);
+				} catch (IllegalAccessException e) {
+					logger.log(Level.SEVERE,
+							"Caught exception in auto-generated catch block", e);
+				}
+			}
+		}
 
-        throw new UnknownTypeException("Unable to find type" + type.getName());
+		throw new UnknownTypeException("Unable to find type" + type.getName());
 
-    }
+	}
+
 }

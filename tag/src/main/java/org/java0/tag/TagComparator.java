@@ -21,16 +21,18 @@ package org.java0.tag;
  *
  */
 public interface TagComparator {
-    /**
-     * Returns the match score of two tags.
-     *
-     * The score ranges from Integer.MIN_VALUE to Integer.MAX_VALUE where
-     * Integer.MAX_VALUE represents an exact match, and Integer.MIN_VALUE
-     * represents the worst case mismatch.
-     *
-     * @param first the first tag.
-     * @param second the second tag.
-     * @return the match score of the tags.
-     */
-    public int matchScore(Tag first, Tag second);
+	/**
+	 * Returns the match score of two tags.
+	 *
+	 * The score ranges from Integer.MIN_VALUE to Integer.MAX_VALUE where
+	 * Integer.MAX_VALUE represents an exact match, and Integer.MIN_VALUE
+	 * represents the worst case mismatch.
+	 *
+	 * @param first
+	 *            the first tag.
+	 * @param second
+	 *            the second tag.
+	 * @return the match score of the tags.
+	 */
+	public int matchScore(Object first, Object second);
 }

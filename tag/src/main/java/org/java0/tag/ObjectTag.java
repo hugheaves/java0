@@ -14,17 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.factory;
+package org.java0.tag;
 
-import org.java0.collection.rowset.RowSet;
-import org.java0.collection.rowset.TwoColumnRow;
+/**
+ * @author Hugh Eaves
+ *
+ */
+public class ObjectTag extends AbstractTag {
 
-public interface DelegableFactory extends Factory {
 	/**
-	 * Returns the types that this factory is able to create, along with the
-	 * selector (if any) for those types
+	 * Create a new ObjectTag.
 	 *
-	 * @return
+	 * @param value
 	 */
-	public RowSet<TwoColumnRow<Class<?>, Object>> getSupportedTypes();
+	public ObjectTag(Object value) {
+		super(value);
+	}
 }

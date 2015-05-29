@@ -26,6 +26,7 @@ import java.util.function.IntFunction;
 public class ArrayUtil {
 	public static <T> T[] newArray(Class<T> type, int length,
 			IntFunction<T> initializer) {
+		@SuppressWarnings("unchecked")
 		T[] array = (T[]) Array.newInstance(type, length);
 		for (int i = 0; i < length; ++i) {
 			array[i] = initializer.apply(i);

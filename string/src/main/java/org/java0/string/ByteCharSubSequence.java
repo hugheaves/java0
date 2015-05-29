@@ -14,43 +14,49 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.factory;
-
-import java.util.Map;
-import java.util.TreeMap;
+package org.java0.string;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class AbstractConfig<T> implements Config<T> {
+public class ByteCharSubSequence implements CharSequence {
+	private byte[] data;
+	private int start;
+	private int end;
 
-	protected Map<Object, Object> values = new TreeMap<>();
+	public ByteCharSubSequence(byte[] data) {
+		this(data, 0, data.length);
+	}
 
-	public AbstractConfig(Object... values) {
-		int i = 0;
-		for (Object value : values) {
-			this.values.put(i++, value);
-		}
+	public ByteCharSubSequence(byte[] data, int start, int end) {
+		this.data = data;
+		this.start = start;
+		this.end = end;
 	}
 
 	/**
-	 * @see org.java0.factory.Config#values()
+	 * @see java.lang.CharSequence#length()
 	 */
 	@Override
-	public Object[] values() {
-		return values.values().toArray();
+	public int length() {
+		return end - start;
 	}
 
 	/**
-	 * @see org.java0.factory.Config#getValue(java.lang.String)
+	 * @see java.lang.CharSequence#charAt(int)
 	 */
 	@Override
-	public Object getValue(Object key) {
-		return values.get(key);
+	public char charAt(int index) {
+		return (char) data[start + index];
 	}
 
-	public void setValue(Object key, Object value) {
-		values.put(key, value);
+	/**
+	 * @see java.lang.CharSequence#subSequence(int, int)
+	 */
+	@Override
+	public CharSequence subSequence(int start, int end) {
+		return new ByteCharSubSequence(data, this.start + start, this.start
+				+ end);
 	}
 }

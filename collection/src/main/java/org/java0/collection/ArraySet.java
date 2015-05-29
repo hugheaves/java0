@@ -155,6 +155,7 @@ public class ArraySet<E> extends AbstractSet<E> {
 		elements = newElements;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
 		elements = (E[]) new Object[INITIAL_CAPACITY];

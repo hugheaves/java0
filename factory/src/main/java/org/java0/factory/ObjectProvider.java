@@ -18,12 +18,12 @@ package org.java0.factory;
 
 /**
  * @author Hugh Eaves
- * 
+ *
  */
 public interface ObjectProvider<T> {
-    /**
-     * @return
-     * @throws FactoryException
-     */
-    T getObject(Config<T> config) throws FactoryException;
+	/**
+	 * @return
+	 * @throws FactoryException
+	 */
+	T getObject() throws FactoryException;
 }

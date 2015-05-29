@@ -18,22 +18,21 @@ package org.java0.factory;
 
 import org.java0.collection.rowset.RowSet;
 import org.java0.collection.rowset.TwoColumnRow;
-import org.java0.tag.Tag;
 
 /**
  * @author Hugh Eaves
- * 
+ *
  */
 public interface NotifiableFactory extends Factory {
-    /**
-     * Called to notify this factory that the types supported by a
-     * DelegableFactory have changed.
-     * 
-     * @param source
-     * @param types
-     */
-    public void supportedTypesUpdated(DelegableFactory source,
-            RowSet<TwoColumnRow<Class<?>, Tag>> typesAdded,
-            RowSet<TwoColumnRow<Class<?>, Tag>> typesRemoved)
-            throws InvalidOverrideException;
+	/**
+	 * Called to notify this factory that the types supported by a
+	 * DelegableFactory have changed.
+	 * 
+	 * @param source
+	 * @param types
+	 */
+	public void supportedTypesUpdated(DelegableFactory source,
+			RowSet<TwoColumnRow<Class<?>, Object>> typesAdded,
+			RowSet<TwoColumnRow<Class<?>, Object>> typesRemoved)
+			throws InvalidOverrideException;
 }

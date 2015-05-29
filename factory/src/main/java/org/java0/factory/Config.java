@@ -23,5 +23,5 @@ package org.java0.factory;
 public interface Config<T> {
 	public Object[] values();
 
-	public Object getValue(String key);
+	public Object getValue(Object key);
 }

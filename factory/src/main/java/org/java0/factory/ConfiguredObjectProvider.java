@@ -16,15 +16,19 @@
  */
 package org.java0.factory;
 
-import org.java0.collection.rowset.RowSet;
-import org.java0.collection.rowset.TwoColumnRow;
-
-public interface DelegableFactory extends Factory {
+/**
+ * @author Hugh Eaves
+ *
+ */
+public interface ConfiguredObjectProvider<T> extends ObjectProvider<T> {
 	/**
-	 * Returns the types that this factory is able to create, along with the
-	 * selector (if any) for those types
-	 *
 	 * @return
+	 * @throws FactoryException
 	 */
-	public RowSet<TwoColumnRow<Class<?>, Object>> getSupportedTypes();
+	T getObject(Config<T> config) throws FactoryException;
+
+	@Override
+	default T getObject() throws FactoryException {
+		return getObject((Config<T>) null);
+	}
 }

@@ -37,60 +37,88 @@ import org.junit.Test;
  *
  */
 public class TagTest extends BaseTest {
-    private static final Logger logger = Logger.getLogger(TagTest.class
-            .getName());
+	private static final Logger logger = Logger.getLogger(TagTest.class
+			.getName());
 
-    private List<Tag> tags = null;
+	private List<Tag> tags = null;
 
-    protected final TagComparator tagComparator = new DefaultTagComparator();
+	protected final TagComparator tagComparator = new DefaultTagComparator();
 
-    @Before
-    public void createTestData() {
-        logger.info("CreateTestData");
-        tags = new ArrayList<>();
-        tags.add(new NamedTag("blah"));  //0
-        tags.add(new NamedTag("yada")); //1
-        tags.add(new NamedTag("blah").link(new NamedTag("1"))); //2
-        tags.add(new NamedTag("blah").link(new NamedTag("2"))); //3
-        tags.add(new NamedTag("blah").link(new NamedTag("4"))); //4
-        tags.add(new NamedTag("blah").link(new NamedTag("4"))); //5
-        tags.add(new NamedTag("blah").link(RemoteHostTag.INSTANCE)); //6
-        tags.add(new NamedTag("blah").link(LocalHostTag.INSTANCE)); //7
-        tags.add(new NamedTag("blah")); //8
+	@Before
+	public void createTestData() {
+		logger.info("CreateTestData");
+		tags = new ArrayList<>();
+		tags.add(new NamedTag("one")); // 0
+		tags.add(new NamedTag("two")); // 1
+		tags.add(new NamedTag("one").link(new NamedTag("1"))); // 2
+		tags.add(new NamedTag("one").link(new NamedTag("2"))); // 3
+		tags.add(new NamedTag("one").link(new NamedTag("4"))); // 4
+		tags.add(new NamedTag("one").link(new NamedTag("4"))); // 5
+		tags.add(new NamedTag("one").link(RemoteHostTag.INSTANCE)); // 6
+		tags.add(new NamedTag("one").link(LocalHostTag.INSTANCE)); // 7
+		tags.add(new NamedTag("one")); // 8
+		tags.add(new NamedTag("one").link(new NamedTag("two")).link(
+				new NamedTag("three"))); // 9
+		tags.add(new NamedTag("one").link(new NamedTag("two")).link(
+				new NamedTag("three").link(new NamedTag("four")))); // 10
 
-    }
+	}
 
-    @Test
-    public void test1() {
-        assertEquals(-2,
-                tagComparator.matchScore(tags.get(0), tags.get(1)));
-    }
+	@Test
+	public void testA() {
+		for (int i = 0; i < tags.size(); ++i) {
+			for (int j = 0; j < tags.size(); ++j) {
+				assertEquals(
+						tagComparator.matchScore(tags.get(i), tags.get(j)),
+						tagComparator.matchScore(tags.get(j), tags.get(i)));
+			}
+		}
+	}
 
-    @Test
-    public void test2() {
-        assertEquals(-1,
-                tagComparator.matchScore(tags.get(2), tags.get(3)));
-    }
+	@Test
+	public void test1() {
+		assertEquals(-2, tagComparator.matchScore(tags.get(0), tags.get(1)));
+	}
 
-    @Test
-    public void test3() {
-        assertEquals(2, tagComparator.matchScore(tags.get(4), tags.get(5)));
-    }
+	@Test
+	public void test2() {
+		assertEquals(-1, tagComparator.matchScore(tags.get(2), tags.get(3)));
+	}
 
-    @Test
-    public void test4() {
-        assertEquals(-1,
-                tagComparator.matchScore(tags.get(6), tags.get(7)));
-    }
+	@Test
+	public void test3() {
+		assertEquals(2, tagComparator.matchScore(tags.get(4), tags.get(5)));
+	}
 
-    @Test
-    public void test5() {
-        assertEquals(0, tagComparator.matchScore(tags.get(7), tags.get(8)));
-    }
+	@Test
+	public void test4() {
+		assertEquals(-1, tagComparator.matchScore(tags.get(6), tags.get(7)));
+	}
 
-    @Test
-    public void test6() {
-        assertEquals(1, tagComparator.matchScore(tags.get(0), tags.get(8)));
-    }
+	@Test
+	public void test5() {
+		assertEquals(0, tagComparator.matchScore(tags.get(7), tags.get(8)));
+	}
 
+	@Test
+	public void test6() {
+		assertEquals(1, tagComparator.matchScore(tags.get(0), tags.get(8)));
+	}
+
+	@Test
+	public void test7() {
+		assertEquals(2, tagComparator.matchScore(tags.get(9), tags.get(10)));
+	}
+
+	@Test
+	public void test8() {
+		Tag one = new NamedTag("one");
+		one.link(one);
+		assertEquals(-1, tagComparator.matchScore(one, tags.get(9)));
+		Tag two = new NamedTag("two").link(new NamedTag("three"));
+		assertEquals(1, tagComparator.matchScore(two, tags.get(9)));
+		one.link(two);
+		assertEquals(3, tagComparator.matchScore(two, tags.get(9)));
+
+	}
 }

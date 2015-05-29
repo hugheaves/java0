@@ -20,31 +20,31 @@ import java.util.logging.Logger;
 
 /**
  * @author Hugh Eaves
- * 
+ *
  */
 public class ObjectHolder<T> implements TypedObjectProvider<T> {
-    @SuppressWarnings("unused")
-    private static final Logger logger = Logger.getLogger(ObjectHolder.class
-            .getName());
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(ObjectHolder.class
+			.getName());
 
-    private final T value;
+	private final T value;
 
-    public ObjectHolder(T value) {
-        this.value = value;
-    }
+	public ObjectHolder(T value) {
+		this.value = value;
+	}
 
-    @Override
-    public T getObject(Config<T> config) throws FactoryException {
-        return value;
-    }
+	@Override
+	public T getObject() throws FactoryException {
+		return value;
+	}
 
-    /**
-     * @see org.java0.factory.ObjectProvider#getType()
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public Class<? extends T> getType() {
-        return (Class<? extends T>) value.getClass();
-    }
+	/**
+	 * @see org.java0.factory.ObjectProvider#getType()
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Class<? extends T> getType() {
+		return (Class<? extends T>) value.getClass();
+	}
 
 }

@@ -16,9 +16,7 @@
  */
 package org.java0.tag;
 
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -26,238 +24,167 @@ import org.java0.core.type.Constants;
 
 /**
  * @author Hugh Eaves
- * 
+ *
  */
-// TODO Returned collections should be unmodifiable
 public class AbstractTag implements Tag {
-    @SuppressWarnings("unused")
-    private static final Logger logger = Logger.getLogger(AbstractTag.class
-            .getName());
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(AbstractTag.class
+			.getName());
 
-    /**
-     * The value of this tag
-     */
-    private final Object value;
+	/**
+	 * The value of this tag
+	 */
+	private final Object value;
 
-    /**
-     * A SetMap of all the tags linked to this tag (including this one).
-     */
-    private Set<Tag> allTags = null;
+	/**
+	 * The list of all the tags linked to this tag (including this one).
+	 */
+	private Set<Tag> tagSet = null;
 
-    /**
-     * A reference to the tag that tracks the whole set of tags. If this
-     * variable is null, then this tag is responsible for keeping track of all
-     * the tags.
-     */
-    private Tag delegate = null;
+	/**
+	 * A reference to the tag that tracks the whole set of tags.
+	 */
+	private Tag master = this;
 
-    private int hashCode = Constants.HASHCODE_MAGIC_NUM;
+	private int hashCode = Constants.HASHCODE_MAGIC_NUM;
 
-    protected AbstractTag(Object value) {
-        assert (value != null);
-        this.value = value;
-    }
+	protected AbstractTag(Object value) {
+		assert (value != null);
+		this.value = value;
+	}
 
-    @Override
-    public Tag link(Tag tag) {
-        if (tag == null) {
-            throw new NullPointerException();
-        }
-        if (delegate != null) {
-            delegate.link(tag);
-        } else {
-            if (tag.size() > 1) {
-                if (allTags == null) {
-                    allTags = tag.allTags();
-                    allTags.add(this);
-                } else {
-                    allTags.addAll(tag.allTags());
-                }
-            } else {
-                allTags().add(tag);
-            }
-            tag.setParent(this);
-        }
-        return this;
-    }
+	@Override
+	public Tag link(Tag tag) {
+		if (tag == null) {
+			throw new NullPointerException();
+		}
+		// This is not the master tag, so delegate
+		if (getMaster() != this) {
+			getMaster().link(tag);
+		} else { // this tag is a master tag
+			// if the other tag is part of a different set, merge the sets
+			if (tag.getMaster() != this) {
+				if (tag.size() == 1) {
+					tag.setMaster(this);
+					tagSet().add(tag);
+				} else if (tag.size() > this.size()) {
+					for (Tag thisTag : tagSet()) {
+						if (thisTag != this) {
+							thisTag.unlink();
+						}
+						tag.link(thisTag);
+					}
+					this.unlink();
+					tag.link(this);
+				} else {
+					for (Tag thatTag : tag.getAll()) {
+						thatTag.unlink();
+						link(thatTag);
+					}
+				}
+			} else {
+				// already part of this tag set
+			}
+		}
+		return this;
+	}
 
-    /**
-     * @see org.java0.tag.Tag#allTags()
-     */
-    @Override
-    public Set<Tag> allTags() {
-        if (delegate != null) {
-            return delegate.allTags();
-        } else {
-            if (allTags == null) {
-                allTags = new HashSet<>();
-                allTags.add(this);
-            }
-            return allTags;
-        }
-    }
+	protected Set<Tag> tagSet() {
+		if (tagSet == null) {
+			tagSet = new HashSet<>();
+			tagSet.add(this);
+		}
+		return tagSet;
+	}
 
-    /**
-     * @see org.java0.tag.Tag#getType()
-     */
-    @Override
-    public Class<? extends Tag> getType() {
-        return this.getClass();
-    }
+	/**
+	 * @see org.java0.tag.Tag#getType()
+	 */
+	@Override
+	public Class<? extends Tag> getType() {
+		return this.getClass();
+	}
 
-    /**
-     * @see org.java0.tag.Tag#getValue()
-     */
-    @Override
-    public Object getValue() {
-        return value;
-    }
+	/**
+	 * @see org.java0.tag.Tag#getValue()
+	 */
+	@Override
+	public Object getValue() {
+		return value;
+	}
 
-    /**
-     * @see org.java0.tag.Tag#setParent(org.java0.tag.Tag)
-     */
-    @Override
-    public void setParent(Tag tag) {
-        this.delegate = tag;
-        allTags = null;
-    }
+	/**
+	 * @see org.java0.tag.Tag#setMaster(org.java0.tag.Tag)
+	 */
+	@Override
+	public void setMaster(Tag tag) {
+		this.master = tag;
+		tagSet = null;
+	}
 
-    @Override
-    public int size() {
-        if (delegate != null) {
-            return delegate.size();
-        } else {
-            if (allTags == null) {
-                return 1;
-            } else {
-                return allTags.size();
-            }
-        }
-    }
+	@Override
+	public Tag getMaster() {
+		return master;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        if (object == null) {
-            return false;
-        } else if (object == this) {
-            return true;
-        } else if (object instanceof Tag) {
-            Tag tag = (Tag) object;
-            if (tag.getType() == getType() && tag.getValue().equals(getValue())) {
-                return true;
-            }
-        }
-        return false;
-    }
+	@Override
+	public int size() {
+		if (getMaster() != this) {
+			return getMaster().size();
+		} else {
+			if (tagSet == null) {
+				return 1;
+			} else {
+				return tagSet.size();
+			}
+		}
+	}
 
-    @Override
-    public int hashCode() {
-        if (hashCode != Constants.HASHCODE_MAGIC_NUM) {
-            return hashCode;
-        }
+	@Override
+	public boolean equals(Object object) {
+		if (object == null) {
+			return false;
+		} else if (object == this) {
+			return true;
+		} else if (object instanceof Tag) {
+			Tag tag = (Tag) object;
+			if (tag.getType() == getType() && tag.getValue().equals(getValue())) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-        hashCode = getType().hashCode() ^ getValue().hashCode();
+	@Override
+	public int hashCode() {
+		if (hashCode != Constants.HASHCODE_MAGIC_NUM) {
+			return hashCode;
+		}
 
-        return hashCode;
-    }
+		hashCode = getType().hashCode() ^ getValue().hashCode();
 
-    @Override
-    public String toString() {
-        return getType().getName() + "/" + value.toString();
-    }
+		return hashCode;
+	}
 
-    /**
-     * @see java.util.Set#isEmpty()
-     */
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
+	@Override
+	public String toString() {
+		return getType().getName() + "/" + value.toString();
+	}
 
-    /**
-     * @see java.util.Set#contains(java.lang.Object)
-     */
-    @Override
-    public boolean contains(Object o) {
-        return false;
-    }
+	/**
+	 * @see org.java0.tag.Tag#getAll()
+	 */
+	@Override
+	public Set<Tag> getAll() {
+		return tagSet();
+	}
 
-    /**
-     * @see java.util.Set#iterator()
-     */
-    @Override
-    public Iterator<Tag> iterator() {
-        return null;
-    }
-
-    /**
-     * @see java.util.Set#toArray()
-     */
-    @Override
-    public Object[] toArray() {
-        return null;
-    }
-
-    /**
-     * @see java.util.Set#toArray(java.lang.Object[])
-     */
-    @Override
-    public <T> T[] toArray(T[] a) {
-        return null;
-    }
-
-    /**
-     * @see java.util.Set#remove(java.lang.Object)
-     */
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    /**
-     * @see java.util.Set#containsAll(java.util.Collection)
-     */
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    /**
-     * @see java.util.Set#addAll(java.util.Collection)
-     */
-    @Override
-    public boolean addAll(Collection<? extends Tag> c) {
-        return false;
-    }
-
-    /**
-     * @see java.util.Set#retainAll(java.util.Collection)
-     */
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    /**
-     * @see java.util.Set#removeAll(java.util.Collection)
-     */
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
-    }
-
-    /**
-     * @see java.util.Set#clear()
-     */
-    @Override
-    public void clear() {
-    }
-
-    /**
-     * @see java.util.Set#add(java.lang.Object)
-     */
-    @Override
-    public boolean add(Tag e) {
-        return false;
-    }
+	/**
+	 * @see org.java0.tag.Tag#unlink()
+	 */
+	@Override
+	public void unlink() {
+		this.master = this;
+		tagSet = null;
+	}
 }

@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>java0-util</artifactId>
+	<artifactId>java0-string</artifactId>
 
 	<parent>
 		<groupId>org.java0</groupId>
@@ -21,22 +21,6 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava-testlib</artifactId>
-			<version>16.0.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
 		</dependency>
         <dependency>
             <groupId>org.java0</groupId>

@@ -14,43 +14,53 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.factory;
-
-import java.util.Map;
-import java.util.TreeMap;
+package org.java0.string;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class AbstractConfig<T> implements Config<T> {
+public class ByteCharSequence implements CharSequence {
+	private byte[] data;
 
-	protected Map<Object, Object> values = new TreeMap<>();
+	public ByteCharSequence(byte[] data) {
+		this.data = data;
+	}
 
-	public AbstractConfig(Object... values) {
-		int i = 0;
-		for (Object value : values) {
-			this.values.put(i++, value);
+	/**
+	 * @see java.lang.CharSequence#length()
+	 */
+	@Override
+	public int length() {
+		return data.length;
+	}
+
+	/**
+	 * @see java.lang.CharSequence#charAt(int)
+	 */
+	@Override
+	public char charAt(int index) {
+		return (char) data[index];
+	}
+
+	/**
+	 * @see java.lang.CharSequence#subSequence(int, int)
+	 */
+	@Override
+	public CharSequence subSequence(int start, int end) {
+		return new ByteCharSubSequence(data, start, end);
+	}
+
+	public byte[] getBytes() {
+		return data;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder buffer = new StringBuilder(data.length);
+		for (byte ch : data) {
+			buffer.append(ch);
 		}
-	}
-
-	/**
-	 * @see org.java0.factory.Config#values()
-	 */
-	@Override
-	public Object[] values() {
-		return values.values().toArray();
-	}
-
-	/**
-	 * @see org.java0.factory.Config#getValue(java.lang.String)
-	 */
-	@Override
-	public Object getValue(Object key) {
-		return values.get(key);
-	}
-
-	public void setValue(Object key, Object value) {
-		values.put(key, value);
+		return buffer.toString();
 	}
 }

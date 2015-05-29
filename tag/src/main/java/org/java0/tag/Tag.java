@@ -21,62 +21,67 @@ import java.util.Set;
 /**
  * <p>
  * A {@code Tag} is a lightweight container for a value object, that also has
- * the ability to link to other {@code Tag} objects to form a collection of
- * related tags. This collection of related tags is known as a tag "group".
- * 
- * The linking between tags is bidirectional, so that all tags in a group
- * provide the ability to access all other tags in the group.
- * 
+ * the ability to link other {@code Tag} objects to form a collection of related
+ * tags.
+ *
+ * The linking between tags is bidirectional, so that all tags in a collection
+ * provide the ability to access all other tags in the collection.
+ *
  * @author Hugh Eaves
- * 
+ *
  */
-public interface Tag extends Set<Tag> {
-    /**
-     * Links a tag to this tag. This method is used to create groups of linked
-     * tags.
-     * 
-     * @param tag
-     *            the tag to link
-     * @return a reference to this tag (for chaining invocations)
-     */
+public interface Tag {
+	/**
+	 * Links a tag to this tag. This method is used to create sets of related
+	 * tags.
+	 *
+	 * @param tag
+	 *            the tag to link
+	 * @return a reference to this tag (for chaining invocations)
+	 */
 
-    public Tag link(Tag tag);
+	public Tag link(Tag tag);
 
-    /**
-     * Retrieve all the tags in this group of tags. (including this Tag)
-     * 
-     * @return a set of tags containing all the tags in this group of tags
-     */
-    public Set<Tag> allTags();
+	/**
+	 * Returns the set of tags in this tag collection.
+	 *
+	 * @return
+	 */
+	public Set<Tag> getAll();
 
-    /**
-     * Retrieve the type (Class) of this tag.
-     * 
-     * @return the class of this tag.
-     */
-    public Class<? extends Tag> getType();
+	/**
+	 * Retrieve the type (Class) of this tag.
+	 *
+	 * @return the class of this tag.
+	 */
+	public Class<? extends Tag> getType();
 
-    /**
-     * Retrieve the value of this tag.
-     * 
-     * @return the value of this tag.
-     */
-    public Object getValue();
+	/**
+	 * Retrieve the value of this tag.
+	 *
+	 * @return the value of this tag.
+	 */
+	public Object getValue();
 
-    /**
-     * This method is called on a tag that has just been added using the link()
-     * method to set the "parent" tag. This method is not normally called
-     * directly.
-     * 
-     * @param tag
-     */
-    public void setParent(Tag tag);
+	/**
+	 * This method is called on a tag to set the "master" tag. This method is
+	 * not normally called directly.
+	 *
+	 * @param tag
+	 */
+	public void setMaster(Tag tag);
 
-    /**
-     * Retrieves the number of tags is this tag group (including this Tag).
-     * 
-     * @return the number of tags is this tag group (including this Tag).
-     */
-    @Override
-    public int size();
+	/**
+	 * @return
+	 */
+	public Tag getMaster();
+
+	public void unlink();
+
+	/**
+	 * Retrieves the number of tags is this tag group (including this Tag).
+	 *
+	 * @return the number of tags is this tag group (including this Tag).
+	 */
+	public int size();
 }

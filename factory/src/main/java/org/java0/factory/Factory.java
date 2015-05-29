@@ -16,8 +16,6 @@
  */
 package org.java0.factory;
 
-import org.java0.tag.Tag;
-
 public interface Factory {
 
 	/**
@@ -29,21 +27,21 @@ public interface Factory {
 	 * @throws FactoryException
 	 */
 	public default <T> T getObject(Class<T> type) throws FactoryException {
-		return getObject(type, null, null);
+		return getObject(type, null, (Config<T>) null);
 	}
 
 	/**
 	 * Obtains an object of the specified type (or a subtype of the specified
-	 * type) selected using the given tag.
+	 * type) selected using the given selector.
 	 *
 	 * @param type
-	 * @param tag
+	 * @param selector
 	 * @return
 	 * @throws FactoryException
 	 */
-	public default <T> T getObject(Class<T> type, Tag tag)
+	public default <T> T getObject(Class<T> type, Object selector)
 			throws FactoryException {
-		return getObject(type, tag, null);
+		return getObject(type, selector, (Config<T>) null);
 	}
 
 	/**
@@ -70,7 +68,7 @@ public interface Factory {
 	 * @return
 	 * @throws FactoryException
 	 */
-	public <T> T getObject(Class<T> type, Tag tag, Config<T> config)
+	public <T> T getObject(Class<T> type, Object selector, Config<T> config)
 			throws FactoryException;
 
 }
