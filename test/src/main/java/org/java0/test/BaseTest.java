@@ -16,18 +16,8 @@
  */
 package org.java0.test;
 
-import java.util.logging.Level;
-
-import org.java0.logging.LogUtil;
 
 public class BaseTest {
-    public BaseTest() {
-        this(Level.INFO);
-    }
-
-    public BaseTest(Level level) {
-        if (!LogUtil.initLogging("test-logging.properties")) {
-            LogUtil.initLoggingSimple(level);
-        }
-    }
+	public BaseTest() {
+	}
 }

@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.java0</groupId>
 		<artifactId>java0</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
+		<version>0.0.2</version>
 	</parent>
 
 	<build>
@@ -41,22 +41,22 @@
         <dependency>
             <groupId>org.java0</groupId>
             <artifactId>java0-tag</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.java0</groupId>
             <artifactId>java0-collection</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.java0</groupId>
             <artifactId>java0-logging</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.java0</groupId>
             <artifactId>java0-test</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.2</version>
             <scope>test</scope>
         </dependency>
 	</dependencies>

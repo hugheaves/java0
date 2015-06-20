@@ -21,9 +21,9 @@ package org.java0.string;
  *
  */
 public class ByteCharSequence implements CharSequence {
-	private byte[] data;
+	private final byte[] data;
 
-	public ByteCharSequence(byte[] data) {
+	public ByteCharSequence(final byte[] data) {
 		this.data = data;
 	}
 
@@ -39,7 +39,7 @@ public class ByteCharSequence implements CharSequence {
 	 * @see java.lang.CharSequence#charAt(int)
 	 */
 	@Override
-	public char charAt(int index) {
+	public char charAt(final int index) {
 		return (char) data[index];
 	}
 
@@ -47,7 +47,7 @@ public class ByteCharSequence implements CharSequence {
 	 * @see java.lang.CharSequence#subSequence(int, int)
 	 */
 	@Override
-	public CharSequence subSequence(int start, int end) {
+	public CharSequence subSequence(final int start, final int end) {
 		return new ByteCharSubSequence(data, start, end);
 	}
 
@@ -57,9 +57,9 @@ public class ByteCharSequence implements CharSequence {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder(data.length);
-		for (byte ch : data) {
-			buffer.append(ch);
+		final StringBuilder buffer = new StringBuilder(data.length);
+		for (final byte ch : data) {
+			buffer.append((char) ch);
 		}
 		return buffer.toString();
 	}

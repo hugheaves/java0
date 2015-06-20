@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.java0</groupId>
 		<artifactId>java0</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
+		<version>0.0.2</version>
 	</parent>
 
 	<build>
@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>org.java0</groupId>
 			<artifactId>java0-collection</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>0.0.2</version>
 		</dependency>
 	</dependencies>
 </project>
