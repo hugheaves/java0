@@ -137,6 +137,7 @@
 
 	<modules>
 		<module>annotation</module>
+		<module>cli</module>
 		<module>collection</module>
 		<module>core</module>
 		<module>factory</module>
