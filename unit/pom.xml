@@ -4,11 +4,12 @@
 
 	<artifactId>java0-unit</artifactId>
 
-	<parent>
-		<groupId>org.java0</groupId>
-		<artifactId>java0</artifactId>
-		<version>0.0.3</version>
-	</parent>
+    <parent>
+        <groupId>org.java0</groupId>
+        <artifactId>java0-parent</artifactId>
+        <version>0.0.4</version>
+        <relativePath>../parent</relativePath>
+    </parent>
 
 	<repositories>
 		<repository>
@@ -33,17 +34,17 @@
         <dependency>
             <groupId>org.java0</groupId>
             <artifactId>java0-core</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.java0</groupId>
             <artifactId>java0-logging</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.java0</groupId>
             <artifactId>java0-test</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
             <scope>test</scope>
         </dependency>
 	</dependencies>

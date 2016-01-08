@@ -6,8 +6,9 @@
 
 	<parent>
 		<groupId>org.java0</groupId>
-		<artifactId>java0</artifactId>
-		<version>0.0.3</version>
+		<artifactId>java0-parent</artifactId>
+		<version>0.0.4</version>
+		<relativePath>../parent</relativePath>
 	</parent>
 
 	<build>
@@ -41,12 +42,12 @@
 		<dependency>
 			<groupId>org.java0</groupId>
 			<artifactId>java0-factory</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.java0</groupId>
 			<artifactId>java0-test</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.4</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

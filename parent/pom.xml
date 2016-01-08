@@ -8,9 +8,9 @@
 	<parent>
 		<groupId>org.java0</groupId>
 		<artifactId>java0</artifactId>
-		<version>0.0.3</version>
+		<version>0.0.4</version>
 	</parent>
-	
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -44,5 +44,11 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 </project>
