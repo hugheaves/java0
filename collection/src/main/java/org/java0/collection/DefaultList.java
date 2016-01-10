@@ -28,315 +28,179 @@ import java.util.ListIterator;
  * @param <T>
  *            the generic type
  */
-public interface DefaultList<T> extends List<T> {
+public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
 
-	/**
-	 * Checks if is empty.
-	 *
-	 * @return true, if is empty
-	 * @see org.java0.collection.DefaultCollection#isEmpty()
-	 */
-	@Override
-	public default boolean isEmpty() {
-		return size() == 0;
-	}
+    @Override
+    default boolean isEmpty() {
+        return DefaultCollection.super.isEmpty();
+    }
 
-	/**
-	 * @see java.util.List#toArray(java.lang.Object[])
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public default <Z> Z[] toArray(Z[] arrayType) {
-		Z[] array = (Z[]) java.lang.reflect.Array.newInstance(arrayType
-				.getClass().getComponentType(), size());
-		int i = 0;
-		for (Iterator<T> iterator = iterator(); iterator.hasNext();) {
-			array[i++] = (Z) iterator.next();
-		}
-		return array;
-	}
+    @Override
+    public default boolean containsAll(final Collection<?> c) {
+        return DefaultCollection.super.containsAll(c);
+    }
 
-	/**
-	 * To array.
-	 *
-	 * @return the object[]
-	 * @see org.java0.collection.DefaultCollection#toArray()
-	 */
-	@Override
-	public default Object[] toArray() {
-		Object[] array = new Object[size()];
-		int i = 0;
-		for (Iterator<T> iterator = iterator(); iterator.hasNext();) {
-			array[i++] = iterator.next();
-		}
-		return array;
-	}
+    @Override
+    public default boolean retainAll(final Collection<?> c) {
+        return DefaultCollection.super.retainAll(c);
 
-	/**
-	 * Retain all.
-	 *
-	 * @param c
-	 *            the c
-	 * @return true, if successful
-	 * @see org.java0.collection.DefaultCollection#retainAll(java.util.Collection)
-	 */
-	@Override
-	public default boolean retainAll(Collection<?> c) {
-		boolean modified = false;
-		for (Iterator<T> iterator = iterator(); iterator.hasNext();) {
+    }
 
-			if (!c.contains(iterator.next())) {
-				iterator.remove();
-				modified = true;
-			}
-		}
-		return modified;
-	}
+    @Override
+    public default boolean remove(final Object o) {
+        return DefaultCollection.super.remove(o);
+    }
 
-	/**
-	 * Removes the.
-	 *
-	 * @param o
-	 *            the o
-	 * @return true, if successful
-	 * @see org.java0.collection.DefaultCollection#remove(java.lang.Object)
-	 */
-	@Override
-	public default boolean remove(Object o) {
-		if (o == null) {
-			for (Iterator<T> iterator = iterator(); iterator.hasNext();) {
-				if (iterator.next() == null) {
-					iterator.remove();
-					return true;
+    @Override
+    public default boolean removeAll(final Collection<?> c) {
+        return DefaultCollection.super.removeAll(c);
+    }
 
-				}
-			}
-		} else {
-			for (Iterator<T> iterator = iterator(); iterator.hasNext();) {
-				if (o.equals(iterator.next())) {
-					iterator.remove();
-					return true;
-				}
-			}
-		}
+    @Override
+    public default boolean addAll(final Collection<? extends T> c) {
+        return DefaultCollection.super.addAll(c);
+    }
 
-		return false;
-	}
+    @Override
+    public default void clear() {
+        DefaultCollection.super.clear();
+    }
 
-	/**
-	 * Removes the all.
-	 *
-	 * @param c
-	 *            the c
-	 * @return true, if successful
-	 * @see org.java0.collection.DefaultCollection#removeAll(java.util.Collection)
-	 */
-	@Override
-	public default boolean removeAll(Collection<?> c) {
-		boolean modified = false;
-		for (Iterator<T> iterator = iterator(); iterator.hasNext();) {
-			if (c.contains(iterator.next())) {
-				iterator.remove();
-				modified = true;
-			}
-		}
-		return modified;
-	}
+    @Override
+    public default boolean contains(final Object o) {
+        return DefaultCollection.super.contains(0);
+    }
 
-	/**
-	 * Contains all.
-	 *
-	 * @param c
-	 *            the c
-	 * @return true, if successful
-	 * @see org.java0.collection.DefaultCollection#containsAll(java.util.Collection)
-	 */
-	@Override
-	public default boolean containsAll(Collection<?> c) {
-		for (Object o : c) {
-			if (!contains(o)) {
-				return false;
-			}
-		}
-		return true;
-	}
+    @Override
+    public default <Z> Z[] toArray(final Z[] arrayType) {
+        return DefaultCollection.super.toArray(arrayType);
+    }
 
-	/**
-	 * @see java.util.List#addAll(java.util.Collection)
-	 */
-	@Override
-	public default boolean addAll(Collection<? extends T> c) {
-		boolean modified = false;
-		for (T o : c) {
-			if (add(o)) {
-				modified = true;
-			}
-		}
-		return modified;
-	}
+    @Override
+    public default Object[] toArray() {
+        return DefaultCollection.super.toArray();
+    }
 
-	/**
-	 * Adds the all.
-	 *
-	 * @param index
-	 *            the index
-	 * @param c
-	 *            the c
-	 * @return true, if successful
-	 * @see java.util.List#addAll(int, java.util.Collection)
-	 */
-	@Override
-	public default boolean addAll(int index, Collection<? extends T> c) {
-		boolean modified = false;
-		for (T e : c) {
-			add(index++, e);
-			modified = true;
-		}
-		return modified;
-	}
+    /**
+     * Adds the all.
+     *
+     * @param index
+     *            the index
+     * @param c
+     *            the c
+     * @return true, if successful
+     * @see java.util.List#addAll(int, java.util.Collection)
+     */
+    @Override
+    public default boolean addAll(int index, final Collection<? extends T> c) {
+        boolean modified = false;
+        for (final T e : c) {
+            add(index++, e);
+            modified = true;
+        }
+        return modified;
+    }
 
-	/**
-	 * Adds the.
-	 *
-	 * @param index
-	 *            the index
-	 * @param element
-	 *            the element
-	 * @see java.util.List#add(int, java.lang.Object)
-	 */
-	@Override
-	public default void add(int index, T element) {
-		throw new UnsupportedOperationException();
+    /**
+     * Adds the.
+     *
+     * @param index
+     *            the index
+     * @param element
+     *            the element
+     * @see java.util.List#add(int, java.lang.Object)
+     */
+    @Override
+    public default void add(final int index, final T element) {
+        throw new UnsupportedOperationException();
 
-	}
+    }
 
-	/**
-	 * Index of.
-	 *
-	 * @param o
-	 *            the o
-	 * @return the int
-	 * @see java.util.List#indexOf(java.lang.Object)
-	 */
-	@Override
-	public default int indexOf(Object o) {
-		if (o == null) {
-			for (ListIterator<T> iterator = listIterator(size()); iterator
-					.hasPrevious();) {
-				if (iterator.next() == null) {
-					return iterator.previousIndex();
-				}
-			}
-		} else {
-			for (ListIterator<T> iterator = listIterator(size()); iterator
-					.hasPrevious();) {
-				if (o.equals(iterator.next())) {
-					return iterator.previousIndex();
-				}
-			}
-		}
-		return -1;
-	}
+    /**
+     * Index of.
+     *
+     * @param o
+     *            the o
+     * @return the int
+     * @see java.util.List#indexOf(java.lang.Object)
+     */
+    @Override
+    public default int indexOf(final Object o) {
+        if (o == null) {
+            for (final ListIterator<T> iterator = listIterator(size()); iterator.hasPrevious();) {
+                if (iterator.next() == null) {
+                    return iterator.previousIndex();
+                }
+            }
+        } else {
+            for (final ListIterator<T> iterator = listIterator(size()); iterator.hasPrevious();) {
+                if (o.equals(iterator.next())) {
+                    return iterator.previousIndex();
+                }
+            }
+        }
+        return -1;
+    }
 
-	/**
-	 * Last index of.
-	 *
-	 * @param o
-	 *            the o
-	 * @return the int
-	 * @see java.util.List#lastIndexOf(java.lang.Object)
-	 */
-	@Override
-	public default int lastIndexOf(Object o) {
-		if (o == null) {
-			for (ListIterator<T> iterator = listIterator(size()); iterator
-					.hasPrevious();) {
-				if (iterator.previous() == null) {
-					return iterator.nextIndex();
-				}
-			}
-		} else {
-			for (ListIterator<T> iterator = listIterator(size()); iterator
-					.hasPrevious();) {
-				if (o.equals(iterator.previous())) {
-					return iterator.nextIndex();
-				}
-			}
-		}
-		return -1;
-	}
+    /**
+     * Last index of.
+     *
+     * @param o
+     *            the o
+     * @return the int
+     * @see java.util.List#lastIndexOf(java.lang.Object)
+     */
+    @Override
+    public default int lastIndexOf(final Object o) {
+        if (o == null) {
+            for (final ListIterator<T> iterator = listIterator(size()); iterator.hasPrevious();) {
+                if (iterator.previous() == null) {
+                    return iterator.nextIndex();
+                }
+            }
+        } else {
+            for (final ListIterator<T> iterator = listIterator(size()); iterator.hasPrevious();) {
+                if (o.equals(iterator.previous())) {
+                    return iterator.nextIndex();
+                }
+            }
+        }
+        return -1;
+    }
 
-	/**
-	 * Clear.
-	 *
-	 * @see org.java0.collection.DefaultCollection#clear()
-	 */
-	@Override
-	public default void clear() {
-		for (Iterator<T> iterator = iterator(); iterator.hasNext();) {
-			iterator.next();
-			iterator.remove();
-		}
-	}
+    /**
+     * Iterator.
+     *
+     * @return the iterator
+     * @see java.util.Collection#iterator()
+     */
+    @Override
+    public default Iterator<T> iterator() {
+        return listIterator();
+    }
 
-	/**
-	 * Contains.
-	 *
-	 * @param o
-	 *            the o
-	 * @return true, if successful
-	 * @see org.java0.collection.DefaultCollection#contains(java.lang.Object)
-	 */
-	@Override
-	public default boolean contains(Object o) {
-		if (o == null) {
-			for (Iterator<T> iterator = iterator(); iterator.hasNext();) {
-				if (iterator.next() == null) {
-					return true;
-				}
-			}
-		} else {
-			for (Iterator<T> iterator = iterator(); iterator.hasNext();) {
-				if (o.equals(iterator.next())) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    /**
+     * List iterator.
+     *
+     * @return the list iterator
+     * @see java.util.List#listIterator()
+     */
+    @Override
+    public default ListIterator<T> listIterator() {
+        return listIterator(0);
+    }
 
-	/**
-	 * Iterator.
-	 *
-	 * @return the iterator
-	 * @see java.util.Collection#iterator()
-	 */
-	@Override
-	public default Iterator<T> iterator() {
-		return listIterator();
-	}
+    /**
+     * List iterator.
+     *
+     * @param index
+     *            the index
+     * @return the list iterator
+     * @see java.util.List#listIterator(int)
+     */
+    @Override
+    public default ListIterator<T> listIterator(final int index) {
+        return new DefaultListIterator<T>(this, index);
+    }
 
-	/**
-	 * List iterator.
-	 *
-	 * @return the list iterator
-	 * @see java.util.List#listIterator()
-	 */
-	@Override
-	public default ListIterator<T> listIterator() {
-		return listIterator(0);
-	}
-
-	/**
-	 * List iterator.
-	 *
-	 * @param index
-	 *            the index
-	 * @return the list iterator
-	 * @see java.util.List#listIterator(int)
-	 */
-	@Override
-	public default ListIterator<T> listIterator(int index) {
-		return new DefaultListIterator<T>(this, index);
-	}
 }
