@@ -17,7 +17,7 @@
 package org.java0.factory;
 
 import org.java0.collection.rowset.RowSet;
-import org.java0.collection.rowset.TwoColumnRow;
+import org.java0.collection.tuple.TwoTuple;
 
 /**
  * @author Hugh Eaves
@@ -32,7 +32,7 @@ public interface NotifiableFactory extends Factory {
 	 * @param types
 	 */
 	public void supportedTypesUpdated(DelegableFactory source,
-			RowSet<TwoColumnRow<Class<?>, Object>> typesAdded,
-			RowSet<TwoColumnRow<Class<?>, Object>> typesRemoved)
+			RowSet<TwoTuple<Class<?>, Object>> typesAdded,
+			RowSet<TwoTuple<Class<?>, Object>> typesRemoved)
 			throws InvalidOverrideException;
 }

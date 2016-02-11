@@ -25,50 +25,50 @@ import java.net.URI;
  */
 public class InputFile extends File {
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 2955572304250255864L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new input file.
-	 *
-	 * @param pathname
-	 *            the pathname
-	 */
-	public InputFile(String pathname) {
-		super(pathname);
-	}
+    /**
+     * Instantiates a new input file.
+     *
+     * @param pathname
+     *            the pathname
+     */
+    public InputFile(final String pathname) {
+        super(pathname);
+    }
 
-	/**
-	 * Instantiates a new input file.
-	 *
-	 * @param uri
-	 *            the uri
-	 */
-	public InputFile(URI uri) {
-		super(uri);
-	}
+    /**
+     * Instantiates a new input file.
+     *
+     * @param uri
+     *            the uri
+     */
+    public InputFile(final URI uri) {
+        super(uri);
+    }
 
-	/**
-	 * Instantiates a new input file.
-	 *
-	 * @param parent
-	 *            the parent
-	 * @param child
-	 *            the child
-	 */
-	public InputFile(String parent, String child) {
-		super(parent, child);
-	}
+    /**
+     * Instantiates a new input file.
+     *
+     * @param parent
+     *            the parent
+     * @param child
+     *            the child
+     */
+    public InputFile(final String parent, final String child) {
+        super(parent, child);
+    }
 
-	/**
-	 * Instantiates a new input file.
-	 *
-	 * @param parent
-	 *            the parent
-	 * @param child
-	 *            the child
-	 */
-	public InputFile(File parent, String child) {
-		super(parent, child);
-	}
+    /**
+     * Instantiates a new input file.
+     *
+     * @param parent
+     *            the parent
+     * @param child
+     *            the child
+     */
+    public InputFile(final File parent, final String child) {
+        super(parent, child);
+    }
 }

@@ -16,19 +16,21 @@
  */
 package org.java0.factory;
 
+import java.util.function.Supplier;
+
 /**
  * @author Hugh Eaves
  *
  */
-public interface ConfiguredObjectProvider<T> extends ObjectProvider<T> {
-	/**
-	 * @return
-	 * @throws FactoryException
-	 */
-	T getObject(Config<T> config) throws FactoryException;
+public interface ConfiguredObjectProvider<T> extends Supplier<T> {
+    /**
+     * @return
+     * @throws FactoryException
+     */
+    T getObject(Config<T> config) throws FactoryException;
 
-	@Override
-	default T getObject() throws FactoryException {
-		return getObject((Config<T>) null);
-	}
+    @Override
+    default T get() throws FactoryException {
+        return getObject((Config<T>) null);
+    }
 }

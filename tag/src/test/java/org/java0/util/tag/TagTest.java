@@ -76,7 +76,7 @@ public class TagTest extends BaseTest {
 	}
 
 	@Test
-	public void test1() {
+	public void tesT0() {
 		assertEquals(-2, tagComparator.matchScore(tags.get(0), tags.get(1)));
 	}
 

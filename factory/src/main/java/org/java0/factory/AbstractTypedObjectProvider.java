@@ -22,18 +22,16 @@ import java.util.logging.Logger;
  * @author Hugh Eaves
  * 
  */
-public abstract class AbstractTypedObjectProvider<T> implements
-        TypedObjectProvider<T> {
+public abstract class AbstractTypedObjectProvider<T> implements TypedObjectProvider<T> {
     @SuppressWarnings("unused")
-    private static final Logger logger = Logger
-            .getLogger(AbstractTypedObjectProvider.class.getName());
+    private static final Logger logger = Logger.getLogger(AbstractTypedObjectProvider.class.getName());
 
     /**
      * The type to create / lookup
      */
     protected Class<? extends T> type;
 
-    protected AbstractTypedObjectProvider(Class<? extends T> type) {
+    protected AbstractTypedObjectProvider(final Class<? extends T> type) {
         this.type = type;
     }
 

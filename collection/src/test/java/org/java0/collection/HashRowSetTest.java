@@ -27,9 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.java0.collection.rowset.FourColumnRow;
 import org.java0.collection.rowset.HashRowSet;
 import org.java0.collection.rowset.RowSet;
+import org.java0.collection.tuple.FourTuple;
 import org.java0.test.BaseTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,51 +43,51 @@ public class HashRowSetTest extends BaseTest {
 	private static Logger logger = Logger.getLogger(HashRowSetTest.class
 			.getName());
 
-	List<FourColumnRow<String, Integer, Boolean, String>> rows = null;
+	List<FourTuple<String, Integer, Boolean, String>> rows = null;
 
 	@Before
 	public void createTestData() {
-		rows = new ArrayList<FourColumnRow<String, Integer, Boolean, String>>();
+		rows = new ArrayList<FourTuple<String, Integer, Boolean, String>>();
 
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				1, true, "world"));
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello1",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello1",
 				1, true, "world"));
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello2",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello2",
 				1, true, "world"));
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				1, true, "world1"));
 		// DUP A
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				1, true, "world2"));
 
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				2, true, "world"));
 		// DUP B
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				3, true, "world"));
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				3, false, "world"));
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello1",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello1",
 				3, true, "world"));
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				3, true, "world2"));
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				1, false, "world"));
 		// DUP B
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				3, true, "world"));
 		// DUP A
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("hello",
+		rows.add(new FourTuple<String, Integer, Boolean, String>("hello",
 				1, true, "world2"));
-		rows.add(new FourColumnRow<String, Integer, Boolean, String>("last", 2,
+		rows.add(new FourTuple<String, Integer, Boolean, String>("last", 2,
 				false, "row"));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void test1() {
-		RowSet<FourColumnRow<String, Integer, Boolean, String>> table = new HashRowSet<>();
+	public void tesT0() {
+		RowSet<FourTuple<String, Integer, Boolean, String>> table = new HashRowSet<>();
 
 		assertTrue(table.isEmpty());
 
@@ -99,36 +99,36 @@ public class HashRowSetTest extends BaseTest {
 		table.addAll(rows);
 		assertEquals(12, table.size());
 
-		RowSet<FourColumnRow<String, Integer, Boolean, String>> result = table
-				.select(new FourColumnRow<String, Integer, Boolean, String>(
+		RowSet<FourTuple<String, Integer, Boolean, String>> result = table
+				.select(new FourTuple<String, Integer, Boolean, String>(
 						"hello", 1, true, "world"));
 
 		assertNotNull(result);
 		assertEquals(1, result.size());
 
-		FourColumnRow<String, Integer, Boolean, String> row = table.iterator()
+		FourTuple<String, Integer, Boolean, String> row = table.iterator()
 				.next();
 		assertTrue(table.contains(row));
 
 		result = table
-				.select(new FourColumnRow<String, Integer, Boolean, String>(
+				.select(new FourTuple<String, Integer, Boolean, String>(
 						"hello", null, null, null));
 		assertEquals(8, result.size());
 
 		result = table
-				.select(new FourColumnRow<String, Integer, Boolean, String>(
+				.select(new FourTuple<String, Integer, Boolean, String>(
 						"hello", 3, null, null));
 		assertEquals(3, result.size());
 
 		result = table
-				.select(new FourColumnRow<String, Integer, Boolean, String>(
+				.select(new FourTuple<String, Integer, Boolean, String>(
 						"hello1", null, null, "world"));
 		assertEquals(2, result.size());
 
 		assertThat(result, hasItems(rows.get(1), rows.get(8)));
 
 		result = table
-				.select(new FourColumnRow<String, Integer, Boolean, String>(
+				.select(new FourTuple<String, Integer, Boolean, String>(
 						null, null, null, null));
 		assertEquals(12, result.size());
 

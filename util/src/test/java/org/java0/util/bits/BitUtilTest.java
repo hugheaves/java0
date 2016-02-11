@@ -29,10 +29,10 @@ import org.junit.Test;
 public class BitUtilTest extends BaseTest {
 
     @Test
-    public void test1() {
-        Random random = new Random();
+    public void test0() {
+        final Random random = new Random();
         for (int i = 0; i < 1000; ++i) {
-            StringBuffer bitString = new StringBuffer();
+            final StringBuffer bitString = new StringBuffer();
             for (int j = 0; j < i; ++j) {
                 if (random.nextInt(2) == 0) {
                     bitString.append('0');
@@ -40,9 +40,27 @@ public class BitUtilTest extends BaseTest {
                     bitString.append('1');
                 }
             }
-            byte[] array = BitStringUtil.toByteArray(bitString.toString());
-            String newBitString = BitStringUtil.toString(array, i);
+            final byte[] array = BitStringUtil.toByteArray(bitString.toString());
+            final String newBitString = BitStringUtil.toString(array, i);
             Assert.assertEquals(bitString.toString(), newBitString);
         }
     }
+
+    @Test
+    public void test1() {
+        Assert.assertEquals(BitStringUtil.toString(0b10100, 5), "10100");
+        Assert.assertEquals(BitStringUtil.toString(0b0000000000011100000000000000000100100011110010100000111101010100L),
+                "0000000000011100000000000000000100100011110010100000111101010100");
+        Assert.assertEquals(BitStringUtil.toString(-1L),
+                "1111111111111111111111111111111111111111111111111111111111111111");
+        Assert.assertEquals(BitStringUtil.toString(-2L, 64),
+                "1111111111111111111111111111111111111111111111111111111111111110");
+        Assert.assertEquals(BitStringUtil.toString(-2L, 1), "0");
+        Assert.assertEquals(BitStringUtil.toString(-2L, 0), "");
+
+        Assert.assertEquals(BitStringUtil.toString((byte) 128), "10000000");
+        Assert.assertEquals(BitStringUtil.toString(-1), "11111111111111111111111111111111");
+
+    }
+
 }

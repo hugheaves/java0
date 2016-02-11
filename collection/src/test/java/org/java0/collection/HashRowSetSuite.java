@@ -23,9 +23,9 @@ import java.util.Set;
 
 import junit.framework.TestSuite;
 
-import org.java0.collection.rowset.FourColumnRow;
 import org.java0.collection.rowset.HashRowSet;
-import org.java0.collection.rowset.Row;
+import org.java0.collection.tuple.FourTuple;
+import org.java0.collection.tuple.Tuple;
 import org.java0.test.BaseTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.AllTests;
@@ -48,32 +48,32 @@ public class HashRowSetSuite extends BaseTest {
 
     public static TestSuite suite() {
 
-        TestSetGenerator<Row> generator = new TestSetGenerator<Row>() {
+        TestSetGenerator<Tuple> generator = new TestSetGenerator<Tuple>() {
 
             @Override
-            public SampleElements<Row> samples() {
-                return new SampleElements<Row>(new FourColumnRow<>("hello", 1,
-                        true, "world"), new FourColumnRow<>("hello1", 1, true,
-                        "world"), new FourColumnRow<>("hello2", 1, true,
-                        "world"), new FourColumnRow<>("hello", 1, true,
-                        "world1"), new FourColumnRow<>("hello", 1, true,
+            public SampleElements<Tuple> samples() {
+                return new SampleElements<Tuple>(new FourTuple<>("hello", 1,
+                        true, "world"), new FourTuple<>("hello1", 1, true,
+                        "world"), new FourTuple<>("hello2", 1, true,
+                        "world"), new FourTuple<>("hello", 1, true,
+                        "world1"), new FourTuple<>("hello", 1, true,
                         "world2"));
             }
 
             @Override
-            public Row[] createArray(int length) {
-                return new Row[length];
+            public Tuple[] createArray(int length) {
+                return new Tuple[length];
             }
 
             @Override
-            public Iterable<Row> order(List<Row> insertionOrder) {
+            public Iterable<Tuple> order(List<Tuple> insertionOrder) {
                 return insertionOrder;
             }
 
             @SuppressWarnings({ "unchecked", "rawtypes" })
             @Override
-            public Set<Row> create(Object... elements) {
-                Set<Row> set = new HashRowSet();
+            public Set<Tuple> create(Object... elements) {
+                Set<Tuple> set = new HashRowSet();
                 set.addAll((Collection) Arrays.asList(elements));
                 return set;
             }

@@ -17,7 +17,7 @@
 package org.java0.factory;
 
 import org.java0.collection.rowset.RowSet;
-import org.java0.collection.rowset.TwoColumnRow;
+import org.java0.collection.tuple.TwoTuple;
 
 public interface DelegableFactory extends Factory {
 	/**
@@ -26,5 +26,5 @@ public interface DelegableFactory extends Factory {
 	 *
 	 * @return
 	 */
-	public RowSet<TwoColumnRow<Class<?>, Object>> getSupportedTypes();
+	public RowSet<TwoTuple<Class<?>, Object>> getSupportedTypes();
 }

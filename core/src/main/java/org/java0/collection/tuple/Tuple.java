@@ -14,30 +14,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection.rowset;
-
+package org.java0.collection.tuple;
 
 /**
- * Basic operations on a row.
+ * Basic operations on a tuple.
  *
  * @author Hugh Eaves
  *
  */
-public interface Row {
+public interface Tuple {
     /**
-     * Returns a value from a row.
+     * Returns a value from a tuple.
      *
      * @param valueNum
-     *            The column number of the value to return, starting at
-     *            zero.
-     * @return The object stored in this row at the specified column.
+     *            The number of the value to return, starting at zero.
+     * @return The object stored in this tuple at the specified position.
      */
-    public Object getValue(int columnNum);
+    public Object get(int position);
 
     /**
-     * Returns the number of columns in this row.
+     * Returns the number of values in this tuple.
      *
      * @return
      */
-    public int numColumns();
+    public int size();
 }

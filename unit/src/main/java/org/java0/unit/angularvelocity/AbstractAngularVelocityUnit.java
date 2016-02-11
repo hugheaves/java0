@@ -31,13 +31,13 @@ public class AbstractAngularVelocityUnit extends
     /**
      * Instantiates a new angular velocity unit.
      * 
-     * @param unit1
-     *            the unit1
+     * @param uniT0
+     *            the uniT0
      * @param unit2
      *            the unit2
      */
-    public AbstractAngularVelocityUnit(Unit<Angle> unit1, Unit<Time> unit2) {
-        super(unit1, unit2);
+    public AbstractAngularVelocityUnit(Unit<Angle> uniT0, Unit<Time> unit2) {
+        super(uniT0, unit2);
     }
 
     /**

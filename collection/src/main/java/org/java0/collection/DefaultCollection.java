@@ -62,7 +62,6 @@ public interface DefaultCollection<T> extends Collection<T> {
                 if (iterator.next() == null) {
                     iterator.remove();
                     return true;
-
                 }
             }
         } else {
@@ -126,6 +125,7 @@ public interface DefaultCollection<T> extends Collection<T> {
     @Override
     public default void clear() {
         for (final Iterator<T> iterator = iterator(); iterator.hasNext();) {
+            iterator.next();
             iterator.remove();
         }
     }

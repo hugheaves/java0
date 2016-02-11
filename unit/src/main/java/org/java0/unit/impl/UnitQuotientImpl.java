@@ -18,7 +18,7 @@ package org.java0.unit.impl;
 
 import java.util.logging.Logger;
 
-import org.java0.logging.LogUtil;
+import org.java0.logging.jul.LogUtil;
 import org.java0.quantity.Quantity;
 import org.java0.quantity.QuantityQuotient;
 import org.java0.unit.InverseUnit;
@@ -48,13 +48,13 @@ public class UnitQuotientImpl<COMBINED_QUANTITY extends QuantityQuotient<QUANTIT
     /**
      * Instantiates a new unit quotient impl.
      * 
-     * @param unit1
-     *            the unit1
+     * @param uniT0
+     *            the uniT0
      * @param unit2
      *            the unit2
      */
-    public UnitQuotientImpl(Unit<QUANTITY_1> unit1, Unit<QUANTITY_2> unit2) {
-        super("/", unit1, unit2);
+    public UnitQuotientImpl(Unit<QUANTITY_1> uniT0, Unit<QUANTITY_2> unit2) {
+        super("/", uniT0, unit2);
     }
 
     /**
@@ -62,12 +62,12 @@ public class UnitQuotientImpl<COMBINED_QUANTITY extends QuantityQuotient<QUANTIT
      */
     @Override
     public Number convertToSystem(Number value) {
-        logUtil.valuesFinest("convertToSystem", "this.unit1", this.unit1,
+        logUtil.valuesFinest("convertToSystem", "this.uniT0", this.uniT0,
                 "this.unit2", this.unit2, "value", value);
 
-        double value1 = unit1.convertToSystem(value).doubleValue();
+        double value1 = uniT0.convertToSystem(value).doubleValue();
 
-        logUtil.valuesFinest("after convertToSystem by unit1", "value1", value1);
+        logUtil.valuesFinest("after convertToSystem by uniT0", "value1", value1);
 
         double value2 = unit2.convertToSystem(1).doubleValue();
 
@@ -81,12 +81,12 @@ public class UnitQuotientImpl<COMBINED_QUANTITY extends QuantityQuotient<QUANTIT
      */
     @Override
     public Number convertFromSystem(Number value) {
-        logUtil.valuesFinest("convertFromSystem", "this.unit1", this.unit1,
+        logUtil.valuesFinest("convertFromSystem", "this.uniT0", this.uniT0,
                 "this.unit2", this.unit2, "value", value);
 
-        double value1 = unit1.convertFromSystem(value).doubleValue();
+        double value1 = uniT0.convertFromSystem(value).doubleValue();
 
-        logUtil.valuesFinest("after convertFromSystem by unit1", "value1",
+        logUtil.valuesFinest("after convertFromSystem by uniT0", "value1",
                 value1);
 
         double value2 = unit2.convertFromSystem(1).doubleValue();
@@ -106,7 +106,7 @@ public class UnitQuotientImpl<COMBINED_QUANTITY extends QuantityQuotient<QUANTIT
      */
     @Override
     public boolean isSystemUnit() {
-        return unit1.isSystemUnit() && unit2.isSystemUnit();
+        return uniT0.isSystemUnit() && unit2.isSystemUnit();
     }
 
     /**
@@ -121,7 +121,7 @@ public class UnitQuotientImpl<COMBINED_QUANTITY extends QuantityQuotient<QUANTIT
             return this;
         } else {
             return new UnitQuotientImpl<COMBINED_QUANTITY, QUANTITY_1, QUANTITY_2>(
-                    unit1.getSystemUnit(), unit2.getSystemUnit());
+                    uniT0.getSystemUnit(), unit2.getSystemUnit());
         }
     }
 

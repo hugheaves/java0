@@ -37,7 +37,7 @@ public interface BinaryUnit<COMBINED_QUANTITY extends BinaryQuantity<QUANTITY_1,
      * 
      * @return a unit
      */
-    public Unit<QUANTITY_1> getUnit1();
+    public Unit<QUANTITY_1> getUniT0();
 
     /**
      * Returns the second / right unit of this binary numeric unit.

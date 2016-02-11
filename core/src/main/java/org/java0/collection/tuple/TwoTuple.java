@@ -14,31 +14,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection.rowset;
+package org.java0.collection.tuple;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class FiveColumnRow<T1, T2, T3, T4, T5> extends
-        FourColumnRow<T1, T2, T3, T4> {
+public class TwoTuple<T0, T1> extends AbstractTuple {
 
-    public <V1 extends T1, V2 extends T2, V3 extends T3, V4 extends T4, V5 extends T5> FiveColumnRow(
-            V1 t1, V2 t2, V3 t3, V4 t4, V5 t5) {
-        super(new Object[] { t1, t2, t3, t4, t5 });
+    public <V0 extends T0, V1 extends T1> TwoTuple(final V0 value0, final V1 value1) {
+        super(value0, value1);
     }
 
-    /**
-     * Create a new TwoColumnRow.
-     *
-     * @param objects
-     */
-    protected FiveColumnRow(Object[] objects) {
-        super(objects);
+    protected TwoTuple(final Object... values) {
+        super(values);
     }
 
     @SuppressWarnings("unchecked")
-    public T5 getColumn5() {
-        return (T5) this.getValue(4);
+    public T0 get0() {
+        return (T0) this.get(0);
+    }
+
+    @SuppressWarnings("unchecked")
+    public T1 get1() {
+        return (T1) this.get(1);
     }
 }

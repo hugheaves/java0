@@ -35,7 +35,7 @@ public class DelegableFactoryTest extends BaseTest {
             .getLogger(DelegableFactoryTest.class.getName());
 
     @Test
-    public void test1() {
+    public void tesT0() {
         Factory factory = new TestFactory();
 
         TestClass1 instance1 = factory.getObject(TestClass1.class);

@@ -47,20 +47,21 @@ public final class BitStringUtil {
      *            The number of bits to convert from the array.
      * @return The bit string
      */
-    public static String toString(byte[] array, int numBits) {
+    public static String toString(final byte[] array, final int numBits) {
         assert (numBits <= array.length * Byte.SIZE);
 
-        StringBuffer buffer = new StringBuffer();
+        final StringBuffer buffer = new StringBuffer(numBits);
         int remainingBits = numBits;
+
         int byteNum = 0;
+
+        final int firstBits = remainingBits % Byte.SIZE;
+        if (firstBits != 0) {
+            buffer.append(toString(array[byteNum++], firstBits));
+            remainingBits -= firstBits;
+        }
         while (remainingBits > 0) {
-            if (remainingBits <= Byte.SIZE) {
-                int val = array[byteNum] >>> (Byte.SIZE - remainingBits);
-                buffer.append(toString(val, remainingBits));
-            } else {
-                buffer.append(toString(array[byteNum], Byte.SIZE));
-            }
-            ++byteNum;
+            buffer.append(toString(array[byteNum++], Byte.SIZE));
             remainingBits -= Byte.SIZE;
         }
         return buffer.toString();
@@ -73,8 +74,27 @@ public final class BitStringUtil {
      *            The array to convert.
      * @return The bit string.
      */
-    public static String toString(byte[] array) {
+    public static String toString(final byte[] array) {
         return toString(array, array.length * Byte.SIZE);
+    }
+
+    public static String toString(final long[] array, final int numBits) {
+        assert (numBits <= array.length * Long.SIZE);
+
+        final StringBuffer buffer = new StringBuffer(numBits);
+        int remainingBits = numBits;
+        final int byteNum = 0;
+
+        final int firstBits = remainingBits % Long.SIZE;
+        if (firstBits != 0) {
+            buffer.append(toString(array[byteNum], firstBits));
+            remainingBits -= firstBits;
+        }
+        while (remainingBits > 0) {
+            buffer.append(toString(array[byteNum], Long.SIZE));
+            remainingBits -= Long.SIZE;
+        }
+        return buffer.toString();
     }
 
     /**
@@ -90,10 +110,11 @@ public final class BitStringUtil {
     public static String toString(final long value, final int numBitsToConvert) {
         assert (numBitsToConvert <= Long.SIZE);
 
-        StringBuffer buffer = new StringBuffer();
-        for (int shift = Long.SIZE - numBitsToConvert; shift < Long.SIZE; ++shift) {
-            long shiftedValue = (value << shift);
-            long bitValue = shiftedValue & Long.MIN_VALUE;
+        final StringBuffer buffer = new StringBuffer();
+
+        for (int shift = numBitsToConvert - 1; shift >= 0; --shift) {
+            final long shiftedValue = value >>> shift;
+            final long bitValue = shiftedValue & 1;
             if (bitValue != 0) {
                 buffer.append('1');
             } else {
@@ -101,6 +122,10 @@ public final class BitStringUtil {
             }
         }
         return buffer.toString();
+    }
+
+    public static String toString(final long[] array) {
+        return toString(array, array.length * Long.SIZE);
     }
 
     /**
@@ -175,11 +200,11 @@ public final class BitStringUtil {
      *            The string to convert.
      * @return The converted value.
      */
-    public static long toLong(String bitString) {
+    public static long toLong(final String bitString) {
         assert (bitString.length() <= Long.SIZE);
 
         long value = 0;
-        for (char ch : bitString.toCharArray()) {
+        for (final char ch : bitString.toCharArray()) {
             if (ch == '1') {
                 value = value << 1;
                 value = value | 1;
@@ -199,7 +224,7 @@ public final class BitStringUtil {
      *            The string to convert.
      * @return The converted value.
      */
-    public static int toInteger(String bitString) {
+    public static int toInteger(final String bitString) {
         assert (bitString.length() <= Integer.SIZE);
 
         return (int) toLong(bitString);
@@ -214,7 +239,7 @@ public final class BitStringUtil {
      *            The string to convert.
      * @return The converted value.
      */
-    public static short toShort(String bitString) {
+    public static short toShort(final String bitString) {
         assert (bitString.length() <= Short.SIZE);
 
         return (short) toLong(bitString);
@@ -229,7 +254,7 @@ public final class BitStringUtil {
      *            The string to convert.
      * @return The converted value.
      */
-    public static char toChar(String bitString) {
+    public static char toChar(final String bitString) {
         assert (bitString.length() <= Character.SIZE);
 
         return (char) toLong(bitString);
@@ -244,7 +269,7 @@ public final class BitStringUtil {
      *            The string to convert.
      * @return The converted value.
      */
-    public static byte toByte(String bitString) {
+    public static byte toByte(final String bitString) {
         assert (bitString.length() <= Byte.SIZE);
 
         return (byte) toLong(bitString);
@@ -257,28 +282,39 @@ public final class BitStringUtil {
      *            The string to convert.
      * @return The converted value.
      */
-    public static byte[] toByteArray(String bitString) {
-        byte[] array = new byte[bitString.length() / Byte.SIZE + 1];
-        int val = 0;
-        int bitCount = 0;
-        for (char ch : bitString.toCharArray()) {
-            if (ch == '1' || ch == '0') {
-                val = val << 1;
-                val = val | (ch - '0');
-                bitCount++;
-                if (bitCount % Byte.SIZE == 0) {
-                    array[(bitCount / Byte.SIZE) - 1] = (byte) val;
-                    val = 0;
-                }
-            }
+    public static byte[] toByteArray(final String bitString) {
+        final byte[] array = new byte[(bitString.length() + Byte.SIZE - 1) / Byte.SIZE];
+
+        int byteNum = 0;
+
+        final int firstBits = bitString.length() % Byte.SIZE;
+        int pos = 0;
+
+        if (firstBits != 0) {
+            array[byteNum++] = toByte(bitString.substring(0, firstBits));
+            pos = firstBits;
+        }
+        while (byteNum < array.length) {
+            array[byteNum++] = toByte(bitString.substring(pos, pos + Byte.SIZE));
+            pos += Byte.SIZE;
         }
 
-        if (bitCount % Byte.SIZE > 0) {
-            for (; bitCount % Byte.SIZE != 0; ++bitCount) {
-                val = val << 1;
-            }
-            array[(bitCount / Byte.SIZE) - 1] = (byte) val;
-        }
         return array;
+    }
+
+    public static String toString(final long value) {
+        return toString(value, Long.SIZE);
+    }
+
+    public static String toString(final int value) {
+        return toString(value, Integer.SIZE);
+    }
+
+    public static String toString(final char value) {
+        return toString(value, Character.SIZE);
+    }
+
+    public static String toString(final byte value) {
+        return toString(value, Byte.SIZE);
     }
 }

@@ -44,8 +44,8 @@ public abstract class BinaryUnitImpl<COMBINED_QUANTITY extends BinaryQuantity<QU
     private static final Logger logger = Logger.getLogger(BinaryUnitImpl.class
             .getName());
 
-    /** The unit1. */
-    protected Unit<QUANTITY_1> unit1;
+    /** The uniT0. */
+    protected Unit<QUANTITY_1> uniT0;
 
     /** The unit2. */
     protected Unit<QUANTITY_2> unit2;
@@ -58,16 +58,16 @@ public abstract class BinaryUnitImpl<COMBINED_QUANTITY extends BinaryQuantity<QU
      * 
      * @param operator
      *            the operator
-     * @param unit1
-     *            the unit1
+     * @param uniT0
+     *            the uniT0
      * @param unit2
      *            the unit2
      */
-    public BinaryUnitImpl(String operator, Unit<QUANTITY_1> unit1,
+    public BinaryUnitImpl(String operator, Unit<QUANTITY_1> uniT0,
             Unit<QUANTITY_2> unit2) {
-        super("(" + unit1.getName() + " " + operator + " " + unit2.getName()
+        super("(" + uniT0.getName() + " " + operator + " " + unit2.getName()
                 + ")");
-        this.unit1 = unit1;
+        this.uniT0 = uniT0;
         this.unit2 = unit2;
     }
 
@@ -87,7 +87,7 @@ public abstract class BinaryUnitImpl<COMBINED_QUANTITY extends BinaryQuantity<QU
             return true;
         } else if (object instanceof UnitProduct) {
             UnitProduct<?, ?, ?> nup = (UnitProduct<?, ?, ?>) object;
-            return (getUnit1().equals(nup.getUnit1())
+            return (getUniT0().equals(nup.getUniT0())
                     && getUnit2().equals(nup.getUnit2()) && nup.getOperator()
                     .equals(getOperator()));
         } else {
@@ -100,7 +100,7 @@ public abstract class BinaryUnitImpl<COMBINED_QUANTITY extends BinaryQuantity<QU
      */
     @Override
     public int hashCode() {
-        return getUnit1().hashCode() ^ getUnit2().hashCode()
+        return getUniT0().hashCode() ^ getUnit2().hashCode()
                 ^ operator.hashCode();
     }
 
@@ -112,18 +112,18 @@ public abstract class BinaryUnitImpl<COMBINED_QUANTITY extends BinaryQuantity<QU
      */
     @Override
     public boolean isSystemUnit() {
-        return unit1.isSystemUnit() && unit2.isSystemUnit();
+        return uniT0.isSystemUnit() && unit2.isSystemUnit();
     }
 
     /**
-     * Gets the unit1.
+     * Gets the uniT0.
      * 
-     * @return the unit1
-     * @see org.java0.unit.BinaryUnit#getUnit1()
+     * @return the uniT0
+     * @see org.java0.unit.BinaryUnit#getUniT0()
      */
     @Override
-    public Unit<QUANTITY_1> getUnit1() {
-        return unit1;
+    public Unit<QUANTITY_1> getUniT0() {
+        return uniT0;
     }
 
     /**

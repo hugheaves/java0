@@ -33,7 +33,7 @@ public class NewtonMeterUnit extends UnitProductImpl<Energy, Force, Length>
     /**
      * Create a new NewtonMeterUnit.
      * 
-     * @param unit1
+     * @param uniT0
      * @param unit2
      */
     public NewtonMeterUnit() {

@@ -24,15 +24,16 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.java0.collection.Null;
 import org.java0.collection.setmap.HashSetMap;
 import org.java0.collection.setmap.SetMap;
+import org.java0.collection.tuple.Tuple;
+import org.java0.core.type.Null;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class HashRowSet<R extends Row> extends AbstractSet<R> implements
+public class HashRowSet<R extends Tuple> extends AbstractSet<R> implements
         RowSet<R> {
     private static final Logger logger = Logger.getLogger(HashRowSet.class
             .getName());
@@ -101,10 +102,10 @@ public class HashRowSet<R extends Row> extends AbstractSet<R> implements
          * @return
          */
         private void initKeyColumns(R row, boolean[] nullIsKey) {
-            keyColumns = new int[row.numColumns()];
-            for (int column = 0; column < row.numColumns(); ++column) {
+            keyColumns = new int[row.size()];
+            for (int column = 0; column < row.size(); ++column) {
                 if ((column < nullIsKey.length && nullIsKey[column])
-                        || (row.getValue(column) != null)) {
+                        || (row.get(column) != null)) {
                     keyColumns[numKeyColumns++] = column;
                 }
             }
@@ -115,7 +116,7 @@ public class HashRowSet<R extends Row> extends AbstractSet<R> implements
         }
 
         public Object key(int keyNum) {
-            Object object = Null.safe(row.getValue(columnNum(keyNum)));
+            Object object = Null.safe(row.get(columnNum(keyNum)));
             return object;
         }
 
@@ -130,22 +131,22 @@ public class HashRowSet<R extends Row> extends AbstractSet<R> implements
     }
 
     @SuppressWarnings("unchecked")
-    protected void addToIndex(Row row) {
+    protected void addToIndex(Tuple row) {
         if (index == null) {
-            index = new HashSetMap[row.numColumns()];
-            for (int i = 0; i < row.numColumns(); ++i) {
+            index = new HashSetMap[row.size()];
+            for (int i = 0; i < row.size(); ++i) {
                 index[i] = new HashSetMap<>();
             }
         }
-        for (int i = 0; i < row.numColumns(); ++i) {
-            index[i].add(row.getValue(i), (R) row);
+        for (int i = 0; i < row.size(); ++i) {
+            index[i].add(row.get(i), (R) row);
         }
     }
 
     @SuppressWarnings("unchecked")
-    protected void removeFromIndex(Row row) {
-        for (int i = 0; i < row.numColumns(); ++i) {
-            index[i].remove(row.getValue(i), (R) row);
+    protected void removeFromIndex(Tuple row) {
+        for (int i = 0; i < row.size(); ++i) {
+            index[i].remove(row.get(i), (R) row);
         }
     }
 
@@ -163,10 +164,10 @@ public class HashRowSet<R extends Row> extends AbstractSet<R> implements
 
     @Override
     public boolean remove(Object object) {
-        if (!(object instanceof Row)) {
+        if (!(object instanceof Tuple)) {
             return false;
         }
-        Row row = (Row) object;
+        Tuple row = (Tuple) object;
         boolean removed = entries.remove(row);
         if (removed) {
             removeFromIndex(row);
@@ -193,7 +194,7 @@ public class HashRowSet<R extends Row> extends AbstractSet<R> implements
         // a single row match, or all the rows
         if (selectKey.numKeys() == 0) {
             returnTable.addAll(entries);
-        } else if (selectKey.numKeys() == row.numColumns()) {
+        } else if (selectKey.numKeys() == row.size()) {
             if (entries.contains(row)) {
                 returnTable.add(row);
             }

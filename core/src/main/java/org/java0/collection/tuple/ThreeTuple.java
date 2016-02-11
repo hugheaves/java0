@@ -14,38 +14,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.collection.rowset;
+package org.java0.collection.tuple;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class FourColumnRow<T1, T2, T3, T4> extends ThreeColumnRow<T1, T2, T3> {
+public class ThreeTuple<T0, T1, T2> extends TwoTuple<T0, T1> {
 
-    /**
-     * Create a new FourColumnRow.
-     *
-     * @param t1
-     * @param t2
-     * @param t3
-     * @param t4
-     */
-    public <V1 extends T1, V2 extends T2, V3 extends T3, V4 extends T4> FourColumnRow(
-            V1 t1, V2 t2, V3 t3, V4 t4) {
-        super(new Object[] { t1, t2, t3, t4 });
+    public <V0 extends T0, V1 extends T1, V2 extends T2> ThreeTuple(final V0 value0, final V1 value1, final V2 value2) {
+        super(value0, value1, value2);
     }
 
-    /**
-     * Create a new TwoColumnRow.
-     *
-     * @param objects
-     */
-    protected FourColumnRow(Object[] objects) {
-        super(objects);
+    protected ThreeTuple(final Object... values) {
+        super(values);
     }
 
     @SuppressWarnings("unchecked")
-    public T4 getColumn4() {
-        return (T4) this.getValue(3);
+    public T2 get2() {
+        return (T2) this.get(2);
     }
 }

@@ -34,14 +34,14 @@ public abstract class AbstractAngularAccelerationUnit extends
     /**
      * Instantiates a new angular acceleration unit.
      * 
-     * @param unit1
-     *            the unit1
+     * @param uniT0
+     *            the uniT0
      * @param unit2
      *            the unit2
      */
-    public AbstractAngularAccelerationUnit(Unit<AngularVelocity> unit1,
+    public AbstractAngularAccelerationUnit(Unit<AngularVelocity> uniT0,
             Unit<Time> unit2) {
-        super(unit1, unit2);
+        super(uniT0, unit2);
     }
 
     /**

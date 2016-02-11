@@ -19,6 +19,7 @@ package org.java0.util.timing;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 
+import org.java0.collection.tuple.ThreeTuple;
 import org.java0.core.type.AbstractNamedObject;
 import org.java0.logging.Level;
 import org.java0.logging.slf4j.Logger;
@@ -36,15 +37,15 @@ public final class Stopwatch extends AbstractNamedObject {
     private static final Logger logger = LoggerFactory.getLogger(Stopwatch.class);
 
     private long elapsedTimeAtStart;
-    private long elapsedTime;
-    private long totalElapsedTime;
-
     private long cpuTimeAtStart;
-    private long cpuTime;
-    private long totalCpuTime;
-
     private long userTimeAtStart;
-    private long userTime;
+
+    private long currentElapsedTime;
+    private long currentCpuTime;
+    private long currentUserTime;
+
+    private long totalElapsedTime;
+    private long totalCpuTime;
     private long totalUserTime;
 
     private long loggerTime;
@@ -66,7 +67,7 @@ public final class Stopwatch extends AbstractNamedObject {
      * @param name
      *            the name
      */
-    public Stopwatch(String name) {
+    public Stopwatch(final String name) {
         super(name);
     }
 
@@ -78,7 +79,7 @@ public final class Stopwatch extends AbstractNamedObject {
      * @param level
      *            the level
      */
-    public Stopwatch(String name, Level level) {
+    public Stopwatch(final String name, final Level level) {
         super(name);
         this.level = level;
     }
@@ -89,26 +90,17 @@ public final class Stopwatch extends AbstractNamedObject {
      * Start.
      */
     public void start() {
-        logger.log(level, "Stopwatch [{}] - START - (current total = {}ms)", name, totalElapsedTime / 1000000);
-        elapsedTimeAtStart = System.nanoTime();
-        ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
+        final ThreeTuple<Long, Long, Long> times = getTimes();
 
-        cpuTimeAtStart = 0;
-        userTimeAtStart = 0;
+        elapsedTimeAtStart = times.get0();
+        cpuTimeAtStart = times.get1();
+        userTimeAtStart = times.get2();
 
-        if (threadMXBean.isThreadCpuTimeSupported()) {
-            long[] threadIds = threadMXBean.getAllThreadIds();
-            for (long threadId : threadIds) {
-                long threadCpuTime = threadMXBean.getThreadCpuTime(threadId);
-                long threadUserTime = threadMXBean.getThreadUserTime(threadId);
-                if (threadCpuTime >= 0) {
-                    cpuTimeAtStart += threadCpuTime;
-                }
-                if (threadUserTime >= 0) {
-                    userTimeAtStart += threadUserTime;
-                }
-            }
-        }
+        currentElapsedTime = 0;
+        currentCpuTime = 0;
+        currentUserTime = 0;
+
+        logInternal(level, "START");
     }
 
     /**
@@ -127,7 +119,7 @@ public final class Stopwatch extends AbstractNamedObject {
      * @param message
      *            the message
      */
-    public void log(String message) {
+    public void log(final String message) {
         log(level, message);
 
     }
@@ -138,7 +130,7 @@ public final class Stopwatch extends AbstractNamedObject {
      * @param level
      *            the level
      */
-    public void log(Level level) {
+    public void log(final Level level) {
         log(level, "log");
 
     }
@@ -152,36 +144,55 @@ public final class Stopwatch extends AbstractNamedObject {
      * @param message
      *            the message
      */
-    public void log(Level level, String message) {
-        long logStartTime = System.nanoTime();
+    public void log(final Level level, final String message) {
+        updateTimes();
 
-        logger.log(level, "Stopwatch [{}] - {} - elapsed = {}ms (current total = {}ms)", name, message,
-                elapsedTime / 1000000, totalElapsedTime / 1000000);
+        if (elapsedTimeAtStart == 0) {
+            logger.warn("Error: Stopwatch log() called wihout start()");
+            return;
+        }
 
-        loggerTime += System.nanoTime() - logStartTime;
+        logInternal(level, message);
+    }
+
+    private void logInternal(final Level level, final String message) {
+        logger.log(level, "Stopwatch [{}] - {} - elapsed = {}/{}ms, cpu = {}/{}ms, user = {}/{}ms, system = {}/{}ms",
+                name, message, toMS(currentElapsedTime), toMS(totalElapsedTime), toMS(currentCpuTime),
+                toMS(totalCpuTime), toMS(currentUserTime), toMS(totalUserTime), toMS(currentCpuTime - currentUserTime),
+                toMS(totalCpuTime - totalUserTime));
     }
 
     /**
      * Stops the timer.
      */
     public void stop() {
-        long elapsedTimeNow = System.nanoTime();
         if (elapsedTimeAtStart == 0) {
             logger.warn("Error: Stopwatch stop() called wihout start()");
             return;
         }
 
-        elapsedTime = elapsedTimeNow - elapsedTimeAtStart;
-        totalElapsedTime = totalElapsedTime + elapsedTime;
+        updateTimes();
+
+        totalElapsedTime = totalElapsedTime + currentElapsedTime;
+        totalCpuTime += currentCpuTime;
+        totalUserTime += currentUserTime;
+
+        logInternal(level, "STOP");
+
+        elapsedTimeAtStart = 0;
+    }
+
+    private ThreeTuple<Long, Long, Long> getTimes() {
+        final long elapsedTimeNow = System.nanoTime();
 
         long cpuTimeNow = 0;
         long userTimeNow = 0;
-        ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
+        final ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
         if (threadMXBean.isThreadCpuTimeSupported()) {
-            long[] threadIds = threadMXBean.getAllThreadIds();
-            for (long threadId : threadIds) {
-                long threadCpuTime = threadMXBean.getThreadCpuTime(threadId);
-                long threadUserTime = threadMXBean.getThreadUserTime(threadId);
+            final long[] threadIds = threadMXBean.getAllThreadIds();
+            for (final long threadId : threadIds) {
+                final long threadCpuTime = threadMXBean.getThreadCpuTime(threadId);
+                final long threadUserTime = threadMXBean.getThreadUserTime(threadId);
                 if (threadCpuTime >= 0) {
                     cpuTimeNow += threadCpuTime;
                 }
@@ -191,18 +202,19 @@ public final class Stopwatch extends AbstractNamedObject {
             }
         }
 
-        cpuTime = cpuTimeNow - cpuTimeAtStart;
-        totalCpuTime += cpuTime;
+        return new ThreeTuple<>(elapsedTimeNow, cpuTimeNow, userTimeNow);
+    }
 
-        userTime = userTimeNow - userTimeAtStart;
-        totalUserTime += userTime;
+    public void updateTimes() {
+        final ThreeTuple<Long, Long, Long> times = getTimes();
 
-        logger.log(level,
-                "Stopwatch [{}] - STOP - elapsed = {}ms (new total = {}ms), cpu = {}ms (new total = {}ms), user = {}ms (new total = {}ms), system = {}ms (new total = {}ms)",
-                name, elapsedTime / 1000000, totalElapsedTime / 1000000, cpuTime / 1000000, totalCpuTime / 1000000,
-                userTime / 1000000, totalUserTime / 1000000, (cpuTime - userTime) / 1000000,
-                (totalCpuTime - totalUserTime) / 1000000);
-        elapsedTimeAtStart = System.nanoTime();
+        currentElapsedTime = times.get0() - elapsedTimeAtStart;
+        currentCpuTime = times.get1() - cpuTimeAtStart;
+        currentUserTime = times.get2() - userTimeAtStart;
+    }
+
+    private long toMS(final long value) {
+        return value / 1000000;
     }
 
     /**
@@ -210,9 +222,19 @@ public final class Stopwatch extends AbstractNamedObject {
      */
     public void reset() {
         log(level, "reset");
+
         elapsedTimeAtStart = 0;
+        currentElapsedTime = 0;
         totalElapsedTime = 0;
-        elapsedTime = 0;
+
+        cpuTimeAtStart = 0;
+        currentCpuTime = 0;
+        totalCpuTime = 0;
+
+        userTimeAtStart = 0;
+        currentUserTime = 0;
+        totalUserTime = 0;
+
         loggerTime = 0;
     }
 }

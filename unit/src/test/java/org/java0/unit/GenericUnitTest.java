@@ -48,7 +48,7 @@ public class GenericUnitTest extends BaseTest {
     GenericUnit cb = new GenericUnit("cb", 100, 0);
 
     @Test
-    public void test1() {
+    public void tesT0() {
 
         UnitProduct<NumericProduct, Numeric, Numeric> ab = a.multiply(b);
 
@@ -200,7 +200,7 @@ public class GenericUnitTest extends BaseTest {
     }
 
     @Test
-    public void test10() {
+    public void tesT00() {
         UnitQuotient<QuantityQuotient<Numeric, Numeric>, Numeric, Numeric> mbda = mb
                 .divide(da);
         logger.info(mbda.getName());

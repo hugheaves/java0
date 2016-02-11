@@ -35,83 +35,71 @@ import org.java0.tag.RemoteHostTag;
 import org.java0.tag.Tag;
 
 /**
+ * Factory that creates Tag objects from object annotations.
+ * 
  * @author Hugh Eaves
  *
  */
 public class ConverterFactory extends AbstractDelegableFactory {
-	@SuppressWarnings("unused")
-	private static final Logger logger = Logger
-			.getLogger(ConverterFactory.class.getName());
+    @SuppressWarnings("unused")
+    private static final Logger logger = Logger.getLogger(ConverterFactory.class.getName());
 
-	static {
-		FactoryManager.addDelegate(new ConverterFactory());
-	}
+    static {
+        FactoryManager.addDelegate(new ConverterFactory());
+    }
 
-	public ConverterFactory() {
-		addType(Tag.class, new AnnotationTag(Named.class),
-				new ConfiguredObjectProvider<Tag>() {
-					@Override
-					public Tag getObject(Config<Tag> config)
-							throws FactoryException {
-						return new NamedTag(((Named) config.values()[0])
-								.value());
-					}
+    public ConverterFactory() {
+        addType(Tag.class, new AnnotationTag(Named.class), new ConfiguredObjectProvider<Tag>() {
+            @Override
+            public Tag getObject(final Config<Tag> config) throws FactoryException {
+                return new NamedTag(((Named) config.values()[0]).value());
+            }
 
-				});
-		addType(Tag.class, new AnnotationTag(LocalHost.class),
-				new ConfiguredObjectProvider<Tag>() {
-					@Override
-					public Tag getObject(Config<Tag> config)
-							throws FactoryException {
-						return LocalHostTag.INSTANCE;
-					}
+        });
+        addType(Tag.class, new AnnotationTag(LocalHost.class), new ConfiguredObjectProvider<Tag>() {
+            @Override
+            public Tag getObject(final Config<Tag> config) throws FactoryException {
+                return LocalHostTag.INSTANCE;
+            }
 
-				});
-		addType(Tag.class, new AnnotationTag(LocalJVM.class),
-				new ConfiguredObjectProvider<Tag>() {
-					@Override
-					public Tag getObject(Config<Tag> config)
-							throws FactoryException {
-						return LocalJVMTag.INSTANCE;
-					}
+        });
+        addType(Tag.class, new AnnotationTag(LocalJVM.class), new ConfiguredObjectProvider<Tag>() {
+            @Override
+            public Tag getObject(final Config<Tag> config) throws FactoryException {
+                return LocalJVMTag.INSTANCE;
+            }
 
-				});
-		addType(Tag.class, new AnnotationTag(RemoteHost.class),
-				new ConfiguredObjectProvider<Tag>() {
-					@Override
-					public Tag getObject(Config<Tag> config)
-							throws FactoryException {
-						return RemoteHostTag.INSTANCE;
-					}
+        });
+        addType(Tag.class, new AnnotationTag(RemoteHost.class), new ConfiguredObjectProvider<Tag>() {
+            @Override
+            public Tag getObject(final Config<Tag> config) throws FactoryException {
+                return RemoteHostTag.INSTANCE;
+            }
 
-				});
-		addType(Tag.class, new AnnotationTag(HostName.class),
-				new ConfiguredObjectProvider<Tag>() {
-					@Override
-					public Tag getObject(Config<Tag> config)
-							throws FactoryException {
-						return new HostNameTag(((Named) config.values()[0])
-								.value());
-					}
-				});
-	}
+        });
+        addType(Tag.class, new AnnotationTag(HostName.class), new ConfiguredObjectProvider<Tag>() {
+            @Override
+            public Tag getObject(final Config<Tag> config) throws FactoryException {
+                return new HostNameTag(((Named) config.values()[0]).value());
+            }
+        });
+    }
 
-	public static Tag convertAnnotations(AnnotatedElement element) {
-		Tag firstTag = null;
-		Annotation[] annotations = element.getAnnotations();
-		for (Annotation annotation : annotations) {
-			Tag newTag = FactoryManager.getRootFactory().getObject(Tag.class,
-					new AnnotationTag(annotation.getClass()),
-					new TagConfig(annotation));
+    public static Tag convertAnnotations(final AnnotatedElement element) {
+        Tag firstTag = null;
+        final Annotation[] annotations = element.getAnnotations();
+        for (final Annotation annotation : annotations) {
+            final Tag newTag = FactoryManager.getRootFactory().getObject(Tag.class,
+                    new AnnotationTag(annotation.getClass()), new TagConfig(annotation));
 
-			if (newTag != null) {
-				if (firstTag != null) {
-					firstTag.link(newTag);
-				} else {
-					firstTag = newTag;
-				}
-			}
-		}
-		return null;
-	}
+            if (newTag != null) {
+                if (firstTag != null) {
+                    firstTag.link(newTag);
+                } else {
+                    firstTag = newTag;
+                }
+            }
+        }
+        return firstTag;
+    }
 }

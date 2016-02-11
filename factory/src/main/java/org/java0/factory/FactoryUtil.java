@@ -20,7 +20,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.reflect.ConstructorUtils;
-import org.java0.logging.LogUtil;
+import org.java0.logging.jul.LogUtil;
 
 public class FactoryUtil {
     private static Logger logger = Logger

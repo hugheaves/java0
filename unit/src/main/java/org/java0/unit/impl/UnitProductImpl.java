@@ -40,13 +40,13 @@ public class UnitProductImpl<COMBINED_QUANTITY extends QuantityProduct<QUANTITY_
     /**
      * Instantiates a new unit product impl.
      * 
-     * @param unit1
-     *            the unit1
+     * @param uniT0
+     *            the uniT0
      * @param unit2
      *            the unit2
      */
-    public UnitProductImpl(Unit<QUANTITY_1> unit1, Unit<QUANTITY_2> unit2) {
-        super("*", unit1, unit2);
+    public UnitProductImpl(Unit<QUANTITY_1> uniT0, Unit<QUANTITY_2> unit2) {
+        super("*", uniT0, unit2);
     }
 
     /**
@@ -54,7 +54,7 @@ public class UnitProductImpl<COMBINED_QUANTITY extends QuantityProduct<QUANTITY_
      */
     @Override
     public Number convertToSystem(Number value) {
-        Number value1 = unit1.convertToSystem(value);
+        Number value1 = uniT0.convertToSystem(value);
         Number value2 = unit2.convertToSystem(value1);
         return value2;
     }
@@ -64,7 +64,7 @@ public class UnitProductImpl<COMBINED_QUANTITY extends QuantityProduct<QUANTITY_
      */
     @Override
     public Number convertFromSystem(Number value) {
-        Number value1 = unit1.convertFromSystem(value);
+        Number value1 = uniT0.convertFromSystem(value);
         Number value2 = unit2.convertFromSystem(value1);
         return value2;
     }
@@ -81,7 +81,7 @@ public class UnitProductImpl<COMBINED_QUANTITY extends QuantityProduct<QUANTITY_
             return this;
         } else {
             return new UnitProductImpl<COMBINED_QUANTITY, QUANTITY_1, QUANTITY_2>(
-                    unit1.getSystemUnit(), unit2.getSystemUnit());
+                    uniT0.getSystemUnit(), unit2.getSystemUnit());
         }
     }
 

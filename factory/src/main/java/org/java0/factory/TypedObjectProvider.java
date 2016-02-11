@@ -16,11 +16,13 @@
  */
 package org.java0.factory;
 
+import java.util.function.Supplier;
+
 /**
  * @author Hugh Eaves
  * 
  */
-public interface TypedObjectProvider<T> extends ObjectProvider<T> {
+public interface TypedObjectProvider<T> extends Supplier<T> {
 
     /**
      * @return

@@ -22,7 +22,7 @@ import org.java0.amount.Amount;
 import org.java0.amount.AmountProduct;
 import org.java0.amount.AmountQuotient;
 import org.java0.amount.InverseAmount;
-import org.java0.logging.LogUtil;
+import org.java0.logging.jul.LogUtil;
 import org.java0.quantity.Quantity;
 import org.java0.quantity.QuantityProduct;
 import org.java0.quantity.QuantityQuotient;

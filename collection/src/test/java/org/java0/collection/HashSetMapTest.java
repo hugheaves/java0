@@ -40,7 +40,7 @@ public class HashSetMapTest extends BaseTest {
 			.getName());
 
 	@Test
-	public void test1() {
+	public void tesT0() {
 		HashSetMap<Integer, String> setMap = new HashSetMap<>();
 		setMap.add(1, "A");
 		setMap.add(2, "B");

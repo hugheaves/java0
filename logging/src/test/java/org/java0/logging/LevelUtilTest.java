@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.java0.logging.LevelUtil;
+import org.java0.logging.jul.LevelUtil;
 import org.junit.Test;
 
 /**

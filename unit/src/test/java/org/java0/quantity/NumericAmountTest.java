@@ -59,7 +59,7 @@ public class NumericAmountTest extends BaseTest {
     }
 
     @Test
-    public void test1() {
+    public void tesT0() {
         AngleAmount a = new AngleAmount(360, DegreesUnit.INSTANCE);
         AngleAmount b = new AngleAmount(360, DegreesUnit.INSTANCE);
         double result = a.add(b).value(DegreesUnit.INSTANCE).doubleValue();
@@ -158,7 +158,7 @@ public class NumericAmountTest extends BaseTest {
     }
 
     @Test
-    public void test10() {
+    public void tesT00() {
         AngleAmount a = new AngleAmount(Math.PI * 2, RadiansUnit.INSTANCE);
         TimeAmount b = new TimeAmount(10, SecondsUnit.INSTANCE);
         AmountProduct<QuantityProduct<Angle, Time>, Angle, Time> product = a

@@ -14,16 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.java0.factory;
+package org.java0.collection.tuple;
 
 /**
  * @author Hugh Eaves
  *
  */
-public interface ObjectProvider<T> {
-	/**
-	 * @return
-	 * @throws FactoryException
-	 */
-	T getObject() throws FactoryException;
+public class FiveTuple<T0, T1, T2, T3, T4> extends FourTuple<T0, T1, T2, T3> {
+
+    public <V0 extends T0, V1 extends T1, V2 extends T2, V3 extends T3, V4 extends T4> FiveTuple(final V0 value0,
+            final V1 value1, final V2 value2, final V3 value3, final V4 value4) {
+        super(value0, value1, value2, value3, value4);
+    }
+
+    protected FiveTuple(final Object... values) {
+        super(values);
+    }
+
+    @SuppressWarnings("unchecked")
+    public T4 get4() {
+        return (T4) this.get(4);
+    }
 }

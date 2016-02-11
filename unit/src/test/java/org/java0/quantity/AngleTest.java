@@ -26,7 +26,7 @@ public class AngleTest {
     public static final double SMALL_AMOUNT = 0.00000000001;
 
     @Test
-    public void test1() {
+    public void tesT0() {
         AngleAmount a = new AngleAmount(360, DegreesUnit.INSTANCE);
         double b = a.value(DegreesUnit.INSTANCE).doubleValue();
         Assert.assertEquals(360.0, b, SMALL_AMOUNT);

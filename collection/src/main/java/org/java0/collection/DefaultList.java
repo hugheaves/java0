@@ -101,6 +101,11 @@ public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
         return modified;
     }
 
+    @Override
+    public default boolean add(final T e) {
+        throw new UnsupportedOperationException();
+    }
+
     /**
      * Adds the.
      *
@@ -113,7 +118,6 @@ public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
     @Override
     public default void add(final int index, final T element) {
         throw new UnsupportedOperationException();
-
     }
 
     /**

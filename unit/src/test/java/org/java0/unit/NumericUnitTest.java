@@ -40,7 +40,7 @@ public class NumericUnitTest extends BaseTest {
 			.getName());
 
 	@Test
-	public void test1() {
+	public void tesT0() {
 		final DegreesUnit degreesUnit = DegreesUnit.INSTANCE;
 
 		final UnitQuotient<AngularVelocity, Angle, Time> b = degreesUnit

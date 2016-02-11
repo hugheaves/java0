@@ -27,7 +27,7 @@ public class AngularVelocityTest {
     public static final double SMALL_AMOUNT = 0.00000000001;
 
     @Test
-    public void test1() {
+    public void tesT0() {
         AngularVelocityAmount a = new AngularVelocityAmount(45,
                 DegreesPerSecondUnit.INSTANCE);
         double b = a.value(DegreesPerSecondUnit.INSTANCE).doubleValue();
