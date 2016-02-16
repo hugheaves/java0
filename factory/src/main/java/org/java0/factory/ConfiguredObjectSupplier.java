@@ -22,7 +22,7 @@ import java.util.function.Supplier;
  * @author Hugh Eaves
  *
  */
-public interface ConfiguredObjectProvider<T> extends Supplier<T> {
+public interface ConfiguredObjectSupplier<T> extends Supplier<T> {
     /**
      * @return
      * @throws FactoryException

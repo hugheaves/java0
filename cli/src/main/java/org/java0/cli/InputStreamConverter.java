@@ -30,36 +30,35 @@ import com.beust.jcommander.converters.BaseConverter;
  */
 public class InputStreamConverter extends BaseConverter<InputStream> {
 
-	/**
-	 * Instantiates a new input stream converter.
-	 *
-	 * @param optionName
-	 *            the option name
-	 */
-	public InputStreamConverter(String optionName) {
-		super(optionName);
-	}
+    /**
+     * Instantiates a new input stream converter.
+     *
+     * @param optionName
+     *            the option name
+     */
+    public InputStreamConverter(final String optionName) {
+        super(optionName);
+    }
 
-	/**
-	 * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
-	 */
-	@Override
-	public InputStream convert(String value) {
-		if ("-".equals(value)) {
-			return System.in;
-		}
+    /**
+     * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
+     */
+    @Override
+    public InputStream convert(final String value) {
+        if (value == null || "".equals(value)) {
+            return System.in;
+        }
 
-		File file = new File(value);
+        final File file = new File(value);
 
-		if (file.canRead()) {
-			try {
-				return new FileInputStream(file);
-			} catch (FileNotFoundException e) {
-			}
-		}
+        if (file.canRead()) {
+            try {
+                return new FileInputStream(file);
+            } catch (final FileNotFoundException e) {
+            }
+        }
 
-		throw new ParameterException("Unable to read the " + getOptionName()
-				+ " file [" + value + "]");
-	}
+        throw new ParameterException("Unable to read the " + getOptionName() + " file [" + value + "]");
+    }
 
 }

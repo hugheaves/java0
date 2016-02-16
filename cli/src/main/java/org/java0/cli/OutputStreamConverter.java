@@ -30,37 +30,36 @@ import com.beust.jcommander.converters.BaseConverter;
  */
 public class OutputStreamConverter extends BaseConverter<OutputStream> {
 
-	/**
-	 * Instantiates a new output stream converter.
-	 *
-	 * @param optionName
-	 *            the option name
-	 */
-	public OutputStreamConverter(String optionName) {
-		super(optionName);
-	}
+    /**
+     * Instantiates a new output stream converter.
+     *
+     * @param optionName
+     *            the option name
+     */
+    public OutputStreamConverter(final String optionName) {
+        super(optionName);
+    }
 
-	/**
-	 * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
-	 */
-	@Override
-	public OutputStream convert(String value) {
-		if ("-".equals(value)) {
-			return System.out;
-		}
+    /**
+     * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
+     */
+    @Override
+    public OutputStream convert(final String value) {
+        if (value == null || "".equals(value)) {
+            return System.out;
+        }
 
-		File file = new File(value);
+        final File file = new File(value);
 
-		try {
-			if (file.canWrite()) {
-				return new FileOutputStream(file);
-			} else if (file.createNewFile()) {
-				return new FileOutputStream(file);
-			}
-		} catch (IOException e) {
-		}
+        try {
+            if (file.canWrite()) {
+                return new FileOutputStream(file);
+            } else if (file.createNewFile()) {
+                return new FileOutputStream(file);
+            }
+        } catch (final IOException e) {
+        }
 
-		throw new ParameterException("Unable to write to the "
-				+ getOptionName() + "file [" + value + "]");
-	}
+        throw new ParameterException("Unable to write to the " + getOptionName() + "file [" + value + "]");
+    }
 }

@@ -28,9 +28,12 @@ import com.beust.jcommander.ParameterException;
 import com.beust.jcommander.Parameters;
 
 public class CLIUtil {
-    private static final Logger logger = LoggerFactory.getLogger(CLIUtil.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(CLIUtil.class);
 
-    public static int processCommandLine(final String[] args, final Command... commands) {
+    private static final String outOfMemoryMessage = "Command threw OutOfMemoryError exception in "
+            + CLIUtil.class.getName();
+
+    public static void processCommandLine(final String[] args, final Command... commands) {
         int returnCode = 0;
 
         try {
@@ -45,6 +48,10 @@ public class CLIUtil {
                 command.run();
                 command.finish();
             }
+        } catch (final OutOfMemoryError e) {
+            System.err.println(outOfMemoryMessage);
+            e.printStackTrace();
+            returnCode = 2;
         } catch (final Throwable e) {
             final StringWriter writer = new StringWriter();
             e.printStackTrace(new PrintWriter(writer));
@@ -52,7 +59,10 @@ public class CLIUtil {
             returnCode = 1;
         }
 
-        return returnCode;
+        if (returnCode != 0) {
+            printError("Exiting with non-zero exit code: " + returnCode);
+            System.exit(returnCode);
+        }
     }
 
     private static Command parseCommandLine(final String[] args, final Command... commands) {

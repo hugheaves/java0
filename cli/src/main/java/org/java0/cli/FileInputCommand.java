@@ -22,7 +22,7 @@ import com.beust.jcommander.Parameter;
  * @author Hugh Eaves
  *
  */
-public abstract class InputCommand extends AbstractCommand {
+public abstract class FileInputCommand extends AbstractCommand {
     @Parameter(names = { "-i", "--in" }, required = true, description = "Input file name")
     public InputFile inputFile;
 }

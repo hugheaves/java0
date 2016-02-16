@@ -24,7 +24,7 @@ import javax.inject.Named;
 
 import org.java0.factory.AbstractDelegableFactory;
 import org.java0.factory.Config;
-import org.java0.factory.ConfiguredObjectProvider;
+import org.java0.factory.ConfiguredObjectSupplier;
 import org.java0.factory.FactoryException;
 import org.java0.factory.FactoryManager;
 import org.java0.tag.HostNameTag;
@@ -49,35 +49,35 @@ public class ConverterFactory extends AbstractDelegableFactory {
     }
 
     public ConverterFactory() {
-        addType(Tag.class, new AnnotationTag(Named.class), new ConfiguredObjectProvider<Tag>() {
+        addType(Tag.class, new AnnotationTag(Named.class), new ConfiguredObjectSupplier<Tag>() {
             @Override
             public Tag getObject(final Config<Tag> config) throws FactoryException {
                 return new NamedTag(((Named) config.values()[0]).value());
             }
 
         });
-        addType(Tag.class, new AnnotationTag(LocalHost.class), new ConfiguredObjectProvider<Tag>() {
+        addType(Tag.class, new AnnotationTag(LocalHost.class), new ConfiguredObjectSupplier<Tag>() {
             @Override
             public Tag getObject(final Config<Tag> config) throws FactoryException {
                 return LocalHostTag.INSTANCE;
             }
 
         });
-        addType(Tag.class, new AnnotationTag(LocalJVM.class), new ConfiguredObjectProvider<Tag>() {
+        addType(Tag.class, new AnnotationTag(LocalJVM.class), new ConfiguredObjectSupplier<Tag>() {
             @Override
             public Tag getObject(final Config<Tag> config) throws FactoryException {
                 return LocalJVMTag.INSTANCE;
             }
 
         });
-        addType(Tag.class, new AnnotationTag(RemoteHost.class), new ConfiguredObjectProvider<Tag>() {
+        addType(Tag.class, new AnnotationTag(RemoteHost.class), new ConfiguredObjectSupplier<Tag>() {
             @Override
             public Tag getObject(final Config<Tag> config) throws FactoryException {
                 return RemoteHostTag.INSTANCE;
             }
 
         });
-        addType(Tag.class, new AnnotationTag(HostName.class), new ConfiguredObjectProvider<Tag>() {
+        addType(Tag.class, new AnnotationTag(HostName.class), new ConfiguredObjectSupplier<Tag>() {
             @Override
             public Tag getObject(final Config<Tag> config) throws FactoryException {
                 return new HostNameTag(((Named) config.values()[0]).value());

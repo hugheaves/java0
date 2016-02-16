@@ -26,29 +26,31 @@ import com.beust.jcommander.ParameterException;
  */
 public interface Command extends Runnable {
 
-	/**
-	 * Performs command specific validation of the command line parameters.
-	 *
-	 * @throws ParameterException
-	 *             the parameter exception
-	 */
-	public void validate() throws ParameterException;
+    /**
+     * Performs command specific validation of the command line parameters.
+     *
+     * @throws ParameterException
+     *             the parameter exception
+     */
+    public void validate() throws ParameterException;
 
-	/**
-	 * Performs any preparatory steps before the command is executed.
-	 */
-	public Command prepare();
+    /**
+     * Performs any preparatory steps before the command is executed.
+     */
+    public Command prepare();
 
-	/**
-	 * Run the command.
-	 *
-	 */
-	@Override
-	public void run();
+    /**
+     * Run the command.
+     * 
+     * @throws Exception
+     *
+     */
+    @Override
+    public void run();
 
-	/**
-	 * Perform any cleanup work after the command has been executed.
-	 */
-	public void finish();
+    /**
+     * Perform any cleanup work after the command has been executed.
+     */
+    public void finish();
 
 }

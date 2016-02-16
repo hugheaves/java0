@@ -182,8 +182,8 @@ public class AbstractDelegableFactory extends AbstractFactory implements Delegab
             if (count > 1) {
                 throw new AmbiguousTypeException();
             }
-            if (creator instanceof ConfiguredObjectProvider) {
-                return ((ConfiguredObjectProvider<T>) creator).getObject(config);
+            if (creator instanceof ConfiguredObjectSupplier) {
+                return ((ConfiguredObjectSupplier<T>) creator).getObject(config);
             } else {
                 return creator.get();
             }

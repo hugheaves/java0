@@ -16,6 +16,8 @@
  */
 package org.java0.cli;
 
+import org.java0.core.exception.UncheckedException;
+
 import com.beust.jcommander.ParameterException;
 
 /**
@@ -24,31 +26,44 @@ import com.beust.jcommander.ParameterException;
  */
 public abstract class AbstractCommand implements Command {
 
-	/**
-	 * Validate.
-	 *
-	 * @throws ParameterException
-	 *             the parameter exception
-	 * @see org.java0.cli.Command#validate()
-	 */
-	@Override
-	public void validate() throws ParameterException {
-	}
+    /**
+     * Validate.
+     *
+     * @throws ParameterException
+     *             the parameter exception
+     * @see org.java0.cli.Command#validate()
+     */
+    @Override
+    public void validate() throws ParameterException {
+    }
 
-	/**
-	 * @see org.java0.cli.Command#prepare()
-	 */
-	@Override
-	public Command prepare() {
-		return this;
-	}
+    @Override
+    public void run() {
+        try {
+            runWithThrow();
+        } catch (final Throwable e) {
+            throw new UncheckedException(e);
+        }
+    }
 
-	/**
-	 * @see org.java0.cli.Command#finish()
-	 */
-	@Override
-	public void finish() {
+    public void runWithThrow() throws Throwable {
+        throw new UncheckedException("Must override run() or throwableRun()");
+    }
 
-	}
+    /**
+     * @see org.java0.cli.Command#prepare()
+     */
+    @Override
+    public Command prepare() {
+        return this;
+    }
+
+    /**
+     * @see org.java0.cli.Command#finish()
+     */
+    @Override
+    public void finish() {
+
+    }
 
 }

@@ -21,14 +21,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface DefaultList.
+ * Provides default implemenetations for many of the methods in <
+ * <tt>>java.util.List<</tt>>.
  *
- * @param <T>
- *            the generic type
+ * @param <E>
+ *            the element type of this list
  */
-public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
+public interface DefaultList<E> extends DefaultCollection<E>, List<E> {
 
     @Override
     default boolean isEmpty() {
@@ -57,7 +57,7 @@ public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
     }
 
     @Override
-    public default boolean addAll(final Collection<? extends T> c) {
+    public default boolean addAll(final Collection<? extends E> c) {
         return DefaultCollection.super.addAll(c);
     }
 
@@ -81,20 +81,10 @@ public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
         return DefaultCollection.super.toArray();
     }
 
-    /**
-     * Adds the all.
-     *
-     * @param index
-     *            the index
-     * @param c
-     *            the c
-     * @return true, if successful
-     * @see java.util.List#addAll(int, java.util.Collection)
-     */
     @Override
-    public default boolean addAll(int index, final Collection<? extends T> c) {
+    public default boolean addAll(int index, final Collection<? extends E> c) {
         boolean modified = false;
-        for (final T e : c) {
+        for (final E e : c) {
             add(index++, e);
             modified = true;
         }
@@ -102,42 +92,25 @@ public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
     }
 
     @Override
-    public default boolean add(final T e) {
+    public default boolean add(final E e) {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Adds the.
-     *
-     * @param index
-     *            the index
-     * @param element
-     *            the element
-     * @see java.util.List#add(int, java.lang.Object)
-     */
     @Override
-    public default void add(final int index, final T element) {
+    public default void add(final int index, final E element) {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Index of.
-     *
-     * @param o
-     *            the o
-     * @return the int
-     * @see java.util.List#indexOf(java.lang.Object)
-     */
     @Override
     public default int indexOf(final Object o) {
         if (o == null) {
-            for (final ListIterator<T> iterator = listIterator(size()); iterator.hasPrevious();) {
+            for (final ListIterator<E> iterator = listIterator(size()); iterator.hasPrevious();) {
                 if (iterator.next() == null) {
                     return iterator.previousIndex();
                 }
             }
         } else {
-            for (final ListIterator<T> iterator = listIterator(size()); iterator.hasPrevious();) {
+            for (final ListIterator<E> iterator = listIterator(size()); iterator.hasPrevious();) {
                 if (o.equals(iterator.next())) {
                     return iterator.previousIndex();
                 }
@@ -157,13 +130,13 @@ public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
     @Override
     public default int lastIndexOf(final Object o) {
         if (o == null) {
-            for (final ListIterator<T> iterator = listIterator(size()); iterator.hasPrevious();) {
+            for (final ListIterator<E> iterator = listIterator(size()); iterator.hasPrevious();) {
                 if (iterator.previous() == null) {
                     return iterator.nextIndex();
                 }
             }
         } else {
-            for (final ListIterator<T> iterator = listIterator(size()); iterator.hasPrevious();) {
+            for (final ListIterator<E> iterator = listIterator(size()); iterator.hasPrevious();) {
                 if (o.equals(iterator.previous())) {
                     return iterator.nextIndex();
                 }
@@ -179,7 +152,7 @@ public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
      * @see java.util.Collection#iterator()
      */
     @Override
-    public default Iterator<T> iterator() {
+    public default Iterator<E> iterator() {
         return listIterator();
     }
 
@@ -190,7 +163,7 @@ public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
      * @see java.util.List#listIterator()
      */
     @Override
-    public default ListIterator<T> listIterator() {
+    public default ListIterator<E> listIterator() {
         return listIterator(0);
     }
 
@@ -203,8 +176,8 @@ public interface DefaultList<T> extends DefaultCollection<T>, List<T> {
      * @see java.util.List#listIterator(int)
      */
     @Override
-    public default ListIterator<T> listIterator(final int index) {
-        return new DefaultListIterator<T>(this, index);
+    public default ListIterator<E> listIterator(final int index) {
+        return new DefaultListIterator<E>(this, index);
     }
 
 }

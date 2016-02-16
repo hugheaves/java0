@@ -19,7 +19,6 @@ package org.java0.cli;
 import java.io.File;
 import java.net.URI;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class InputFile.
  */

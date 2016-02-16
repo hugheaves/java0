@@ -16,6 +16,7 @@
  */
 package org.java0.util;
 
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.logging.Logger;
 
@@ -24,67 +25,68 @@ import java.util.logging.Logger;
  *
  */
 public class Nullsafe {
-	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(Nullsafe.class
-			.getName());
+    @SuppressWarnings("unused")
+    private static final Logger logger = Logger.getLogger(Nullsafe.class.getName());
 
-	public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(T t,
-			BiFunction<T, U, R> function, U u) {
-		if (t == null) {
-			return null;
-		}
-		R r = function.apply(t, u);
-		return r;
-	}
+    public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(final T t, final BiFunction<T, U, R> function,
+            final U u) {
+        if (t == null) {
+            return null;
+        }
+        final R r = function.apply(t, u);
+        return r;
+    }
 
-	public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(T t,
-			BiFunction<T, U1, R1> function1, U1 u1,
-			BiFunction<R1, U, R> function, U u) {
-		R1 r1 = call(t, function1, u1);
-		if (r1 == null) {
-			return null;
-		}
-		R r = function.apply(r1, u);
-		return r;
-	}
+    public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(final T t, final BiFunction<T, U1, R1> function1,
+            final U1 u1, final BiFunction<R1, U, R> function, final U u) {
+        final R1 r1 = call(t, function1, u1);
+        if (r1 == null) {
+            return null;
+        }
+        final R r = function.apply(r1, u);
+        return r;
+    }
 
-	public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(T t,
-			BiFunction<T, U2, R2> function2, U2 u2,
-			BiFunction<R2, U1, R1> function1, U1 u1,
-			BiFunction<R1, U, R> function, U u) {
-		R1 r1 = call(t, function2, u2, function1, u1);
-		if (r1 == null) {
-			return null;
-		}
-		R r = function.apply(r1, u);
-		return r;
-	}
+    public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> void call(final T t, final BiFunction<T, U1, R1> function1,
+            final U1 u1, final BiConsumer<R1, U> function, final U u) {
+        final R1 r1 = call(t, function1, u1);
+        if (r1 == null) {
+            return;
+        }
+        function.accept(r1, u);
+    }
 
-	public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(T t,
-			BiFunction<T, U3, R3> function3, U3 u3,
-			BiFunction<R3, U2, R2> function2, U2 u2,
-			BiFunction<R2, U1, R1> function1, U1 u1,
-			BiFunction<R1, U, R> function, U u) {
-		R1 r1 = call(t, function3, u3, function2, u2, function1, u1);
-		if (r1 == null) {
-			return null;
-		}
-		R r = function.apply(r1, u);
-		return r;
-	}
+    public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(final T t, final BiFunction<T, U2, R2> function2,
+            final U2 u2, final BiFunction<R2, U1, R1> function1, final U1 u1, final BiFunction<R1, U, R> function,
+            final U u) {
+        final R1 r1 = call(t, function2, u2, function1, u1);
+        if (r1 == null) {
+            return null;
+        }
+        final R r = function.apply(r1, u);
+        return r;
+    }
 
-	public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(T t,
-			BiFunction<T, U4, R4> function4, U4 u4,
-			BiFunction<R4, U3, R3> function3, U3 u3,
-			BiFunction<R3, U2, R2> function2, U2 u2,
-			BiFunction<R2, U1, R1> function1, U1 u1,
-			BiFunction<R1, U, R> function, U u) {
-		R1 r1 = call(t, function4, u4, function3, u3, function2, u2, function1,
-				u1);
-		if (r1 == null) {
-			return null;
-		}
-		R r = function.apply(r1, u);
-		return r;
-	}
+    public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(final T t, final BiFunction<T, U3, R3> function3,
+            final U3 u3, final BiFunction<R3, U2, R2> function2, final U2 u2, final BiFunction<R2, U1, R1> function1,
+            final U1 u1, final BiFunction<R1, U, R> function, final U u) {
+        final R1 r1 = call(t, function3, u3, function2, u2, function1, u1);
+        if (r1 == null) {
+            return null;
+        }
+        final R r = function.apply(r1, u);
+        return r;
+    }
+
+    public static <T, U, R, U1, R1, U2, R2, U3, R3, U4, R4> R call(final T t, final BiFunction<T, U4, R4> function4,
+            final U4 u4, final BiFunction<R4, U3, R3> function3, final U3 u3, final BiFunction<R3, U2, R2> function2,
+            final U2 u2, final BiFunction<R2, U1, R1> function1, final U1 u1, final BiFunction<R1, U, R> function,
+            final U u) {
+        final R1 r1 = call(t, function4, u4, function3, u3, function2, u2, function1, u1);
+        if (r1 == null) {
+            return null;
+        }
+        final R r = function.apply(r1, u);
+        return r;
+    }
 }

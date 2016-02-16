@@ -15,7 +15,7 @@
 	<distributionManagement>
 		<repository>
 			<id>java0-deploy</id>
-			<url>scpexe://www.java0.org/home/maven/maven_deploy</url>
+			<url>scpexe://maven@www.java0.org/home/maven/maven_deploy</url>
 		</repository>
 	</distributionManagement>
 
