@@ -14,11 +14,4 @@ public abstract class FileInputStreamOutputCommand extends FileInputCommand {
     @Parameter(names = { "-o", "--out" }, required = false, description = "Output file name")
     protected OutputStream outputStream;
 
-    @Override
-    public Command prepare() {
-        if (outputStream == null) {
-            outputStream = System.out;
-        }
-        return this;
-    }
 }

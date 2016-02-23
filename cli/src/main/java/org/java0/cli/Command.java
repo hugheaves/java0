@@ -21,7 +21,7 @@ import com.beust.jcommander.ParameterException;
 /**
  * A single command line "command" or function. Applications define one or more
  * <tt>Command</tt>s that implement the parameter validation and high level
- * operations for each commnad line command implemented by the application.
+ * operations for each command line command implemented by the application.
  *
  */
 public interface Command extends Runnable {
