@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.java0</groupId>
         <artifactId>java0-parent</artifactId>
-        <version>0.0.5</version>
+        <version>0.0.6-SNAPSHOT</version>
         <relativePath>../parent</relativePath>
     </parent>
 
@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>org.java0</groupId>
 			<artifactId>java0-collection</artifactId>
-			<version>0.0.5</version>
+			<version>0.0.6-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
