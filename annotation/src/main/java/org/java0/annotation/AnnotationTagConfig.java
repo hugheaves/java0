@@ -18,21 +18,22 @@ package org.java0.annotation;
 
 import java.lang.annotation.Annotation;
 
-import org.java0.factory.AbstractConfig;
+import org.java0.collection.tuple.OneTuple;
+import org.java0.factory.Config;
 import org.java0.tag.Tag;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class TagConfig extends AbstractConfig<Tag> {
+public class AnnotationTagConfig extends OneTuple<Annotation> implements Config<Tag> {
 
     /**
      * Create a new TagConfig.
      *
      * @param annotation
      */
-    public TagConfig(Annotation annotation) {
+    public AnnotationTagConfig(final Annotation annotation) {
         super(annotation);
     }
 }

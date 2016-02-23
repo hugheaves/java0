@@ -18,13 +18,13 @@ package org.java0.annotation;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javax.inject.Named;
 
+import org.java0.factory.AbstractConfiguredObjectSupplier;
 import org.java0.factory.AbstractDelegableFactory;
-import org.java0.factory.Config;
-import org.java0.factory.ConfiguredObjectSupplier;
 import org.java0.factory.FactoryException;
 import org.java0.factory.FactoryManager;
 import org.java0.tag.HostNameTag;
@@ -49,38 +49,39 @@ public class ConverterFactory extends AbstractDelegableFactory {
     }
 
     public ConverterFactory() {
-        addType(Tag.class, new AnnotationTag(Named.class), new ConfiguredObjectSupplier<Tag>() {
+        addType(Tag.class, Named.class, new AbstractConfiguredObjectSupplier<Tag, AnnotationTagConfig>(null) {
             @Override
-            public Tag getObject(final Config<Tag> config) throws FactoryException {
-                return new NamedTag(((Named) config.values()[0]).value());
+            public Tag get(final AnnotationTagConfig config) throws FactoryException {
+                final Named annotation = (Named) config.get0();
+                return new NamedTag(annotation.value());
             }
-
         });
-        addType(Tag.class, new AnnotationTag(LocalHost.class), new ConfiguredObjectSupplier<Tag>() {
+        addType(Tag.class, LocalHost.class, new Supplier<Tag>() {
             @Override
-            public Tag getObject(final Config<Tag> config) throws FactoryException {
+            public Tag get() throws FactoryException {
                 return LocalHostTag.INSTANCE;
             }
 
         });
-        addType(Tag.class, new AnnotationTag(LocalJVM.class), new ConfiguredObjectSupplier<Tag>() {
+        addType(Tag.class, LocalJVM.class, new Supplier<Tag>() {
             @Override
-            public Tag getObject(final Config<Tag> config) throws FactoryException {
+            public Tag get() throws FactoryException {
                 return LocalJVMTag.INSTANCE;
             }
 
         });
-        addType(Tag.class, new AnnotationTag(RemoteHost.class), new ConfiguredObjectSupplier<Tag>() {
+        addType(Tag.class, RemoteHost.class, new Supplier<Tag>() {
             @Override
-            public Tag getObject(final Config<Tag> config) throws FactoryException {
+            public Tag get() throws FactoryException {
                 return RemoteHostTag.INSTANCE;
             }
 
         });
-        addType(Tag.class, new AnnotationTag(HostName.class), new ConfiguredObjectSupplier<Tag>() {
+        addType(Tag.class, HostName.class, new AbstractConfiguredObjectSupplier<Tag, AnnotationTagConfig>(null) {
             @Override
-            public Tag getObject(final Config<Tag> config) throws FactoryException {
-                return new HostNameTag(((Named) config.values()[0]).value());
+            public Tag get(final AnnotationTagConfig config) throws FactoryException {
+                final HostName annotation = (HostName) config.get0();
+                return new HostNameTag(annotation.value());
             }
         });
     }
@@ -89,8 +90,8 @@ public class ConverterFactory extends AbstractDelegableFactory {
         Tag firstTag = null;
         final Annotation[] annotations = element.getAnnotations();
         for (final Annotation annotation : annotations) {
-            final Tag newTag = FactoryManager.getRootFactory().getObject(Tag.class,
-                    new AnnotationTag(annotation.getClass()), new TagConfig(annotation));
+            final Tag newTag = FactoryManager.getRootFactory().getObject(Tag.class, annotation.getClass(),
+                    new AnnotationTagConfig(annotation));
 
             if (newTag != null) {
                 if (firstTag != null) {

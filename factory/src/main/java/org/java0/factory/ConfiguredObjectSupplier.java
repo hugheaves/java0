@@ -21,16 +21,27 @@ import java.util.function.Supplier;
 /**
  * @author Hugh Eaves
  *
+ * @param <T>
  */
-public interface ConfiguredObjectSupplier<T> extends Supplier<T> {
+public interface ConfiguredObjectSupplier<T, C extends Config<T>> extends Supplier<T> {
+
     /**
+     * @param config
      * @return
      * @throws FactoryException
      */
-    T getObject(Config<T> config) throws FactoryException;
+    T get(C config) throws FactoryException;
 
+    /**
+     * @return
+     */
+    C getDefaultConfig();
+
+    /**
+     * @see java.util.function.Supplier#get()
+     */
     @Override
     default T get() throws FactoryException {
-        return getObject((Config<T>) null);
+        return get(getDefaultConfig());
     }
 }

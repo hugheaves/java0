@@ -16,41 +16,22 @@
  */
 package org.java0.factory;
 
-import java.util.Map;
-import java.util.TreeMap;
+import org.java0.logging.slf4j.Logger;
+import org.java0.logging.slf4j.LoggerFactory;
 
-/**
- * @author Hugh Eaves
- *
- */
-public class AbstractConfig<T> implements Config<T> {
+public abstract class AbstractConfiguredObjectSupplier<T, C extends Config<T>>
+        implements ConfiguredObjectSupplier<T, C> {
+    @SuppressWarnings("unused")
+    private static final Logger logger = LoggerFactory.getLogger(AbstractConfiguredObjectSupplier.class);
 
-	protected Map<Object, Object> values = new TreeMap<>();
+    protected C defaultConfig;
 
-	public AbstractConfig(Object... values) {
-		int i = 0;
-		for (Object value : values) {
-			this.values.put(i++, value);
-		}
-	}
+    protected AbstractConfiguredObjectSupplier(final C defaultConfig) {
+        this.defaultConfig = defaultConfig;
+    }
 
-	/**
-	 * @see org.java0.factory.Config#values()
-	 */
-	@Override
-	public Object[] values() {
-		return values.values().toArray();
-	}
-
-	/**
-	 * @see org.java0.factory.Config#getValue(java.lang.String)
-	 */
-	@Override
-	public Object getValue(Object key) {
-		return values.get(key);
-	}
-
-	public void setValue(Object key, Object value) {
-		values.put(key, value);
-	}
+    @Override
+    public C getDefaultConfig() {
+        return defaultConfig;
+    }
 }

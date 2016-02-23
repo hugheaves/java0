@@ -16,12 +16,11 @@
  */
 package org.java0.factory;
 
+import org.java0.collection.tuple.Tuple;
+
 /**
  * @author Hugh Eaves
  *
  */
-public interface Config<T> {
-	public Object[] values();
-
-	public Object getValue(Object key);
+public interface Config<T> extends Tuple {
 }
