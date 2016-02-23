@@ -25,29 +25,27 @@ import org.slf4j.Marker;
  */
 public interface Logger extends org.slf4j.Logger {
 
-	public boolean isEnabled(Level level);
+    public boolean isEnabled(Level level);
 
-	public boolean isEnabled(Level level, Marker marker);
+    public boolean isEnabled(Level level, Marker marker);
 
-	public void log(Level level, String msg);
+    public boolean log(Level level, String msg);
 
-	public void log(Level level, String format, Object arg);
+    public boolean log(Level level, String format, Object arg);
 
-	public void log(Level level, String format, Object arg1, Object arg2);
+    public boolean log(Level level, String format, Object arg1, Object arg2);
 
-	public void log(Level level, String format, Object... arguments);
+    public boolean log(Level level, String format, Object... arguments);
 
-	public void log(Level level, String msg, Throwable t);
+    public boolean log(Level level, String msg, Throwable t);
 
-	public void log(Level level, Marker marker, String msg);
+    public boolean log(Level level, Marker marker, String msg);
 
-	public void log(Level level, Marker marker, String format, Object arg);
+    public boolean log(Level level, Marker marker, String format, Object arg);
 
-	public void log(Level level, Marker marker, String format, Object arg1,
-			Object arg2);
+    public boolean log(Level level, Marker marker, String format, Object arg1, Object arg2);
 
-	public void log(Level level, Marker marker, String format,
-			Object... arguments);
+    public boolean log(Level level, Marker marker, String format, Object... arguments);
 
-	public void log(Level level, Marker marker, String msg, Throwable t);
+    public boolean log(Level level, Marker marker, String msg, Throwable t);
 }
