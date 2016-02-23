@@ -30,11 +30,8 @@ import com.beust.jcommander.Parameters;
 public class CLIUtil {
     private static final Logger logger = LoggerFactory.getLogger(CLIUtil.class);
 
-    private static final String outOfMemoryMessage = "Command threw OutOfMemoryError exception in "
-            + CLIUtil.class.getName();
-
     public static void processCommandLine(final String[] args, final Command... commands) {
-        int returnCode = 0;
+        final int returnCode = 0;
 
         try {
             Command command = parseCommandLine(args, commands);
@@ -48,20 +45,11 @@ public class CLIUtil {
                 command.run();
                 command.finish();
             }
-        } catch (final OutOfMemoryError e) {
-            System.err.println(outOfMemoryMessage);
-            e.printStackTrace();
-            returnCode = 2;
         } catch (final Throwable e) {
             final StringWriter writer = new StringWriter();
             e.printStackTrace(new PrintWriter(writer));
             printError(writer.toString());
-            returnCode = 1;
-        }
-
-        if (returnCode != 0) {
-            printError("Exiting with non-zero exit code: " + returnCode);
-            System.exit(returnCode);
+            throw (e);
         }
     }
 
