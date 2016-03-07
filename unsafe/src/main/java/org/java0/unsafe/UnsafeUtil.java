@@ -30,7 +30,7 @@ import sun.misc.Unsafe;
  *
  */
 @SuppressWarnings("restriction")
-class UnsafeUtil {
+public class UnsafeUtil {
     private static final Logger logger = LoggerFactory.getLogger(UnsafeUtil.class.getName());
 
     private static final Unsafe theUnsafe;
