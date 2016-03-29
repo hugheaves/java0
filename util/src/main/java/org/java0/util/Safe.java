@@ -16,18 +16,35 @@
  */
 package org.java0.util;
 
+import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 /**
  * @author Hugh Eaves
  *
  */
-public class Nullsafe {
+public class Safe {
     @SuppressWarnings("unused")
     private static final Logger logger = Logger.getLogger(Nullsafe.class.getName());
 
+    public static <T> T call(final Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IndexOutOfBoundsException | NoSuchElementException | NullPointerException e) {
+            return null;
+        }
+    }
+
+    /////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
+    // CODE GENERATOR
+    /////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
     private static final String RETURN_VALUE = "r";
     private static final String PARAM_VALUE = "p";
     private static final String PARAM_TYPE = "P";
@@ -122,7 +139,10 @@ public class Nullsafe {
         final String r1 = RETURN_VALUE + (depth + 1);
         final String function0 = "function" + depth;
         System.out.println(R1 + " " + r1 + " = null;");
+        System.out.println("try {");
         System.out.println(r1 + " = " + function0 + ".apply(" + r0 + applyArgs + ");");
+        System.out.println("} catch (IndexOutOfBoundsException | NoSuchElementException e) {");
+        System.out.println("}");
     }
 
     /////////////////////////////////////////////////////////
@@ -138,7 +158,10 @@ public class Nullsafe {
             return null;
         }
         R1 r1 = null;
-        r1 = function0.apply(r0, p1);
+        try {
+            r1 = function0.apply(r0, p1);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r1;
     }
 
@@ -149,7 +172,10 @@ public class Nullsafe {
             return null;
         }
         R2 r2 = null;
-        r2 = function1.apply(r1, p2);
+        try {
+            r2 = function1.apply(r1, p2);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r2;
     }
 
@@ -160,7 +186,10 @@ public class Nullsafe {
             return null;
         }
         R3 r3 = null;
-        r3 = function2.apply(r2, p3);
+        try {
+            r3 = function2.apply(r2, p3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r3;
     }
 
@@ -172,7 +201,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3, p4);
+        try {
+            r4 = function3.apply(r3, p4);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -184,7 +216,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3);
+        try {
+            r4 = function3.apply(r3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -195,7 +230,10 @@ public class Nullsafe {
             return null;
         }
         R3 r3 = null;
-        r3 = function2.apply(r2);
+        try {
+            r3 = function2.apply(r2);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r3;
     }
 
@@ -207,7 +245,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3, p4);
+        try {
+            r4 = function3.apply(r3, p4);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -219,7 +260,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3);
+        try {
+            r4 = function3.apply(r3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -230,7 +274,10 @@ public class Nullsafe {
             return null;
         }
         R2 r2 = null;
-        r2 = function1.apply(r1);
+        try {
+            r2 = function1.apply(r1);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r2;
     }
 
@@ -241,7 +288,10 @@ public class Nullsafe {
             return null;
         }
         R3 r3 = null;
-        r3 = function2.apply(r2, p3);
+        try {
+            r3 = function2.apply(r2, p3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r3;
     }
 
@@ -253,7 +303,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3, p4);
+        try {
+            r4 = function3.apply(r3, p4);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -265,7 +318,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3);
+        try {
+            r4 = function3.apply(r3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -276,7 +332,10 @@ public class Nullsafe {
             return null;
         }
         R3 r3 = null;
-        r3 = function2.apply(r2);
+        try {
+            r3 = function2.apply(r2);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r3;
     }
 
@@ -288,7 +347,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3, p4);
+        try {
+            r4 = function3.apply(r3, p4);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -299,7 +361,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3);
+        try {
+            r4 = function3.apply(r3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -308,7 +373,10 @@ public class Nullsafe {
             return null;
         }
         R1 r1 = null;
-        r1 = function0.apply(r0);
+        try {
+            r1 = function0.apply(r0);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r1;
     }
 
@@ -319,7 +387,10 @@ public class Nullsafe {
             return null;
         }
         R2 r2 = null;
-        r2 = function1.apply(r1, p2);
+        try {
+            r2 = function1.apply(r1, p2);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r2;
     }
 
@@ -330,7 +401,10 @@ public class Nullsafe {
             return null;
         }
         R3 r3 = null;
-        r3 = function2.apply(r2, p3);
+        try {
+            r3 = function2.apply(r2, p3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r3;
     }
 
@@ -342,7 +416,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3, p4);
+        try {
+            r4 = function3.apply(r3, p4);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -354,7 +431,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3);
+        try {
+            r4 = function3.apply(r3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -365,7 +445,10 @@ public class Nullsafe {
             return null;
         }
         R3 r3 = null;
-        r3 = function2.apply(r2);
+        try {
+            r3 = function2.apply(r2);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r3;
     }
 
@@ -377,7 +460,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3, p4);
+        try {
+            r4 = function3.apply(r3, p4);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -389,7 +475,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3);
+        try {
+            r4 = function3.apply(r3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -400,7 +489,10 @@ public class Nullsafe {
             return null;
         }
         R2 r2 = null;
-        r2 = function1.apply(r1);
+        try {
+            r2 = function1.apply(r1);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r2;
     }
 
@@ -411,7 +503,10 @@ public class Nullsafe {
             return null;
         }
         R3 r3 = null;
-        r3 = function2.apply(r2, p3);
+        try {
+            r3 = function2.apply(r2, p3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r3;
     }
 
@@ -423,7 +518,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3, p4);
+        try {
+            r4 = function3.apply(r3, p4);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -435,7 +533,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3);
+        try {
+            r4 = function3.apply(r3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -446,7 +547,10 @@ public class Nullsafe {
             return null;
         }
         R3 r3 = null;
-        r3 = function2.apply(r2);
+        try {
+            r3 = function2.apply(r2);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r3;
     }
 
@@ -458,7 +562,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3, p4);
+        try {
+            r4 = function3.apply(r3, p4);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 
@@ -469,7 +576,10 @@ public class Nullsafe {
             return null;
         }
         R4 r4 = null;
-        r4 = function3.apply(r3);
+        try {
+            r4 = function3.apply(r3);
+        } catch (IndexOutOfBoundsException | NoSuchElementException e) {
+        }
         return r4;
     }
 

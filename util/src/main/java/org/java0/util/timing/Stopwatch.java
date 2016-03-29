@@ -32,9 +32,14 @@ import org.java0.logging.slf4j.LoggerFactory;
  * @author Hugh Eaves
  */
 public final class Stopwatch extends AbstractNamedObject {
+    private static final Logger DEFAULT_LOGGER = LoggerFactory.getLogger(Stopwatch.class);
+    private static final Level DEFAULT_LEVEL = Level.DEBUG;
+    private static final String DEFAULT_NAME = "Stopwatch";
 
     /** The Constant logger. */
-    private static final Logger logger = LoggerFactory.getLogger(Stopwatch.class);
+    private final Logger logger;
+    /** The level. */
+    private final Level level;
 
     private long elapsedTimeAtStart;
     private long cpuTimeAtStart;
@@ -50,15 +55,12 @@ public final class Stopwatch extends AbstractNamedObject {
 
     private long loggerTime;
 
-    /** The level. */
-    private Level level = Level.INFO;
-
     /**
      * Create a new Stopwatch.
      *
      */
     public Stopwatch() {
-        this("Stopwatch");
+        this(DEFAULT_NAME);
     }
 
     /**
@@ -68,7 +70,16 @@ public final class Stopwatch extends AbstractNamedObject {
      *            the name
      */
     public Stopwatch(final String name) {
-        super(name);
+        this(name, DEFAULT_LEVEL);
+    }
+
+    /**
+     * Create a new Stopwatch.
+     *
+     * @param level
+     */
+    public Stopwatch(final Level level) {
+        this(DEFAULT_NAME, level);
     }
 
     /**
@@ -80,7 +91,23 @@ public final class Stopwatch extends AbstractNamedObject {
      *            the level
      */
     public Stopwatch(final String name, final Level level) {
+        this(name, level, DEFAULT_LOGGER);
+    }
+
+    public Stopwatch(final String name, final Logger logger) {
+        this(name, DEFAULT_LEVEL, logger);
+    }
+
+    /**
+     * Create a new Stopwatch.
+     *
+     * @param name
+     * @param level
+     * @param logger
+     */
+    public Stopwatch(final String name, final Level level, final Logger logger) {
         super(name);
+        this.logger = logger;
         this.level = level;
     }
 
@@ -90,17 +117,19 @@ public final class Stopwatch extends AbstractNamedObject {
      * Start.
      */
     public void start() {
-        final ThreeTuple<Long, Long, Long> times = getTimes();
+        if (logger.isEnabled(level)) {
+            final ThreeTuple<Long, Long, Long> times = getTimes();
 
-        elapsedTimeAtStart = times.get0();
-        cpuTimeAtStart = times.get1();
-        userTimeAtStart = times.get2();
+            elapsedTimeAtStart = times.get0();
+            cpuTimeAtStart = times.get1();
+            userTimeAtStart = times.get2();
 
-        currentElapsedTime = 0;
-        currentCpuTime = 0;
-        currentUserTime = 0;
+            currentElapsedTime = 0;
+            currentCpuTime = 0;
+            currentUserTime = 0;
 
-        logInternal(level, "START");
+            logInternal(level, "START");
+        }
     }
 
     /**
@@ -145,14 +174,16 @@ public final class Stopwatch extends AbstractNamedObject {
      *            the message
      */
     public void log(final Level level, final String message) {
-        updateTimes();
+        if (logger.isEnabled(level)) {
+            updateTimes();
 
-        if (elapsedTimeAtStart == 0) {
-            logger.warn("Error: Stopwatch log() called wihout start()");
-            return;
+            if (elapsedTimeAtStart == 0) {
+                logger.warn("Error: Stopwatch log() called wihout start()");
+                return;
+            }
+
+            logInternal(level, message);
         }
-
-        logInternal(level, message);
     }
 
     private void logInternal(final Level level, final String message) {
@@ -166,20 +197,22 @@ public final class Stopwatch extends AbstractNamedObject {
      * Stops the timer.
      */
     public void stop() {
-        if (elapsedTimeAtStart == 0) {
-            logger.warn("Error: Stopwatch stop() called wihout start()");
-            return;
+        if (logger.isEnabled(level)) {
+            if (elapsedTimeAtStart == 0) {
+                logger.warn("Error: Stopwatch stop() called wihout start()");
+                return;
+            }
+
+            updateTimes();
+
+            totalElapsedTime = totalElapsedTime + currentElapsedTime;
+            totalCpuTime += currentCpuTime;
+            totalUserTime += currentUserTime;
+
+            logInternal(level, "STOP");
+
+            elapsedTimeAtStart = 0;
         }
-
-        updateTimes();
-
-        totalElapsedTime = totalElapsedTime + currentElapsedTime;
-        totalCpuTime += currentCpuTime;
-        totalUserTime += currentUserTime;
-
-        logInternal(level, "STOP");
-
-        elapsedTimeAtStart = 0;
     }
 
     private ThreeTuple<Long, Long, Long> getTimes() {
@@ -206,11 +239,13 @@ public final class Stopwatch extends AbstractNamedObject {
     }
 
     public void updateTimes() {
-        final ThreeTuple<Long, Long, Long> times = getTimes();
+        if (logger.isEnabled(level)) {
+            final ThreeTuple<Long, Long, Long> times = getTimes();
 
-        currentElapsedTime = times.get0() - elapsedTimeAtStart;
-        currentCpuTime = times.get1() - cpuTimeAtStart;
-        currentUserTime = times.get2() - userTimeAtStart;
+            currentElapsedTime = times.get0() - elapsedTimeAtStart;
+            currentCpuTime = times.get1() - cpuTimeAtStart;
+            currentUserTime = times.get2() - userTimeAtStart;
+        }
     }
 
     private long toMS(final long value) {
