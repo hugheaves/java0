@@ -30,8 +30,20 @@ import com.beust.jcommander.Parameters;
 public class CLIUtil {
     private static final Logger logger = LoggerFactory.getLogger(CLIUtil.class);
 
-    public static void processCommandLine(final String[] args, final Command... commands) {
-        final int returnCode = 0;
+    /**
+     * Parses the command line arguments in args, and executes the appropriate
+     * command in the list of commands. If the command syntax is incorrect, a
+     * "usage" message is printed to standard error.
+     * 
+     * @param args
+     *            the command line arguments
+     * @param commands
+     *            a list of commands
+     * @return returns 0 if the command executed succesfully, != 0 otherwise
+     *         (including incorrect command line syntax)
+     */
+    public static int processCommandLine(final String[] args, final Command... commands) {
+        int returnCode = 0;
 
         try {
             Command command = parseCommandLine(args, commands);
@@ -44,13 +56,17 @@ public class CLIUtil {
                 }
                 command.run();
                 command.finish();
+            } else {
+                returnCode = 1;
             }
         } catch (final Throwable e) {
             final StringWriter writer = new StringWriter();
             e.printStackTrace(new PrintWriter(writer));
             printError(writer.toString());
-            throw (e);
+            throw e;
         }
+
+        return (returnCode);
     }
 
     private static Command parseCommandLine(final String[] args, final Command... commands) {

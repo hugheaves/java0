@@ -35,7 +35,12 @@ public interface Command extends Runnable {
     public void validate() throws ParameterException;
 
     /**
-     * Performs any preparatory steps before the command is executed.
+     * Performs any preparatory steps before the command is executed. This
+     * method may optionally return a new Command instance, which will then be
+     * initialized with command parameters, and used for subsequent command
+     * lifecycle calls.
+     * 
+     * @return null or a new Command instance
      */
     public Command prepare();
 
