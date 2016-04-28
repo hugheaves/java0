@@ -18,43 +18,31 @@
 package org.java0.cli;
 
 import java.io.File;
-import java.io.IOException;
 
 import com.beust.jcommander.ParameterException;
-import com.beust.jcommander.converters.BaseConverter;
 
 /**
  * The Class OutputFileConverter.
  */
-public class OutputFileConverter extends BaseConverter<File> {
+public class OutputFileConverter extends AbstractOutputConverter<OutputFile> {
 
-	/**
-	 * Instantiates a new output file converter.
-	 *
-	 * @param optionName
-	 *            the option name
-	 */
-	public OutputFileConverter(String optionName) {
-		super(optionName);
-	}
+    /**
+     * Instantiates a new output file converter.
+     *
+     * @param optionName
+     *            the option name
+     */
+    public OutputFileConverter(final String optionName) {
+        super(optionName);
+    }
 
-	/**
-	 * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
-	 */
-	@Override
-	public OutputFile convert(String value) {
-		OutputFile file = new OutputFile(value);
+    @Override
+    protected OutputFile getDefaultOutput() throws Throwable {
+        throw new ParameterException(CLIConst.STANDARD_IO_FLAG + " is not a valid output file name");
+    }
 
-		try {
-			if (file.canWrite()) {
-				return file;
-			} else if (file.createNewFile()) {
-				return file;
-			}
-		} catch (IOException e) {
-		}
-
-		throw new ParameterException("Unable to write to the "
-				+ getOptionName() + "file [" + value + "]");
-	}
+    @Override
+    protected OutputFile getFileOutput(final File outputFile) throws Throwable {
+        return new OutputFile(outputFile.getAbsolutePath());
+    }
 }

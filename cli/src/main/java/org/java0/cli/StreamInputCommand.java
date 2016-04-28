@@ -12,5 +12,9 @@ public abstract class StreamInputCommand extends AbstractCommand {
     private static final Logger logger = LoggerFactory.getLogger(StreamInputCommand.class);
 
     @Parameter(names = { "-i", "--in" }, required = false, description = "Input file name")
-    public InputStream inputFile;
+    protected InputStream inputFile;
+
+    protected StreamInputCommand() {
+        addDefault(CLIConst.STANDARD_IO_FLAG, "-i", "--in");
+    }
 }

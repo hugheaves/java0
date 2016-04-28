@@ -18,17 +18,17 @@ package org.java0.cli;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 
-import com.beust.jcommander.ParameterException;
-import com.beust.jcommander.converters.BaseConverter;
+import org.java0.logging.slf4j.Logger;
+import org.java0.logging.slf4j.LoggerFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class OutputStreamConverter.
  */
-public class OutputStreamConverter extends BaseConverter<OutputStream> {
+public class OutputStreamConverter extends AbstractOutputConverter<OutputStream> {
+    @SuppressWarnings("unused")
+    private static final Logger logger = LoggerFactory.getLogger(OutputStreamConverter.class);
 
     /**
      * Instantiates a new output stream converter.
@@ -40,26 +40,14 @@ public class OutputStreamConverter extends BaseConverter<OutputStream> {
         super(optionName);
     }
 
-    /**
-     * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
-     */
     @Override
-    public OutputStream convert(final String value) {
-        if (value == null || "".equals(value)) {
-            return System.out;
-        }
-
-        final File file = new File(value);
-
-        try {
-            if (file.canWrite()) {
-                return new FileOutputStream(file);
-            } else if (file.createNewFile()) {
-                return new FileOutputStream(file);
-            }
-        } catch (final IOException e) {
-        }
-
-        throw new ParameterException("Unable to write to the " + getOptionName() + "file [" + value + "]");
+    protected OutputStream getDefaultOutput() throws Throwable {
+        return System.out;
     }
+
+    @Override
+    protected OutputStream getFileOutput(final File outputFile) throws Throwable {
+        return new FileOutputStream(outputFile);
+    }
+
 }

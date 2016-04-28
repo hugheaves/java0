@@ -18,45 +18,27 @@ package org.java0.cli;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 
-import com.beust.jcommander.ParameterException;
-import com.beust.jcommander.converters.BaseConverter;
+public class PrintStreamConverter extends AbstractOutputConverter<PrintStream> {
 
-public class PrintStreamConverter extends BaseConverter<PrintStream> {
+    /**
+     * Instantiates a new output stream converter.
+     *
+     * @param optionName
+     *            the option name
+     */
+    public PrintStreamConverter(final String optionName) {
+        super(optionName);
+    }
 
-	/**
-	 * Instantiates a new output stream converter.
-	 *
-	 * @param optionName
-	 *            the option name
-	 */
-	public PrintStreamConverter(final String optionName) {
-		super(optionName);
-	}
+    @Override
+    protected PrintStream getDefaultOutput() throws Throwable {
+        return System.out;
+    }
 
-	/**
-	 * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
-	 */
-	@Override
-	public PrintStream convert(final String value) {
-		if ("-".equals(value)) {
-			return System.out;
-		}
-
-		final File file = new File(value);
-
-		try {
-			if (file.canWrite()) {
-				return new PrintStream(new FileOutputStream(file));
-			} else if (file.createNewFile()) {
-				return new PrintStream(new FileOutputStream(file));
-			}
-		} catch (final IOException e) {
-		}
-
-		throw new ParameterException("Unable to write to the "
-				+ getOptionName() + "file [" + value + "]");
-	}
+    @Override
+    protected PrintStream getFileOutput(final File outputFile) throws Throwable {
+        return new PrintStream(new FileOutputStream(outputFile), true);
+    }
 }

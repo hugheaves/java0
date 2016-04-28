@@ -18,17 +18,12 @@ package org.java0.cli;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import com.beust.jcommander.ParameterException;
-import com.beust.jcommander.converters.BaseConverter;
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class InputStreamConverter.
  */
-public class InputStreamConverter extends BaseConverter<InputStream> {
+public class InputStreamConverter extends AbstractInputConverter<InputStream> {
 
     /**
      * Instantiates a new input stream converter.
@@ -41,24 +36,19 @@ public class InputStreamConverter extends BaseConverter<InputStream> {
     }
 
     /**
-     * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
+     * @see org.java0.cli.AbstractInputConverter#getDefaultInput()
      */
     @Override
-    public InputStream convert(final String value) {
-        if (value == null || "".equals(value)) {
-            return System.in;
-        }
+    protected InputStream getDefaultInput() throws Throwable {
+        return System.in;
+    }
 
-        final File file = new File(value);
-
-        if (file.canRead()) {
-            try {
-                return new FileInputStream(file);
-            } catch (final FileNotFoundException e) {
-            }
-        }
-
-        throw new ParameterException("Unable to read the " + getOptionName() + " file [" + value + "]");
+    /**
+     * @see org.java0.cli.AbstractInputConverter#getFileInput(java.io.File)
+     */
+    @Override
+    protected InputStream getFileInput(final File inputFile) throws Throwable {
+        return new FileInputStream(inputFile);
     }
 
 }

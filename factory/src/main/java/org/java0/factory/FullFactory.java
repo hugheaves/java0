@@ -135,17 +135,16 @@ public class FullFactory extends AbstractFactory
         final RowSet<ThreeTuple<Class<?>, Object, DelegableFactory>> table = typeTable
                 .select(new ThreeTuple<Class<?>, Object, DelegableFactory>(type, selector, null));
 
-        final int maxScore = Integer.MIN_VALUE;
+        int maxScore = Integer.MIN_VALUE;
         int count = 0;
         Factory factory = null;
 
         // find the highest scoring match
         for (final ThreeTuple<Class<?>, Object, DelegableFactory> row : table) {
-
-            int score = tagComparator.matchScore(row.get0(), selector);
+            final int score = tagComparator.matchScore(row.get0(), selector);
 
             if (score > maxScore) {
-                score = maxScore;
+                maxScore = score;
                 factory = row.get2();
                 count = 1;
             } else if (score == maxScore) {

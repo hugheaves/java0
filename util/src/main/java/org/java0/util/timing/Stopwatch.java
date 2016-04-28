@@ -53,6 +53,7 @@ public final class Stopwatch extends AbstractNamedObject {
     private long totalCpuTime;
     private long totalUserTime;
 
+    @SuppressWarnings("unused")
     private long loggerTime;
 
     /**

@@ -14,4 +14,7 @@ public abstract class FileInputStreamOutputCommand extends FileInputCommand {
     @Parameter(names = { "-o", "--out" }, required = false, description = "Output file name")
     protected OutputStream outputStream;
 
+    protected FileInputStreamOutputCommand() {
+        addDefault(CLIConst.STANDARD_IO_FLAG, "-o", "--out");
+    }
 }

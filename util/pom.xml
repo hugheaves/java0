@@ -19,17 +19,14 @@
 		<dependency>
 			<groupId>org.java0</groupId>
 			<artifactId>java0-core</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.java0</groupId>
 			<artifactId>java0-logging</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.java0</groupId>
 			<artifactId>java0-test</artifactId>
-			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

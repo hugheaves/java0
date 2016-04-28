@@ -16,8 +16,11 @@
  */
 package org.java0.cli;
 
+import java.util.Map;
+
 import org.java0.core.exception.UncheckedException;
 
+import com.beust.jcommander.IDefaultProvider;
 import com.beust.jcommander.ParameterException;
 
 /**
@@ -25,6 +28,8 @@ import com.beust.jcommander.ParameterException;
  * interface.
  */
 public abstract class AbstractCommand implements Command {
+
+    private final DefaultProviderMap defaultProviders = new DefaultProviderMap();
 
     /**
      * Validate.
@@ -66,4 +71,29 @@ public abstract class AbstractCommand implements Command {
 
     }
 
+    @Override
+    public Map<String, IDefaultProvider> getDefaults() {
+        return defaultProviders;
+
+    }
+
+    protected void addDefault(final String value, final String... optionNames) {
+        for (final String optionName : optionNames) {
+            if (defaultProviders.get(optionName) != null) {
+                throw new ParameterException("Duplicate default value specified for option " + optionName);
+            } else {
+                defaultProviders.put(optionName, new IDefaultProvider() {
+                    @Override
+                    public String getDefaultValueFor(final String option) {
+                        if (optionName.equals(option)) {
+                            return value;
+                        } else {
+                            return null;
+                        }
+                    }
+                });
+            }
+
+        }
+    }
 }

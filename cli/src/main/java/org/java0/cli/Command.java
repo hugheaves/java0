@@ -16,6 +16,9 @@
  */
 package org.java0.cli;
 
+import java.util.Map;
+
+import com.beust.jcommander.IDefaultProvider;
 import com.beust.jcommander.ParameterException;
 
 /**
@@ -57,5 +60,13 @@ public interface Command extends Runnable {
      * Perform any cleanup work after the command has been executed.
      */
     public void finish();
+
+    /**
+     * Get the map of command line options to default value providers for this
+     * command.
+     * 
+     * @return
+     */
+    public Map<String, IDefaultProvider> getDefaults();
 
 }

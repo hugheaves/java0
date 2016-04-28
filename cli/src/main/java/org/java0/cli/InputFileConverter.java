@@ -20,36 +20,36 @@ package org.java0.cli;
 import java.io.File;
 
 import com.beust.jcommander.ParameterException;
-import com.beust.jcommander.converters.BaseConverter;
 
 /**
  * The Class InputFileConverter.
  */
-public class InputFileConverter extends BaseConverter<File> {
+public class InputFileConverter extends AbstractInputConverter<InputFile> {
 
-	/**
-	 * Instantiates a new input file converter.
-	 *
-	 * @param optionName
-	 *            the option name
-	 */
-	public InputFileConverter(String optionName) {
-		super(optionName);
-	}
+    /**
+     * Instantiates a new input file converter.
+     *
+     * @param optionName
+     *            the option name
+     */
+    public InputFileConverter(final String optionName) {
+        super(optionName);
+    }
 
-	/**
-	 * @see com.beust.jcommander.IStringConverter#convert(java.lang.String)
-	 */
-	@Override
-	public InputFile convert(String value) {
-		InputFile file = new InputFile(value);
+    /**
+     * @see org.java0.cli.AbstractInputConverter#getDefaultInput()
+     */
+    @Override
+    protected InputFile getDefaultInput() throws Throwable {
+        throw new ParameterException(CLIConst.STANDARD_IO_FLAG + " is not a valid input file name");
+    }
 
-		if (!file.canRead()) {
-			throw new ParameterException("Unable to read the "
-					+ getOptionName() + " file [" + value + "]");
-		}
-
-		return file;
-	}
+    /**
+     * @see org.java0.cli.AbstractInputConverter#getFileInput(java.io.File)
+     */
+    @Override
+    protected InputFile getFileInput(final File inputFile) throws Throwable {
+        return new InputFile(inputFile.getAbsolutePath());
+    }
 
 }

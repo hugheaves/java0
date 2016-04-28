@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import sun.misc.Unsafe;
 
+@SuppressWarnings("restriction")
 public class UnsafeUtilTest {
     @SuppressWarnings("unused")
     private static final Logger logger = LoggerFactory.getLogger(UnsafeUtilTest.class);
