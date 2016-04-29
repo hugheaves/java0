@@ -7,15 +7,10 @@
 
   <parent>
     <groupId>org.java0</groupId>
-    <artifactId>java0-parent</artifactId>
+    <artifactId>java0-lib-parent</artifactId>
     <version>0.0.10-SNAPSHOT</version>
-    <relativePath>../parent</relativePath>
+    <relativePath>../lib-parent/pom.xml</relativePath>
   </parent>
-
-  <build>
-    <plugins>
-    </plugins>
-  </build>
 
   <dependencies>
     <dependency>
@@ -30,7 +25,7 @@
       <groupId>org.java0</groupId>
       <artifactId>java0-util</artifactId>
     </dependency>
-   <dependency>
+    <dependency>
       <groupId>org.java0</groupId>
       <artifactId>java0-collection</artifactId>
     </dependency>

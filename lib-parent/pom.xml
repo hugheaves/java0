@@ -3,19 +3,26 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>java0-test</artifactId>
+  <artifactId>java0-lib-parent</artifactId>
+  <packaging>pom</packaging>
 
   <parent>
     <groupId>org.java0</groupId>
-    <artifactId>java0-lib-parent</artifactId>
+    <artifactId>java0-app-parent</artifactId>
     <version>0.0.10-SNAPSHOT</version>
-    <relativePath>../lib-parent/pom.xml</relativePath>
+    <relativePath>../app-parent/pom.xml</relativePath>
   </parent>
 
   <dependencies>
     <dependency>
-      <groupId>org.java0</groupId>
-      <artifactId>java0-logging</artifactId>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

@@ -56,14 +56,15 @@
 
   <modules>
     <module>annotation</module>
+    <module>app-parent</module>
     <module>cli</module>
     <module>collection</module>
     <module>core</module>
     <module>factory</module>
     <module>io</module>
     <module>javascript</module>
+    <module>lib-parent</module>
     <module>logging</module>
-    <module>parent</module>
     <module>process</module>
     <module>string</module>
     <module>tag</module>
