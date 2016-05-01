@@ -44,9 +44,10 @@ public class CLIUtil {
      */
     public static int processCommandLine(final String[] args, final Command... commands) {
         int returnCode = 0;
+        Command command = null;
 
         try {
-            Command command = parseCommandLine(args, commands);
+            command = parseCommandLine(args, commands);
 
             if (command != null) {
                 final Command newCommand = command.prepare();
@@ -55,7 +56,6 @@ public class CLIUtil {
                     command = newCommand;
                 }
                 command.run();
-                command.finish();
             } else {
                 returnCode = 1;
             }
@@ -64,6 +64,10 @@ public class CLIUtil {
             e.printStackTrace(new PrintWriter(writer));
             printError(writer.toString());
             throw e;
+        } finally {
+            if (command != null) {
+                command.finish();
+            }
         }
 
         return (returnCode);
