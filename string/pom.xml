@@ -21,10 +21,5 @@
       <groupId>org.java0</groupId>
       <artifactId>java0-logging</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.java0</groupId>
-      <artifactId>java0-test</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 </project>

@@ -24,5 +24,10 @@
       <artifactId>logback-classic</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.java0</groupId>
+      <artifactId>java0-test</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>

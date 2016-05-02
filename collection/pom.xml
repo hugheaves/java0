@@ -29,11 +29,6 @@
     </dependency>
     <dependency>
       <groupId>org.java0</groupId>
-      <artifactId>java0-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.java0</groupId>
       <artifactId>java0-util</artifactId>
       <scope>test</scope>
     </dependency>
