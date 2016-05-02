@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>java0-app-parent</artifactId>
@@ -9,7 +8,7 @@
   <parent>
     <groupId>org.java0</groupId>
     <artifactId>java0</artifactId>
-    <version>0.0.10-SNAPSHOT</version>
+    <version>0.0.10</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -100,20 +99,16 @@
               </goals>
               <configuration>
                 <transformers>
-                  <transformer
-                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                     <mainClass>${shade.main.class}</mainClass>
                   </transformer>
-                  <transformer
-                    implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                     <resource>META-INF/spring.handlers</resource>
                   </transformer>
-                  <transformer
-                    implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                     <resource>META-INF/spring.schemas</resource>
                   </transformer>
-                  <transformer
-                    implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
                     <resource>META-INF/persistence.xml</resource>
                   </transformer>
                 </transformers>
@@ -140,77 +135,77 @@
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-annotation</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-cli</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-collection</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-core</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-factory</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-io</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-javascript</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-logging</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-process</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-string</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-tag</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-test</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-unit</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-unsafe</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.java0</groupId>
         <artifactId>java0-util</artifactId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.10</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
