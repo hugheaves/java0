@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.java0</groupId>
   <artifactId>java0</artifactId>
   <version>0.0.11-SNAPSHOT</version>
   <packaging>pom</packaging>
+
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>A set of core java utility libraries.</description>
+  <url>http://www.java0.org</url>
+
+  <licenses>
+    <license>
+      <name>GNU General Public License, Version 3</name>
+      <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,19 +38,6 @@
     <url>https://www.hugheaves.com/gitweb/java0.git</url>
     <tag>HEAD</tag>
   </scm>
-
-  <repositories>
-    <repository>
-      <id>java0-repo</id>
-      <url>http://www.java0.org/maven2</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
 
   <build>
     <pluginManagement>
