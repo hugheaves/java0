@@ -16,8 +16,11 @@
  */
 package org.java0.test;
 
-
+/**
+ * @author Hugh Eaves
+ *
+ */
 public class BaseTest {
-	public BaseTest() {
-	}
+    public BaseTest() {
+    }
 }

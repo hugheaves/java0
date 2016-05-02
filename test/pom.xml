@@ -6,8 +6,8 @@
 
   <parent>
     <groupId>org.java0</groupId>
-    <artifactId>java0</artifactId>
+    <artifactId>java0-app-parent</artifactId>
     <version>0.0.11-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
+    <relativePath>../app-parent/pom.xml</relativePath>
   </parent>
 </project>

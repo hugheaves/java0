@@ -9,7 +9,7 @@
 
   <name>${project.groupId}:${project.artifactId}</name>
   <description>A set of core java utility libraries.</description>
-  <url>http://www.java0.org</url>
+  <url>http://www.java0.org/site</url>
 
   <licenses>
     <license>
@@ -28,8 +28,12 @@
   <distributionManagement>
     <repository>
       <id>java0-deploy</id>
-      <url>scpexe://maven@www.java0.org/home/maven/maven_deploy</url>
+      <url>scpexe://www.java0.org/home/java0/repository</url>
     </repository>
+    <site>
+      <id>java0-site</id>
+      <url>scpexe://www.java0.org/home/java0/site</url>
+    </site>
   </distributionManagement>
 
   <scm>
@@ -52,8 +56,16 @@
           <artifactId>maven-release-plugin</artifactId>
           <version>2.5.3</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>2.9</version>
+        </plugin>
+
       </plugins>
     </pluginManagement>
+    <plugins>
+    </plugins>
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
@@ -67,6 +79,34 @@
       </extension>
     </extensions>
   </build>
+
+  <!-- <reporting> <plugins> <plugin> <groupId>org.codehaus.mojo</groupId> 
+    <artifactId>findbugs-maven-plugin</artifactId> <version>3.0.3</version> </plugin> 
+    </plugins> </reporting> -->
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <modules>
     <module>annotation</module>
